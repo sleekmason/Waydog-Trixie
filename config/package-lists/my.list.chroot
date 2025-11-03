@@ -84,8 +84,6 @@ libpam-systemd
 libpipewire-0.3-common
 libqt5svg5
 librsvg2-common
-#lightdm
-#lightdm-gtk-greeter-settings
 locales
 lsb-release
 lxrandr
@@ -110,7 +108,6 @@ network-manager-l10n
 ntfs-3g
 obconf
 obsidian-icon-theme
-#openbox
 os-prober
 oss-compat
 p7zip-full
@@ -210,12 +207,7 @@ xsel
 xz-utils
 yad
 zstd
-labwc
 alacritty
-fastfetch
-#grim
-#grimshot
-#flameshot
 waybar
 swaybg
 swayidle
