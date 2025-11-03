@@ -1,0 +1,44 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mCalibre Installer[0m
+
+   calibre is a powerful and easy to use e-book manager. It will 
+   allow you to do nearly everything, and it takes things a step 
+   beyond normal e-book software.  It’s also completely free and 
+   open source and works great for all users. 
+    
+   [0;33mhttps://calibre-ebook.com/[0m
+   
+   [0;33m-----------------------------------------------------------------
+   
+   Please press enter to install Calibre.
+   
+   -----------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+sudo -v && wget --prefer-family=IPv4 -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+sed -i '/Calibre,          calibre,                                  calibre-gui/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Calibre,          calibre,                                  calibre-gui' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "[0;33m-------------------------------------------------------------------"
+echo ""
+echo "   All Finished!"
+echo "   You should find a new menu entry in the Quick Grab Menu."
+echo ""
+echo "-------------------------------------------------------------------[0m"
+echo ""
+echo ""
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

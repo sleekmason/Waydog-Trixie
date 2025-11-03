@@ -1,0 +1,61 @@
+#!/bin/bash
+echo ""
+echo ""
+echo ""
+read -p "   [0;33mGames Installer[0m
+
+   A few super small games to waste some time with:)
+   Currently Blockout2, Briquolo, Mahjong
+   Pinball, and Tron.
+   
+    
+   
+   ---------------------------------------------------------
+   
+   [0;32mPlease press enter to install the games.[0m
+   
+   ---------------------------------------------------------
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo "" 
+sudo apt update && sudo apt install blockout2 xmahjongg briquolo gltron pinball &&
+sed -i '/Games,^checkout(games),applications-games/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development,^checkout(development),applications-development/i Games,^checkout(games),applications-games' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development/a ^tag(games)' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Tron, gltron, gltron/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/a Tron, gltron, gltron' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Pinball, pinball, pinball/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/a Pinball, pinball, pinball' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Mahjong, xmahjongg, xmahjongg/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/a Mahjong, xmahjongg, xmahjongg' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Briquolo, briquolo, briquolo/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/a Briquolo, briquolo, briquolo' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Blockout2, blockout2, blockout2/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/a Blockout2, blockout2, blockout2' ~/.config/jgmenu/prepend.csv &&
+killall -q jgmenu
+echo ""
+echo "-----------------------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mIf installed, You should find a new menu entry 'Games'"
+echo "in the Quickgrab menu.[0m" 
+echo "" 
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "-----------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

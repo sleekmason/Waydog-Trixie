@@ -1,0 +1,37 @@
+#!/bin/bash
+## Made by Sleekmason 1 Feb 2022
+## Simple script to update, list, and then upgrade your system.
+   echo ""
+   echo "                        [0;33m----- SIMPLE APT UPDATER -----[0m"
+   echo ""
+   echo ""
+   echo ""
+   echo ""
+   if : >/dev/tcp/8.8.8.8/53; then
+   sudo apt update && sudo apt list --upgradeable
+   echo ""
+   echo "   ------------------------------------------------------------"
+   echo ""
+   read -p "   [0;33mScroll Above to see the list of all packages to be upgraded.
+   If no packages are shown, then there are none to upgrade.[0m
+   
+   ------------------------------------------------------------
+   
+   [0;32mPress Enter to continue with the upgrade, or close this
+   window to quit.[0m
+   
+   "
+   echo ""
+   echo ""
+   sudo apt upgrade;bash
+   echo ""
+   echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi

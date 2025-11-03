@@ -1,0 +1,54 @@
+#!/bin/bash
+echo ""
+echo "                  [0;33mLibrewolf Browser Installer[0m"
+echo ""
+read -p "   This script will download and install the Librewolf Browser, A
+   custom version of Firefox focused on privacy, security and freedom.
+   [0;34mhttps://librewolf.net/[0m
+
+   New sources will be added, and a new menu entry will be placed 
+   in the main menu.
+
+
+   [0;33m-----------------------------------------------------
+   
+   Please press enter to install the Librewolf Browser.
+   
+   -----------------------------------------------------[0m
+     
+    Or close this terminal window to quit the install." ;   
+    if : >/dev/tcp/8.8.8.8/53; then
+echo ""   
+echo ""
+sudo apt update && sudo apt install extrepo -y
+sudo extrepo enable librewolf
+sudo apt update && sudo apt install libgdk-pixbuf2.0-bin librewolf -y
+sleep .5
+if [[ $(command -v librewolf) ]]; then
+sed -i '/Librewolf,          librewolf,        librewolf/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '7i Librewolf,          librewolf,        librewolf' ~/.config/jgmenu/prepend.csv
+else
+notify-send -i "info" --urgency low "LibreWolf has not been installed."
+fi
+killall -q jgmenu
+echo ""
+echo "----------------------------------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mIf installed, You should find a new main menu entry.[0m"
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "----------------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Based on a script from brontosaurusrex https://forums.bunsenlabs.org/viewtopic.php?id=779&p=9
+# with much thanks to the author.
+# Adapted for use in Lilidog by sleekmason 02-02-2022
+# wallcol
+
+# pick color and set that as wallpaper
+yad --title "Clickpick Single" --window-icon=/usr/share/icons/ld-icons/paw-color.png \
+--width=310 --height=488 --center \
+--text-info --justify=center --wrap < /usr/share/lilidog/clickpick.txt --fontname="Dejavu Sans 11" &&
+
+color="$(gpick -p -s -o)" 
+
+doit () {
+    echo "$color"
+    convert -size 480x270 xc:"${color}" ~/Pictures/wallpapers/Plain.png &&
+    feh --bg-scale ~/Pictures/wallpapers/Plain.png
+}
+
+[[ "$color" ]] && doit &
+pkill -x feh

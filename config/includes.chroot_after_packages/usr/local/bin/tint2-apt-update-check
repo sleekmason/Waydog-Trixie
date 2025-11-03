@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# This script will place an icon in the system tray for upgrade 
+# notifications on button click, with an option to upgrade and 
+# an option to change the icon color throught the associated
+# ~/.config/tint2/scripts/tint2-apt-update-check-color.
+# Nala is optional.  requires yad.
+
+on_exit() {
+    echo "quit" >&3
+    rm -f "${PIPE}"
+    rm -rf "${PIPE%/*}"
+    exec 3>&-
+    exec 4>&-
+    :>"$lockfile" # lockfile only holds pid while script is running
+}
+
+# If there is a previous icon still not closed, kill and replace it if still needed
+lockfile='/tmp/tint2-apt-update-check-lock'
+exec 4<>"$lockfile"
+tries=3 # give up if cannot get lock
+(( i=1 ))
+until flock -n 4
+do
+    (( i > tries )) && { echo "${0}: failed to kill old process" >&2 ; exit 1;}
+    echo "${0}: another instance is running, now killing it" >&2
+    oldpid=$(<"$lockfile")
+    kill "$oldpid"
+    tail -f /dev/null --pid="$oldpid" # https://forums.bunsenlabs.org/viewtopic.php?pid=114592#p114592
+    (( i++ )) # one repetition should be enough in fact
+done
+
+printf '%s' "$$" > "$lockfile" # using lockfile to store pid
+
+trap on_exit EXIT
+
+# check if pid belongs to an instance of this script, even if run via a symlink
+# not perfect but should cover many cases, and error out otherwise
+check_pid() {
+    local pid=$1
+    local script path cmd
+    kill -s 0 "$pid" || { echo "${0}: PID ${pid} is not running" >&2 ; exit 1;}
+    script=$( readlink -e "$0" ) || { echo "${0}: failed to find path to this script" >&2 ; exit 1;}
+    mapfile -d '' -t cmd < "/proc/${pid}/cmdline"
+    path=${cmd[-1]} # this script takes no arguments, so it is the last part of the command line
+    if [[ $path = /* ]] # absolute path
+    then
+        path=$(readlink -e "$path")
+    else
+        path=$( readlink -e /proc/"${pid}"/cwd/"$path" ) # assume path is relative to working directory
+    fi
+    [[ "$path" = "$script" ]] || { echo "${0}: PID ${pid} seems to belong to a different process: ${path}" >&2 ; exit 1;}
+}
+ 
+upgradecolor=$(< "$HOME/.config/tint2/executors/color.txt")
+
+show-upgrades(){
+    trap on_exit EXIT
+    [[ -p "$PIPE" ]] || { echo "${0}: there is no fifo $PIPE" >&2 ; exit 1;}
+    exec 3<> "$PIPE"
+    if [ -x /usr/bin/nala ]; then
+    x-terminal-emulator -T 'Available Package Upgrades' -e sh -c 'printf "%s\n" "Available upgrades:"; \
+    apt list --upgradeable; printf "\n%s\n"  "Held packages:"; \
+    apt-mark showhold;  echo "... Done"; echo ""; echo \
+    "Please enter your password to continue to upgrade your system."; echo \
+    "Or close this window to quit now.  < ctrl +c >"; echo ""; \
+    sudo nala upgrade; bash;'
+    else
+    x-terminal-emulator -T 'Available Package Upgrades' -e sh -c 'printf "%s\n" "Available upgrades:"; \
+    apt list --upgradeable; printf "\n%s\n"  "Held packages:"; \
+    apt-mark showhold;  echo "... Done"; echo ""; echo \
+    "Please enter your password to continue to upgrade your system."; echo \
+    "Or close this window to quit now.  < ctrl +c >"; echo ""; \
+    sudo apt upgrade; bash;'
+    fi
+    exit
+}
+
+icon-color-change(){
+    trap on_exit EXIT
+    [[ -p "$PIPE" ]] || { echo "${0}: there is no fifo $PIPE" >&2 ; exit 1;}
+    exec 3<> "$PIPE"
+    "tint2-apt-update-check-color"
+    "tint2-apt-update-check"
+    exit
+}
+
+dir=$(mktemp --tmpdir --directory "${0##*/}".XXXXXXXX) || { echo "${0}: could not make temp dir" >&2 ; exit 1;}
+PIPE="${dir}/yadpipe"
+mkfifo "$PIPE" || { echo "${0}: could not make fifo $PIPE" >&2 ; exit 1;}
+exec 3<> "$PIPE"
+
+export PIPE
+export -f on_exit
+export -f show-upgrades
+export -f icon-color-change
+
+num_upgrades=$(( $( apt list --upgradable 2>/dev/null | wc -l ) - $( apt-mark showhold | wc -l ) -1 ))
+if (( num_upgrades == 0 )); then
+notify-send  -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
+fi
+if (( num_upgrades > 0 )); then
+    notify-send  -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
+    yad --notification --listen --image="$HOME/.config/tint2/executors/icons/update/$upgradecolor" \
+    --text="Package Upgrades - Right-Click For Options" \
+    --menu="Show Available Upgrades!bash -c show-upgrades!software-update-available|Change Icon Color!bash -c icon-color-change!applications-graphics|Quit!quit!application-exit" \
+    --command="notify-send  -t 10000 --urgency low '$num_upgrades Upgrade(s) Currently Available'" <&3
+fi

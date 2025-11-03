@@ -1,0 +1,101 @@
+#!/bin/bash
+read -p "   [0;33mAuto Themes Installer.[0m
+
+   This script will download and install all files necessary to
+   use the Lilidog Auto Themes dialog, providing all the themes 
+   currently used in Lilidog. This includes matching themes for 
+   Openbox, Geany, and xfce4-terminal. \
+   
+   There are currently 28 themes total. Nine of the themes have
+   additional option to change the highlight color as you like.
+   
+   A 'Reset Theme' option will also be available under Menu -->
+   All Programs --> Other.
+   
+      
+   [0;33m--------------------------------------------------------------
+   
+   Please press enter to install the Lilidog Auto Themes chooser.
+   
+   --------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+
+# Remove copies from /tmp
+sudo rm -fr "/tmp/themechooser"
+sudo rm -fr "/tmp/themechooser-trixie.zip"
+
+# Grab the theme files
+wget https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-trixie.zip --show-progress -q
+unzip "/tmp/themechooser-trixie.zip"
+
+# Backup and copy over /usr/share/themes
+if ! test -e "/usr/share/themes.bak"; then
+sudo cp -r "/usr/share/themes" "/usr/share/themes.bak"
+fi
+sudo cp -af /tmp/themechooser/themes/* "/usr/share/themes"
+
+# Backup and copy over /usr/share/geany
+if ! test -e "/usr/share/geany.bak"; then
+sudo cp -r "/usr/share/geany" "/usr/share/geany.bak"
+fi
+sudo cp -af /tmp/themechooser/geany/* "/usr/share/geany"
+
+# Backup and copy over /usr/share/xfce4
+if ! test -e "/usr/share/xfce4.bak"; then
+sudo cp -r "/usr/share/xfce4" "/usr/share/xfce4.bak"
+fi
+sudo cp -af /tmp/themechooser/xfce4/* "/usr/share/xfce4"
+
+# Copy theme scripts to /usr/local/bin
+sudo cp -rf "/tmp/themechooser/scripts/." "/usr/local/bin/"
+
+# Copy .desktop file to /usr/share/applications
+sudo cp -f "/tmp/themechooser/ld-auto-themes-other.desktop" "/usr/share/applications"
+sudo cp -f "/tmp/themechooser/ld-theme-reset.desktop" "/usr/share/applications"
+sudo cp -f "/tmp/themechooser/ld-themes.desktop" "/usr/share/applications"
+
+# copy lilidog-themes config files to ~/.config
+cp -fr "/tmp/themechooser/lilidog-themes" "$HOME/.config"
+
+# copy Rofi config files to ~/.config except for Beardog
+if ! test -e "/usr/share/lilidog/beardog"; then
+cp -ar "/tmp/themechooser/rofi" "$HOME/.config"
+fi
+
+# Copy Readme.lilidog-themes to /usr/share/lilidog
+if test -e "/usr/share/lilidog"; then
+sudo cp -f "/tmp/themechooser/Readme.lilidog-themes" "/usr/share/lilidog"
+fi
+
+# St menu item in toggles
+if test -e "/usr/local/bin/ld-entry"; then
+sed -i '/Themes,              ld-themes.*/d' "$HOME/.config/jgmenu/prepend.csv"
+sed -i '/Sounds/i Themes,              ld-themes,                                     org.xfce.settings.manager' "$HOME/.config/jgmenu/prepend.csv"
+fi
+
+if test -e "/usr/share/lilidog/beardog"; then
+sed -i '/Themes,              ld-themes.*/d' "$HOME/.config/jgmenu/prepend.csv"
+sed -i '/^Sounds/a Themes,              ld-themes,                                     org.xfce.settings.manager' "$HOME/.config/jgmenu/prepend.csv"
+fi
+
+echo ""
+echo "   [0;33m----------------------------------------------------------------------"
+echo ""
+echo "   All Finished!
+   Look for 'Themes' in the Toggles menu, or under 'Other' in the debian menu."
+echo "" 
+echo "   ----------------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p "   Press any key to quit this dialog ... "

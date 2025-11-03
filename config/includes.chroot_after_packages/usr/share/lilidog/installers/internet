@@ -1,0 +1,13 @@
+Dropbox,           x-terminal-emulator -T 'Dropbox Installer' -e bash -c "dropbox-installer",                applications-internet
+Google Earth,      x-terminal-emulator -T 'Google Earth Installer' -e bash -c "google-earth-installer",      applications-internet
+Maestral,          x-terminal-emulator -T 'Maestral Installer' -e bash -c "maestral-installer",              applications-internet
+^sep()
+Brave Browser,     x-terminal-emulator -T 'Brave Installer' -e bash -c "brave-installer",                    applications-internet
+Chromium Browser,  x-terminal-emulator -T 'Chromium Installer' -e bash -c "chromium-installer",              applications-internet
+Firefox Browser,   x-terminal-emulator -T 'Firefox Installer' -e bash -c "firefox-installer",                applications-internet
+Librewolf Browser, x-terminal-emulator -T 'Librewolf Installer' -e bash -c "librewolf-installer",            applications-internet
+Lynx Browser,      x-terminal-emulator -T 'Lynx Installer' -e bash -c "lynx-installer",                      applications-internet
+^sep()
+Geary Mail,        x-terminal-emulator -T 'Geary Installer' -e bash -c "geary-installer",                    applications-internet
+Sylpheed Mail,     x-terminal-emulator -T 'Sylpheed Installer' -e bash -c "sylpheed-installer",              applications-internet
+Thunderbird Mail,  x-terminal-emulator -T 'Thunderbird Installer' -e bash -c "thunderbird-installer",        applications-internet

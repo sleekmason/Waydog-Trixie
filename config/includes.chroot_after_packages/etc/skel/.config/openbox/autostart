@@ -1,0 +1,56 @@
+#### Openbox autostart - Place your commands here to have programs 
+### activated on login. See 'man openbox' for more information.
+
+
+### For lxpanel or pcmanfm use as wallpaper setter. Allows for icons.
+# @lxpanel --profile LXDE &
+# pcmanfm --desktop --profile LXDE &
+
+
+### For xfdesktop use. Allows for icons, menu, and wallpaper setter.
+### Needs xfdesktop4: sudo apt update && sudo apt install xfdesktop4
+# ( sleep 3; xfdesktop >/dev/null 2>&1 ) &
+
+
+### Other items not in use.
+# @xscreensaver -no-splash &
+
+
+### Touchpad Settings
+### To use tap-to-click and the syndaemon for movement during keystrokes,
+### install xserver-xorg-input-synaptics and uncomment the lines below.
+### Possible conflicts if installed. May need to remove again if issues.
+### You will need to Log out/in for the new settings to take affect.
+
+# synclient VertEdgeScroll=0 HorizEdgeScroll=0 TapButton1=1 2>/dev/null
+# syndaemon -i .5 -K -t -R -d &
+
+
+### Mouse Pointer Highlighter - Uncomment the line below to activate on boot.
+# highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
+
+
+### Common startup programs. Comment any item no longer wanted.
+~/.fehbg &
+# picom --daemon &
+tint2 >/dev/null 2>&1 &
+nm-applet &
+mate-power-manager >/dev/null 2>&1 &
+xfsettingsd --daemon &
+pnmixer &
+sxhkd -c "$HOME/.config/openbox/sxhkdrc-open" &
+/usr/libexec/polkit-mate-authentication-agent-1 &
+
+### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.
+# if type 'thunar' &> /dev/null; then
+# thunar --daemon &
+# fi
+
+### Start tint2-apt-update-check to check for updates on login.
+# ~/.config/tint2/scripts/tint2-apt-update-check &
+
+### Start brightness tray icon on login
+# sleep 2 && bright-gamma &
+
+vmrestore &
+welcome-backend.sh &

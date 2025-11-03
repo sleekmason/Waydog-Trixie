@@ -1,0 +1,7 @@
+#!/bin/bash
+
+    yad --icons --read-dir=/usr/share/applications --geometry=224x640+244+42 \
+    --sort-by-name --single-click \
+    --title="Icon Menu" --no-buttons --escape-ok \
+    --term='x-terminal-emulator -e %s' \
+    --window-icon=applications-other

@@ -1,0 +1,18 @@
+
+Welcome to ld-hotcorners!
+
+Try all of the corners out. Simply drag your mouse to a corner.
+
+Top-left       =  File Manager
+Top-right      =  Toggles Picom
+Lower-right    =  Exit Menu
+Lower-left     =  Terminal
+
+Once you get used to the bounceback, quite a handy little script.
+
+There is a menu entry for ld-hotcorners under 'Configuration'
+in order to change settings.
+
+
+To use ld-hotcorners on login, go to ~/.config/openbox/autostart, 
+and under autostart add:  ld-hotcorners --daemon &

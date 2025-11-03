@@ -1,0 +1,32 @@
+#### labwc autostart - Place your commands here to have programs 
+### activated on login. See 'man openbox' for more information.
+
+### Mouse Pointer Highlighter - Uncomment the line below to activate on boot.
+# highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
+
+
+### Common startup programs. Comment any item no longer wanted.
+swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg &
+# picom --daemon &
+waybar &
+nm-applet &
+mate-power-manager >/dev/null 2>&1 &
+xfsettingsd --daemon &
+pnmixer &
+/usr/libexec/polkit-mate-authentication-agent-1 &
+swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
+kanshi &
+### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.
+# if type 'thunar' &> /dev/null; then
+# thunar --daemon &
+# fi
+
+### Start brightness tray icon on login
+# sleep 2 && bright-gamma &
+
+
+## Start conkys on login if present
+# if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then
+# "$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1
+# "conkyrestart" >/dev/null 2>&1
+# fi

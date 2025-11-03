@@ -1,0 +1,106 @@
+#!/bin/bash
+# Toggle tint2 position.
+# Made by sleekmason 2 Aug-2023
+# The other dialogs listed are tint2-iconsize and tint2-iconcolor
+
+
+bottomside(){
+  FILE="$HOME/.config/tint2/tint2rc"
+        sed -i 's/task_text =.*/task_text = 1/' "$FILE"
+        sed -i 's/panel_position =.*/panel_position = bottom center horizontal/' "$FILE"
+        sed -i 's/^panel_size =.*/panel_size = 100% 22/g' "$FILE"
+        sed -i 's/^button_max_icon_size =.*/button_max_icon_size = 17 100/g' "$FILE"
+        sed -i 's/^systray_icon_size =.*/systray_icon_size = 22 100/g' "$FILE"
+        sed -i 's/^launcher_icon_size =.*/launcher_icon_size = 16 100/g' "$FILE"
+        sed -i 's/^execp_icon_w =.*/execp_icon_w = 17/g' "$FILE"
+        sed -i 's/^execp_icon_h =.*/execp_icon_h = 17/g' "$FILE"
+        sed -i 's/^button_font = .*/button_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^execp_font = .*/execp_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^bat1_font = .*/bat1_font = Noto Sans 12/g' "$FILE"
+        sed -i 's/^time1_font = .*/time1_font = Noto Sans 12/g' "$FILE"
+        sed -i 's/^task_font = .*/task_font = Noto Sans Display 11.5/g' "$FILE"
+        sed -i 's/^taskbar_name_font = .*/taskbar_name_font = Noto Sans 10/g' "$FILE"
+        sed -i 's/^task_maximum_size =.*/task_maximum_size = 150 20/g' "$FILE"
+        sed -i 's/^task_align =.*/task_align = left/g' "$FILE"
+     killall -SIGUSR1 tint2
+}
+
+topside(){
+  FILE="$HOME/.config/tint2/tint2rc"
+        sed -i 's/task_text =.*/task_text = 1/' "$FILE"
+        sed -i 's/panel_position =.*/panel_position = top center horizontal/' "$FILE"
+        sed -i 's/^panel_size =.*/panel_size = 100% 22/g' "$FILE"
+        sed -i 's/^button_max_icon_size =.*/button_max_icon_size = 17 100/g' "$FILE"
+        sed -i 's/^systray_icon_size =.*/systray_icon_size = 22 100/g' "$FILE"
+        sed -i 's/^launcher_icon_size =.*/launcher_icon_size = 16 100/g' "$FILE"
+        sed -i 's/^execp_icon_w =.*/execp_icon_w = 17/g' "$FILE"
+        sed -i 's/^execp_icon_h =.*/execp_icon_h = 17/g' "$FILE"
+        sed -i 's/^button_font = .*/button_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^execp_font = .*/execp_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^bat1_font = .*/bat1_font = Noto Sans 12/g' "$FILE"
+        sed -i 's/^time1_font = .*/time1_font = Noto Sans 12/g' "$FILE"
+        sed -i 's/^task_font = .*/task_font = Noto Sans Display 11.5/g' "$FILE"
+        sed -i 's/^taskbar_name_font = .*/taskbar_name_font = Noto Sans 10/g' "$FILE"
+        sed -i 's/^task_maximum_size =.*/task_maximum_size = 150 20/g' "$FILE"
+        sed -i 's/^task_align =.*/task_align = left/g' "$FILE"
+     killall -SIGUSR1 tint2
+}
+
+leftside(){
+  FILE="$HOME/.config/tint2/tint2rc"
+        sed -i 's/task_text =.*/task_text = 0/' "$FILE"
+        sed -i 's/panel_position =.*/panel_position = center left vertical/' "$FILE"
+        sed -i 's/^panel_size =.*/panel_size = 100% 42/g' "$FILE"
+        sed -i 's/^button_max_icon_size =.*/button_max_icon_size = 17 100/g' "$FILE"
+        sed -i 's/^systray_icon_size =.*/systray_icon_size = 22 100/g' "$FILE"
+        sed -i 's/^launcher_icon_size =.*/launcher_icon_size = 18 100/g' "$FILE"
+        sed -i 's/^execp_icon_w =.*/execp_icon_w = 17/g' "$FILE"
+        sed -i 's/^execp_icon_h =.*/execp_icon_h = 17/g' "$FILE"
+        sed -i 's/^button_font = .*/button_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^execp_font = .*/execp_font = Noto Sans 11/g' "$FILE"
+        sed -i 's/^bat1_font = .*/bat1_font = Noto Sans Bold 10/g' "$FILE"
+        sed -i 's/^time1_font = .*/time1_font = Noto Sans Bold 10/g' "$FILE"
+        sed -i 's/^task_font = .*/task_font = Noto Sans Display 10/g' "$FILE"
+        sed -i 's/^taskbar_name_font = .*/taskbar_name_font = Noto Sans 10/g' "$FILE"
+        sed -i 's/^task_maximum_size =.*/task_maximum_size = 150 22/g' "$FILE"
+        sed -i 's/^task_align =.*/task_align = center/g' "$FILE"
+     killall -SIGUSR1 tint2
+}
+
+rightside(){
+  FILE="$HOME/.config/tint2/tint2rc"
+       sed -i 's/task_text =.*/task_text = 0/' "$FILE"
+       sed -i 's/panel_position =.*/panel_position = center right vertical/g' "$FILE"
+       sed -i 's/^panel_size =.*/panel_size = 100% 42/g' "$FILE"
+       sed -i 's/^button_max_icon_size =.*/button_max_icon_size = 17 100/g' "$FILE"
+       sed -i 's/^systray_icon_size =.*/systray_icon_size = 22 100/g' "$FILE"
+       sed -i 's/^launcher_icon_size =.*/launcher_icon_size = 18 100/g' "$FILE"
+       sed -i 's/^execp_icon_w =.*/execp_icon_w = 17/g' "$FILE"
+       sed -i 's/^execp_icon_h =.*/execp_icon_h = 17/g' "$FILE"
+       sed -i 's/^button_font = .*/button_font = Noto Sans 11/g' "$FILE"
+       sed -i 's/^execp_font = .*/execp_font = Noto Sans 11/g' "$FILE"
+       sed -i 's/^bat1_font = .*/bat1_font = Noto Sans Bold 10/g' "$FILE"
+       sed -i 's/^time1_font = .*/time1_font = Noto Sans Bold 10/g' "$FILE"
+       sed -i 's/^task_font = .*/task_font = Noto Sans Display 10/g' "$FILE"
+       sed -i 's/^taskbar_name_font = .*/taskbar_name_font = Noto Sans 10/g' "$FILE"
+       sed -i 's/^task_maximum_size =.*/task_maximum_size = 150 22/g' "$FILE"
+       sed -i 's/^task_align =.*/task_align = center/g' "$FILE"
+     killall -SIGUSR1 tint2
+}
+
+export -f bottomside
+export -f topside
+export -f leftside
+export -f rightside
+
+yad --title "Tint2 Theme Options" --escape-ok --borders=14 \
+--form --geometry=240x240-270-62 \
+--text="Icon size resets on panel position change\n" --text-align=center --buttons-layout=edge \
+--button=" Icon Size!applications-other:tint2-iconsize" --button=" Icon Theme!org.xfce.settings.color:tint2-iconcolor" \
+--button="gtk-ok:0" \
+--window-icon=dialog-information \
+    --form --columns=2 \
+    --field=" Left":FBTN "bash -c leftside >/dev/null 2>&1 &" \
+    --field=" Top":FBTN "bash -c topside >/dev/null 2>&1 &" \
+    --field=" Right":FBTN "bash -c rightside >/dev/null 2>&1 &" \
+    --field=" Bottom":FBTN "bash -c bottomside >/dev/null 2>&1 &"

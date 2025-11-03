@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+     --apt-recommends 'false' \
+     --apt-source-archives 'false' \
+     --apt-indices 'false' \
+     --archive-areas "main contrib non-free non-free-firmware" \
+     --debian-installer 'live' \
+     --debian-installer-distribution 'trixie' \
+     --distribution 'trixie' \
+     --mirror-binary 'https://deb.debian.org/debian' \
+     --mirror-binary-security 'https://security.debian.org/debian-security' \
+     --mirror-bootstrap 'https://deb.debian.org/debian' \
+     --firmware-binary 'true' \
+     --firmware-chroot 'true' \
+     --security 'true' \
+     --memtest 'memtest86+' \
+     --image-name 'Waydog-Trixie-25.10.29' \
+     --iso-application 'Waydog-Trixie' \
+     --iso-publisher 'Waydog-Trixie GNU/Linux' \
+     --iso-volume 'Waydog-Trixie' \
+     --system 'live' \
+     --updates 'true' \
+     --win32-loader 'false' \
+     --zsync 'false' \
+     --quiet \
+     "${@}"

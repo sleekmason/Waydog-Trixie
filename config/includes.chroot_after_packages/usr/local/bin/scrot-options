@@ -1,0 +1,134 @@
+#!/bin/bash
+#
+# Use scrot with different options and have yad close on click.
+# Requires yad, xclip, libnotify-bin
+#
+
+## Add functions
+NOW(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -md 1 "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+
+LATER(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -md 5 "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+
+CAPTURE(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -s "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+
+WINDOW(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -u -b "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+	
+COPY(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -e 'xclip -selection clipboard -t image/png -i $f' "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+
+COPYSEL(){
+# Use printf to store the current date/time as variables.	
+printf -v date "%(%F)T"
+printf -v time "%(%I-%M-%S)T"
+# Create primary and secondary directories
+DIR="$HOME/Pictures/scrot"
+	if ! test -f "$DIR"; then
+	mkdir -p "$DIR"
+	fi	
+mkdir -p "${DIR}/${date}"
+# cd to directory and screenshot with time attached
+cd "${DIR}/${date}" || exit
+SCR="${DIR}/${date}/${date}-${time}.png"
+scrot -e 'xclip -selection clipboard -t image/png -i $f' -scapture "$SCR"
+notify-send --urgency low " Saved screenshot as ${SCR/*\/}"
+}
+
+## Export functions
+export -f NOW
+export -f LATER
+export -f WINDOW
+export -f CAPTURE
+export -f COPY
+export -f COPYSEL
+
+if ! [[ $(command -v scrot) ]]; then
+notify-send --urgency low "Install 'scrot' to use this keybind"
+else
+yad --title "Scrot" --escape-ok \
+--button=gtk-cancel:0 --form --center --geometry=210x320-314-60 --borders=10 \
+--text-align=center --on-top \
+--window-icon=video-display \
+    --form --columns=1 \
+    --field="":LBL "" \
+    --field="No Delay | Full:FBTN" 'bash -c "NOW & kill $YAD_PID"' \
+    --field="5 Second | Full:FBTN" 'bash -c "LATER & kill $YAD_PID"' \
+    --field="Area Selection:FBTN" 'bash -c "CAPTURE & kill $YAD_PID"' \
+    --field="Active Window:FBTN" 'bash -c "WINDOW & kill $YAD_PID"' \
+    --field="":LBL "" \
+    --field="Clipboard | Full:FBTN" 'bash -c "COPY & kill $YAD_PID"' \
+    --field="Clipboard | Select:FBTN" 'bash -c "COPYSEL & kill $YAD_PID"'
+fi

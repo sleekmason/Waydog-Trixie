@@ -1,0 +1,49 @@
+#!/bin/bash
+
+prog="
+Catfish
+Geany
+Thunar
+Terminal
+Firefox
+Transmission
+Mousepad
+Pragha
+Smplayer
+Writer
+Gimp
+Gpicview
+Synaptic
+QuickThemes
+Conky
+Xscreensaver
+Screenshot
+Suspend
+ScreenLock
+Exit"
+
+cmd=$(dmenu -nb '#182026' -nf '#BDCED9' -sb '#325F75' -sf '#E1F4FF' -fn 'Noto Sans-11' <<< "$prog")
+
+case ${cmd%% *} in
+
+	Catfish)		exec catfish ;;
+	Geany)			exec geany ;;
+	Thunar)		    exec thunar ;;
+	Terminal)		exec x-terminal-emulator ;;
+	Firefox)		exec firefox ;;
+	Transmission)   exec transmission-gtk ;;
+    Mousepad)       exec mousepad ;;
+	Pragha) 		exec pragha ;;
+	Smplayer)		exec smplayer ;;
+	Writer)			exec libreoffice ;;
+	Gimp)			exec gimp ;;
+	Gpicview)		exec gpicview ;;
+	Synaptic)		exec gksudo synaptic ;;
+	QuickThemes)    exec ld-theme-changer ;;
+	Conky)          exec ~/.config/conky/scripts/conky-chooser ;;
+    Xscreensaver)   exec toggle.xscreensaver ;;
+	Screenshot)		exec gnome-screenshot -i ;;
+	Suspend)		exec systemctl suspend ;;
+	ScreenLock)		exec slock ;;
+	Exit)			exec ld-logout ;;
+esac

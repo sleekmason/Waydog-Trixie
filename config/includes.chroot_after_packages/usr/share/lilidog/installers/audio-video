@@ -1,0 +1,12 @@
+*Audio Players
+Audacious,        x-terminal-emulator -T 'Audacious Installer' -e bash -c "audacious-installer",                   audio-headphones
+Pragha,           x-terminal-emulator -T 'Pragha Installer' -e bash -c "pragha-installer",                         audio-headphones
+Pyradio,          x-terminal-emulator -T 'Pyradio Terminal Music Player Installer' -e bash -c "pyradio-installer", audio-headphones
+^sep()
+*Video Players
+Smplayer,         x-terminal-emulator -T 'Smplayer Installer' -e bash -c "smplayer-installer",                     audio-headphones
+Totem Player,     x-terminal-emulator -T 'Totem Installer' -e bash -c "totem-installer",                           audio-headphones
+^sep() 
+*Utilities
+Audacity,         x-terminal-emulator -T 'Audacity Installer' -e bash -c "audacity-installer",                     audio-headphones
+Openshot,         x-terminal-emulator -T 'Openshot Installer' -e bash -c "openshot-installer",                     audio-headphones

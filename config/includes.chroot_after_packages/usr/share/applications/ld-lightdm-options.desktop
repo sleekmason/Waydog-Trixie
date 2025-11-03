@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Lightdm Options
+Exec=lightdm-options
+StartupNotify=false
+Terminal=false
+Icon=user_icon
+Categories=GNOME;GTK;Settings;System;Utility;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;

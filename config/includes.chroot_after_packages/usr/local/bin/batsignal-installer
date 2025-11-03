@@ -1,0 +1,59 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mBatsignal Installer[0m
+   
+   Batsignal is a lightweight battery daemon that notifies the
+   user about various battery states through notifications.
+   
+   Default settings are: 10% critical, 20% warning, 98% full.
+   Adjust settings in ~/.config/systemd/user/options.conf
+   
+   For more information: 
+   
+   [0;33mhttps://github.com/electrickite/batsignal[0m
+   
+   [0;32m----------------------------------------------------
+   
+   Please press enter to install Batsignal.
+   
+   ----------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+## Check for internet connection
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+rm -f /tmp/batsignal_20240124-1_amd64.deb
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/batsignal_20240124-1_amd64.deb --show-progress -q &&
+sudo apt update && sudo apt install -y /tmp/./batsignal_20240124-1_amd64.deb &&
+
+mkdir -p ~/.config/systemd/user/batsignal.service.d &&
+printf '[Service]\nExecStart=\nExecStart=batsignal -m 30 -c 10 -w 20 -f 98' > ~/.config/systemd/user/batsignal.service.d/options.conf &&
+
+sleep 1
+sudo systemctl daemon-reload &&
+systemctl --user enable batsignal.service
+systemctl --user start batsignal.service
+
+echo ""
+echo "[0;33m--------------------------------------------------------------"
+echo ""
+echo "   All Finished!
+
+   Defaults to: 10% critical, 20% warning, 98% full. Adjust
+   settings in ~/.config/systemd/user/options.conf
+
+   To remove: From a terminal run: 'sudo dpkg -r batsignal'."
+echo "" 
+echo "--------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------[0m"
+echo ""
+fi
+echo ""
+read -n1 -p " Press any key to quit this dialog ... "

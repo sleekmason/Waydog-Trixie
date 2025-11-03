@@ -1,0 +1,56 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;32mBrightness and Gamma tray icon Installer[0m
+
+   This will install the brightness and gamma tray icon package, adding 
+   both blight.py and the bright-gamma script. Enabling the icon gives
+   control over the hardware brightness, a toggle for different gamma
+   settings, and a way to change the icon.  A new menu entry will be 
+   placed in the toggles section of the menu. Can be removed with
+   sudo apt remove bright-gamma.
+    
+   [0;33mhttps://www.forum.lilidog.org/d/328-brightness-and-gamma-script-wip[0m
+   
+   [0;32m-----------------------------------------------------------------
+   
+   Please press enter to install the Brightness and Gamma tray icon.
+   
+   -----------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+   if ! test -e /sys/class/backlight/*; then
+   notify-send --urgency low 'Backlight support unavailable'
+exit
+else
+echo ""
+echo ""
+cd /tmp || exit &&
+rm -f /tmp/bright-gamma*
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/bright-gamma_12.0-1_all.deb --show-progress -q
+echo ""
+echo ""
+sudo apt update && sudo apt install -y /tmp/./bright-gamma*
+sed -i '/Brightness,          bright-gamma.*/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Font Sizes/a Brightness,          bright-gamma,                                  org.xfce.settings.manager' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "[0;33m-------------------------------------------------------------------"
+echo ""
+echo "   All Finished!"
+echo "   You should find a new menu entry in the Toggles Menu."
+echo ""
+echo "-------------------------------------------------------------------[0m"
+echo ""
+echo ""
+fi
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

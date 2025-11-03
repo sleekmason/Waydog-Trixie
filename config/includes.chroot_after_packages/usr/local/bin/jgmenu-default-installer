@@ -1,0 +1,42 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mJgmenu Default Configuration.[0m
+
+   This script will change your existing Jgmenu folder to the default
+   Lilidog jgmenu version as seen on install by first making a backup 
+   and then installing the original copy from /etc/skel/.config/jgmenu
+   
+   * The backup will be made of your existing jgmenu folder to:
+   ~/.config/tint-original.bak, and any further uses of this script 
+   will place new backups as ~/.config/tint2.bak so the original is 
+   preserved until manually removed.
+    
+   [0;32m-------------------------------------------------------------
+   
+   Please press enter to change to the default install version.
+   
+   -------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+echo ""
+if [ ! -e "$HOME/.config/jgmenu-original.bak" ]; then
+cp -r "$HOME/.config/jgmenu" "$HOME/.config/jgmenu-original.bak"
+else
+   if [ ! -e "$HOME/.config/jgmenu.bak" ]; then
+    cp -r "$HOME/.config/jgmenu" "$HOME/.config/jgmenu.bak"
+    else rm -r ~/.config/jgmenu.bak &&
+    cp -r "$HOME/.config/jgmenu" "$HOME/.config/jgmenu.bak"
+   fi
+fi
+rm -r ~/.config/jgmenu
+cp -a -f -r /etc/skel/.config/jgmenu "$HOME/.config/"
+killall -q jgmenu
+echo ""
+echo "----------------------------------------------------------------------"
+echo ""
+echo "[0;32m   All Finished![0m"
+echo "" 
+echo "----------------------------------------------------------------------"
+echo ""
+echo ""
+read -n1 -p " Press any key to quit this dialog ... "

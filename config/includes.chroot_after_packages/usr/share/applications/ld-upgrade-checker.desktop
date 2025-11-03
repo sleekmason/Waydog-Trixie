@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Upgrade Checker
+Exec=tint2-apt-update-check
+StartupNotify=false
+Terminal=false
+Icon=applications-other
+Categories=ld-upgrade-tools;

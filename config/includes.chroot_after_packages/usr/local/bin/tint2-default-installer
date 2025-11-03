@@ -1,0 +1,39 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mTint2 Default Configuration.[0m
+
+   This script will change your existing tint2 folder to the default
+   Lilidog tint2 version.
+   
+   * The backup will be made of your existing tint2 folder to:
+   ~/.config/tint-original.bak, and any further uses of this script 
+   will place new backups as ~/.config/tint2.bak so the original is 
+   preserved until manually removed.
+    
+   [0;33m-------------------------------------------------------------
+   
+   Please press enter to change to the default install version.
+   
+   -------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+echo ""
+if [ ! -e "$HOME/.config/tint2-original.bak" ]; then
+cp -r "$HOME/.config/tint2" "$HOME/.config/tint2-original.bak"
+else
+   if [ ! -e "$HOME/.config/tint2.bak" ]; then
+    cp -r "$HOME/.config/tint2" "$HOME/.config/tint2.bak"
+    else rm -r ~/.config/tint2.bak &&
+    cp -r "$HOME/.config/tint2" "$HOME/.config/tint2.bak"
+   fi
+fi
+rm -r ~/.config/tint2
+cp -a -f -r /etc/skel/.config/tint2 "$HOME/.config/"
+killall -SIGUSR1 tint2
+echo ""
+echo "----------------------------------------------------------------------"
+echo ""
+echo "[0;33m   All Finished![0m"
+echo "" 
+echo "----------------------------------------------------------------------"
+read -n1 -p " Press any key to quit this dialog ... "

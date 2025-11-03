@@ -1,0 +1,41 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mPenguins Eggs Installer[0m
+
+   This script will download and install Penguins Eggs, allowing the 
+   creation of an installable snapshot of your existing system and 
+   The ability to redistribute it as a live image on usb or PXE.
+     
+   [0;33mhttps://github.com/pieroproietti/penguins-eggs[0m
+   
+   [0;33m----------------------------------------------------------
+   
+   Please press enter to install Penguins Eggs.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+curl -fsSL https://pieroproietti.github.io/penguins-eggs-ppa/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/penguins-eggs.gpg
+echo "deb [arch=$(dpkg --print-architecture)] https://pieroproietti.github.io/penguins-eggs-ppa ./" | sudo tee /etc/apt/sources.list.d/penguins-eggs.list > /dev/null
+
+sudo apt update && sudo apt install --install-recommends penguins-eggs build-essential fakeroot libalgorithm-merge-perl libfile-fcntllock-perl libalgorithm-diff-xs-perl
+echo ""
+echo "[0;33m----------------------------------------------------------------------"
+echo ""
+echo "All Finished!.
+Try :'sudo eggs dad' for a quick build to try it out."
+echo "" 
+echo "----------------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

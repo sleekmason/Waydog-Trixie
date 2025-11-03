@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1015"
+   sodipodi:docname="exit.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1019">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Colorize"
+       id="filter1450"
+       x="0"
+       y="0"
+       width="1"
+       height="1">
+      <feComposite
+         in2="SourceGraphic"
+         operator="arithmetic"
+         k1="0"
+         k2="1"
+         result="composite1"
+         id="feComposite1436" />
+      <feColorMatrix
+         in="composite1"
+         values="1"
+         type="saturate"
+         result="colormatrix1"
+         id="feColorMatrix1438" />
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(125,121,116)"
+         result="flood1"
+         id="feFlood1440" />
+      <feBlend
+         in="flood1"
+         in2="colormatrix1"
+         mode="multiply"
+         result="blend1"
+         id="feBlend1442" />
+      <feBlend
+         in2="blend1"
+         mode="screen"
+         result="blend2"
+         id="feBlend1444" />
+      <feColorMatrix
+         in="blend2"
+         values="1"
+         type="saturate"
+         result="colormatrix2"
+         id="feColorMatrix1446" />
+      <feComposite
+         in="colormatrix2"
+         in2="SourceGraphic"
+         operator="in"
+         k2="1"
+         result="composite2"
+         id="feComposite1448" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="namedview1017"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.609375"
+     inkscape:cx="257.5534"
+     inkscape:cy="252.58252"
+     inkscape:window-width="1423"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1015" />
+  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+  <path
+     d="M 497,278.12941 329,459.43543 c -15,16.18804 -41,4.8564 -41,-18.34646 V 337.48555 H 152 c -13.3,0 -24,-11.54746 -24,-25.90087 V 207.98126 c 0,-14.35341 10.7,-25.90087 24,-25.90087 H 288 V 78.476952 c 0,-23.094933 25.9,-34.534479 41,-18.346442 l 168,181.30601 c 9.3,10.14452 9.3,26.54839 0,36.69289 z M 192,454.03942 v -43.1681 c 0,-7.12275 -5.4,-12.95043 -12,-12.95043 H 96 c -17.7,0 -32,-15.4326 -32,-34.53449 V 156.17953 c 0,-19.10189 14.3,-34.53448 32,-34.53448 h 84 c 6.6,0 12,-5.82769 12,-12.95043 V 65.526523 c 0,-7.122737 -5.4,-12.95043 -12,-12.95043 H 96 c -53,0 -96,46.405706 -96,103.603437 V 363.3864 c 0,57.19774 43,103.60345 96,103.60345 h 84 c 6.6,0 12,-5.8277 12,-12.95043 z"
+     id="path1013"
+     style="stroke-width:1.03884;fill:#cccccc;filter:url(#filter1450)" />
+</svg>

@@ -1,0 +1,50 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mNexuiz Installer  905MB[0m
+
+   A high quality first person shooter that can be played freely 
+   across all platforms.
+   
+    
+   
+   [0;33m-----------------------------------------------
+   
+   Please press enter to install Nexuiz.
+   
+   -----------------------------------------------[0m
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo "" 
+sudo apt update && sudo apt install nexuiz nexuiz-music xqf geoip-database &&
+sed -i '/Games,^checkout(games),applications-games/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development,^checkout(development),applications-development/i Games,^checkout(games),applications-games' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development/a ^tag(games)' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Nexuiz,         nexuiz,       nexuiz/d' ~/.config/jgmenu/prepend.csv && 
+sed -i '/tag(games)/a Nexuiz,         nexuiz,       nexuiz' ~/.config/jgmenu/prepend.csv &&
+killall -q jgmenu
+echo ""
+echo "-----------------------------------------------------"
+echo ""
+echo "[0;33mAll Finished![0m"
+echo ""
+echo "[0;33mIf installed, You should find a new menu entry under Games"
+echo "in the Quickgrab menu.[0m" 
+echo "" 
+echo "" 
+echo "[0;33mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "-----------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

@@ -1,0 +1,53 @@
+Instructions for use of .desktop files for use on login automatically.
+
+If installed:
+
+For Maestral & dropbox, there is an option in 'preferences' to have
+them start on login. If these fail to work properly uncheck the box 
+and consider using one of the below files instead.
+
+To start Maestral or Dropbox with a 12 sec. delay in case of conflict
+with the initialization of networking, copy one of the existing
+.desktop file from /usr/share/Lilidog/extras/desktop-files.
+
+After copying the file(s), reboot to have the program start on login.
+
+For Dropbox: in a terminal, enter:
+cp /usr/share/lilidog/autostart/dropbox.desktop ~/.config/autostart
+
+For Maestral: in a terminal, enter:
+cp /usr/share/lilidog/autostart/maestral.desktop ~/.config/autostart
+
+Adjust these .desktop files as desired.
+
+.desktop files can be copied from /usr/share/applications, and placed 
+here in ~/.config/ayutostart to start most programs installed with apt.
+  
+You can also make your own .desktop file if it doesn't yet exist.
+
+Basic example, this one for dropbox:
+
+[Desktop Entry]
+Name=Dropbox
+Type=Application
+Exec=sh -c "sleep 12 && ~/.local/share/.dropbox-dist/dropboxd"
+Terminal=false
+Icon=web-browser
+Comment=Dropbox
+X-GNOME-Autostart-enabled=true
+
+Definitions:
+
+- Name - identifying word for the program used.
+- Type - is it an application or something else?
+- Exec - How you would call the program from a terminal. (hint hint)
+- Terminal - Enter 'true' here if it is a terminal application.
+- Icon - What icon do you wish to use for identification?
+- Comment - What is the program about?
+- X-GNOME-autostart-enabled - May or may not be necessary.
+
+Notice the full $PATH used in calling dropbox in a .desktop file.  
+This is good practice and ensures the program will be called correctly.
+
+For more information on .desktop files, check out the arch wiki. 
+https://wiki.archlinux.org/title/desktop_entries

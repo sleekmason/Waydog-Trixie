@@ -1,0 +1,43 @@
+#!/bin/bash
+read -p "
+   [0;32mGrub Background Image Changer[0m
+                      
+   The image folder used can be changed in ~/.config/wallpapers.conf.
+   Make your own folder if desired and change the location there.
+    
+   The current folder for images is /usr/share/backgrounds/grub-bg.
+    
+   Only images of standard sizes are allowed. Example standard sizes: 
+   1920x1080, 1440x900, 800x600, etc. Both .png and .jpg can be used.
+   
+   [0;32m-------------------------------------------------------------------
+   
+   Please press enter to choose your new grub background from a window 
+   of available images. After selection, enter your sudo password in
+   the terminal prompt to continue.
+   
+   -------------------------------------------------------------------[0m
+     
+   Or close this terminal window to quit." ;
+### Check for live and if so, exit.
+full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
+fs=$(basename "$full_fs")
+if grep -q "$fs" /proc/partitions; then
+echo "" 
+. copy-to-grub
+echo ""
+echo "[0;32m-----------------------------------------------------------"
+echo ""
+echo "All Finished!"
+echo ""
+echo "Enjoy your new Grub background." 
+echo "" 
+echo "-----------------------------------------------------------[0m"
+else
+ echo "   [0;32m-------------------------------------------------------"
+ echo ""
+ echo "   Grub background cannot be changed in a live environment."
+ echo "   Install and try again!"
+ echo ""
+ echo "   -------------------------------------------------------[0m"
+ fi

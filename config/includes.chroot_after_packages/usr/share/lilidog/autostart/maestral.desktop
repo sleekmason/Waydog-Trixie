@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Maestral Dropbox Client
+Exec=bash -c "sleep 12 && source maestral-venv/bin/activate && maestral gui" &
+Terminal=false
+StartupNotify=false
+Icon=applications-internet
+Categories=Network;
+X-GNOME-Autostart-enabled=true

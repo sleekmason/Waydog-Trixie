@@ -1,0 +1,103 @@
+#!/bin/bash
+read -p "   [0;33mJWM Installer[0m
+
+   JWM is a light-weight window manager for the X11 Window System.
+   It is similar to the feel of Openbox, with a single configuration 
+   file: ~/.jwmrc
+   
+   [0;33mhttp://joewing.net/projects/jwm/[0m
+
+   [0;32m------------------------------------------------------
+
+   Please press enter to install JWM with custom options.
+
+   ------------------------------------------------------[0m
+
+   Or close this terminal window to quit the install." ;
+## Make sure of internet connection
+if : >/dev/tcp/8.8.8.8/53; then
+
+## Make a regular jwm backup each time
+if [ -e "$HOME/.jwmrc" ]; then
+   if [ -e "$HOME/.jwmrc.bak" ]; then
+   rm -f -r "$HOME/.jwmrc.bak"
+   cp -r "$HOME/.jwmrc" "$HOME/.jwmrc.bak"
+else
+   cp -r "$HOME/.jwmrc" "$HOME/.jwmrc.bak"
+   fi
+fi
+
+## Remove /tmp files
+cd /tmp || exit
+rm -f "/tmp/jwmrc.zip"
+rm -f "/tmp/.jwmrc"
+## Grab jwmrc.zip and unzip in /tmp
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/jwmrc.zip --show-progress -q
+unzip -q /tmp/jwmrc.zip
+
+## Install necessary programs
+sudo apt update && sudo apt install -y jwm
+
+## Copy .jwmrc from /tmp
+rm -f "$HOME/.jwmrc"
+cp -f "/tmp/.jwmrc" "$HOME/.jwmrc"
+
+## Copy .xsessionrc info to ~/.xsessionrc
+if ! grep -Fxq 'export WM="$session"' "$HOME/.xsessionrc"; then
+{
+echo ""
+echo '##############################'
+echo '## Replace the NAME of your desired WM HERE if installed.'
+echo '## See the list from the case statement below.'
+echo '###########'
+echo 'WMSelection=openbox'
+echo '###########'
+echo ""
+echo '##Your choice will be used for the session.'
+echo 'session="${1:-$WMSelection}"'
+echo ""
+echo '## Export for case use.'
+echo 'export WM="$session"'
+echo ""
+echo '## Leave these lines unless adjusting for use.'
+echo 'case $session in'
+echo     'openbox)    openbox-session ;;'
+echo     'awesome)    awesome ;;'
+echo     'sowm)       ~/.config/sowm/sowmstart.sh ;;'
+echo     'dwm)        ~/.config/dwm/dwmstart.sh ;;'
+echo     'jwm)        jwm ;;'
+echo     'i3)         i3 ;;'
+echo     'dk)         dk ;;'
+echo     '*)'
+echo '## UNCOMMENT BELOW IF NOT USING A LOGIN MANAGER (LIGHTDM).'
+echo '#exec "$session"' 
+echo 'esac';} | tee -a "$HOME/.xsessionrc" > /dev/null
+fi
+
+## If lightdm is not installed, then:
+if ! [[ $(command -v lightdm) ]]; then
+## Make it usable regardless of wm used
+sed -i 's/#exec "$session"/exec "$session"/' "$HOME/.xsessionrc"
+fi
+
+## Finish it up.
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+echo "   [0;33mAll Finished![0m"
+echo ""
+echo "   [0;32mYou should find a new menu entry in lightdm for jwm use.[0m"
+echo "   [0;32mIf lightdm is not installed, edit the ~/.xsessionrc file[0m"
+echo "   [0;32mand change the 'WMSelection=' entry to jwm.[0m"
+echo ""
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

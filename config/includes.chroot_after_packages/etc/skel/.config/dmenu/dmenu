@@ -1,0 +1,3 @@
+#!/bin/bash
+#
+(dmenu_run -nb '#182026' -nf '#BDCED9' -sb '#325F75' -sf '#E1F4FF' -fn 'Noto Sans-11')

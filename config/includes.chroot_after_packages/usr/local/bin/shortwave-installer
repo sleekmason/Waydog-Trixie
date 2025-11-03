@@ -1,0 +1,42 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mShortwave Installer[0m
+
+   Shortwave is an internet radio player that provides access to a 
+   station database with over 30,000 stations.
+     
+   [0;33mhttps://gitlab.gnome.org/World/Shortwave/-/blob/main/README.md[0m
+   
+   [0;33m----------------------------------------------------------
+   
+   Please press enter to install Shortwave.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/shortwave_12.0-1_all.deb --show-progress
+
+sudo apt update && sudo apt install -y ./shortwave_12.0-1_all.deb gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+
+sed -i '/Shortwave,            shortwave,                           de.haeckerfelix.Shortwave/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Shortwave,            shortwave,                           de.haeckerfelix.Shortwave' ~/.config/jgmenu/prepend.csv
+echo ""
+echo "[0;33m-------------------------------------------------------------------------"
+echo ""
+echo "All Finished!.
+You should find a new menu entry for Shortwave in the Quickgrab section."
+echo "" 
+echo "-------------------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

@@ -1,0 +1,2 @@
+#!/bin/bash
+echo; PF_INFO="ascii title os host kernel uptime pkgs memory shell editor wm palette" PF_SEP="  -->" PF_COL1=6 PF_COL2=4 PF_COL3=6 pfetch-backend; echo

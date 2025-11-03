@@ -1,0 +1,172 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mLemonbar-xft Installer[0m
+
+   The lemonbar-xft binary will be installed to /usr/local/bin.
+   The configuration files will be found in ~/.config/lemonbar.
+   This is where you will find conky-lemonbar, and lemonbar.sh.
+
+   The lemonbar-xft version allows for using standard fonts. If
+   wanting to script lemonbar for other uses, delete the binary 
+   from /usr/local/bin, and install the 'standard' version from
+   the debian repos. This bar is meant to be used with conky.
+
+   Conky-lemonbar controls the information for lemonbar. To add
+   the correct details particular to your computer, see:
+
+   [0;33mhttps://forum.lilidog.org/d/814-conky-temperature-fan-battery-wifi[0m
+
+   lemonbar.sh controls the fonts, bg color, and fg color.
+
+   [0;32m-------------------------------------------------------------
+
+   Please press enter to install Lemonbar with xft support.
+
+   -------------------------------------------------------------[0m
+
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+
+## Remove old packages
+rm -f /tmp/lemonbar-xft.zip
+rm -f -r /tmp/lemonbar-xft
+
+## Grab the lemonbar-xft binary
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/lemonbar-xft.zip --show-progress -q
+unzip -q /tmp/lemonbar-xft.zip
+
+## Install conky-all if not existing
+if [ $(dpkg-query -W -f='${Status}' conky-all 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  sudo apt update && sudo apt install -y conky-all;
+fi
+
+## Copy files to /usr/local/bin
+sudo cp "/tmp/lemonbar-xft/lemonbar" "/usr/local/bin"
+sudo cp "/tmp/lemonbar-xft/toggle.lemonbar" "/usr/local/bin"
+
+## Copy lemonbar man to /usr/share/man/man1
+sudo cp "/tmp/lemonbar-xft/lemonbar.1" "/usr/share/man/man1"
+
+## Lemonbar licence
+if [ ! -e "/usr/share/doc/lemonbar" ]; then
+sudo mkdir "/usr/share/doc/lemonbar"
+fi
+sudo cp "/tmp/lemonbar-xft/LICENSE.md" "/usr/share/doc/lemonbar"
+## Make ~/.config/lemonbar if doesn't exist
+if [ ! -e "$HOME/.config/lemonbar" ]; then
+   mkdir "$HOME/.config/lemonbar"
+fi
+
+## Make a one time backup of conky-lemonbar if existing
+if [ ! -e "$HOME/.config/lemonbar/conky-lemonbar.bak" ]; then
+   if [ -e "$HOME/.config/lemonbar/conky-lemonbar" ]; then
+     cp "$HOME/.config/lemonbar/conky-lemonbar" "$HOME/.config/lemonbar/conky-lemonbar.bak"
+   fi
+fi
+
+## Make a one time backup of lemonbar.sh if existing
+if [ ! -e "$HOME/.config/lemonbar/lemonbar.sh.bak" ]; then
+   if [ -e "$HOME/.config/lemonbar/lemonbar.sh" ]; then
+     cp "$HOME/.config/lemonbar/lemonbar.sh" "$HOME/.config/lemonbar/lemonbar.sh.bak"
+   fi
+fi
+
+## Copy needed files to ~/.config/lemonbar
+cp "/tmp/lemonbar-xft/conky-lemonbar" "$HOME/.config/lemonbar"
+cp "/tmp/lemonbar-xft/lemonbar.sh" "$HOME/.config/lemonbar"
+
+## Add a keybind
+## Add lemonbar to openbox sxhkdrc
+if [ -e "$HOME/.config/openbox/sxhkdrc-open" ]; then
+   if ! grep -Fxq "# lemonbar." "$HOME/.config/openbox/sxhkdrc-open"; then
+{
+   if ! grep -Fxq "mod4 + z" "$HOME/.config/openbox/sxhkdrc-open"; then
+echo ""
+echo "# lemonbar."
+echo "mod4 + z"
+notify-send --urgency low "'super + z' is the openbox lemonbar toggle"
+elif grep -Fxq "shift + mod4 + z" "$HOME/.config/openbox/sxhkdrc-open"; then
+notify-send --urgency low "Desired keybinds for lemonbar already in use"
+notify-send --urgency low "Please add the keybind for lemonbar manually"
+exit
+else
+echo ""
+echo "# lemonbar."
+echo "shift + mod4 + z"
+notify-send --urgency low "'shift + super + z' is the openbox lemonbar toggle"
+   fi
+echo "	toggle.lemonbar";} | tee -a "$HOME/.config/openbox/sxhkdrc-open" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+
+## Add lemonbar to dk sxhkdrc
+if [ -e "$HOME/.config/dk/sxhkdrc" ]; then
+   if ! grep -Fxq "# lemonbar." "$HOME/.config/dk/sxhkdrc"; then
+{
+   if ! grep -Fxq "mod4 + z" "$HOME/.config/dk/sxhkdrc"; then
+echo ""
+echo "# lemonbar."
+echo "mod4 + z"
+sleep 2; notify-send -t 8000 --urgency low "'super + z' is the DKWM lemonbar toggle"
+elif grep -Fxq "shift + mod4 + z" "$HOME/.config/dk/sxhkdrc"; then
+sleep 2; notify-send -t 8000 --urgency low "Desired DKWM keybinds already in use"
+notify-send -t 8000 --urgency low "Please add the DKWM keybind manually"
+exit
+else
+echo ""
+echo "# lemonbar."
+echo "shift + mod4 + z"
+sleep 2; notify-send -t 8000 --urgency low "'shift + super + z' is the DKWM lemonbar toggle"
+   fi
+echo "	toggle.lemonbar";} | tee -a "$HOME/.config/dk/sxhkdrc" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+
+## Add lemonbar to sxhkd/sxhkdrc
+if [ -e "$HOME/.config/sxhkd/sxhkdrc" ]; then
+   if ! grep -Fxq "# nano editor." "$HOME/.config/sxhkd/sxhkdrc"; then
+{
+   if ! grep -Fxq "mod4 + z" "$HOME/.config/sxhkd/sxhkdrc"; then
+echo ""
+echo "# lemonbar."
+echo "mod4 + z"
+notify-send -t 8000 --urgency low "'super + z' is the lemonbar toggle"
+elif grep -Fxq "shift + mod4 + n" "$HOME/.config/sxhkd/sxhkdrc"; then
+notify-send -t 8000 --urgency low "Desired keybinds already in use"
+notify-send -t 8000 --urgency low "Please add the keybind manually"
+exit
+else
+echo ""
+echo "# lemonbar."
+echo "shift + mod4 + z"
+notify-send -t 8000 --urgency low "'shift + super + z' is the lemonbar toggle"
+   fi
+echo "	toggle.lemonbar";} | tee -a "$HOME/.config/sxhkd/sxhkdrc" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+echo ""
+echo "   [0;32m-------------------------------------------------------------[0m"
+echo ""
+echo "   [0;33mToggle the different panels on and off with:
+   super + z, or Shift + super + z for lemonbar.
+   ctrl + super + t for tint2.
+   ctrl + super + p for polybar.
+   'super' = windows key. - toggle panels off before switching.[0m"
+echo ""
+echo "   [0;32m-------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

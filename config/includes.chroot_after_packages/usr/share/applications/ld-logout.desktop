@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=LD Logout
+Comment=Logout
+Exec=ld-logout
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/ld-icons/pixmaps/exit4.png
+Categories=System;

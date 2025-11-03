@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Logout Themes
+Comment=Change logout theme
+Exec=logout-theme-chooser
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/ld-icons/pixmaps/exit4.png
+Categories=ld-misc-tools;

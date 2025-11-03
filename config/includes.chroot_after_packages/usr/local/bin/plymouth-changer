@@ -1,0 +1,69 @@
+#!/bin/bash
+
+red='[31m'
+green='[32m'
+blue='[34m'
+reset='[0m'
+
+# Function to list Plymouth themes
+list_themes() {
+	echo
+    echo "${green}Available Plymouth themes:"${reset}
+    ls /usr/share/plymouth/themes/
+}
+
+# Function to show the installed theme
+show_installed_theme() {
+    sudo plymouthd ; sudo plymouth --show-splash ; sleep 5 ; sudo plymouth quit
+}
+
+# Function to install a theme
+install_theme() {
+	echo
+    echo "${green}Available Plymouth themes:"${reset}
+    ls /usr/share/plymouth/themes/
+    echo
+    read -p "${green}Choose a theme from the list:[0m " chosen_theme
+    sudo /usr/sbin/plymouth-set-default-theme "$chosen_theme"
+    sudo update-initramfs -u
+    sudo update-grub
+    echo "${green}Theme successfully installed."${reset}
+}
+
+# Main menu loop
+while true; do
+    # Display the menu
+    echo
+    echo "${blue}Select an option:"${reset}
+    echo "${blue}-----------------------"
+    echo " ${green}1. List Plymouth themes"${reset}
+    echo " ${green}2. Install theme"${reset}
+    echo " ${green}3. View installed theme"${reset} 
+    echo " ${green}4. Exit"${reset}
+    echo
+
+    read -p "Enter the option number:" option
+
+    case $option in
+        1)
+            list_themes
+            ;;
+        2)
+            install_theme
+            ;;
+        3)
+            show_installed_theme
+            ;;
+        4)
+            echo
+            echo "${blue}Exiting the script."${reset}
+            echo
+            exit 0
+            ;;
+        *)
+            echo
+            echo "${red}Invalid option. Please select a valid option."${reset}
+            echo
+            ;;
+    esac
+done

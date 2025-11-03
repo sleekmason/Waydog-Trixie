@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg999"
+   sodipodi:docname="t2.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1003">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Colorize"
+       id="filter338"
+       x="0"
+       y="0"
+       width="1"
+       height="1">
+      <feComposite
+         in2="SourceGraphic"
+         operator="arithmetic"
+         k1="0"
+         k2="1"
+         result="composite1"
+         id="feComposite324" />
+      <feColorMatrix
+         in="composite1"
+         values="1"
+         type="saturate"
+         result="colormatrix1"
+         id="feColorMatrix326" />
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(111,119,127)"
+         result="flood1"
+         id="feFlood328" />
+      <feBlend
+         in="flood1"
+         in2="colormatrix1"
+         mode="multiply"
+         result="blend1"
+         id="feBlend330" />
+      <feBlend
+         in2="blend1"
+         mode="screen"
+         result="blend2"
+         id="feBlend332" />
+      <feColorMatrix
+         in="blend2"
+         values="1"
+         type="saturate"
+         result="colormatrix2"
+         id="feColorMatrix334" />
+      <feComposite
+         in="colormatrix2"
+         in2="SourceGraphic"
+         operator="in"
+         k2="1"
+         result="composite2"
+         id="feComposite336" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="namedview1001"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.609375"
+     inkscape:cx="258.17476"
+     inkscape:cy="115.8835"
+     inkscape:window-width="1423"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg999" />
+  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+  <path
+     d="M 493.01094,383.67816 379.88137,279.2694 c -22.31676,-20.59643 -55.647,-24.60871 -82.50441,-12.39351 L 194.39137,171.82915 V 116.45951 L 70.731369,30.863945 8.901369,87.927656 101.64637,202.05506 h 59.99442 l 102.9856,95.04676 c -13.13888,24.78705 -8.88807,55.54796 13.4287,76.1444 l 113.12957,104.40874 c 14.10498,13.01767 36.90479,13.01767 50.91314,0 l 50.91314,-46.98838 c 14.00837,-13.01767 14.00837,-34.05992 0,-46.98842 z M 329.35466,231.47856 c 27.34046,0 53.03855,9.80781 72.36042,27.64023 l 18.74223,17.29743 c 15.26427,-6.15218 29.75568,-14.71175 42.3149,-26.3028 35.84208,-33.07913 48.01486,-79.62171 36.61495,-121.88452 -2.1254,-8.02457 -13.04226,-10.78861 -19.41848,-4.90392 l -71.87738,66.33657 -65.59776,-10.07531 -10.91686,-60.54103 71.87738,-66.336564 c 6.37622,-5.884695 3.28472,-15.960005 -5.50673,-18.010733 -45.79285,-10.43196 -96.22295,0.802458 -131.96842,33.792417 -27.53366,25.411183 -40.47933,58.93611 -39.80306,92.37188 l 79.3163,73.20205 c 7.82536,-1.6941 15.94054,-2.5857 23.86251,-2.5857 z M 228.97753,304.59143 174.20001,254.03655 26.967323,390.00867 c -24.1523446,22.29052 -24.1523446,58.40114 0,80.69166 24.152343,22.29051 63.27914,22.29051 87.431477,0 L 233.808,360.49603 c -7.34231,-17.74326 -9.56433,-37.09139 -4.83047,-55.9046 z M 70.731369,451.70881 c -12.752438,0 -23.18625,-9.62951 -23.18625,-21.3989 0,-11.85855 10.337203,-21.39889 23.18625,-21.39889 12.849047,0 23.18625,9.54034 23.18625,21.39889 0,11.76939 -10.337203,21.3989 -23.18625,21.3989 z"
+     id="path997"
+     style="fill:#cccccc;stroke-width:0.92811;filter:url(#filter338)"
+     transform="matrix(0.99,0,0,0.99,2.5618683,2.5914108)" />
+</svg>

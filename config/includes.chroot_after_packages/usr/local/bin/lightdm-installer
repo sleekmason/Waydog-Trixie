@@ -1,0 +1,60 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mLightdm Default Installer[0m
+
+   This script will install the lightdm login manager with a custom 
+   default greeter. If slick greeter is currently active, then the
+   installer will revert lightdm back to the default greeter.
+   
+   Switch between the two greeters at will using the installers.
+   
+   Reboot after installation to enable lightdm if not installed.
+   
+   [0;33m----------------------------------------------------------
+   
+   Please press enter to install Lightdm.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+sudo apt-get update && sudo apt-get install -y lightdm lightdm-gtk-greeter-settings &&
+sudo cp -af /usr/share/lilidog/extras/lightdm/ /usr/share
+
+## Toggle to lightdm-greeter
+sudo sed -i '/greeter-session=.*/d' "/etc/lightdm/lightdm.conf"
+sudo sed -i '108a greeter-session=lightdm-gtk-greeter' "/etc/lightdm/lightdm.conf"
+# Alternate method
+# sudo sed -i '/Font Sizes/a greeter-session=lightdm-greeter' "/etc/lightdm/lightdm.conf"
+
+# Add lightdm options to configuration menu
+sed -i '/Lightdm,             lightdm-options,.*/d' ~/.config/jgmenu/prepend.csv
+sed -i '/^Keybinds/a Lightdm,             lightdm-options,                                                      lightdm-gtk-greeter-settings' ~/.config/jgmenu/prepend.csv
+
+## Comment startx
+sed -i 's/^exec startx/#exec startx/g' "$HOME/.profile"
+
+## Comment the line for lightdm use
+if [[ $(command -v lightdm) ]]; then
+  if grep -Fxq 'exec "$session"' "$HOME/.xsessionrc"; then
+     sed -i 's/^exec "$session"/#exec "$session"/' "$HOME/.xsessionrc"
+  fi
+fi
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+echo ""
+echo "   [0;32mReboot to use the default Lightdm login manager.[0m"
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+echo $'\n\nPress any key to quit ...'; read -srn1
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+echo $'\n\nPress any key to quit ...'; read -srn1
+fi

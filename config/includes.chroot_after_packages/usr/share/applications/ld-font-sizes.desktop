@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Font Size Changer
+Exec=fontsize-changer
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-font
+Categories=ld-misc-tools;

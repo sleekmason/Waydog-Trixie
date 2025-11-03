@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Transparency
+Exec=transparency-system
+StartupNotify=false
+Terminal=false
+Icon=dialog-information
+Categories=ld-misc-tools;

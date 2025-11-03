@@ -1,0 +1,56 @@
+#!/bin/bash
+echo ""
+echo ""
+read -p "   [0;33mMinecraft Installer.[0m
+
+
+   This script will install all the necessary packages for Minecraft.
+   This includes default-jre default-jre-headless java-common
+   openjdk-11-jre & openjdk-11-jre-headless.
+   
+   https://www.minecraft.net/en-us  Microsoft login required.
+   
+   ----------------------------------------------------------
+   
+   [0;32mPlease press enter to install Minecraft.[0m
+   
+   ----------------------------------------------------------
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+
+cd /tmp/ &&
+sudo curl -LJO https://raw.githubusercontent.com/sleekmason/packages/master/Minecraft.deb &&
+sudo apt update && sudo apt install --install-recommends ./Minecraft.deb &&
+sudo rm Minecraft.deb
+sed -i '/Games,^checkout(games),applications-games/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development,^checkout(development),applications-development/i Games,^checkout(games),applications-games' ~/.config/jgmenu/prepend.csv &&
+sed -i '/tag(games)/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Development/a ^tag(games)' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Minecraft,         minecraft-launcher,       minecraft-launcher/d' ~/.config/jgmenu/prepend.csv && 
+sed -i '/tag(games)/a Minecraft,         minecraft-launcher,       minecraft-launcher' ~/.config/jgmenu/prepend.csv &&
+killall -q jgmenu
+echo ""
+echo "------------------------------------------------------------------"
+echo ""
+echo ""
+echo ""
+echo "[0;32mAll Finished!.[0m"
+echo ""
+echo "[0;33mIf installed, You should find a new menu entry under 'Games'.[0m"
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions..[0m"
+echo ""
+echo "------------------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

@@ -1,0 +1,7 @@
+Buuf Icons,         x-terminal-emulator -T 'Buuf Icon Theme Installer' -e bash -c "buuf-icon-installer",       applications-graphics
+Faenza Icons,       x-terminal-emulator -T 'Faenza Icon Theme Installer' -e bash -c "faenza-installer",        applications-graphics
+Gnome Icons,        x-terminal-emulator -T 'Gnome Icons Installer' -e bash -c "gnome-installer",               applications-graphics
+Numix Circle Icons, x-terminal-emulator -T 'Numix Circle Icon Theme Installer' -e bash -c "numix-installer",   applications-graphics
+Obsidian Icons,     x-terminal-emulator -T 'Obsidian Icon Theme Installer' -e bash -c "obsidian-installer",    applications-graphics
+Paper Icons,        x-terminal-emulator -T 'Paper Icon Theme Installer' -e bash -c "paper-installer",          applications-graphics
+Papirus Icons,      x-terminal-emulator -T 'Papirus Icon Theme Installer' -e bash -c "papirus-icon-installer", applications-graphics

@@ -1,0 +1,12 @@
+#!/bin/bash
+if pgrep -xf waybar > /dev/null; then
+    pkill -xf waybar &
+    pkill -f nm-applet &
+    pkill -f pnmixer &
+    pkill -f mate-power-manager
+else
+    waybar & 
+    nm-applet &
+    pnmixer & 
+    mate-power-manager & 
+fi

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ZSH Toggle
+Exec=zsh-toggle
+StartupNotify=false
+Terminal=false
+Icon=utilities-terminal
+Categories=ld-misc-tools;

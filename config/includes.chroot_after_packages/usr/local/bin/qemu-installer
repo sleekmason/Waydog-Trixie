@@ -1,0 +1,52 @@
+#!/bin/bash
+echo ""
+echo ""
+echo ""
+read -p "   [0;33mQemu Installer[0m
+
+   Qemu/kvm is a virtual machine, similar to VirtualBox.
+   This will install Qemu with --recommends enabled.
+
+   https://qemu-project.gitlab.io/qemu/
+   
+    
+   
+   ---------------------------------------------------------
+   
+   [0;32mPlease press enter to install Qemu.[0m
+   
+   ---------------------------------------------------------
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo "" 
+sudo apt update && sudo apt install --install-recommends qemu-system-x86 virt-manager &&
+sed -i '/VM Manager,         virt-manager,       virt-manager/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a VM Manager,         virt-manager,       virt-manager' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "-----------------------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mIf installed, You should find a new menu entry under 'Quick Grab'"
+echo "labeled 'VM Manager'[0m"
+echo "" 
+echo "[0;32mFor quick use, open a terminal where you have an ISO and use:"
+echo "kvm -cdrom <Your-Cool-ISO-amd64.hybrid.iso> -m 2048[0m"
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "-----------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

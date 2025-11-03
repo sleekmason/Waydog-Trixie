@@ -1,0 +1,15 @@
+Abiword Writer,          x-terminal-emulator -T 'Abiword Writer Installer' -e bash -c "abiword-installer",                   applications-office
+Calibre Book,            x-terminal-emulator -T 'Calibre Installer' -e bash -c "calibre-installer",                          applications-office
+Joplin Note,             x-terminal-emulator -T 'Joplin Note AppImage Installer' -e bash -c "joplin-installer",              applications-office
+Mousepad Editor,         x-terminal-emulator -T 'Mousepad Editor Installer' -e bash -c "mousepad-installer",                 applications-office
+Nano Editor,             x-terminal-emulator -T 'Nano Editor Installer' -e bash -c "nano-installer",                         applications-office
+Neovim Editor,           x-terminal-emulator -T 'Neovim Editor Installer' -e bash -c "neovim-installer",                     applications-office
+Pluma Editor,            x-terminal-emulator -T 'Pluma Editor Installer' -e bash -c "pluma-installer",                       applications-office
+VSCodium Editor,         x-terminal-emulator -T 'VSCodium Installer' -e bash -c "vscodium-installer",                        applications-office
+^sep()
+Libreoffice Calc,        x-terminal-emulator -T 'Libreoffice Calc Installer' -e bash -c "libreoffice-calc-installer",        applications-office
+Libreoffice Draw,        x-terminal-emulator -T 'Libreoffice Draw Installer' -e bash -c "libreoffice-draw-installer",        applications-office
+Libreoffice Impress,     x-terminal-emulator -T 'Libreoffice Impress Installer' -e bash -c "libreoffice-impress-installer",  applications-office
+Libreoffice Math,        x-terminal-emulator -T 'Libreoffice Math Installer' -e bash -c "libreoffice-math-installer",        applications-office
+Libreoffice Writer,      x-terminal-emulator -T 'Libreoffice Writer Installer' -e bash -c "libreoffice-writer-installer",    applications-office
+Libreoffice Full Suite,  x-terminal-emulator -T 'Libreoffice Installer' -e bash -c "libreoffice-installer",                  applications-office

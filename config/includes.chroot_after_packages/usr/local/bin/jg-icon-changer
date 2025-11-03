@@ -1,0 +1,264 @@
+#! /bin/bash
+# Jgmenu options for icon type, on/off, and font size.
+
+
+jg-font-size(){
+WIDTH=240
+HEIGHT=400
+
+trans="$(yad --title "Font Size" --width="$WIDTH" --height="$HEIGHT" --borders="8" --center --list \
+--text="Menu font size changer.\nFonts reset to system default.\n" --text-align=center \
+--window-icon=applications-system \
+--radiolist  --column "Choose" --column "Size" --separator=" " \
+  FALSE "8" \
+  FALSE "9" \
+  FALSE "10" \
+  TRUE "11" \
+  FALSE "12" \
+  FALSE "13" \
+  FALSE "14" \
+  FALSE "15")"
+  trans="$(echo "$trans" | cut -d' ' -f2-)"
+ 
+# check if "Cancel" button
+if ! [[ $trans ]];
+then
+  exit 1
+fi
+
+sed -i "s/font =.*/font = Noto Sans $trans/g" ~/.config/jgmenu/jgmenurc
+# Conversely, only select the first instance of the line.
+# sed -i "0,/font = Noto Sans/{s/font = Noto Sans.*/font = Noto Sans ${trans}/}" ~/.config/jgmenu/jgmenurc
+
+# Rofi options included - adjust as necessary
+sed -i "s/^font: \"Noto Sans.*/font: \"Noto Sans $trans\";/g" "$HOME"/.config/rofi/config.rasi
+# Setup for rofi-familiar -1 for font
+
+VAR=$((trans - 1))
+sed -i "s/^font: \"Noto Sans.*/font: \"Noto Sans $VAR\";/g" "$HOME"/.config/rofi/themes/familiar/familiar.rasi
+
+pkill -x jgmenu
+
+exit 0
+}
+
+Off(){
+FILE="$HOME/.config/jgmenu/prepend.csv"
+STRING="#@icon,,"
+
+if  grep -q "$STRING" "$FILE" ; then
+if  grep -q "icon_size = 0" "$HOME/.config/jgmenu/jgmenurc" ; then
+exit
+fi
+ else
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a#@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' "$FILE"
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	7,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' "$FILE"
+     sed -i 's/^icon_size.*/icon_size = 0/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^show-icons:.*/show-icons: false;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: false;/g' "$HOME"/.config/rofi/config.rasi
+     notify-send --urgency low 'Menu Icons Toggled Off'
+fi
+}
+
+# The above, exported.
+
+Adwaita(){
+   if [[ -d "/usr/share/icons/Adwaita" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Adwaita/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Adwaita";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Adwaita";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Adwaita'
+else
+notify-send --urgency low "Adwaita icons are not currently installed"
+fi
+}
+Gnome(){
+   if [[ -d "/usr/share/icons/gnome" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc 
+     sed -i 's/^icon_theme =.*/icon_theme = gnome/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "gnome";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "gnome";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Gnome'
+else
+notify-send --urgency low "Gnome icons are not currently installed"
+fi
+}
+
+Buuf(){
+     if [[ -d "/usr/share/icons/buuf" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = buuf/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "buuf";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "buuf";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Buuf'
+else
+notify-send --urgency low "Buuf icons are not currently installed"
+fi
+}
+
+Dark(){
+    if [[ -d "/usr/share/icons/Papirus-Dark" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Papirus-Dark/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Papirus-Dark";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Papirus-Dark";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Papirus Dark'
+else
+notify-send --urgency low "Full Papirus icon theme not currently installed"
+fi
+}
+
+Light(){
+    if [[ -d "/usr/share/icons/Papirus" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Papirus/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Papirus";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Papirus";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Papirus Light'
+else
+notify-send --urgency low "Full Papirus icon theme not currently installed"
+fi
+}
+
+Numix(){
+    if [[ -d "/usr/share/icons/Numix-Circle" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Numix-Circle/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Numix-Circle";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Numix-Circle";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Numix Circle'
+else
+notify-send --urgency low "Numix icons are not currently installed"
+fi
+}
+
+Faenza(){
+    if [[ -d "/usr/share/icons/Faenza-Ambiance" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Faenza-Ambiance/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Faenza-Ambiance";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Faenza-Ambiance";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Faenza-Ambiance'
+else
+notify-send --urgency low "Faenza icons are not currently installed"
+fi
+}
+
+Paper(){
+    if [[ -d "/usr/share/icons/Paper" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Paper/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Paper";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Paper";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Paper'
+else
+notify-send --urgency low "Paper icons are not currently installed"
+fi
+}
+
+Obsidian(){
+    if [[ -d "/usr/share/icons/Obsidian" ]]
+then
+     sed -i 's/^icon_size.*/icon_size = 16/g' ~/.config/jgmenu/jgmenurc
+     sed -i 's/^icon_theme =.*/icon_theme = Obsidian/g' ~/.config/jgmenu/jgmenurc
+     sed -i '/@icon.*/d' ~/.config/jgmenu/prepend.csv
+     sed -i '/#@icon.*/d' ~/.config/jgmenu/prepend.csv && sed -i '1a@icon,, 	11,11,16,16,2,,,,,/usr/share/icons/gnome/16x16/actions/system-search.png' ~/.config/jgmenu/prepend.csv
+     sed -i '/@search.*/d' ~/.config/jgmenu/prepend.csv && sed -i '2a@search,,	35,6,125,26,2,left,top,auto,	#eeeeee 80,Type To Search' ~/.config/jgmenu/prepend.csv
+     sed -i 's/^icon-theme:.*/icon-theme: "Obsidian";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^icon-theme:.*/icon-theme: "Obsidian";/g' "$HOME"/.config/rofi/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+     sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low 'Menu Icons Set To Obsidian'
+else
+notify-send --urgency low "Obsidian icons are not currently installed"
+fi
+}
+
+O(){
+     bash -c jg-icon-toggle
+notify-send --urgency low 'Menu Icons Toggled Off'
+}
+
+## Export functions
+
+export -f jg-font-size
+export -f Gnome
+export -f Buuf
+export -f Dark
+export -f Light
+export -f Numix
+export -f Faenza
+export -f Paper
+export -f Obsidian
+export -f Off
+
+yad --title "Menu Icon & Font Options" --escape-ok \
+    --button="Install Icons"!/usr/share/icons/gnome/22x22/categories/applications-graphics.png!:"popup -f /usr/share/lilidog/installers/icons &" \
+    --button=" Font Size"!/usr/share/icons/gnome/22x22/apps/preferences-desktop-font.png!:'bash -c "jg-font-size"' \
+    --button=" Exit!application-exit:0" \
+    --text " Gnome icons are already installed. \n Press 'Install Icons' for other icon options.\n" \
+    --text-align=center --buttons-layout=edge \
+    --form --center --geometry=210x270-314-80 --borders=10 \
+    --window-icon=jgmenu \
+    --form --columns=3 \
+    --field="     Buuf     :FBTN" 'bash -c "Buuf >/dev/null 2>&1 &"' \
+    --field="     Faenza     :FBTN" 'bash -c "Faenza >/dev/null 2>&1 &"' \
+    --field="     Gnome     :FBTN" 'bash -c "Gnome >/dev/null 2>&1 &"' \
+    --field="Numix:FBTN" 'bash -c "Numix >/dev/null 2>&1 &"' \
+    --field="Paper:FBTN" 'bash -c "Paper >/dev/null 2>&1 &"' \
+    --field="Papirus Dark:FBTN" 'bash -c "Dark >/dev/null 2>&1 &"' \
+    --field="Papirus Light:FBTN" 'bash -c "Light >/dev/null 2>&1 &"' \
+    --field="Obsidian:FBTN" 'bash -c "Obsidian >/dev/null 2>&1 &"' \
+    --field="Off:FBTN" 'bash -c "Off"'
+
+killall -q jgmenu

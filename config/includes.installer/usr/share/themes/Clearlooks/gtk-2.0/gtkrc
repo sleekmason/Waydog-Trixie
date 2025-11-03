@@ -1,0 +1,183 @@
+style "clearlooks-default"
+{
+	GtkButton	::default_border	= { 0, 0, 0, 0 }
+	GtkRange	::trough_border		= 0
+	GtkPaned	::handle_size		= 6
+	GtkRange	::slider_width		= 15
+	GtkRange	::stepper_size		= 15
+
+	GtkScrollbar	::min_slider_length	= 30
+	GtkCheckButton	::indicator_size	= 14
+	GtkMenuBar	::internal-padding	= 0
+	GtkTreeView	::expander_size		= 14
+	GtkExpander	::expander_size		= 16
+	GtkScale	::slider-length		= 27
+#	GtkToolbar	::button-relief		= GTK_RELIEF_NORMAL
+#	GtkMenuBar	::shadow-type		= GTK_SHADOW_OUT
+#	GtkScrollbar	::has-secondary-forward-stepper  = 1
+#	GtkScrollbar	::has-secondary-backward-stepper = 1
+
+	GtkButton	::child-displacement-x = 1
+	GtkButton	::child-displacement-y = 1
+
+	WnckTasklist	::fade-overlay-rect = 0
+
+	xthickness = 1
+	ythickness = 1
+
+	fg[NORMAL]		    = "#FAFAFA" # CHANGED COULD BE SOME TEXT
+	fg[PRELIGHT]		= "#E7EDF0" # TEXT COLOR IN YES/NO BOX
+	fg[SELECTED]		= "#839FAD" # Highlight
+	fg[ACTIVE]		    = "#ECF2F5" # TEXT COLOR IN YES AND NO BOXES
+	fg[INSENSITIVE]		= "#3D4D57" # 
+
+	bg[NORMAL]		    = "#1D2A33" # BACKGROUND
+	bg[PRELIGHT]		= "#546975" # 
+	bg[SELECTED]		= "#2A656D" # 
+	bg[INSENSITIVE]		= "#333A42" #
+	bg[ACTIVE]		    = "#2A656D" #
+
+	base[NORMAL]		= "#1D2B33" # WHOLE BACKGROUND IN INSET AREA
+	base[PRELIGHT]		= "#243640" # 
+	base[ACTIVE]		= "#506875" # UNSELECTED HIGHLIGHTED BAR
+	base[SELECTED]		= "#839FAD" # Configure network hostname
+	base[INSENSITIVE]	= "#546975" #
+
+	text[NORMAL]		= "#E9EEF0" # PRIMARY TEXT COLOR
+	text[PRELIGHT]		= "#F2F7FA" # BRIGHTER TEXT DURING SELECTION HOPEFULLY
+	text[ACTIVE]		= "#0D1517" #
+	text[SELECTED]		= "#0D1517" #
+	text[INSENSITIVE]	= "#F0F5F7" # BUTTON TEXT
+
+	engine "clearlooks"
+	{
+  # scrollbar_color	    = "#2A656D"  #This will disappear if uncommented 
+	menubarstyle		= 2	# 0 = flat, 1 = sunken, 2 = flat gradient
+	#menuitemstyle		= 1	# 0 = flat, 1 = 3d-ish (gradient), 2 = 3d-ish (button)
+	#listviewitemstyle	= 1	# 0 = flat, 1 = 3d-ish (gradient)
+	#progressbarstyle	= 1	# 0 = candy bar, 1 = fancy candy bar, 2 = flat
+	animation		= FALSE
+	}
+}
+
+style "clearlooks-wide" = "clearlooks-default"
+{
+	xthickness = 2
+	ythickness = 2
+}
+
+style "clearlooks-wider" = "clearlooks-default"
+{
+	xthickness = 3
+	ythickness = 3
+}
+
+style "clearlooks-button" = "clearlooks-wider"
+{
+	bg[NORMAL]	    = "#2A656D"  ## BUTTONS(3)
+	bg[INSENSITIVE]	= "#2A656D"
+	bg[PRELIGHT]	= "#37848F"  #Hover
+}
+
+style "clearlooks-notebook" = "clearlooks-wide"
+{
+	bg[NORMAL]	= "#D2EFFF"      ##CHANGED BOTH 5
+	bg[INSENSITIVE] = "#D2EFFF"
+}
+
+style "clearlooks-tasklist" = "clearlooks-default"
+{
+	xthickness = 5
+	ythickness = 3
+}
+
+style "clearlooks-menu" = "clearlooks-default"
+{
+	xthickness = 2
+	ythickness = 1
+	bg[NORMAL] = "#E1EBF0"
+}
+
+style "clearlooks-menubar-item" = "clearlooks-button"
+{
+	fg[PRELIGHT] = "#000000"
+}
+
+style "clearlooks-menu-item" = "clearlooks-default"
+{
+	xthickness	= 2
+	ythickness	= 3
+	fg[PRELIGHT]	= "#ffffff"
+	text[PRELIGHT]	= "#ffffff"
+}
+
+style "clearlooks-tree" = "clearlooks-default"
+{
+	xthickness = 2
+	ythickness = 2
+}
+
+style "clearlooks-frame-title" = "clearlooks-default"
+{
+	fg[NORMAL] = "#1C2930"
+}
+
+style "clearlooks-tooltips" = "clearlooks-default"
+{
+	xthickness = 4
+	ythickness = 4
+	bg[NORMAL] = { 1.0,1.0,0.75 }
+}
+
+style "clearlooks-progressbar" = "clearlooks-wide"
+{
+	xthickness	= 1
+	ythickness	= 1
+	fg[PRELIGHT]	= "#ffffff"
+}
+
+style "clearlooks-combo" = "clearlooks-button"
+{
+}
+
+style "clearlooks-menubar" = "blackrock-default"
+{
+	bg[NORMAL]	= "#bacedb"
+}
+
+# widget styles
+class "GtkWidget"	style "clearlooks-default"
+class "GtkButton"	style "clearlooks-button"
+class "GtkScale"	style "clearlooks-button"
+class "GtkCombo"	style "clearlooks-button"
+class "GtkRange"	style "clearlooks-wide"
+class "GtkFrame"	style "clearlooks-wide"
+class "GtkMenu"		style "clearlooks-menu"
+class "GtkEntry"	style "clearlooks-wider"
+class "GtkMenuItem"	style "clearlooks-menu-item"
+class "GtkNotebook"	style "clearlooks-notebook"
+class "GtkProgressBar"	style "clearlooks-progressbar"
+
+#class "GtkMenuBar"	style "clearlooks-menubar"
+
+widget_class "*MenuItem.*"			style "clearlooks-menu-item"
+#widget_class "*.GtkMenuBar.*MenuItem.*"	style "clearlooks-menubar-item"
+
+# combobox stuff
+widget_class "*.GtkComboBox.GtkButton"		style "clearlooks-combo"
+widget_class "*.GtkCombo.GtkButton"		style "clearlooks-combo"
+# tooltips stuff
+widget_class "*.tooltips.*.GtkToggleButton"	style "clearlooks-tasklist"
+widget "gtk-tooltips"				style "clearlooks-tooltips"
+
+# treeview stuff
+widget_class "*.GtkTreeView.GtkButton"		style "clearlooks-tree"
+widget_class "*.GtkCTree.GtkButton"		style "clearlooks-tree"
+widget_class "*.GtkList.GtkButton"		style "clearlooks-tree"
+widget_class "*.GtkCList.GtkButton"		style "clearlooks-tree"
+widget_class "*.GtkFrame.GtkLabel"		style "clearlooks-frame-title"
+
+# notebook stuff
+widget_class "*.GtkNotebook.*.GtkEventBox"	style "clearlooks-notebook"
+widget_class "*.GtkNotebook.*.GtkViewport"	style "clearlooks-notebook"
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+## Timezone changer script for Lilidog tint2 clock entry 06-08-2022
+sudo dpkg-reconfigure tzdata

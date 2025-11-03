@@ -1,0 +1,198 @@
+#!/bin/bash
+
+read -p "   [0;32mNano Installer[0m
+
+   This script adds the nano text editor to menus and keybinds
+   while adding a few custom options including syntax coloring
+   and other useful changes. The keybind added shall either be
+   super + n or 'super + shift + n' depending on availability.
+
+   See the configuration file: ~/.config/nano/nanorc for other
+   possible customization options.
+
+   [0;32m-----------------------------------------------------------
+
+   Press enter to install the nano editor with custom options.
+
+   -----------------------------------------------------------[0m
+
+   Or close this terminal window to quit the install." ;
+## Make sure of internet connection
+if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+## Remove old .desktop file
+sudo rm -f /usr/share/applications/nano.desktop
+
+## Install nano if not existing
+if ! [[ $(command -v nano) ]]; then
+sudo apt update && sudo apt install -y nano
+fi
+
+## Make nano.desktop file
+sudo touch /usr/share/applications/nano.desktop
+
+## Copy lines for nano.desktop file
+{
+echo "[Desktop Entry]"
+echo "Encoding=UTF-8"
+echo "Version=1.0"
+echo "Type=Application"
+echo "NoDisplay=false"
+echo "Exec=x-terminal-emulator -T 'Nano' -e nano %f"
+echo "Name=Nano"
+echo "Comment=Nano terminal text editor"
+echo "Icon=utilities-terminal"
+echo "Categories=Utility;TextEditor;Development;"
+echo "Keywords=editor;texteditor;text;terminal;"
+echo "MimeType=text/plain;";} | sudo tee -a "/usr/share/applications/nano.desktop" > /dev/null
+
+## update desktop database
+sudo update-desktop-database
+
+## Make ~/.config/nano/nanorc if doesn't exist
+if [ ! -e "$HOME/.config/nano" ]; then
+   mkdir "$HOME/.config/nano"
+fi
+
+## Make first and second backup of nanorc if existing
+if [ ! -e "$HOME/.config/nano/nanorc-original.bak" ]; then
+   if [ -e "$HOME/.config/nano/nanorc" ]; then
+     cp "$HOME/.config/nano/nanorc" "$HOME/.config/nano/nanorc-original.bak"
+   fi
+fi
+
+if [ -e "$HOME/.config/nano/nanorc" ]; then
+     cp "$HOME/.config/nano/nanorc" "$HOME/.config/nano/nanorc.bak"
+fi
+
+## Copy sample.nanorc to ~/.config/nano/nanorc
+cp "/usr/share/doc/nano/examples/sample.nanorc" "$HOME/.config/nano/nanorc"
+
+## Copy code for color lines user
+{
+echo ""
+echo '## See above for full options plus description of options and colors.'
+echo '## Options'
+echo 'set emptyline'
+echo 'set indicator'
+echo 'set linenumbers'
+echo 'set mouse'
+echo ""
+echo '## Set user colors'
+echo 'set titlecolor bold,lightgreen,black'
+echo 'set promptcolor bold,green,black'
+echo 'set statuscolor bold,green,black'
+echo 'set selectedcolor lightyellow,magenta'
+echo 'set stripecolor yellow'
+echo 'set scrollercolor cyan'
+echo 'set numbercolor bold,green'
+echo 'set keycolor lightgreen'
+echo 'set functioncolor lightcyan'
+echo ""
+echo '## Syntax highlighting for different color schemes can be found in'
+echo '## /usr/share/nano Adjust this line. Currently selects most. l.242'
+echo ""
+echo 'include "/usr/share/nano/*.nanorc"';} | tee -a "$HOME/.config/nano/nanorc" > /dev/null
+
+## Add nano to openbox sxhkdrc
+if [ -e "$HOME/.config/openbox/sxhkdrc-open" ]; then
+   if ! grep -Fxq "# nano editor." "$HOME/.config/openbox/sxhkdrc-open"; then
+{
+   if ! grep -Fxq "mod4 + n" "$HOME/.config/openbox/sxhkdrc-open"; then
+echo ""
+echo "# nano editor."
+echo "mod4 + n"
+notify-send --urgency low "Use 'super + n' to start nano in Openbox"
+elif grep -Fxq "shift + mod4 + n" "$HOME/.config/openbox/sxhkdrc-open"; then
+notify-send --urgency low "Desired keybinds for openbox already in use"
+notify-send --urgency low "Please add the keybind for openbox manually"
+exit
+else
+echo ""
+echo "# nano editor."
+echo "shift + mod4 + n"
+notify-send --urgency low "Use 'shift + super + n' to start nano in Openbox"
+   fi
+echo "	x-terminal-emulator -T 'Nano' -e nano";} | tee -a "$HOME/.config/openbox/sxhkdrc-open" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+
+## Add nano to dk sxhkdrc
+if [ -e "$HOME/.config/dk/sxhkdrc" ]; then
+   if ! grep -Fxq "# nano editor." "$HOME/.config/dk/sxhkdrc"; then
+{
+   if ! grep -Fxq "mod4 + n" "$HOME/.config/dk/sxhkdrc"; then
+echo ""
+echo "# nano editor."
+echo "mod4 + n"
+sleep 2; notify-send -t 8000 --urgency low "Use 'super + n' to start nano in DKWM"
+elif grep -Fxq "shift + mod4 + n" "$HOME/.config/dk/sxhkdrc"; then
+sleep 2; notify-send -t 8000 --urgency low "Desired DKWM keybinds already in use"
+notify-send -t 8000 --urgency low "Please add the DKWM keybind manually"
+exit
+else
+echo ""
+echo "# nano editor."
+echo "shift + mod4 + n"
+sleep 2; notify-send -t 8000 --urgency low "Use 'shift + super + n' to start nano in DKWM"
+   fi
+echo "	x-terminal-emulator -T 'Nano' -e nano";} | tee -a "$HOME/.config/dk/sxhkdrc" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+
+## Add nano to sxhkd/sxhkdrc
+if [ -e "$HOME/.config/sxhkd/sxhkdrc" ]; then
+   if ! grep -Fxq "# nano editor." "$HOME/.config/sxhkd/sxhkdrc"; then
+{
+   if ! grep -Fxq "mod4 + n" "$HOME/.config/sxhkd/sxhkdrc"; then
+echo ""
+echo "# nano editor."
+echo "mod4 + n"
+notify-send -t 8000 --urgency low "Use 'super + n' to start nano"
+elif grep -Fxq "shift + mod4 + n" "$HOME/.config/sxhkd/sxhkdrc"; then
+notify-send -t 8000 --urgency low "Desired keybinds already in use"
+notify-send -t 8000 --urgency low "Please add the keybind manually"
+exit
+else
+echo ""
+echo "# nano editor."
+echo "shift + mod4 + n"
+notify-send -t 8000 --urgency low "Use 'shift + super + n' to start nano"
+   fi
+echo "	x-terminal-emulator -T 'Nano' -e nano";} | tee -a "$HOME/.config/sxhkd/sxhkdrc" > /dev/null
+pkill -USR1 -x sxhkd
+   fi
+fi
+
+## Add nano to jgmenu if in Lilidog
+if [ -e "/usr/share/lilidog" ]; then
+sed -i "/Nano,          x-terminal-emulator -T 'Nano' -e bash -c nano, utilities-terminal/d" ~/.config/jgmenu/prepend.csv &&
+sed -i "/Root Folders,^checkout(rootfiles),folder/a Nano,          x-terminal-emulator -T 'Nano' -e bash -c nano, utilities-terminal" ~/.config/jgmenu/prepend.csv
+fi
+echo "   [0;32m-----------------------------------------------------------[0m"
+echo ""
+echo "   [0;33mAll Finished![0m"
+echo ""
+echo "   [0;32mYou should find a new menu entry for nano in jgmenu, and an[0m"
+echo "   [0;32m'Open With' menu entry in the file manager. also, a keybind[0m"
+echo "   [0;32msuper + n or 'super + shift + n' depending on availability.[0m"
+echo ""
+echo "   [0;31mUse 'Ctrl + x' or 'F2' to exit nano.[0m"
+echo ""
+echo "   [0;33mSee the configuration file: ~/.config/nano/nanorc for other"
+echo "   possible customization options.[0m"
+echo ""
+echo "   [0;32m-----------------------------------------------------------[0m"
+echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

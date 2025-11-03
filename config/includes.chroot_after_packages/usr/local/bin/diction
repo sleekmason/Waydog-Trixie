@@ -1,0 +1,8 @@
+#!/bin/bash
+
+menu="Quit!quit!application-exit"
+
+yad --notification --image="/usr/share/icons/hicolor/16x16/apps/org.xfce.Dictionary.png" \
+--menu="$menu" \
+--text="Dictionary" \
+--command="bash -c xfce4-dict"

@@ -1,0 +1,3 @@
+#!/bin/bash
+# Frontend for quick installers.  See quickinstaller-backend to make changes.
+x-terminal-emulator -T "Quick Installers" -e bash -c "sudo quickinstaller-backend; echo $'\n\nPress any key to close.'; read -srn1"

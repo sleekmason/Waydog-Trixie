@@ -1,0 +1,31 @@
+### TO CHANGE MENU ITEMS
+There is currently no gui menu editor for jgmenu or Openbox. So:
+
+Open the prepend.csv file to add/remove items in the menu.  
+The format example is: Display-name, program-name, icon-name
+See the other entries for examples.
+
+All newly installed programs are still available through the "Debian" 
+menu if you don't want to edit after installing a program. This menu
+is left in place to ensure easy access to any programs installed.
+
+
+### TO CHANGE THEMES WITHIN THE LILIDOG THEME CHANGER (Tint2 or menu.)
+You can choose between the currently activated GTK or Openbox theme.
+The easiest method is to edit any of the configuration files at:
+ ~/.config/lilidog-themes and comment/uncomment the method you want
+to use with any particular theme. 
+
+### TO CHANGE THEMES WITHIN THE JGMENU INTERACTIVE PROMPT
+You can choose between the currently activated GTK or Openbox theme.
+Type 'jgmenu-interactive' in a terminal to open an interactive prompt.
+Use  "o" or "g" to change to either the openbox or gtk theme colors.
+DO NOT change any other settings here unless willing to experiment.
+
+
+### TO CHANGE ICONS
+Look in either the "paw" in the tint2 panel or the toggles menu for 
+the jgmenu icon changer.
+
+
+'man jgmenu' in a terminal for more info!

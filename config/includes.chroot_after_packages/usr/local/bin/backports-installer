@@ -1,0 +1,51 @@
+#!/bin/bash
+## Made by Sleekmason 18 Feb 2022
+## Simple script to add backports and Fast Track to your sources.
+read -p "   
+                          [0;33mADD ADDITIONAL SOURCES[0m
+   
+   
+   This script will add the Trixie Backports repository 
+   
+   More info:
+   
+   [0;31mhttps://backports.debian.org/Instructions/[0m
+   
+   
+   [0;33m---------------------------------------------------------
+   
+   Please press Enter to add Trixie Backports.
+   
+   ---------------------------------------------------------[0m
+   
+   
+
+
+   Or close this terminal window to quit." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+   echo ""
+   echo ""
+sudo cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
+   sudo apt update
+   echo ""
+   echo ""
+   echo ""
+   echo "[0;33m---------------------------------------------------------------------"
+   echo ""
+   echo "Trixie backports enabled and updated."
+   echo ""
+   echo "Done!"
+   echo ""
+   echo "---------------------------------------------------------------------[0m"
+   echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

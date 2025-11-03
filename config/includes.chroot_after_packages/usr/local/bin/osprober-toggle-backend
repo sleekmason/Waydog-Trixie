@@ -1,0 +1,28 @@
+#!/bin/bash
+## Script to toggle osprober on/off
+
+[ "$USER" != "root" ]
+
+FILE="/etc/default/grub"
+
+if grep -q '#GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
+
+sudo sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' "$FILE" &&
+notify-send  -t 10000 --urgency low "Enabling OSprober and updating grub"
+sleep 3
+notify-send  -t 10000 --urgency low "Please do not reboot until complete"
+ else
+sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=false/#GRUB_DISABLE_OS_PROBER=false/g' "$FILE" &&
+notify-send  -t 10000 --urgency low "Disabling OSprober and updating grub"
+sleep 3
+notify-send  -t 10000 --urgency low "Please do not reboot until complete"
+fi
+sudo update-grub 2>&1 | tee -a /var/log/grub-update.log |
+  yad --width=360 --height=100 \
+    --image="/usr/share/icons/gnome/32x32/apps/utilities-system-monitor.png" \
+    --title="OSprober Grub Update" --progress \
+    --window-icon="go-previous-rtl" \
+    --pulsate --center --text="\n          Updating grub. Please wait ..." \
+    --no-buttons --auto-kill --auto-close \
+    --percentage=10
+notify-send  -t 15000 --urgency low "Grub Update Finished!"

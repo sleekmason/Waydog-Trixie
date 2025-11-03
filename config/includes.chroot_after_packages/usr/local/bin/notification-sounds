@@ -1,0 +1,93 @@
+#! /bin/bash
+
+
+## Test with: aplay ~/.config/dunst/sounds/long-ping.wav
+## On/Off through dunstrc
+On(){
+    sed -i '/summary/d' ~/.config/dunst/dunstrc
+    sed -i '/sounds/d' ~/.config/dunst/dunstrc
+    sed -i '/play/a script = ~/.config/dunst/sounds/dunst-sound' ~/.config/dunst/dunstrc
+    sed -i '/sounds/a summary = "*"' ~/.config/dunst/dunstrc
+    killall dunst
+notify-send --urgency low 'Notification Sounds On'
+}
+Off(){
+   sed -i '/summary/d' ~/.config/dunst/dunstrc
+   sed -i '/sounds/d' ~/.config/dunst/dunstrc
+   killall dunst
+notify-send --urgency low 'Notification Sounds Off'
+}
+
+## Sounds
+A-tone(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/a-tone.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to A-Tone'
+}
+Bike(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/bike.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Bike'
+}
+Birds(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/birds.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Birds'
+}
+Drum(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/drum.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Drum'
+}
+Confirm(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/confirm.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Confirm'
+}
+Cowbell(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/cowbell.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Cowbell'
+}
+Guitar(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/guitar.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Guitar'
+}
+Ping(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/ping.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Ping'
+}
+Long(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/long-ping.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Long Ping'
+}
+Rooster(){
+   sed -i '/aplay/c aplay ~/.config/dunst/sounds/rooster.wav' ~/.config/dunst/sounds/dunst-sound &&
+notify-send --urgency low 'Sound changed to Rooster'
+}
+
+export -f On
+export -f A-tone
+export -f Bike
+export -f Birds
+export -f Drum
+export -f Cowbell
+export -f Off
+export -f Confirm
+export -f Guitar
+export -f Long
+export -f Ping
+export -f Rooster
+
+
+yad --title "Sound Choices" --escape-ok --borders=10 \
+--form --width 280 --center \
+--text="\nTurn on to test notification sounds\n" --text-align=center --buttons-layout=spread \
+--window-icon="audio-headphones" \
+    --form --columns=2 \
+    --field=" On":FBTN "bash -c On >/dev/null 2>&1 &" \
+    --field=" A-tone":BTN "bash -c A-tone >/dev/null 2>&1 &" \
+    --field=" Bike":BTN "bash -c Bike >/dev/null 2>&1 &" \
+    --field=" Birds":BTN "bash -c Birds >/dev/null 2>&1 &" \
+    --field=" Drum":BTN "bash -c Drum >/dev/null 2>&1 &" \
+    --field=" Cowbell":BTN "bash -c Cowbell >/dev/null 2>&1 &" \
+    --field=" Off":FBTN "bash -c Off >/dev/null 2>&1 &" \
+    --field=" Confirm":BTN "bash -c Confirm >/dev/null 2>&1 &" \
+    --field=" Guitar":BTN "bash -c Guitar >/dev/null 2>&1 &" \
+    --field=" Long":BTN "bash -c Long >/dev/null 2>&1 &" \
+    --field=" Ping":BTN "bash -c Ping >/dev/null 2>&1 &" \
+    --field=" Rooster":BTN "bash -c Rooster >/dev/null 2>&1 &"

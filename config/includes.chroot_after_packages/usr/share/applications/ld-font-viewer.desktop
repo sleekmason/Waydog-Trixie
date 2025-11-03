@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Font Viewer
+Exec=yad --font
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-font
+Categories=System;Development;Utility;

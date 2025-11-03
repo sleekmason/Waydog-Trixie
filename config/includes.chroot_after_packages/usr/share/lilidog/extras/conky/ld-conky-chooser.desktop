@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Conky Chooser
+Exec=conky-toggle
+StartupNotify=false
+Terminal=false
+Icon=utilities-system-monitor
+Categories=ld-misc-tools;

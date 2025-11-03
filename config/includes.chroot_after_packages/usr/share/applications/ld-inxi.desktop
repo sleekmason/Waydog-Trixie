@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Inxi Info
+Exec=x-terminal-emulator -T 'inxi info' -e bash -c "inxi -Fxrzm; bash"
+StartupNotify=false
+Terminal=false
+Icon=document-properties
+Categories=System;

@@ -1,0 +1,74 @@
+#!/bin/bash
+read -p "   [0;33mAwesome Conky Installer[0m
+
+   This installer provides conky for the awesome window manager.  
+   
+   Use Super + c or look in the gear icon for the conky chooser 
+   once installed.
+
+   [0;33mhttps://awesomewm.org/[0m
+
+   [0;32m--------------------------------------------------------
+
+   Please press enter to install conky with custom options.
+
+   --------------------------------------------------------[0m
+
+   Or close this terminal window to quit the install." ;
+## Make sure of internet connection
+if : >/dev/tcp/8.8.8.8/53; then
+if test -e "$HOME/.config/awesome"; then
+cd /tmp || exit
+## Install necessary programs
+sudo apt update && sudo apt install -y conky-all fortunes fortune-mod
+##If in Beardog, add entry to jgmenu:
+if ! grep -q "Beardog" "/etc/lsb-release"; then
+	sed -i '/Conky,               conky-toggle,                                  preferences-desktop-personal/d' ~/.config/jgmenu/prepend.csv
+	sed -i '/Xkill/i Conky,               conky-toggle,                                  preferences-desktop-personal' ~/.config/jgmenu/prepend.csv
+fi
+## Remove /tmp files
+rm -f "/tmp/conky-awesome.zip"
+rm -f -r "/tmp/conky-awesome"
+rm -f -r "$HOME/.config/awesome/conky-awesome"
+## Grab conky-awesome
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-awesome.zip --show-progress -q
+unzip -q /tmp/conky-awesome.zip
+
+## Copy conky-awesome from /tmp
+cp -r "/tmp/conky-awesome" "$HOME/.config/awesome"
+if ! test -e "/usr/local/bin/conkyrestart.bak"; then
+sudo cp "/usr/local/bin/conkyrestart" "/usr/local/bin/conkyrestart.bak"
+fi
+
+## Copy items to /usr/local/bin
+sudo cp -f "$HOME/.config/awesome/conky-awesome/scripts/conkyrestart" "/usr/local/bin"
+sudo cp -f "$HOME/.config/awesome/conky-awesome/scripts/conky-toggle" "/usr/local/bin"
+
+if test -e "/usr/local/bin/conky-toggle"; then
+sed -i -e '0,/Conky/ s/Conky.*/Conky,               conky-toggle,                                  preferences-desktop-personal/g' "$HOME/.config/jgmenu/prepend.csv"
+fi
+
+## Explain items.
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+echo "   [0;33mAll Finished![0m"
+echo ""
+echo "   [0;32mPress Super + c to use the conky chooser.[0m"
+echo ""
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+else
+echo
+echo "   [0;31mPlease install awesome WM before proceeding.[0m"
+echo
+fi
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

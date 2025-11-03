@@ -1,0 +1,58 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;32mHblock Installer[0m
+
+   hBlock is a POSIX-compliant shell script that gets a list of domains 
+   that serve ads, tracking scripts and malware from multiple sources 
+   and creates a hosts file, among other formats, that prevents your 
+   system from connecting to them. [0;33mhttps://github.com/hectorm/hblock[0m
+   
+   WARNING - hBlock by default replaces the hosts file of your system. 
+   A backup of your existing hosts file will be made to /etc/hosts.bak.
+   
+   Please note that you will be logged out of everywhere that passwords 
+   are used on the web.
+   
+   [0;32m----------------------------------------------------------
+   
+   Please press enter to install hblock.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+curl -o /tmp/hblock 'https://raw.githubusercontent.com/hectorm/hblock/v3.4.1/hblock' &&
+echo 'bb1f6fcafdcba6f7bd9e12613fc92b02a0a0da1263b0e44d209cb40d8715d647  /tmp/hblock' | shasum -c &&
+if test ! -e "/etc/hosts.bak"; then
+sudo cp /etc/hosts /etc/hosts.bak
+fi
+sudo mv /tmp/hblock /usr/local/bin/hblock &&
+sudo chown 0:0 /usr/local/bin/hblock &&
+sudo chmod 755 /usr/local/bin/hblock
+
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+echo ""
+echo "   [0;32mHblock is now installed. Type 'hblock' in a terminal to get started,
+   or 'hblock -h for more options. To temporarily disable, use:[0m"
+echo "   [0;33mhblock -S none -D none [0m"
+echo ""
+echo "   [0;32mTo include a systemd timer that updates every 24 hours:[0m"
+echo "   [0;33mhttps://github.com/hectorm/hblock/tree/master/resources/systemd[0m"
+echo ""
+echo "   [0;32mTo change your host file back to your original copy:[0m"
+echo "   [0;33msudo cp /etc/hosts.bak /etc/hosts[0m"
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

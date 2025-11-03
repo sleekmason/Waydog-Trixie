@@ -1,0 +1,20 @@
+#!/bin/bash
+
+read -p "    [0;33mUpdate Sources Format[0m
+
+    Update your sources format to the new deb822 style. Also consider
+    using the mirror changer first if wanting to change to a faster
+    mirror, as this will change all apt sources to the new format.
+    
+    [0;33mhttps://repolib.readthedocs.io/en/latest/deb822-format.html[0m
+
+    [0;32m-----------------------------------------------------------------
+
+    Press enter to change your Debian source files to the new format.
+
+    -----------------------------------------------------------------[0m"
+
+sudo apt modernize-sources -y
+echo
+echo
+read -n1 -p " Press any key to quit this dialog ... "

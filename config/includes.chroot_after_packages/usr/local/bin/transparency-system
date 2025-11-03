@@ -1,0 +1,93 @@
+#!/bin/bash
+# Adjust picom transparency levels to preset choices
+# Author - sleekmason 05/23/2023
+
+
+default(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 1.0;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 1.0;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.94;/g' "$FILE"
+    exit
+}
+low(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 0.98;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.98;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.92;/g' "$FILE"
+}    
+medium(){
+	FILE="$HOME/.config/picom.conf"   
+     sed -i 's/^active-opacity =.*/active-opacity = 0.96;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.95;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.89;/g' "$FILE"
+}
+high(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 0.90;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.93;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.82;/g' "$FILE"
+}
+higher(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 0.86;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.9;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.76;/g' "$FILE"
+}
+veryhigh(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 0.82;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.88;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.68;/g' "$FILE"
+}
+highest(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 0.76;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 0.82;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 0.50;/g' "$FILE"
+}
+inactive(){
+	FILE="$HOME/.config/picom.conf"
+     sed -i 's/^active-opacity =.*/active-opacity = 1.0;/g' "$FILE"
+     sed -i 's/^frame-opacity =.*/frame-opacity = 1.0;/g' "$FILE"
+     sed -i 's/^inactive-opacity =.*/inactive-opacity = 1.0;/g' "$FILE"
+}
+ON(){
+if ! pgrep -x picom > /dev/null; then
+     picom --daemon
+     conkyrestart >/dev/null 2>&1 &
+fi
+}
+OFF(){
+if pgrep -x picom > /dev/null; then
+     pkill -x picom
+     conkyrestart >/dev/null 2>&1 &
+fi
+}
+export -f ON
+export -f default
+export -f low
+export -f medium
+export -f high
+export -f higher
+export -f veryhigh
+export -f highest
+export -f inactive
+export -f OFF
+
+yad --title "Transparency" --escape-ok --borders=14 \
+--form --center --width=240 --height=340 --geometry=240x340+340-240 \
+--text="System Transparency\n" --text-align=center \
+--button="gtk-ok:0" \
+--window-icon=dialog-information \
+    --form --columns=2 \
+    --field=" On":FBTN "bash -c ON" \
+    --field=" Default":FBTN "bash -c default" \
+    --field=" Low":FBTN "bash -c low" \
+    --field=" Medium ":FBTN "bash -c medium" \
+    --field=" High":FBTN "bash -c high" \
+    --field=" Higher":FBTN "bash -c higher" \
+    --field=" Very High":FBTN "bash -c veryhigh" \
+    --field=" Highest":FBTN "bash -c highest" \
+    --field=" Inactive":FBTN "bash -c inactive" \
+    --field=" Off":FBTN "bash -c OFF"

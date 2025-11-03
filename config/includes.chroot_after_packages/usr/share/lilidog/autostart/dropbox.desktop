@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Dropbox
+Type=Application
+Exec=sh -c "sleep 12 && ~/.local/share/.dropbox-dist/dropboxd"
+Terminal=false
+Icon=web-browser
+Comment=Dropbox
+X-GNOME-Autostart-enabled=true

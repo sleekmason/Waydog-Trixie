@@ -1,0 +1,19 @@
+                       
+                  WELCOME TO BEARDOG!
+                        
+    Welcome to Beardog Trixie. This build has all
+    the packages necessary to get a good start at
+    designing your system the way you want.
+    
+    Please visit the forum for more information:
+    https://sourceforge.net/p/lilidog/discussion/
+
+    The live environment passwords are 'user' for 
+    username, and 'live' for root.
+    
+    To install Beardog, reboot the iso and choose 
+    'Start installer'.
+
+    After installation, use the welcome script to
+    see other initial setup options. You can also
+    type 'welcome' in a terminal to use later.

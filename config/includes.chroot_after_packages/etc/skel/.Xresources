@@ -1,0 +1,112 @@
+!-- Use command: xrdb ~/.Xresources to reset.
+Xft.autohint: 1
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+!-- Window Settings
+Xcursor.size:11
+URxvt.buffered:             true
+URxvt.geometry:             80x26
+
+!-- Font Size and Controls
+URxvt*.font:  xft:JetBrains Mono Light:autohint=true:pixelsize=14.5
+URxvt.perl-lib:         ~/.urxvt/ext
+URxvt.keysym.C-Up:      font-size:increase
+URxvt.keysym.C-Down:    font-size:decrease
+URxvt.keysym.C-S-Up:    font-size:incglobal
+URxvt.keysym.C-S-Down:  font-size:decglobal
+URxvt.keysym.C-equal:   font-size:reset
+URxvt.keysym.C-slash:   font-size:show
+!URxvt.perl-ext-common: font-size,tabbed,matcher
+URxvt.perl-ext-common:  font-size,matcher
+
+!-- For Tabs
+URxvt.tabbed.reopen-on-close: yes
+URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
+
+!-- Make url links clickable
+URxvt.url-launcher: /usr/bin/firefox-esr
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+
+!-- Scrolling
+URxvt*.scrollTtyOutput:     false
+URxvt*.scrollWithBuffer:    false
+URxvt*.scrollTtyKeypress:   true
+URxvt.secondaryScroll:      true
+URxvt*scrollstyle:          plain
+URxvt*saveLines:            10000
+URxvt.scrollBar_right:      true
+URxvt.scrollBar:            false
+URxvt.mapAlert:             true
+
+!-- Line spacing
+!  URxvt.lineSpace: 12
+
+!--Transparency and effect settings
+! URxvt*inheritPixmap:        true
+! URxvt*transparent:          true
+!-- With Compositor enabled:
+
+!-- Original setting (black)
+! URxvt.depth: 32
+! URxvt.background: rgba:0000/0000/0000/bbbb
+
+!-- Lilidog setting
+URxvt.depth: 32
+URxvt.background:  rgba:1100/1400/1700/ffff
+
+!-- URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
+! URxvt*shading:              110
+URxvt.blurRadius:           40
+URxvt.fading:               0
+! URxvt.tintColor:            #ffffff
+
+!-- Tabbing Menu colors
+
+URxvt.tabbed.tabbar-bg:     0
+URxvt.tabbed.tabbar-fg:     6
+URxvt.tabbed.tab-bg:        0
+URxvt.tabbed.tab-fg:        5
+
+!-- Colors
+
+URxvt.cursorColor:          #CCCCCC
+URxvt.pointerColor:         #15ACCC
+URxvt.foreground:           #C0C9CC
+URxvt.underlineColor:       #DE9D00
+URxvt.throughColor:         #57AABA
+URxvt.highlightColor:       #18394D
+URxvt.color0:               #222629
+URxvt.color1:               #5499B3
+URxvt.color2:               #83CC8B
+URxvt.color3:               #EAA57A
+URxvt.color4:               #668F9E
+URxvt.color5:               #A97DB8
+URxvt.color6:               #2D9E8C
+URxvt.color7:               #818B94
+URxvt.color8:               #778085
+URxvt.color9:               #F5F500
+
+!-- prompt(name)
+URxvt.color10:              #37AD67
+
+!-- urls
+URxvt.color11:              #F439A8
+
+!-- folder name
+URxvt.color12:              #77A6B8
+
+URxvt.color13:              #C9A3D6
+
+!-- uptime top green
+URxvt.color14:              #8CB8A9
+
+!-- menuconfig first letter
+URxvt.color15:              #BFC5C7

@@ -1,0 +1,14 @@
+Auto Themes,                ld-themes,                                org.xfce.settings.color
+Conky Options,              conky-toggle,                             preferences-desktop-display
+Menu Icons + Fonts,         jg-icon-changer,                          applications-graphics
+Notification Sounds,        notification-sounds,                      audio-x-generic
+Openbox Settings,           obconf,                                   obconf
+System Font Size,           fontsize-changer,                         preferences-desktop-font
+System Settings,            xfce4-settings-manager,                   org.xfce.settings.manager
+Terminal Colors,            ld-term-changer,                          org.xfce.terminal
+Tint2 Settings,             tint2-options,                            preferences-system
+Transparency,               transparency-system,                      preferences-desktop-personal
+Wallpapers,                 feh-set-wallpaper,                        preferences-desktop-wallpaper
+Update,                     update-options,                           system-software-update
+^sep()
+Reset Theme,                xfce4-terminal --geometry=68x20+100-80 -T 'Reset Theming' -e 'set-default-theme',  applications-other

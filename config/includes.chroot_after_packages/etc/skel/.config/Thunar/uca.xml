@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1608480111388550-2</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Open x-terminal-emulator</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>edit-find</icon>
+	<name>Find Files</name>
+	<unique-id>1608480111388528-1</unique-id>
+	<command>catfish --hidden %f</command>
+	<description>Search for files with Catfish</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>gparted</icon>
+	<name>File Sizes</name>
+	<unique-id>1610405390468673-1</unique-id>
+	<command>x-terminal-emulator -e ncdu -r --color dark %F</command>
+	<description>Lists Folder File Sizes</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>system-file-manager</icon>
+	<name>Open As Root</name>
+	<unique-id>1608480111388565-3</unique-id>
+	<command>gksudo thunar %f</command>
+	<description>Open directory as root</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Edit As Root</name>
+	<unique-id>1608480111388580-4</unique-id>
+	<command>gksudo geany %F</command>
+	<description>Edit text files as root</description>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>object-rotate-left</icon>
+	<name>Rotate In Place</name>
+	<unique-id>1639487409664741-1</unique-id>
+	<command>mogrify -rotate 90 %N</command>
+	<description>Rotate image counter clockwise in place.</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Compare Files (Select 2)</name>
+	<unique-id>1639490487295123-1</unique-id>
+	<command>meld %F</command>
+	<description>Select 2 files  to compare.</description>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Folder Attributes</name>
+	<unique-id>1610133896270522-1</unique-id>
+	<command>xfce4-terminal --hold -e "ls -AghS --group-directories-first --color=always %f"</command>
+	<description>Detailed list in terminal.</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>preferences-desktop-wallpaper</icon>
+	<name>Set As Background</name>
+	<unique-id>1610134373979054-1</unique-id>
+	<command>feh --bg-scale %f</command>
+	<description>Set the current image as wallpaper</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy To Wallpapers</name>
+	<unique-id>1639488556315144-1</unique-id>
+	<command>cp -t $HOME/Pictures/wallpapers %F; notify-send &quot;Copied To Wallpapers&quot;</command>
+	<description>Copy the chosen image to the wallpaper directory.</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>thunderbird</icon>
+	<name>Attach To Thunderbird</name>
+	<unique-id>1610135671429381-1</unique-id>
+	<command>thunderbird-action %U</command>
+	<description>Attach File to Thunderbird</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>object-rotate-right</icon>
+	<name>Rotate Image With Copy</name>
+	<unique-id>1777709978866110-1</unique-id>
+	<command>rotate %N</command>
+	<description>Copy to Rotated folder and rotate the image.</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>image-jpeg</icon>
+	<name>Sharpen Image With Copy</name>
+	<unique-id>1647700745000650-1</unique-id>
+	<command>sharpen %N</command>
+	<description>Copy to sharpened folder in same directory.</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>resizecol</icon>
+	<name>Resize Image With Copy</name>
+	<unique-id>1640208205426649-1</unique-id>
+	<command>resize %N</command>
+	<description>Resize image to various sizes</description>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon>system-software-install</icon>
+	<name>Install Deb Package</name>
+	<unique-id>1639627177846769-2</unique-id>
+	<command>x-terminal-emulator -T &apos;Deb Installer&apos; -e bash -c &quot;sudo apt update &amp;&amp; sudo apt install %F; echo $&apos;\n\nPress any key to close.&apos;; read -srn1&quot;</command>
+	<description>Uses terminal and apt to install the deb package.</description>
+	<patterns>*.deb</patterns>
+	<other-files/>
+</action>
+<action>
+<icon>edit-copy</icon>
+	<name>Toggle Split</name>
+	<submenu></submenu>
+	<unique-id>1699363109853128-1</unique-id>
+	<command>xfconf-query -c thunar -p /misc-vertical-split-pane -T</command>
+	<description>Toggle Horizontal Split View</description>
+	<range>*</range>
+	<patterns>*</patterns>
+<directories/>
+</action>
+</actions>

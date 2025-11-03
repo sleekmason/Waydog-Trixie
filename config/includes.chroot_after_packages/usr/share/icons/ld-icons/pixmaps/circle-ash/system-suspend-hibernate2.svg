@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 19.200001 19.200001"
+   version="1.1"
+   id="svg46"
+   sodipodi:docname="system-suspend-hibernate.svg"
+   width="19.200001"
+   height="19.200001"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview48"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="25.75"
+     inkscape:cx="9.592233"
+     inkscape:cy="9.592233"
+     inkscape:window-width="1920"
+     inkscape:window-height="1032"
+     inkscape:window-x="0"
+     inkscape:window-y="22"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg46" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#4d4d4d;
+      }
+      </style>
+  </defs>
+  <path
+     style="fill:currentColor;fill-opacity:1;stroke:none;stroke-width:0.8"
+     d="M 9.6,0 A 0.8,0.8 0 0 0 8.8,0.8 0.8,0.8 0 0 0 9.6,1.6 0.8,0.8 0 0 0 10.4,0.8 0.8,0.8 0 0 0 9.6,0 Z M 2.5296872,1.9625 1.9625,2.5296872 3.660938,4.226562 4.226562,3.660938 Z m 14.1406258,0 -1.696875,1.698438 0.565624,0.565624 L 17.2375,2.5296872 Z M 9.6,2.4 A 7.2,7.2 0 0 0 2.4,9.6 7.2,7.2 0 0 0 9.6,16.8 7.2,7.2 0 0 0 16.8,9.6 7.2,7.2 0 0 0 9.6,2.4 Z m 0,0.8 A 6.4,6.4 0 0 1 16,9.6 6.4,6.4 0 0 1 9.6,16 6.4,6.4 0 0 1 3.2,9.6 6.4,6.4 0 0 1 9.6,3.2 Z M 0.8,8.8 A 0.8,0.8 0 0 0 0,9.6 0.8,0.8 0 0 0 0.8,10.4 0.8,0.8 0 0 0 1.6,9.6 0.8,0.8 0 0 0 0.8,8.8 Z m 17.6,0 a 0.8,0.8 0 0 0 -0.8,0.8 0.8,0.8 0 0 0 0.8,0.8 0.8,0.8 0 0 0 0.8,-0.8 0.8,0.8 0 0 0 -0.8,-0.8 z M 3.660938,14.973438 1.9625,16.670313 2.5296872,17.2375 4.226562,15.539062 Z m 11.878124,0 -0.565624,0.565624 1.696875,1.698438 0.567187,-0.567187 z M 9.6,17.6 a 0.8,0.8 0 0 0 -0.8,0.8 0.8,0.8 0 0 0 0.8,0.8 0.8,0.8 0 0 0 0.8,-0.8 0.8,0.8 0 0 0 -0.8,-0.8 z"
+     class="ColorScheme-Text"
+     id="path44" />
+</svg>

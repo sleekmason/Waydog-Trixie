@@ -1,0 +1,16 @@
+#!/bin/bash
+
+FILE="$HOME/.config/autostart/picom.desktop"
+if pgrep -x picom > /dev/null; then
+    pkill -x picom
+    conkyrestart >/dev/null 2>&1 &
+    sed -i 's/Hidden=.*/Hidden=true/' "$FILE"
+    notify-send --urgency low 'Picom has been de-activated'
+    notify-send --urgency low 'Picom autostart has been disabled'
+else
+    picom --daemon
+    conkyrestart >/dev/null 2>&1 &
+    sed -i 's/Hidden=.*/Hidden=false/' "$FILE"
+    notify-send --urgency low 'Picom has been enabled'
+    notify-send --urgency low 'Picom autostart is now active'
+fi

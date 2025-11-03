@@ -1,0 +1,73 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mConky Installer[0m
+
+   This script will install conky-all, fortunes, and fortune-mod, and 
+   install a customized conky chooser and conkys that can be accessed 
+   through either the toggles menu, or the keybind super + c.
+   
+   [0;33m----------------------------------------------------------
+   
+   Please press enter to install Conky.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+sudo apt update && sudo apt-get install -y conky-all fortunes fortune-mod
+killall -q conky
+sudo rm -fr /tmp/conky*
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-bear-trixie2.zip --show-progress -q &&
+unzip -q /tmp/conky-bear-trixie2.zip
+if test -f ~/.config/conky; then
+	mv ~/.config/conky ~/.config/conky.bak &&
+	cp -r /tmp/conky ~/.config
+else                
+	cp -r /tmp/conky ~/.config
+fi
+
+# Copy .desktop file to /usr/share/applications
+sudo cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
+sudo cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
+
+# Copy conkyrestart script to /usr/local/bin
+#sudo cp -f "/usr/share/lilidog/extras/conky/conkyrestart" "/usr/local/bin"
+sudo cp -f "$HOME/.config/conky/scripts/conkyrestart" "/usr/local/bin"
+echo ""
+# Copy menu entries
+	sed -i '/Conky,               conky-toggle,                                  org.xfce.settings.manager/d' ~/.config/jgmenu/prepend.csv
+	sed -i '/Xkill/i Conky,               conky-toggle,                                  org.xfce.settings.manager' ~/.config/jgmenu/prepend.csv
+
+# Place autostart entry
+if test -e "$HOME/.config/conky"; then
+if ! grep -wq "conky-restart-list" "$HOME/.config/openbox/autostart"; then
+{
+echo ""
+echo '## Start conkys on login if present'	
+echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
+echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
+echo 'fi';} | tee -a "$HOME/.config/openbox/autostart" > /dev/null
+  fi
+fi
+sleep .50
+conkyrestart >/dev/null 2>&1
+
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+echo ""
+echo "   [0;32mNew menu entries will be placed in 'Toggles' and the 'Other' category.[0m"
+echo ""
+echo "[0;32m----------------------------------------------------------------------[0m"
+echo $'\n\nPress any key to quit ...'; read -srn1
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+echo $'\n\nPress any key to quit ...'; read -srn1
+fi

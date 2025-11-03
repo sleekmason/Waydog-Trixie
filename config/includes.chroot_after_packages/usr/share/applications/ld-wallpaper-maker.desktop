@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wallpaper Maker
+Exec=wallpaper-maker
+StartupNotify=false
+Terminal=false
+Icon=applications-graphics
+Categories=ld-misc-tools;

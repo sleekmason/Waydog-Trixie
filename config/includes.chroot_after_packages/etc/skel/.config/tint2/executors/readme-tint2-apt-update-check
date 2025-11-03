@@ -1,0 +1,12 @@
+FOR CONTINUOUS USE OF THE NOTIFIER ICON-
+You can remove --listen from line 96 in: 
+/usr/local/bin/tint2-apt-update-check
+and then also place a line in ~/.config/openbox/autostart if desired:
+tint2-apt-update-check &
+
+/usr/local/bin/tint-2-apt-update-check  - main script
+/usr/local/bin/tint-2-apt-update-check-color - for icon color
+~/.config/tint2/executors/color.txt
+
+And to call the main script:
+/usr/share/lilidog/tint2/update-options

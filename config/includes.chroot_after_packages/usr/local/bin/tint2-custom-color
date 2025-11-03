@@ -1,0 +1,48 @@
+#!/bin/bash
+# Custom tint2 text color
+# Made by sleekmason 08-10-2024
+
+set -e
+## "--color" can be removed if wanting to use a separate color chooser.
+CHOICE=( $(yad --color --init-color=#D1D1D1 \
+--gtk-palette --palette=/usr/share/X11/rgb.txt \
+--form --width=320 --center --borders=6 --on-top \
+--title="Custom tint2 icon color " \
+--button=Cancel!gtk-delete:1 \
+--button=Apply!gtk-color-picker:0 \
+--window-icon=org.xfce.settings.color \
+--text="Enter color choice:" --separator=' ' \
+--field="Color"))
+
+if (( $? == 1 )); then
+    exit 0
+else
+# Continue Chosen Selection.
+COLOR_CHOICE=${CHOICE}
+
+## Add folder if not present.
+if ! test -f "$HOME/.config/tint2/tint2-custom"; then
+cp -rf "/usr/share/icons/ld-icons/tint2-custom" "$HOME/.config/tint2"
+fi
+
+## place COLOR_CHOICE in a text file for variable use.
+echo "$COLOR_CHOICE" > "$HOME/.config/tint2/customcolor.txt"
+
+## Make the change in tint2rc.
+sed -i 's/coltint2.*\//coltint2light\//g' "$HOME/.config/tint2/tint2rc"
+sed -i 's/\(coltint2light.*\)....*$/\1svg/g' "$HOME/.config/tint2/tint2rc"
+sed -i 's/\/usr\/share\/icons\/ld-icons\/coltint2light\//\~\/.config\/tint2\/tint2-custom\//g' "$HOME/.config/tint2/tint2rc"
+## Change the color.
+sed -i -E 's/fill\="[^"]+"//g; s/stroke\="[^"]+"//g' "$HOME"/.config/tint2/tint2-custom/*.svg
+sed -i "s/<path/<path fill=\"$COLOR_CHOICE\" stroke=\"$COLOR_CHOICE\"/g" "$HOME"/.config/tint2/tint2-custom/*.svg
+
+FILE="$HOME/.config/tint2/tint2rc"
+#text colors
+         sed -i 's/taskbar_name_font_color =.*/taskbar_name_font_color = \'"$COLOR_CHOICE"' 100/' "$FILE"
+         sed -i 's/taskbar_name_active_font_color =.*/taskbar_name_active_font_color = \'"$COLOR_CHOICE"' 100/' "$FILE"
+         sed -i 's/task_font_color =.*/task_font_color = \'"$COLOR_CHOICE"' 100/' "$FILE"
+         sed -i 's/clock_font_color =.*/clock_font_color = \'"$COLOR_CHOICE"' 100/' "$FILE"
+         sed -i 's/tooltip_font_color =.*/tooltip_font_color = \'"$COLOR_CHOICE"' 100/' "$FILE"
+         sed -i 's/^battery_font_color.*/battery_font_color = '"$COLOR_CHOICE"' 100/g' "$FILE"
+fi
+killall -SIGUSR1 tint2

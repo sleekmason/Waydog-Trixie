@@ -1,0 +1,36 @@
+### modify session to allow /sbin /usr/sbin ~/bin ~/.local/bin into path 
+## during the session.
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    exec labwc
+fi
+
+# Make qt work for luckybackup - others
+export QT_QPA_PLATFORMTHEME=gtk2
+
+# include snaps in PATH
+if [ -d "/snap/bin" ] ; then
+    PATH="${PATH:+${PATH}:}/snap/bin"
+fi
+
+# include sbin in PATH
+if [ -d "/sbin" ] ; then
+    PATH="${PATH:+${PATH}:}/sbin"
+fi
+
+if [ -d "/usr/sbin" ] ; then
+    PATH="${PATH:+${PATH}:}/usr/sbin"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Disable overlay scrollbars
+# export GTK_OVERLAY_SCROLLING=0

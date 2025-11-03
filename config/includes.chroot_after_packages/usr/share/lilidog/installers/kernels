@@ -1,0 +1,5 @@
+Backports Kernel, x-terminal-emulator -T 'Backports Kernel Installer' -e bash -c "backports-kernel-installer",  applications-engineering
+Liquorix Kernel,  x-terminal-emulator -T 'Liquorix Kernel Installer' -e bash -c "liquorix-kernel-installer",    applications-engineering
+Xanmod Kernel,    x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer",        applications-engineering
+^sep()
+Kernel Packages,  x-terminal-emulator -T 'Kernel Packages Installer' -e bash -c "kernel-apps-installer",        applications-utilities

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mouse Finder
+Exec=toggle-mouse-pointer
+StartupNotify=false
+Terminal=false
+Icon=preferences-system
+Categories=ld-misc-tools;

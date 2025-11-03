@@ -1,0 +1,17 @@
+#!/bin/bash
+
+yad --title "Tint2 Settings" --escape-ok \
+--form --center --width=250 --height=400 --borders=12 \
+--button=" Exit!application-exit:0" \
+--text="" --text-align=center \
+--window-icon=applications-utilities \
+    --form \
+    --field="                12H/24H!appointment-new":FBTN "tint2-12to24" \
+    --field="                Autohide!preferences-desktop-display":FBTN "tint2-autohide" \
+    --field="             Autoshrink!zoom-out":FBTN "tint2-shrink" \
+    --field="     Battery Options!battery":FBTN "tint2-battery-notify" \
+    --field="     Theme Options!org.xfce.settings.color":FBTN "tint2-theme-options" \
+    --field="         Transparency!applications-other":FBTN "tint2-transparency" \
+    --field="":LBL "" \
+    --field="":LBL "" \
+    --field="           Settings GUI!tint2conf":FBTN "tint2conf"

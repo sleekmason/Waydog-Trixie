@@ -1,0 +1,85 @@
+#!/bin/bash
+echo ""
+read -p "   [0;32mDropbox Installer[0m
+
+   This script will download and install Dropbox. Securely store, 
+   organize, and share all of your files.
+   
+   Note* A web browser is required for dropbox initialization.
+   firefox-esr will be installed if not already present.
+   
+   [0;33mhttps://www.dropbox.com/[0m
+   
+   After installation, start dropbox from: 
+   [0;32mMenu --> All Programs --> Internet[0m
+   
+   Warning* - Do not use dropbox and Maestral at the same time!
+   
+  [0;32m----------------------------------------
+   
+   Please press enter to install Dropbox.
+   
+  ----------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+echo ""
+### Check for internet connection
+   if : >/dev/tcp/8.8.8.8/53; then
+### Remove old configs
+rm -fr ~/.local/share/.dropbox-dist
+rm -fr ~/.dropbox
+### This will set thunar as the default manager
+xdg-mime default thunar.desktop inode/directory
+### Install dependencies
+sudo apt update
+sudo apt-get install -y wget python3-gpg firefox-esr
+cd ~/.local/share || exit
+### Grab dropbox.py for terminl use
+sudo --prefer-family=IPv4 wget -O /usr/local/bin/dropbox "https://www.dropbox.com/download?dl=packages/dropbox.py" &&
+sudo chmod +x /usr/local/bin/dropbox
+### Grab dropbox
+wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - &&
+echo ""
+echo "  [0;32m----------------------------------------------------------------------[0m"
+echo ""
+echo "   [0;32mStart dropbox from: Menu --> All Programs --> Internet[0m"
+echo ""
+echo "   [0;31mInitialization can take several seconds.[0m"
+echo "" 
+echo "   [0;32mLook in the system tray icon for options after initialization.[0m"
+echo ""  
+echo "   [0;31mTo have dropbox on login, see the Readme in ~/.config/autostart.[0m"
+echo ""  
+echo "   [0;32mType 'dropbox' in a terminal to see all the available commands.[0m"
+echo ""
+echo "  [0;32m----------------------------------------------------------------------[0m"
+echo ""
+### Initial start of dropbox if wanted
+# nohup ".dropbox-dist/dropboxd" > file 2>&1 &
+if ! test -e /usr/share/applications/dropbox.desktop; then
+sudo touch /usr/share/applications/dropbox.desktop
+{
+echo "[Desktop Entry]"
+echo "Type=Application"
+echo "Name=Dropbox"
+echo "Exec=sh -c ~/.local/share/.dropbox-dist/dropboxd"
+echo "StartupNotify=false"
+echo "Terminal=false"
+echo "Icon=web-browser"
+echo "Categories=Network;";} | sudo tee -a /usr/share/applications/dropbox.desktop > /dev/null
+fi
+if ! grep -q Firefox "$HOME/.config/jgmenu/prepend.csv"; then
+sed -i '/Firefox,            firefox,          firefox-esr/d' "$HOME/.config/jgmenu/prepend.csv"
+sed -i '7i Firefox,            firefox,          firefox-esr' "$HOME/.config/jgmenu/prepend.csv"
+fi
+# sleep 8
+else
+echo ""
+ echo "   [0;31m-------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

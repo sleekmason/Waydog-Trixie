@@ -1,0 +1,21 @@
+#!/bin/bash
+# Created by sleekmason for Lilidog 12 Jan 2025.
+# Choose from the available icons in /usr/share/icons/ld-icons/pixmaps.
+# Change items using /usr/local/bin/logout-theme-chooser or manually.
+
+# Horizontal and vertical. With or without icons.
+varstyle=horizontal-icons-plain
+
+# Icon style
+var1=original
+var2=png
+
+# Main styles
+yad --title "Logout" --center --fixed --width=500 --height=50 --borders=5 \
+    --buttons-layout=center --window-icon="/usr/share/icons/ld-icons/pixmaps/exit4.png" \
+    --button=" Lockscreen!/usr/share/icons/ld-icons/pixmaps/$var1/logout_password.$var2":"slock" \
+    --button=" Logout!/usr/share/icons/ld-icons/pixmaps/$var1/logout_exit.$var2":"pkill -KILL -u $USER" \
+    --button=" Suspend!/usr/share/icons/ld-icons/pixmaps/$var1/logout_suspend.$var2":"systemctl --no-ask-password --ignore-inhibitors suspend" \
+    --button=" Reboot!/usr/share/icons/ld-icons/pixmaps/$var1/logout_reboot.$var2":"systemctl --no-ask-password --ignore-inhibitors reboot" \
+    --button=" Shutdown!/usr/share/icons/ld-icons/pixmaps/$var1/logout_shutdown.$var2":"systemctl --no-ask-password --ignore-inhibitors poweroff"
+    

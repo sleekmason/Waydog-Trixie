@@ -1,0 +1,10 @@
+#!/bin/bash
+
+yad --title "Options" --escape-ok \
+--button=gtk-cancel:0 --form --center --geometry=220x300+400-300 --borders=6 \
+--text="\nUpdate Options\n" --text-align=center \
+--window-icon=applications-utilities \
+    --form \
+    --field="    Check For Upgrades!system-software-update":FBTN "tint2-apt-update-check" \
+    --field="          System Updater!applications-system":FBTN "x-terminal-emulator -T 'Apt Update' -e 'sudo xupdate -i'" \
+    --field="       Beardog Installers!applications-other":FBTN "ld-installers"

@@ -1,0 +1,26 @@
+#!/bin/bash
+# Frontend dialog for the osprober toggle
+# made by sleekmason 23 Mar 2023
+# Associated files: /usr/local/bin/osprober-toggle-backend
+# and /usr/share/lilidog/osprober.txt
+
+FILE="/etc/default/grub"
+full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
+fs=$(basename "$full_fs")
+if grep -q "$fs" /proc/partitions; then
+if grep -q '#GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
+notify-send  -t 10000 --urgency low "OSprober Is Currently Disabled"
+else
+notify-send  -t 10000 --urgency low "OSprober Is Currently Enabled"
+fi
+
+  yad --title "OSprober Toggle" --window-icon=applications-utilities \
+--width=375 --height=340 --center --escape-ok \
+--button="View Log"!/usr/share/icons/gnome/22x22/apps/accessories-text-editor.png!:"geany /var/log/grub-update.log" \
+--button="Toggle On/Off"!/usr/share/icons/gnome/22x22/actions/object-flip-horizontal.png!:"gksudo /usr/local/bin/osprober-toggle-backend" \
+--button="gtk-quit:1" --buttons-layout=spread \
+--text-info --justify=left --wrap < /usr/share/lilidog/osprober.txt --fontname="JetBrains Mono Light 11" \
+--fore="#C0DDEB"; exit
+else
+notify-send  -t 10000 --urgency low "OSprober Toggle Requires An Installed System"
+fi

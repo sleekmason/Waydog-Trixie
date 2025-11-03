@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 16.933 16.933"
+   version="1.1"
+   id="svg38"
+   sodipodi:docname="down.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs42" />
+  <sodipodi:namedview
+     id="namedview40"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="12.875"
+     inkscape:cx="32.038835"
+     inkscape:cy="32"
+     inkscape:window-width="1423"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg38" />
+  <g
+     paint-order="stroke markers fill"
+     transform="matrix(1.12,0,0,1.12,-1.01592,-314.6948)"
+     id="g36">
+    <circle
+       cx="8.4659996"
+       cy="288.54001"
+       r="7.1440001"
+       fill="#77cb75"
+       id="circle28" />
+    <g
+       fill="#ffffff"
+       id="g34">
+      <rect
+         width="2.1170001"
+         height="4.4980001"
+         x="7.408"
+         y="285.10001"
+         rx="0"
+         ry="0"
+         id="rect30" />
+      <path
+         d="m 5.292,289.07 h 6.35 l -3.175,3.175 z"
+         id="path32" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# yad list for autologin.
+# Made by sleekmason Aug 01, 2024
+# Modified further by kwg Sep 25, 2024
+
+CURRENT=$(grep -n 'autologin-user=*' /etc/lightdm/lightdm.conf | grep -v "autologin-user-timeout=.*" | grep -v "#" | cut -d'=' -f2)
+if grep -n 'autologin-user=*' /etc/lightdm/lightdm.conf | grep -v "autologin-user-timeout=.*" | grep -v "#"; then
+notify-send -i "user-info" --urgency low "Current Auto Login user  =  $CURRENT"
+else
+notify-send -i "info" --urgency low "No current Auto Login users"
+fi
+
+USERS=$(cut -d: -f1,3 /etc/passwd | grep -E ':[0-9]{4}$' | cut -d: -f1 | paste -s -d!)
+
+LOGIN=$( \
+	yad --title="Auto Login" \
+	--window-icon="user-info" \
+	--center \
+	--borders=8 \
+	--form \
+	--geometry=360x180-840+400 \
+	--text="Select and click 'Set' to add a new Auto Login user\n" \
+	--field="New Auto Login user: :CB" $USERS \
+	--buttons-layout=edge \
+	--button="Cancel!gtk-delete:252" \
+	--button="Set!gtk-ok:2" \
+	--button="Clear All!media-record:3" \
+	)
+
+if [[ $? == 252 ]]; then
+	exit 0
+fi
+
+readonly SOURCE=/etc/lightdm/lightdm.conf
+readonly BUFFER=/tmp/lightdm.conf
+
+cp $SOURCE $BUFFER
+
+SEATS=($(grep -n '^\[Seat:\*\]$' $BUFFER | cut -f1 -d:))
+SECTIONS=($(grep -n '^\[.\+]$' $BUFFER | cut -f1 -d:))
+LSECTIONS=${#SECTIONS[@]}
+
+j=0; RANGES=()
+for SEAT in "${SEATS[@]}"; do
+	while true; do
+		((j++))
+		if [[ $j -eq LSECTIONS ]]; then
+			SECTION='$'
+			break
+		fi
+		SECTION=${SECTIONS[j]}
+		if [[ SECTION -gt SEAT ]]; then
+			((SECTION--))
+			break
+		fi
+	done
+	RANGES=($SEAT,$SECTION ${RANGES[@]})
+done
+
+LINE=0; APPEND=false
+if [[ -n $LOGIN ]]; then
+	LOGIN=$(echo "$LOGIN" | sed 's/.$//')
+	LINE=${SEATS[-1]}
+	APPEND=true
+fi
+
+for RANGE in "${RANGES[@]}"
+do
+	sed -i "$RANGE"{/^autologin-user=.*$/d} $BUFFER
+	if $APPEND; then
+		sed -i "$LINE""a autologin-user=""$LOGIN" $BUFFER
+		APPEND=false
+	fi
+done
+
+pkexec mv $BUFFER $SOURCE
+if [[ $? != 0 ]]; then
+	notify-send -i "user-info" --urgency low "Auto Login has not been modified"
+	exit 1
+fi
+
+if [[ $LINE -eq 0 ]]; then
+	notify-send -i "user-info" --urgency low "The Auto Login entry has been removed"
+else
+	notify-send -i "user-info" --urgency low "Auto Login has been enabled for $LOGIN"
+fi
+
+notify-send -i "info" --urgency low "REBOOT for changes to take effect"

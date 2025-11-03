@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="64"
+   version="1.1"
+   id="svg506"
+   sodipodi:docname="recents.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs510" />
+  <sodipodi:namedview
+     id="namedview508"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="12.84375"
+     inkscape:cx="32.116788"
+     inkscape:cy="32"
+     inkscape:window-width="1423"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg506" />
+  <rect
+     width="60.48"
+     height="60.48"
+     x="1.76"
+     y="1.76"
+     fill="#3e4245"
+     rx="30.24"
+     ry="30.24"
+     style="fill:#b12e57;stroke-width:1.12;paint-order:stroke markers fill"
+     id="rect484" />
+  <path
+     fill="#fff"
+     d="M16 15h19v2H16z"
+     id="path486" />
+  <circle
+     cx="40"
+     cy="16"
+     r="2"
+     fill="#72d406"
+     id="circle488" />
+  <circle
+     cx="47"
+     cy="16"
+     r="2"
+     fill="#72d406"
+     id="circle490" />
+  <path
+     fill="#fff"
+     d="M11 31h24v2H11z"
+     id="path492" />
+  <circle
+     cx="40"
+     cy="32"
+     r="2"
+     fill="#72d406"
+     id="circle494" />
+  <circle
+     cx="47"
+     cy="32"
+     r="2"
+     fill="#72d406"
+     id="circle496" />
+  <path
+     fill="#fff"
+     d="M16 47h19v2H16z"
+     id="path498" />
+  <path
+     d="M6.906 22c-.386.974-.72 1.974-.992 3h52.172a26.803 26.803 0 0 0-.992-3H6.906zM5.672 38c.23 1.023.517 2.025.86 3h50.937c.343-.975.629-1.977.86-3H5.673z"
+     opacity=".25"
+     style="paint-order:fill markers stroke"
+     id="path500" />
+  <circle
+     cx="40"
+     cy="48"
+     r="2"
+     fill="#72d406"
+     id="circle502" />
+  <circle
+     cx="47"
+     cy="48"
+     r="2"
+     fill="#72d406"
+     id="circle504" />
+</svg>

@@ -1,0 +1,38 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mPyradio Terminal Music Player Installer[0m
+
+   Pyradio is a terminal radio player: [0;34mhttps://github.com/coderholic/pyradio[0m
+   
+   [0;33m----------------------------------------------------------
+   
+   Please press enter to install Pyradio.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/pyradio_0.9.2.11-2~ld_all.deb --show-progress &&
+sudo apt update && sudo apt install -y /tmp/pyradio_0.9.2.11-2~ld_all.deb
+rm /tmp/pyradio*
+sed -i '/Pyradio,            x-terminal-emulator -e bash -c pyradio,       audio-headphones/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Pyradio,            x-terminal-emulator -e bash -c pyradio,       audio-headphones' ~/.config/jgmenu/prepend.csv
+echo ""
+echo "[0;33m-------------------------------------------------------------------------"
+echo ""
+echo "All Finished!.
+You should find a new menu entry for Pyradio in the Quickgrab section."
+echo "" 
+echo "-------------------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Open or toggle the thunar splitview function. Use with a keybind.
+
+if [[ $(command -v thunar) ]]; then
+if  pgrep -x "thunar" > /dev/null; then
+    wmctrl -a thunar; sleep .2; xdotool key F3
+else
+    thunar &
+    SECONDS=0
+    until wmctrl -l | grep -iq thunar
+do
+if (( SECONDS > 8 ))
+  then
+     exit 1
+  fi
+    sleep .1
+done
+    wmctrl -a thunar; sleep .1; xdotool key F3
+fi
+exit
+fi

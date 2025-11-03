@@ -1,0 +1,27 @@
+#!/bin/bash
+## Simple script to toggle shell from bash to zsh and back.
+var1="zsh"
+var2="bash"
+if type 'zsh' &> /dev/null; then
+if grep -Fq "$var1" /etc/passwd
+then
+notify-send  -t 10000 --urgency low "Current shell is $var1.  Enter password to change."
+else
+notify-send  -t 10000 --urgency low "Current shell is $var2.  Enter password to change."
+fi
+#[ "$USER" != "root" ]
+if grep -Fq "$var1" /etc/passwd
+then
+gksudo chsh -s /bin/bash "$USER" &&
+notify-send  -t 10000 --urgency low "Changing shell to bash.  Logout to complete."
+else
+gksudo chsh -s /bin/zsh "$USER" &&
+notify-send  -t 10000 --urgency low "Changing shell to zsh.  Logout to complete."
+fi
+else
+notify-send  -t 10000 --urgency low "zsh does not currently appear to be installed."
+sleep 1
+notify-send  -t 10000 --urgency low "Please install zsh through the Lilidog Installers."
+sleep 1
+notify-send  -t 12000 --urgency low "Menu -> Utilities -> Install Extras -> Utilities."
+fi

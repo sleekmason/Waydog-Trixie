@@ -1,0 +1,48 @@
+# Cheat sheet for Lilidog Openbox added keybinds.
+# Note - "super" and "mod4" both represent the windows key.
+
+This List(.txt) =    super + l
+This list(dialog) =  super + k
+Refresh sxhkd keys = super + Escape
+Obkeybinds =         super + o
+Backgounds =         super + b
+Browser =            super + w
+Conky =              super + c
+jgmenu =             super + F1
+Rofi                 super + F2                   
+Rofi Drun =          super + F3
+Dmenu =              super + F5 
+Editor =             super + e 
+File Manager =       super + f   
+Fontsize =           super + F6
+Gammy =              super + g    
+Hotcorners =         super + F8
+Jgmenu =             super + j
+Logout =             super + x
+Logout-alt =         super + shift + x
+hotcorners =         super + z
+Music =              super + m
+Screenshot =         PrtSctr
+Scrot      =         alt + Print
+Terminal =	         super + t
+Terminal =           super + return 
+Toggle polybar =     ctrl super + p
+Toggle tint2 =       ctrl super + t
+Toggle Light Theme = super + y
+Toggle Dark theme  = super + u
+Thunar split view =  Alt + s
+
+#Volume Controls
+XF86AudioLowerVolume
+	 pamixer --decrease 5 && notify-send "Volume down" -u low -t 500 
+XF86AudioRaiseVolume
+	 pamixer --increase 5 && notify-send "Volume up" -u low -t 500
+XF86AudioMute
+	 pamixer --toggle-mute && notify-send "Mute/Unmute" -u low -t 2000
+
+#Brightness controls
+XF86MonBrightnessDown
+	brightnessctl s 10%-
+
+XF86MonBrightnessUp
+	brightnessctl s 10%+

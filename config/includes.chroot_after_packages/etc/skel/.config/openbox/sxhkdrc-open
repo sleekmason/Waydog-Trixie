@@ -1,0 +1,130 @@
+# Openbox sxhkdrc
+# These are the keybinds used in openbox.
+#########################################################
+
+# sxhkd keybind list as a cheatsheet.txt.
+mod4 + l
+	geany ~/.config/openbox/keys-cheatsheet.txt
+       
+# sxhkd keybind list through a rofi dialog.
+mod4 + k
+	show-keybinds
+    
+# Reload sxhkd configuration.
+mod4 + Escape
+	pkill -USR1 -x sxhkd; notify-send --urgency low 'sxhkd configuration reloaded'
+		
+# Openbox Keybinds.
+mod4 + o
+	obkey
+
+# Jgmenu.
+mod4 + F1
+	jgmenu_run
+
+# Dmenu.
+mod4 + F5
+	~/.config/dmenu/dmenu
+
+# Conky.
+mod4 + c
+	conky-toggle
+        
+# Gammy.
+mod4 + g
+	toggle.gammy
+ 
+# jgmenu.
+mod4 + j
+	jgmenu_run
+	
+# theme-changer.
+mod4 + a
+	ld-themes
+   
+# Toggle polybar panel on/off.
+ctrl  + mod4 + p
+	toggle.polybar
+
+# Toggle tint2 panel on/off.
+ctrl + mod4 + t
+	toggle.tint2
+
+# Switch to light theme and back.
+mod4 + y
+	light-dark-toggle
+
+# Switch to custom theme and back.
+mod4 + u
+	custom-theme-toggle
+
+# terminal.
+mod4 + Return
+	x-terminal-emulator
+
+# terminal.
+mod4 + t
+	x-terminal-emulator
+    
+# File Manager.	
+mod4 + f
+	thunar
+
+# File Manager split view.
+shift + mod4 + f
+	splitview
+	
+# File Manager split vertical-horizontal.
+mod4 + s
+	xfconf-query -c thunar -p /misc-vertical-split-pane -T
+
+# Editor.
+mod4 + e
+	geany  
+
+# Music.
+mod4 + m
+	pragha
+
+# Wallpaper.
+mod4 + v
+	feh-set-wallpaper
+    
+# Web browser.
+mod4 + b
+	x-www-browser
+
+# Logout.
+mod4 + x
+	ld-logout
+
+# Logout alternative.
+shift + mod4 + x
+	~/.config/rofi/scripts/nakedquit
+	
+# Hotcorners
+mod4 + z
+	toggle.ld
+	
+#Volume Controls
+XF86AudioLowerVolume
+	 pamixer --decrease 5 && notify-send "Volume down" -u low -t 500 
+XF86AudioRaiseVolume
+	 pamixer --increase 5 && notify-send "Volume up" -u low -t 500
+XF86AudioMute
+	 pamixer --toggle-mute && notify-send "Mute/Unmute" -u low -t 2000
+
+#Brightness controls
+XF86MonBrightnessDown
+	brightnessctl s 10%-
+
+XF86MonBrightnessUp
+	brightnessctl s 10%+			
+
+# screenshot and selection capture.
+Print
+	xfce4-screenshooter
+
+# screenshot and selection capture scrot.
+alt + Print
+	scrot-options

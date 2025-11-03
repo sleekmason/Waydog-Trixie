@@ -1,0 +1,49 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mGnome Boxes Installer[0m
+
+   Boxes is an application that gives you access to virtual machines 
+   running locally or remotely. It also allows you to connect to the 
+   display of a remote computer.
+
+   [0;33mhttps://help.gnome.org/users/gnome-boxes/stable/[0m
+   
+    
+   
+   ---------------------------------------------------------
+   
+   [0;32mPlease press enter to install Gnome Boxes.[0m
+   
+   ---------------------------------------------------------
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo "" 
+sudo apt update && sudo apt install --install-recommends gnome-boxes dnsmasq &&
+sed -i '/Gnome Boxes,         gnome-boxes,       gnome-boxes/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Gnome Boxes,         gnome-boxes,       gnome-boxes' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "-----------------------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mIf installed, You should find a new menu entry under 'Quick Grab'"
+echo "labeled 'Gnome Boxes'[0m"
+echo "" 
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "-----------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

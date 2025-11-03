@@ -1,0 +1,14 @@
+                       
+                   OSprober Toggle
+                        
+    OSprober is a utility that works in conjuntion 
+    with grub to provide a list at boot of all the 
+    systems enabled by grub on your computer.   
+    
+    Use the Toggle button to switch osprober on or 
+    off. The log is in /var/log/grub-update.log
+    
+    Please wait for grub to finish updating before 
+    rebooting. Look for the progress update dialog
+    to disappear upon completion. 
+

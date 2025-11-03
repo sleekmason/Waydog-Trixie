@@ -1,0 +1,87 @@
+#!/bin/bash
+
+read -p "   [0;32mRtile Installer[0m
+
+    Rtile is a ruby script for manual tiling and window placement.
+    This will allow for grid tiling, cycling, and growing windows.
+    
+    This script will make a backup up of ~/.config/openbox/rc.xml
+    and replace it with a version with the keybinds ready for use.
+    
+    Super + shift + space to toggle your grid. Super + Shift + j 
+    to cycle, and Super + Shift + left|right|up|down tp grow.
+    
+    See the ~/.config/rtile folder for further adjustments.
+    
+    To remove: 
+    sudo rm /usr/local/bin/rtile.rb /usr/local/bin/pxdo.py
+    cp -fr ~/.config/openbox/rc.xml.bak ~/.config/openbox/rc.xml 
+
+    [0;32m------------------------------------------------------------
+
+    Please press enter to install rtile for openbox use.
+
+    ------------------------------------------------------------[0m"
+
+## Make sure of internet connection
+if : >/dev/tcp/8.8.8.8/53; then
+
+## Install dependencies.
+sudo apt update && sudo apt install -y ruby-rubygems
+
+## to /etc or bust.
+cd /tmp || exit
+
+## remove old copy.
+rm -rf /tmp/rtile-files.zip
+rm -rf /tmp/rtile-files
+rm -rf $HOME/.config/rtile
+
+## Grab the rtile files.
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/rtile-files.zip --show-progress -q
+unzip -q /tmp/rtile-files.zip
+
+## make a one time backup of existing openbox rc.xml for later use.
+   if [ ! -e "$HOME/.config/openbox/rc.xml.bak" ]; then
+   cp -f "$HOME/.config/openbox/rc.xml" "$HOME/.config/openbox/rc.xml.bak"
+   fi
+
+## Copy rtile to /usr/local/bin, configs to ~/.config/rtile, and the rc.xml to openbox
+sudo cp "/tmp/rtile-files/rtile.rb" "/usr/local/bin"
+sudo cp "/tmp/rtile-files/pxdo.py" "/usr/local/bin"
+cp -r "/tmp/rtile-files/rtile" "$HOME/.config"
+cp -rf "/tmp/rtile-files/rc.xml" "$HOME/.config/openbox"
+
+# Double check to make sure the rc.xml exists and copy back if it doesn't.
+   if ! [ -e "$HOME/.config/openbox/rc.xml" ]; then
+   sudo cp -f "$HOME/.config/openbox/rc.xml.bak" "$HOME/.config/openbox/rc.xml"
+   fi
+
+## Kill and restart openbox
+openbox --restart
+echo
+echo
+echo "   [0;32m------------------------------------------------------------[0m"
+echo
+echo "   [0;32mSee the Readme and config in ~/.config/rtile for more info.[0m"
+echo
+echo "   [0;33mSuper + shift + space to toggle your grid. Super + Shift + j" 
+echo "   to cycle, and Super + Shift + left|right|up|down tp grow.[0m"
+echo   
+echo "   [0;31mTo remove:"
+echo "   sudo rm /usr/local/bin/rtile.rb /usr/local/bin/pxdo.py"
+echo "   cp -fr ~/.config/openbox/rc.xml.bak ~/.config/openbox/rc.xml[0m"
+echo
+echo "   [0;32m------------------------------------------------------------[0m"
+echo
+echo    
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;31mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

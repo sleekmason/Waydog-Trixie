@@ -1,0 +1,176 @@
+#!/bin/bash
+# Rofi icon chooser.
+# Made by sleekmason 19 Aug-2023
+
+
+FONTSIZE(){
+WIDTH=240
+HEIGHT=400
+
+trans="$(yad --title "Rofi Font Size" --width="$WIDTH" --height="$HEIGHT" --borders="8" --center --list \
+--text="Rofi font size changer.\nFonts reset to system default.\n" --text-align=center \
+--window-icon=applications-system \
+--radiolist  --column "Choose" --column "Size" --separator=" " \
+  FALSE "8" \
+  FALSE "9" \
+  FALSE "10" \
+  TRUE "11" \
+  FALSE "12" \
+  FALSE "13" \
+  FALSE "14" \
+  FALSE "15")"
+  trans="$(echo "$trans" | cut -d' ' -f2-)"
+ 
+# check if "Cancel" button
+if ! [[ $trans ]];
+then
+  exit 1
+fi
+
+# Rofi options included - adjust as necessary
+sed -i "s/^font: \"Noto Sans.*/font: \"Noto Sans $trans\";/g" "$HOME"/.config/rofi/config.rasi
+# Setup for rofi-familiar -1 for font
+VAR=$((trans - 1))
+sed -i "s/^font: \"Noto Sans.*/font: \"Noto Sans $VAR\";/g" "$HOME"/.config/rofi/themes/familiar/familiar.rasi
+
+exit 0
+}
+
+OFF(){
+sed -i 's/^show-icons:.*/show-icons: false;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: false;/g' "$HOME"/.config/rofi/config.rasi
+notify-send --urgency low "Rofi icons off"
+}
+
+gnome(){
+  if [[ -d "/usr/share/icons/gnome" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Gnome"
+sed -i 's/^icon-theme:.*/icon-theme: "gnome";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "gnome";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Gnome icon theme not installed"
+fi
+}
+
+buuf(){
+  if [[ -d "/usr/share/icons/buuf" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Buuf"
+sed -i 's/^icon-theme:.*/icon-theme: "buuf";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "buuf";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Buuf icon theme not installed"
+fi
+}
+
+faenza(){
+  if [[ -d "/usr/share/icons/Faenza" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Faenza"
+sed -i 's/^icon-theme:.*/icon-theme: "Faenza";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Faenza";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Faenza icon theme not installed"
+fi
+}
+
+numix(){
+  if [[ -d "/usr/share/icons/Numix-Circle" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Numix-Circle"
+sed -i 's/^icon-theme:.*/icon-theme: "Numix-Circle";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Numix-Circle";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Numix-Circle icon theme not installed"
+fi
+}
+
+obsidian(){
+  if [[ -d "/usr/share/icons/Obsidian" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Obsidian"
+sed -i 's/^icon-theme:.*/icon-theme: "Obsidian";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Obsidian";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Obsidian icon theme not installed"
+fi
+}
+
+papericon(){
+  if [[ -d "/usr/share/icons/Paper" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Paper"
+sed -i 's/^icon-theme:.*/icon-theme: "Paper";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Paper";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Paper icon theme not installed"
+fi
+}
+
+papirus(){
+  if [[ -d "/usr/share/icons/Papirus" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Papirus"
+sed -i 's/^icon-theme:.*/icon-theme: "Papirus";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Papirus";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Papirus icon theme not installed"
+fi
+}
+
+papirus-dark(){
+  if [[ -d "/usr/share/icons/Papirus-Dark" ]]
+then
+notify-send --urgency low "Changing Rofi icon theme to Papirus-Dark"
+sed -i 's/^icon-theme:.*/icon-theme: "Papirus-Dark";/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^icon-theme:.*/icon-theme: "Papirus-Dark";/g' "$HOME"/.config/rofi/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/themes/familiar/config.rasi
+sed -i 's/^show-icons:.*/show-icons: true;/g' "$HOME"/.config/rofi/config.rasi
+else
+notify-send --urgency low "Papirus Dark icon theme not installed"
+fi
+}
+export -f FONTSIZE
+export -f OFF
+export -f buuf
+export -f gnome
+export -f faenza
+export -f numix
+export -f obsidian
+export -f papericon
+export -f papirus
+export -f papirus-dark
+
+yad --title "Rofi Icon & Font Options" --escape-ok \
+    --button="Install Icons"!/usr/share/icons/gnome/22x22/categories/applications-graphics.png!:"popup -f /usr/share/lilidog/installers/icons &" \
+    --button=" Font Size"!/usr/share/icons/gnome/22x22/apps/preferences-desktop-font.png!:'bash -c "FONTSIZE"' \
+    --button=" Exit!application-exit:0" \
+    --text " Gnome icons are already installed. \n Press the 'Install Icons' button for other options. \n This dialog will change rofi options only.\n" \
+    --text-align=center --buttons-layout=edge \
+    --form --center --geometry=210x290-314-440 --borders=10 \
+    --window-icon=preferences-other \
+    --form --columns=3 \
+    --field="     Buuf     :FBTN" 'bash -c "buuf"' \
+    --field="     Faenza     :FBTN" 'bash -c "faenza"' \
+    --field="     Gnome     :FBTN" 'bash -c "gnome"' \
+    --field="Numix:FBTN" 'bash -c "numix"' \
+    --field="Paper:FBTN" 'bash -c "papericon"' \
+    --field="Papirus Dark:FBTN" 'bash -c "papirus-dark"' \
+    --field="Papirus Light:FBTN" 'bash -c "papirus"' \
+    --field="Obsidian:FBTN" 'bash -c "obsidian"' \
+    --field="Off:FBTN" 'bash -c "OFF"'

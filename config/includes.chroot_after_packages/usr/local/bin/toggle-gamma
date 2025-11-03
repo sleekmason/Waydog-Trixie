@@ -1,0 +1,46 @@
+#!/bin/bash
+
+toggleit(){
+TOGGLE=/tmp/toggle-gamma
+
+if [ ! -e "$TOGGLE" ]; 
+then
+    touch "$TOGGLE"
+    echo "90" > /tmp/toggle-gamma
+    xgamma -gamma 0.9 >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to 90'
+elif grep -Fxq "90" /tmp/toggle-gamma; 
+then
+    echo "80" > /tmp/toggle-gamma
+    xgamma -gamma 0.8  >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to 80'
+elif grep -Fxq "80" /tmp/toggle-gamma; 
+then
+    echo "70" > /tmp/toggle-gamma
+    xgamma -gamma 0.7 >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to 70'
+elif grep -Fxq "70" /tmp/toggle-gamma; 
+then
+    echo "60" > /tmp/toggle-gamma
+    xgamma -gamma 0.6 >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to 60'
+    elif grep -Fxq "60" /tmp/toggle-gamma; 
+then
+    echo "50" > /tmp/toggle-gamma
+    xgamma -gamma 0.5 >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to 50'
+elif grep -Fxq "50" /tmp/toggle-gamma;
+then
+    rm "$TOGGLE"
+    xgamma -gamma 1.0 >/dev/null 2>&1 &
+    notify-send --urgency low 'Changing Gamma to Default'
+fi
+}
+
+export -f toggleit
+yad --title "Gamma" --escape-ok --close-on-unfocus --borders=10 --undecorated --skip-taskbar \
+--form --center --geometry=140x48-120-90 \
+--text-align=center \
+--window-icon=dialog-information \
+--buttons-layout=spread \
+--button=" Gamma Toggle x6"!org.xfce.settings.color:"bash -c toggleit"

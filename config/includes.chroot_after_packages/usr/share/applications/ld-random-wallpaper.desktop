@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Random Wallpaper
+Exec=toggle-wallpaper-random
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-wallpaper
+Categories=ld-misc-tools;

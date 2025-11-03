@@ -1,0 +1,17 @@
+#!/bin/bash
+# Sexy-bash-prompt toggle
+# Made by sleekmason 05oct2025
+
+if ! test -e "$HOME/.bash_prompt"; then
+   cp -f "/usr/share/lilidog/extras/bash-prompt/.bash_prompt" "$HOME"
+fi
+if ! grep -Fxq '. ~/.bash_prompt' "$HOME/.bashrc"; then
+{
+   echo '# Run sexy-bash-prompt'
+   echo '. ~/.bash_prompt';} | tee -a "$HOME/.bashrc" > /dev/null
+   notify-send --urgency low 'Sexy Bash Prompt for your terminal enabled.'
+else
+   sed -i '/sexy-bash-prompt/d' "$HOME/.bashrc"
+   sed -i '/~\/.bash_prompt/d' "$HOME/.bashrc"
+   notify-send --urgency low 'Sexy Bash Prompt for your terminal disabled.'
+fi

@@ -1,0 +1,46 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mapt update checker - the timer version[0m
+
+   This apt update checker is very similar to the spot check version 
+   that can be found by clicking 'Check For Upgrades' in the plus 
+   symbol of the tint2 panel.  The difference is that this one is 
+   on a timer to check for upgrades and displays an icon in the 
+   system tray if upgrades are available. Nothing more required.
+   
+   The timer is currently set to check for any available upgrades 
+   10 minutes after login, and every twenty four hours thereafter.
+   
+   Uninstall with 'sudo apt purge ld-apt-update-checker'
+   
+   [0;32m-------------------------------------------------------------
+   
+   Please press enter to install the timer version.
+   
+   -------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+if [ ! -f "ld-apt-update-checker_12.0-2_all.deb" ]; then
+wget https://raw.githubusercontent.com/sleekmason/packages/master/ld-apt-update-checker_12.0-2_all.deb --show-progress -q
+fi 
+sudo apt install ./ld-apt-update-checker_12.0-2_all.deb
+echo ""
+echo "----------------------------------------------------------------------"
+echo ""
+echo "[0;32m   All Finished! An icon will appear in the 
+system tray when upgrades are available.[0m"
+echo "" 
+echo "----------------------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

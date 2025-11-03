@@ -1,0 +1,52 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mElement Installer[0m
+
+   The will install Element to provide secure messaging for the 
+   use of Matrix and others communication methods. Element is a
+   secure and interoperable communications, built on the Matrix 
+   open standard.
+
+   [0;33mhttps://element.io/[0m
+   
+   ------------------------------------------------------------
+   
+   [0;32mPlease press enter to install Element.[0m
+   
+   ------------------------------------------------------------
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
+sudo apt update && sudo apt install -y element-desktop element-io-archive-keyring
+
+sed -i '/Element,          element-desktop,                         element-desktop/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Element,          element-desktop,                         element-desktop' ~/.config/jgmenu/prepend.csv &&
+killall -q jgmenu
+echo ""
+echo ""
+echo ""
+echo "-----------------------------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mYou should find an Element entry in the quickgrab menu [0m" 
+echo "" 
+echo "" 
+echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "-----------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

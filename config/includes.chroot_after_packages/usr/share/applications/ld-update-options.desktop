@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Upgrade Options
+Exec=update-options
+StartupNotify=false
+Terminal=false
+Icon=applications-other
+Categories=ld-misc-tools;

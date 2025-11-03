@@ -1,0 +1,50 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mVSCodium Installer[0m
+
+   VSCodium is a community-driven, freely-licensed binary distribution 
+   of Microsoft’s editor VS Code.
+    
+   [0;33mhttps://vscodium.com/[0m
+   
+   [0;33m-----------------------------------------------------------------
+   
+   Please press enter to install VSCodium.
+   
+   -----------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+echo ""
+cd /tmp || exit &&
+wget --prefer-family=IPv4 -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+echo ""
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+echo""
+sudo apt update && sudo apt install codium
+sed -i '/VSCodium,          codium,                                  vscodium/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a VSCodium,          codium,                                  vscodium' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "[0;33m-------------------------------------------------------------------"
+echo ""
+echo "   All Finished!"
+echo "   You should find a new menu entry in the Quick Grab Menu."
+echo ""
+echo "-------------------------------------------------------------------[0m"
+echo ""
+echo ""
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

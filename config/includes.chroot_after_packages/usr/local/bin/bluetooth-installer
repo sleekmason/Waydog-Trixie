@@ -1,0 +1,48 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mBluetooth Installer[0m
+
+
+   This script will install the packages necessary for bluetooth use.
+   
+   Once installed, you will need to log out and back in to initialize
+   the bluetooth-manager applet which should appear in the task tray.
+   
+   When connecting, you will recieve a pairing notification. press: 
+   ctrl + shift + period to get a context menu for your selections.
+   
+   For further information, see the directions from here:
+   [0;33mhttps://www.forum.lilidog.org/d/21-bluetooth-setup[0m
+   
+   ----------------------------------------
+   
+   [0;32mPlease press enter to install bluetooth.[0m
+   
+   ----------------------------------------
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+
+sudo apt update && sudo apt install bluetooth bluez-tools blueman libspa-0.2-bluetooth gstreamer1.0-gl gstreamer1.0-x gstreamer1.0-plugins-bad rfkill
+echo "" 
+echo "" 
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "[0;33mRemember to log out and back in to activate the bluetooth manager." 
+echo "And a reminder that if you are in a VM, bluetooth will not work.[0m"
+echo ""
+echo "[0;32mGood luck in your endeavors![0m" 
+echo ""
+echo ""
+echo "-----------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

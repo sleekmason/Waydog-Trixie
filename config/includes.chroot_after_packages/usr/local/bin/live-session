@@ -1,0 +1,16 @@
+#!/bin/bash
+# This script is for live session use and can be removed if installed.
+
+# Ensure gsettings for neofetch use.
+gsettings set org.gnome.desktop.interface gtk-theme "Fane"
+gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Teal"
+# Remove errant mirror line.
+sudo sed -i '/file/d' /etc/apt/sources.list
+# Remove face icons in $HOME
+rm -f "$HOME"/.face
+rm -f "$HOME"/.face.icon
+# Add ~/Pictures and ~/Pictures/wallpapers
+mkdir -p Pictures/wallpapers
+# Change dim on battery to false
+gsettings set org.mate.power-manager idle-dim-battery false
+gsettings set org.mate.power-manager backlight-battery-reduce false

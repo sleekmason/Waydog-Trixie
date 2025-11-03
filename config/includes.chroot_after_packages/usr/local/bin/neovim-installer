@@ -1,0 +1,36 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mNeovim Installer[0m
+
+   Hyperextensible Vim-based text editor. 
+    
+   [0;33mhttps://neovim.io/[0m
+   
+   [0;33m-----------------------------------------------------------------
+   
+   Please press enter to install Neovim.
+   
+   -----------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+sudo apt install -y neovim python3-pynvim xxd &&
+echo ""
+echo "[0;33m-------------------------------------------------------------------"
+echo ""
+echo "   All Finished!"
+echo ""
+echo "-------------------------------------------------------------------[0m"
+echo ""
+echo ""
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

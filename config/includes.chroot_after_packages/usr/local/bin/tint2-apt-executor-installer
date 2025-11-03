@@ -1,0 +1,69 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;33mTint2 apt notifier executor version.[0m
+
+   This script will change your existing tint2 folder to the default
+   Lilidog tint2 version, but with the plus symbol changed to an 
+   executor to signal through an icon color change that apt upgrades 
+   are available. Middle-click on the plus symbol for options, or
+   look in the toggles menu for a new entry labeled 'Apt Notifier'.
+   
+   * Note - A backup will be made of your existing tint2 folder to:
+   ~/.config/tint-original.bak, and any further uses of this script 
+   will place new backups as ~/.config/tint2.bak so the original is 
+   preserved until manually removed.
+   
+   The Lilidog default install version of tint2 can also be found in 
+   the installers if wanting the installation default.
+   
+   [0;33m-------------------------------------------------------------
+   
+   Please press enter to change tint2 to the executor version.
+   
+   -------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+if test -e "/tmp/tint2"; then
+rm -r /tmp/tint2
+fi
+if [ ! -f "tint2-with-apt-executor2.zip" ]; then
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/tint2-with-apt-executor2.zip --show-progress -q
+fi 
+if [ ! -e "$HOME/.config/tint2-original.bak" ]; then
+cp -r "$HOME/.config/tint2" "$HOME/.config/tint2-original.bak"
+else
+   if [ ! -e "$HOME/.config/tint2.bak" ]; then
+    cp -r "$HOME/.config/tint2" "$HOME/.config/tint2.bak"
+    else rm -r ~/.config/tint2.bak &&
+    cp -r "$HOME/.config/tint2" "$HOME/.config/tint2.bak"
+   fi
+fi
+unzip -q tint2-with-apt-executor2.zip &&
+rm -r ~/.config/tint2
+cp -a -f -r tint2 "$HOME/.config/"
+killall -SIGUSR1 tint2
+sed -i '/Apt Notifier,        tint2-notifier-options,                        preferences-system/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Tint2 Toggle.*/a Apt Notifier,        tint2-notifier-options,                        preferences-system' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo ""
+echo "----------------------------------------------------------------------"
+echo ""
+echo "[0;33m   All Finished!
+
+   look in the toggles menu for the Apt Notifier entry or middle-click 
+   on the plus symbol in the tint2 panel for the options dialog.[0m"
+echo "" 
+echo "----------------------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

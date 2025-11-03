@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=gxkb launcher
+Type=Application
+Exec=gxkb &
+Terminal=false
+Icon=web-browser
+Comment=gxkb tray launcher
+X-GNOME-Autostart-enabled=true
+Hidden=false

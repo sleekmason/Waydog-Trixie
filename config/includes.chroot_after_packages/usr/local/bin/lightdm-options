@@ -1,0 +1,96 @@
+#!/bin/bash
+# Lightdm options
+# Made by sleekmason 12 Aug 2024
+set -e
+
+use_slickgreeter(){
+set -e
+if ! [[ $(command -v slick-greeter) ]]; then
+notify-send -i "user-info" --urgency low "Please install Slick Greeter to continue"
+x-terminal-emulator -T 'Lightdm Slick Greeter Installer' -e bash -c "slick-greeter-installer"
+else
+if grep -E "greeter-session=slick-greeter" /etc/lightdm/lightdm.conf; then
+notify-send -i "user-info" --urgency low "Lightdm currently set to Slick Greeter"
+exit
+else
+notify-send -i "user-info" --urgency low "Enter password to change to Slick Greeter"
+pkexec sh -c "sed -i '/greeter-session=.*/d' /etc/lightdm/lightdm.conf; sed -i '108agreeter-session=slick-greeter' /etc/lightdm/lightdm.conf"
+notify-send -i "user-info" --urgency low "Lightdm greeter changed to Slick Greeter"
+notify-send -i "info" --urgency low "REBOOT for changes to take effect"
+fi
+fi
+}
+
+use_defaultgreeter(){
+set -e
+if ! [[ $(command -v lightdm-gtk-greeter-settings) ]]; then
+notify-send -i "user-info" --urgency low "Please install the GTK greeter to continue"
+x-terminal-emulator -T 'Lightdm Installer' -e bash -c "lightdm-installer"
+else
+if grep -E 'greeter-session=lightdm-gtk-greeter|greeter-session=lightdm-greeter' "/etc/lightdm/lightdm.conf"; then
+notify-send -i "user-info" --urgency low "Lightdm currently set to GTK default"
+exit
+else
+notify-send -i "user-info" --urgency low "Enter password to change to default greeter"
+pkexec sh -c "sed -i '/greeter-session=.*/d' /etc/lightdm/lightdm.conf; sed -i '108agreeter-session=lightdm-gtk-greeter' /etc/lightdm/lightdm.conf"
+notify-send -i "user-info" --urgency low "Lightdm greeter changed to GTK default"
+notify-send -i "info" --urgency low "REBOOT for changes to take effect"
+fi
+fi
+}
+
+show_users(){
+set -e
+if ! grep -Fxq "greeter-hide-users=true" "/etc/lightdm/lightdm.conf"; then
+notify-send -i "user-info" --urgency low "Enter password to HIDE usernames at login"
+pkexec sed -i '111agreeter-hide-users=true' "/etc/lightdm/lightdm.conf"
+notify-send -i "user-info" --urgency low "Usernames will NOT be shown at login"
+notify-send -i "info" --urgency low "REBOOT for changes to take effect"
+else
+notify-send -i "user-info" --urgency low "Enter password to SHOW usernames at login"	
+pkexec sed -i '/greeter-hide-users=true/d' "/etc/lightdm/lightdm.conf"
+notify-send -i "user-info" --urgency low "All usernames will be shown at login"
+notify-send -i "info" --urgency low "REBOOT for changes to take effect"
+fi
+}
+
+default_lightdm_settings(){
+if ! [[ $(command -v lightdm-gtk-greeter-settings) ]]; then
+notify-send -i "user-info" --urgency low "Please install the GTK greeter to continue"
+x-terminal-emulator -T 'Lightdm Installer' -e bash -c "lightdm-installer"
+else
+pkexec lightdm-gtk-greeter-settings
+fi
+}
+
+slick_lightdm_settings(){
+set -e
+if ! [[ $(command -v slick-greeter) ]]; then
+notify-send -i "user-info" --urgency low "Please install Slick Greeter to continue"
+x-terminal-emulator -T 'Lightdm Slick Greeter Installer' -e bash -c "slick-greeter-installer"
+else
+pkexec lightdm-settings
+fi
+}
+
+export -f "use_slickgreeter"
+export -f "use_defaultgreeter"
+export -f "show_users"
+export -f "default_lightdm_settings"
+export -f "slick_lightdm_settings"
+
+yad --title "Lightdm Options" \
+--form --center --width=270 --height=340 --borders=12 \
+--text="Greeter Style And Other Options\n" \
+--text-align=center \
+--buttons-layout=end \
+--window-icon=user-info \
+    --form \
+    --field="      GTK Default Greeter!org.xfce.settings.manager":FBTN "bash -c use_defaultgreeter" \
+    --field="                  Slick Greeter!org.xfce.settings.manager":FBTN "bash -c use_slickgreeter" \
+    --field="        Usernames On/Off!config-users":FBTN "bash -c show_users" \
+    --field="                     Auto Login!user-info":FBTN "bash -c lightdm-autologin" \
+    --field="":LBL "" \
+    --field="":LBL "" \
+    --field="     GTK Greeter Settings!lightdm-settings":FBTN "bash -c default_lightdm_settings" \
+    --field="     Slick Greeter Settings!lightdm-settings":FBTN "bash -c slick_lightdm_settings"

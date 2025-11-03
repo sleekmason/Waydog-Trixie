@@ -1,0 +1,50 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mSkype Installer.[0m
+
+   This script will download and install Skype with all recommended
+   packages included. Discover why hundreds of millions people use 
+   Skype to chat and call every day. 
+   
+   For more information: 
+   [0;33mhttps://www.skype.com/en/get-skype/[0m
+   
+   A new entry for Skype will be placed in the Quick Grab menu.
+   
+   [0;33m------------------------------------
+   
+   Please press enter to install Skype.
+   
+   ------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+wget --prefer-family=IPv4 https://go.skype.com/skypeforlinux-64.deb --show-progress -q &&
+echo ""
+sudo apt update && sudo apt install --install-recommends /tmp/./skype*
+rm /tmp/skype*
+sed -i '/Skype,            skypeforlinux,          skypeforlinux/d' ~/.config/jgmenu/prepend.csv &&
+sed -i '/Root Folders,^checkout(rootfiles),folder/a Skype,            skypeforlinux,          skypeforlinux' ~/.config/jgmenu/prepend.csv
+killall -q jgmenu
+echo "----------------------------------------------------------------"
+echo ""
+echo "[0;33mAll Finished![0m"
+echo ""
+echo "[0;33mThere will be a new entry for Skype in the Quick Grab menu.[0m"
+echo "" 
+echo "[0;33mMenu entries will need to be removed manually if uninstalled." 
+echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
+echo ""
+echo "----------------------------------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

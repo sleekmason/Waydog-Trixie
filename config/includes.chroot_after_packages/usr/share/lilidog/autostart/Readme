@@ -1,0 +1,5 @@
+The files found in this folder are for ~/.config/autostart use. Simply
+copy the file(s) to ~/.config/autostart to have these programs start
+on login.
+
+See the readme in ~/.config/autostart for further instruction.

@@ -1,0 +1,16 @@
+Blender,            x-terminal-emulator -T 'Blender Installer' -e bash -c "blender-installer",                 applications-graphics
+GIMP,               x-terminal-emulator -T 'GIMP Installer' -e bash -c "gimp-installer",                       applications-graphics
+Gpicview,           x-terminal-emulator -T 'Gpicview Installer' -e bash -c "gpicview-installer",               applications-graphics
+Inkscape,           x-terminal-emulator -T 'Inkscape Installer' -e bash -c "inkscape-installer",               applications-graphics
+Theme Chooser,      x-terminal-emulator -T 'Theme Chooser Installer' -e bash -c "theme-chooser-installer",     applications-graphics
+Tuxpaint,           x-terminal-emulator -T 'Tuxpaint Installer' -e bash -c "tuxpaint-installer",               applications-graphics
+^sep()
+Buuf Icons,         x-terminal-emulator -T 'Buuf Icon Theme Installer' -e bash -c "buuf-icon-installer",       applications-graphics
+Breeze Icons,       x-terminal-emulator -T 'Breeze Icon Theme Installer' -e bash -c "breeze-installer",        applications-graphics
+Circle Icons,       x-terminal-emulator -T 'Circle Icon Theme Installer' -e bash -c "circle-icon-installer",   applications-graphics
+Faenza Icons,       x-terminal-emulator -T 'Faenza Icon Theme Installer' -e bash -c "faenza-installer",        applications-graphics
+Gnome Color Icons,  x-terminal-emulator -T 'Gnome Colors Icons Installer' -e bash -c "gnome-colors-installer", applications-graphics
+Numix Circle Icons, x-terminal-emulator -T 'Numix Circle Icon Theme Installer' -e bash -c "numix-installer",   applications-graphics
+Obsidian Icons,     x-terminal-emulator -T 'Obsidian Icon Theme Installer' -e bash -c "obsidian-installer",    applications-graphics
+Paper Icons,        x-terminal-emulator -T 'Paper Icon Theme Installer' -e bash -c "paper-installer",          applications-graphics
+Papirus Icons,      x-terminal-emulator -T 'Papirus Icon Theme Installer' -e bash -c "papirus-installer",      applications-graphics

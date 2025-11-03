@@ -1,0 +1,44 @@
+#!/bin/bash
+echo ""
+echo ""
+echo ""
+read -p "   [0;33mAll Packages Necessary To Compile The Linux Kernel.[0m 
+   
+   This will install: bc, bison build-essential, fakeroot, 
+   flex, libelf-dev, libncurses5-dev, libssl-dev
+   
+   This will NOT install A new kernel. 
+   Few will really want these installed.
+   
+   
+   ------------------------------------------
+   
+   [0;32mPlease press enter to install the packages.[0m
+   
+   ------------------------------------------
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+sudo apt update && sudo apt install bc bison dh-make pbuilder build-essential fakeroot \
+flex libelf-dev libncurses5-dev libssl-dev autoconf libparse-debcontrol-perl automake autopoint \
+autotools-dev debhelper dh-autoreconf dpkg-dev devscripts dh-strip-nondeterminism libdw-dev dwz \
+gettext intltool-debian libarchive-zip-perl libfl-dev libdebhelper-perl \
+libfile-stripnondeterminism-perl libsub-override-perl libtool po-debconf
+echo ""
+echo "----------------------------------------"
+echo ""
+echo "[0;32mAll Finished![0m"
+echo ""
+echo "----------------------------------------"
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

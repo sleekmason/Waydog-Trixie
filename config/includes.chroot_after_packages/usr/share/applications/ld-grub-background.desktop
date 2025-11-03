@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Grub Background
+Exec=x-terminal-emulator -T 'Grub Background Changer' -e bash -c "grub-bg-changer; echo $'\n\nPress any key to close.'; read -srn1"
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-wallpaper
+Categories=ld-misc-tools;

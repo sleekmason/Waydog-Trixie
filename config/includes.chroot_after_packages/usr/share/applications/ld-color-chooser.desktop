@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Color Chooser
+Exec=yad --color --gtk-palette --palette=/usr/share/X11/rgb.txt
+StartupNotify=false
+Terminal=false
+Icon=org.xfce.settings.color
+Categories=System;Development;Utility;
