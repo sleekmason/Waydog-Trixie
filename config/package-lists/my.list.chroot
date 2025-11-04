@@ -219,3 +219,4 @@ dbus-user-session
 xwayland
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
+mako-notifier

@@ -16,6 +16,7 @@ pnmixer &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
 kanshi &
+mako &
 ### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.
 # if type 'thunar' &> /dev/null; then
 # thunar --daemon &
