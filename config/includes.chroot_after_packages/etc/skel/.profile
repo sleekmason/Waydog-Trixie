@@ -49,3 +49,7 @@ fi
 #if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 #exec startx
 #fi
+# Don't start labwc from this file in live. Installed only.
+if [ ! -f /etc/debian_live ]; then
+        exec labwc
+fi

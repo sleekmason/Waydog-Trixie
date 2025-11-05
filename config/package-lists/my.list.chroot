@@ -41,6 +41,7 @@ exfatprogs
 extlinux
 feh
 file
+firefox-esr
 fonts-font-awesome
 fonts-dancingscript
 fonts-jetbrains-mono
@@ -99,6 +100,7 @@ mesa-vdpau-drivers
 mesa-vulkan-drivers
 mailcap
 media-types
+micro
 mtools
 nano
 ncdu

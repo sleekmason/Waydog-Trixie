@@ -4,6 +4,7 @@
 ^sep()
 Terminal,           x-terminal-emulator,       org.xfce.terminalemulator
 Thunar,             thunar,            system-file-manager
+Firefox,            firefox,          firefox-esr
 ^sep()
 Quick Grab,^checkout(quickgrab), org.xfce.settings.default-applications
 ^sep()
