@@ -222,7 +222,7 @@
 		</item>
 			<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
-					<execute>ld-installers</execute>
+					<execute>bd-utilities-main-installers</execute>
 				</action>
 		</item>
 		</menu>
