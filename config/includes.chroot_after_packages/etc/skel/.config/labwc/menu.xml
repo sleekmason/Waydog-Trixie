@@ -190,39 +190,39 @@
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
 		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
-			<item icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" label="Gparted">
+			<item label="Gparted" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
 				</action>
 			</item>
-			<item icon="/usr/share/icons/gnome/24x24/categories/preferences-system-network.png" label="Lx-Randr">
+			<item label="Lx-Randr" icon="/usr/share/icons/gnome/24x24/categories/preferences-system-network.png">
 				<action name="Execute">
 					<execute>lxrandr</execute>
 				</action>
 			</item>
-		<item icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" label="Update Options">
+		<item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
 					<execute>update-options</execute>
 				</action>
 			</item>
-			<item icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" label="Live USB Maker">
+			<item label="Live USB Maker" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Live USB Maker' -e "sudo live-usb-maker-gui-antix"</execute>
 				</action>
 			</item>
-			<item icon="/usr/share/icons/gnome/24x24/categories/applications-development.png" label="Kernel Remover">
+			<item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-development.png" >
 				<action name="Execute">
 					<execute>kernel-remover</execute>
 				</action>
 			</item>
-			<item icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" label="DkWM Installer">
-				<action name="Execute">
-					<execute>x-terminal-emulator -T 'DkWM Installer' -e "dk-installer"</execute>
-				</action>
-			</item>
-		<item icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" label="Printer Setup">
+		<item label="Printer Setup" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T "Printer Setup" -e bash -c "printer-installer; read -srn1"</execute>
+				</action>
+		</item>
+			<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+				<action name="Execute">
+					<execute>ld-installers</execute>
 				</action>
 		</item>
 		</menu>
