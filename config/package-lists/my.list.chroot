@@ -32,7 +32,6 @@ dialog
 dnsmasq-base
 dns-root-data
 dosfstools
-dunst
 e2fsprogs
 efibootmgr
 eject
@@ -108,7 +107,6 @@ net-tools
 network-manager-gnome
 network-manager-l10n
 ntfs-3g
-obconf
 obsidian-icon-theme
 os-prober
 oss-compat
@@ -208,7 +206,6 @@ xsel
 xz-utils
 yad
 zstd
-alacritty
 waybar
 swaybg
 swayidle
@@ -218,7 +215,6 @@ labwc
 seatd
 libpam-systemd
 dbus-user-session
-xwayland
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 mako-notifier
