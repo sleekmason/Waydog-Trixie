@@ -134,62 +134,32 @@
 					</action>
 				</item>
 			</menu>
-			<item icon="/usr/share/icons/gnome/24x24/apps/accessories-text-editor.png" label="Geany">
+			<item label="Geany" icon="/usr/share/icons/gnome/24x24/apps/accessories-text-editor.png">
 				<action name="Execute">
 					<execute>geany</execute>
 				</action>
 			</item>
 		</menu>
 		<menu icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" id="root-menu-721334" label="Toggles">
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Tint2 Panel Toggle">
-				<action name="Execute">
-					<execute>toggle.tint2</execute>
-				</action>
-			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Hotcorners">
+			<item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png">
 				<action name="Execute">
 					<execute>toggle.ld</execute>
 				</action>
 			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Theme Options">
-					<action name="Execute">
-						<execute>beardog-themer</execute>
-					</action>
-				</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Tint2 Options">
-					<action name="Execute">
-						<execute>tint2-options</execute>
-					</action>
-				</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Rofi Icons">
+			<item label="Sexy Bash" icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png">
 				<action name="Execute">
-					<execute>rofi-options</execute>
-				</action>
-			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Mouse Finder">
-				<action name="Execute">
-					<execute>toggle-mouse-pointer</execute>
-				</action>
-			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Transparency">
-				<action name="Execute">
-					<execute>transparency-system</execute>
-				</action>
-			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="Random BG">
-				<action name="Execute">
-					<execute>toggle-wallpaper-random</execute>
-				</action>
-			</item>
-			<item icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" label="X-Kill">
-				<action name="Execute">
-					<execute>xkill</execute>
+					<execute>toggle.sexy</execute>
 				</action>
 			</item>
 		</menu>
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
 		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
+			<item label="Settings Manager" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png">
+					<action name="Execute">
+						<execute>xfce4-settings-manager</execute>
+					</action>
+				</item>
 			<item label="Gparted" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
@@ -226,38 +196,6 @@
 				</action>
 		</item>
 		</menu>
-		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-system.png" id="root-menu-21510" label="Configuration">
-				<item icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" label="Settings Manager">
-					<action name="Execute">
-						<execute>xfce4-settings-manager</execute>
-					</action>
-				</item>
-				<item icon="/usr/share/pixmaps/obconf.png" label="Openbox Conf">
-					<action name="Execute">
-						<execute>obconf</execute>
-					</action>
-				</item>
-				<item icon="/usr/share/icons/gnome/24x24/categories/applications-science.png" label="Tint2 Conf">
-					<action name="Execute">
-						<execute>tint2conf</execute>
-					</action>
-				</item>
-			    <item icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" label="Picom Conf">
-					<action name="Execute">
-						<execute>geany ~/.config/picom.conf</execute>
-					</action>
-				</item>
-				<item icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png" label="Dmenu Apps Conf">
-					<action name="Execute">
-						<execute>geany ~/.config/dmenu/apps</execute>
-					</action>
-				</item>
-				<item icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" label="Ld-hotcorners Conf">
-					<action name="Execute">
-						<execute>geany ~/.config/ld-hotcorners/ld-hotcornersrc</execute>
-					</action>
-				</item>
-			</menu>
 		<separator/>
   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
     <action name="Reconfigure" />

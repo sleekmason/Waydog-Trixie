@@ -19,8 +19,7 @@ swayidle -w \
 	
 ### Common startup programs. Comment any item no longer wanted.
 swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg &
-# picom --daemon &
-waybar &
+waybar >/dev/null 2>&1 &
 nm-applet &
 mate-power-manager >/dev/null 2>&1 &
 xfsettingsd --daemon &
