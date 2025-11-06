@@ -1,91 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<openbox_menu>
-<!-- Note: for localization support of menu items "client-menu" has to be removed here -->
-<menu id="client-menu">
-  <item label="Minimize">
-    <action name="Iconify" />
-  </item>
-  <item label="Maximize">
-    <action name="ToggleMaximize" />
-  </item>
-  <item label="Fullscreen">
-    <action name="ToggleFullscreen" />
-  </item>
-  <item label="Roll Up/Down">
-    <action name="ToggleShade" />
-  </item>
-  <item label="Decorations">
-    <action name="ToggleDecorations" />
-  </item>
-  <item label="Always on Top">
-    <action name="ToggleAlwaysOnTop" />
-  </item>
-  <!--
-    Any menu with the id "workspaces" will be hidden
-    if there is only a single workspace available.
-  -->
-  <menu id="workspaces" label="Workspace">
-    <item label="Move Left">
-      <action name="SendToDesktop" to="left" />
-    </item>
-    <item label="Move Right">
-      <action name="SendToDesktop" to="right" />
-    </item>
-    <separator />
-    <item label="Always on Visible Workspace">
-      <action name="ToggleOmnipresent" />
-    </item>
-  </menu>
-  <!--
-    openbox default workspace selector
-    to use replace above workspace menu with the example below
-    the label is required, but you can change the text.
-
-    <menu id="client-send-to-menu" label="Send to..." />
-  -->
-  <item label="Close">
-    <action name="Close" />
-  </item>
-</menu>
-
-<menu id="root-menu">
-  <!-- Make client-list-combined-menu a submenu of root-menu
-       You must supply a label or it will not appear in root-menu -->
-  <!--
-  <menu id="client-list-combined-menu" label="Running..." />
-  -->
-  <item label="Web browser">
-    <action name="Execute" command="firefox" />
-  </item>
-  <item label="Terminal">
-    <action name="Execute" command="alacritty" />
-  </item>
-  <item label="Reconfigure">
-    <action name="Reconfigure" />
-  </item>
-  <item label="Exit">
-    <action name="Exit" />
-  </item>
-  <item label="Poweroff">
-    <action name="Execute" command="systemctl -i poweroff" />
-  </item>
-</menu>
-
-<menu id="some-custom-menu">
-		<item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png" >
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		<item icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png" label="Terminal">
 			<action name="Execute">
-				<execute>x-terminal-emulator</execute>
+				<execute>lxterminal</execute>
 			</action>
 		</item>
-		<item label="Thunar" icon="/usr/share/icons/gnome/24x24/apps/system-file-manager.png" >
+		<separator/>
+		<item icon="/usr/share/icons/gnome/24x24/apps/system-file-manager.png" label="Thunar">
 			<action name="Execute">
 				<execute>thunar</execute>
-			</action>
-		</item>
-				<item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png" >
-			<action name="Execute">
-				<execute>firefox-esr</execute>
 			</action>
 		</item>
 		<!-- This requires the presence of the 'openbox-menu' package to work -->
@@ -189,6 +113,9 @@
 		</menu>
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
+		<separator/>
+		<menu execute="/usr/bin/obamenu" icon="/usr/share/icons/ld-icons/debian-logo.png" id="applications-menu" label="All Programs"/>
+		<separator/>
 		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
 			<item icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" label="Gparted">
 				<action name="Execute">
@@ -259,14 +186,14 @@
 				</item>
 			</menu>
 		<separator/>
-  <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
-    <action name="Reconfigure" />
-  </item>
-  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png" >
- <action name="Execute">
-						<execute>ld-logout</execute>
-					</action>
-  </item>
-</menu>
-
+		<item icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" label="Restart">
+			<action name="Restart"/>
+		</item>
+		<separator/>
+		<item icon="/usr/share/icons/gnome/24x24/actions/application-exit.png" label="Exit">
+			<action name="Execute">
+				<execute>ld-logout</execute>
+			</action>
+		</item>
+	</menu>
 </openbox_menu>
