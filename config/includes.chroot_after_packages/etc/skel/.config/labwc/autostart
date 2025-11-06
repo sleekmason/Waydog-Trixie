@@ -14,7 +14,7 @@ mate-power-manager >/dev/null 2>&1 &
 xfsettingsd --daemon &
 pnmixer &
 /usr/libexec/polkit-mate-authentication-agent-1 &
-/usr/bin/swhks && /usr/bin/swhkd -c "$HOME/.config/swhkd/swhkdrc" &
+swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
 kanshi &
 mako &
 swayidle &
