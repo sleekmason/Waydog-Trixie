@@ -144,7 +144,7 @@ _add_slick() {
 }
 
 _add_jgmenu() {
-      _msg=" Install jgmenu to replace the Openbox default?"
+      _msg=" Install jgmenu to replace the labwc default?"
       do_it() { cd /tmp &&
 		        wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/jgmenu.zip --show-progress -q &&
 		        wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/jgmenu_4.4.0-1_amd64.deb --show-progress -q &&
@@ -152,18 +152,18 @@ _add_jgmenu() {
                 unzip -q jgmenu.zip &&
                 cp -r /tmp/jgmenu/jgmenu /home/"${SUDO_USER}"/.config &&
                 cp -a /tmp/jgmenu/scripts/. /usr/local/bin/ &&
-		        mv /home/"${SUDO_USER}"/.config/openbox/rc.xml /home/"${SUDO_USER}"/.config/openbox/rc.xml.bak &&
-		        cp /tmp/jgmenu/openbox/rc.xml /home/"${SUDO_USER}"/.config/openbox &&
-		        chown "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/openbox/rc.xml
+		        mv /home/"${SUDO_USER}"/.config/labwc/rc.xml /home/"${SUDO_USER}"/.config/labwc/rc.xml.bak &&
+		        cp /tmp/jgmenu/labwc/rc.xml /home/"${SUDO_USER}"/.config/labwc &&
+		        chown "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/labwc/rc.xml
 		        chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/jgmenu
 		        if egrep -q "Jgmenu" /usr/local/bin/beardog-themer; then
                 exit
                 else
-                sed -i '/Openbox/i    --field="                  Jgmenu Icons!jgmenu":FBTN "jg-icon-changer" \\' /usr/local/bin/beardog-themer
-                sed -i '/Openbox/i    --field="                Jgmenu Theme!jgmenu":FBTN "jg-menu-theme" \\' /usr/local/bin/beardog-themer
+                sed -i '/labwc/i    --field="                  Jgmenu Icons!jgmenu":FBTN "jg-icon-changer" \\' /usr/local/bin/beardog-themer
+                sed -i '/labwc/i    --field="                Jgmenu Theme!jgmenu":FBTN "jg-menu-theme" \\' /usr/local/bin/beardog-themer
                 fi
-                if xhost >& /dev/null ; then openbox --reconfigure
-                else echo "Not currently in X. Openbox restart deferred" ; fi }
+                if xhost >& /dev/null ; then labwc --reconfigure
+                else echo "Not currently in X. labwc restart deferred" ; fi }
         see_it
         no_see
         run_it
@@ -202,14 +202,14 @@ _add_conky() {
 		        chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/conky &&
 		        apt-get update && apt-get install -y conky-all fortunes fortune-mod &&
 		        if test -e /home/"${SUDO_USER}"/.config/conky; then
-    if ! grep -wq "conky-restart-list" /home/"${SUDO_USER}"/.config/openbox/autostart; then
+    if ! grep -wq "conky-restart-list" /home/"${SUDO_USER}"/.config/labwc/autostart; then
 		{
 		echo ""
 		echo '## Start conkys on login if present'	
 		echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
 		echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
 		echo '"conkyrestart" >/dev/null 2>&1'
-		echo 'fi';} | tee -a /home/"${SUDO_USER}"/.config/openbox/autostart > /dev/null
+		echo 'fi';} | tee -a /home/"${SUDO_USER}"/.config/labwc/autostart > /dev/null
 		fi
 	fi
 	    cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
@@ -270,7 +270,7 @@ _add_transparency() {
       _msg="Install transparency with picom and enable at login?"
       do_it() { apt-get update && apt-get install --install-recommends -y picom &&
 		        cp /usr/share/lilidog/extras/picom.conf /home/"${SUDO_USER}"/.config
-		        sed -i '/tint2/i picom &' /home/"${SUDO_USER}"/.config/openbox/autostart
+		        sed -i '/tint2/i picom &' /home/"${SUDO_USER}"/.config/labwc/autostart
 		        chown "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/picom.conf ;}
         see_it
         no_see
@@ -287,7 +287,7 @@ _add_installers() {
                 exit
                 else
                 sed -i '/Apt Update/a       --field="            Installers!preferences-system":FBTN "ld-installers" \\' /usr/local/bin/tint2-updates
-                sed -i '/Openbox/i    --field="                        Installers!preferences-system":FBTN "ld-installers" \\' /usr/local/bin/beardog-themer ; fi }
+                sed -i '/labwc/i    --field="                        Installers!preferences-system":FBTN "ld-installers" \\' /usr/local/bin/beardog-themer ; fi }
         see_it
         no_see
         run_it
@@ -381,10 +381,10 @@ _firmware() {
 }
 
 _reboot() {
-      _msg="Reboot? - After kernel or lightdm installation."
-      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+      _msg="Reboot? - After kernel or login manager installation."
+      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 		  if ! grep hypervisor /proc/cpuinfo ; then
-          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
           fi
           reboot ;}
         see_it
@@ -403,16 +403,16 @@ _sourcechanger
 _remove_packages
 _add_backports
 _upgrade_kernel
-_add_lightdm
-_add_slick
-_add_themes
-_add_conky
+#_add_lightdm
+#_add_slick
+#_add_themes
+#_add_conky
 _osprober
 _firmware
 _reboot
-sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 if ! grep hypervisor /proc/cpuinfo ; then
-sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 fi
 else
 _update
@@ -425,15 +425,15 @@ _sourcechanger
 _remove_packages
 _add_backports
 _upgrade_kernel
-_add_lightdm
-_add_slick
-_add_themes
-_add_conky
+#_add_lightdm
+#_add_slick
+#_add_themes
+#_add_conky
 _firmware
 _reboot
-sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 if ! grep hypervisor /proc/cpuinfo ; then
-sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 fi
 fi
 [ "$_interactive" = "yes" ]

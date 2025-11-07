@@ -43,3 +43,5 @@ mako &
 # "$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1
 # "conkyrestart" >/dev/null 2>&1
 # fi
+
+welcome-backend.sh

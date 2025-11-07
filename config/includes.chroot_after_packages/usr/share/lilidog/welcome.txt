@@ -1,13 +1,13 @@
                    
                       WELCOME!
                         
-    Thank you for trying out Beardog. If problems
-    arise, or for further information, please see 
-    the Lilidog support forum on Sourceforge.
+    Thank you for trying out Waydog! This Wayland
+    based release may still have potential issues
+    that will need to be addressed.
 
     https://sourceforge.net/p/lilidog/discussion/
     
-    This is the Beardog minimal version, allowing
+    This is the 'Waydog' minimal version allowing
     the user to install their own packages. For a
     more complete setup, consider installing the 
     Lilidog full version.

@@ -1,19 +1,23 @@
-                       
-                  WELCOME TO BEARDOG!
+
+                       WELCOME!
                         
-    Welcome to Beardog Trixie. This build has all
-    the packages necessary to get a good start at
-    designing your system the way you want.
+    Welcome to Waydog Trixie. You most likely see
+    the live screen size is not correct.
+    
+    The live environment is not meant for Wayland
+    but I think folks should see the setup if one
+    wants to install.  The screen size is correct
+    on installation.  Take the leap!
     
     Please visit the forum for more information:
     https://sourceforge.net/p/lilidog/discussion/
 
-    The live environment passwords are 'user' for 
+    The live environment passwords are 'user' for
     username, and 'live' for root.
     
-    To install Beardog, reboot the iso and choose 
+    To install Waydog, reboot the iso and select:
     'Start installer'.
 
     After installation, use the welcome script to
     see other initial setup options. You can also
-    type 'welcome' in a terminal to use later.
+    type 'welcome' in a terminal for use later.
