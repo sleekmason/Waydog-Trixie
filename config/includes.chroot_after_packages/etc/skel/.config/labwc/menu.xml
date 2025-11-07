@@ -165,16 +165,16 @@
 					<execute>lxrandr</execute>
 				</action>
 			</item>
-		<item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
+			<item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
-					<execute>update-options</execute>
+					<execute>x-terminal-emulator -T "Update Options" -e sudo bash -c "xupdate; read -srn1"</execute>
 				</action>
-			</item>
-		<item label="Printer Setup" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+		 </item>
+		 <item label="Printer Setup" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T "Printer Setup" -e bash -c "printer-installer; read -srn1"</execute>
 				</action>
-		</item>
+		 </item>
 			<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>bd-utilities-main-installers</execute>
