@@ -141,11 +141,6 @@
 			</item>
 		</menu>
 		<menu icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" id="root-menu-721334" label="Toggles">
-			<item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png">
-				<action name="Execute">
-					<execute>toggle.ld</execute>
-				</action>
-			</item>
 			<item label="Sexy Bash" icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png">
 				<action name="Execute">
 					<execute>toggle.sexy</execute>
