@@ -156,10 +156,10 @@
 		<!-- <menu id="/Debian"/> -->
 		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
 			<item label="Settings Manager" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png">
-					<action name="Execute">
+				<action name="Execute">
 						<execute>xfce4-settings-manager</execute>
-					</action>
-				</item>
+				</action>
+			</item>
 			<item label="Gparted" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
