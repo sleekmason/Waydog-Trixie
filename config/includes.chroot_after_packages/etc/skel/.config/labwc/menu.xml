@@ -175,16 +175,6 @@
 					<execute>update-options</execute>
 				</action>
 			</item>
-			<item label="Live USB Maker" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
-				<action name="Execute">
-					<execute>x-terminal-emulator -T 'Live USB Maker' -e "sudo live-usb-maker-gui-antix"</execute>
-				</action>
-			</item>
-			<item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-development.png" >
-				<action name="Execute">
-					<execute>kernel-remover</execute>
-				</action>
-			</item>
 		<item label="Printer Setup" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T "Printer Setup" -e bash -c "printer-installer; read -srn1"</execute>
