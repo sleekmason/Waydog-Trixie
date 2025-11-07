@@ -1,5 +1,5 @@
                    
-                      WELCOME!
+                       WELCOME!
                         
     Thank you for trying out Waydog! This Wayland
     based release may still have potential issues
