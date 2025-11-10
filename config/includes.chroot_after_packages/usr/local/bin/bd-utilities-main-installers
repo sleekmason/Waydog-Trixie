@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yad --title "Utility Installers" --escape-ok --form --center --geometry=660x440-300-360 --borders=10 \
+yad --title "Utility Installers" --escape-ok --form --center --geometry=660x420-300-360 --borders=10 \
 --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
 --button="gtk-ok:0" --buttons-layout=spread \
 --text="\n Utility Installers \n" --text-align=center \
@@ -10,12 +10,10 @@ yad --title "Utility Installers" --escape-ok --form --center --geometry=660x440-
     --field="Backports Kernel":FBTN "x-terminal-emulator -T 'Backports Kernel Installer' -e bash -c "backports-kernel-installer"" \
     --field="Batsignal":FBTN "x-terminal-emulator -T 'Batsignal Installer' -e bash -c "batsignal-installer"" \
     --field="Bluetooth":FBTN "x-terminal-emulator -T 'Bluetooth Installer' -e bash -c "bluetooth-installer"" \
-    --field="Brightness":FBTN "x-terminal-emulator -T 'Brightness Tray Icon Installer' -e bash -c "bright-gamma-installer"" \
     --field="Custom Conky":FBTN "x-terminal-emulator -T 'Conky Installer' -e bash -c "conky-installer"" \
     --field="Deb Optimizer":FBTN "x-terminal-emulator -T 'Debian Sources.list Optimizer' -e bash -c "deb-source-location"" \
     --field="Dropbox":FBTN "x-terminal-emulator -T 'Dropbox Installer' -e bash -c "dropbox-installer"" \
     --field="Gnome Boxes":FBTN "x-terminal-emulator -T 'Gnome Boxes Installer' -e bash -c "gnome-boxes-installer"" \
-    --field="Google Earth":FBTN "x-terminal-emulator -T 'Google Earth Installer' -e bash -c "google-earth-installer"" \
     --field="Hblock":FBTN "x-terminal-emulator -T 'Hblock Installer' -e bash -c "hblock-installer"" \
     --field="Joplin Note":FBTN "x-terminal-emulator -T ' Joplin Note' -e bash -c "joplin-installer"" \
     --field="Kitchen Sink":FBTN "x-terminal-emulator -T 'Kitchen Sink Installer' -e bash -c "kitchensink-installer"" \
@@ -28,5 +26,4 @@ yad --title "Utility Installers" --escape-ok --form --center --geometry=660x440-
     --field="Qemu":FBTN "x-terminal-emulator -T 'Qemu Installer' -e bash -c "qemu-installer"" \
     --field="Virtualbox":FBTN "x-terminal-emulator -T 'Virtualbox Installer' -e bash -c "virtualbox-installer-oracle"" \
     --field="VSCodium Editor":FBTN "x-terminal-emulator -T 'VSCodium Installer' -e bash -c "vscodium-installer"" \
-    --field="Xanmod Kernel":FBTN "x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer"" \
-    --field="ZSH Shell":FBTN "x-terminal-emulator -T 'ZSH Shell Installer' -e bash -c "zsh-installer""
+    --field="Xanmod Kernel":FBTN "x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer""

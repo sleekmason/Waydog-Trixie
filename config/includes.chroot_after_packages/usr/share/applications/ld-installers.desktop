@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Lilidog Installers
-Exec=ld-installers
+Name=Waydog Installers
+Exec=bd-utilities-main-installers
 StartupNotify=false
 Terminal=false
 Icon=system-software-install

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Window Manager Installers
-Exec=/usr/local/bin/window-manager-installers
-StartupNotify=false
-Terminal=false
-Icon=system-software-install
-Categories=ld-misc-tools;

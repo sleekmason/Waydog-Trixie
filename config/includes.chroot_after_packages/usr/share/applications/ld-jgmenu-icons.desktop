@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Jgmenu Icon Options
-Exec=jg-icon-changer
-StartupNotify=false
-Terminal=false
-Icon=applications-graphics
-Categories=ld-misc-tools
