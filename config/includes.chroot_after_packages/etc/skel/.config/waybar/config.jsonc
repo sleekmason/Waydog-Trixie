@@ -128,7 +128,7 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -143,7 +143,7 @@
         },
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
@@ -167,7 +167,7 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
@@ -204,16 +204,22 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
+//    "custom/power": {
+//        "format" : "⏻ ",
+//		"tooltip": false,
+//		"menu": "on-click",
+//		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+//		"menu-actions": {
+//			"lockscreen": "slock",
+//			"logout": "pkill -KILL -u $USER",
+//			"reboot": "systemctl --no-ask-password --ignore-inhibitors reboot",
+//			"suspend": "systemctl --no-ask-password --ignore-inhibitors suspend",
+//			"shutdown": "systemctl --no-ask-password --ignore-inhibitors poweroff"
+//		}
+//	}
     "custom/power": {
-        "format" : "⏻ ",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
+        "format":"",
+        "on-click": "exec ld-logout",
+        "tooltip": false,
     }
 }
