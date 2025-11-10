@@ -7,7 +7,7 @@ polkit.addRule(function(action, subject) {
     if ((action.id.startsWith("org.freedesktop.udisks2.filesystem-mount") ||
          action.id == "org.freedesktop.udisks2.loop-setup" ||
          action.id == "org.freedesktop.udisks2.encrypted-unlock") &&
-        subject.isInGroup("wheel")) {
+        subject.isInGroup("sudo")) {
 
         // When no login manager is used, subject.active may be undefined.
         // Fallback: check whether the session is local or run by the active user.
