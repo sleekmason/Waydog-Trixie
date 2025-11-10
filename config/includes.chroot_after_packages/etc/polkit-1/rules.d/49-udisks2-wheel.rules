@@ -1,0 +1,18 @@
+// Allow members of the "wheel" group to mount filesystems via udisks2
+// Works both with and without a graphical login manager (Labwc, etc.)
+
+polkit.addRule(function(action, subject) {
+
+    // Match udisks2 mount-related actions
+    if ((action.id.startsWith("org.freedesktop.udisks2.filesystem-mount") ||
+         action.id == "org.freedesktop.udisks2.loop-setup" ||
+         action.id == "org.freedesktop.udisks2.encrypted-unlock") &&
+        subject.isInGroup("wheel")) {
+
+        // When no login manager is used, subject.active may be undefined.
+        // Fallback: check whether the session is local or run by the active user.
+        if (subject.active === true || subject.local === true || subject.session == null) {
+            return polkit.Result.YES;
+        }
+    }
+});

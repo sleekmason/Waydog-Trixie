@@ -65,7 +65,6 @@ iproute2
 isc-dhcp-client
 iso-codes
 iw
-jgmenu
 kbd
 libavcodec-extra
 libexo-2-0
@@ -151,6 +150,7 @@ thunar-volman
 tumbler
 traceroute
 udev
+systemctl status polkit
 unzip
 update-inetd
 usb-modeswitch
@@ -219,3 +219,5 @@ dbus-user-session
 xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 mako-notifier
+grim
+grimshot

@@ -1,9 +1,7 @@
 ### modify session to allow /sbin /usr/sbin ~/bin ~/.local/bin into path 
 ## during the session.
 
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    exec labwc
-fi
+
 
 # Make qt work for luckybackup - others
 export QT_QPA_PLATFORMTHEME=gtk2
@@ -34,6 +32,8 @@ fi
 
 # Disable overlay scrollbars
 # export GTK_OVERLAY_SCROLLING=0
+# Give X a moment to finish initializing (especially in live sessions)
+sleep 0.5
 
 # Start labwc
 exec labwc

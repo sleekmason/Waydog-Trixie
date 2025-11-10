@@ -1,5 +1,5 @@
 #!/bin/bash
-# Set swhkd withroot permissions.
+# Set swhkd with root permissions.
 set -e
 
 if [ -f /usr/bin/swhkd ]; then

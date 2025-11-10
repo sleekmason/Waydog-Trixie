@@ -44,12 +44,3 @@ if [ -d "/usr/sbin" ] ; then
     PATH="${PATH:+${PATH}:}/usr/sbin"
 fi
 
-## autostart X on successful login to tty1
-## Uncomment the following three lines
-#if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-#exec startx
-#fi
-# Don't start labwc from this file in live. Installed only. Keep a log.
-if [ ! -f /etc/debian_live ]; then
-        exec labwc > ~/labwc.log 2>&1
-fi

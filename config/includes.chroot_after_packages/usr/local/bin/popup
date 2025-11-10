@@ -76,5 +76,5 @@ openbox)
     ;;
 esac
 
-exec jgmenu --simple --icon-size=16 --config-file=<( sed '/menu_padding_top/ s/^/#/' ~/.config/jgmenu/jgmenurc ) "${opt}=${arg}"
+jgmenu --simple --icon-size=16 --config-file=<( sed '/menu_padding_top/ s/^/#/' ~/.config/jgmenu/jgmenurc ) "${opt}=${arg}" &
 
