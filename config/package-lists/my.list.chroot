@@ -141,7 +141,6 @@ systemd-resolved
 systemd-timesyncd
 tasksel
 telnet
-#tint2
 thunar
 thunar-archive-plugin
 thunar-gtkhash
@@ -150,7 +149,7 @@ thunar-volman
 tumbler
 traceroute
 udev
-systemctl status polkit
+udisks2
 unzip
 update-inetd
 usb-modeswitch
@@ -164,12 +163,6 @@ wget
 wpasupplicant
 wireless-regdb
 wmctrl
-#x11-apps
-#x11-common
-#x11-session-utils
-#x11-utils
-#x11-xkb-utils
-#x11-xserver-utils
 xarchiver
 xbitmaps
 xclip
@@ -178,7 +171,6 @@ xdg-desktop-portal-gtk
 xdg-user-dirs
 xdg-utils
 xdotool
-xfce4-screenshooter
 xfce4-settings
 xfce4-terminal
 xinput
