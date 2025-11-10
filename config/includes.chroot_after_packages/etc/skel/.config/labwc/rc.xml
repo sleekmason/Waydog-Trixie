@@ -82,6 +82,9 @@
       <mousebind button="Right" action="Press">
         <action name="ShowMenu" menu="some-custom-menu" />
       </mousebind>
+      <mousebind button="Left" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu" />
+      </mousebind>
     </context>
   </mouse>
 
