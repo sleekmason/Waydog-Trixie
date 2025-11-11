@@ -33,5 +33,16 @@ systemctl --user start pipewire wireplumber 2>/dev/null &
 systemctl --user start xdg-desktop-portal 2>/dev/null &
 systemctl --user start xdg-desktop-portal-wlr 2>/dev/null &
 
+# Start D-Bus if not already running
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
+# Start gvfsd and metadata service (optional but needed for recent files)
+if ! pgrep -x gvfsd >/dev/null; then
+    /usr/libexec/gvfsd &
+    /usr/libexec/gvfsd-metadata &
+fi
+
 exec labwc > ~/labwc.log 2>&1
 fi

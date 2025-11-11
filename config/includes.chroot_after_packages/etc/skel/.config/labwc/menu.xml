@@ -92,44 +92,44 @@
 		<!-- This requires the presence of the 'openbox-menu' package to work -->
 		<separator/>
 		<menu icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png" id="root-menu-594711" label="Quick Grab">
-			<menu execute="pipe-recent-files" icon="/usr/share/icons/gnome/24x24/places/folder.png" id="ID41" label="Recent Files"/>
+			<menu execute="pipe-recent-files" icon="/usr/share/icons/gnome/24x24/places/folder.png" id="ID41" label="Recent Files "/>
 			<menu icon="/usr/share/icons/gnome/24x24/places/folder.png" id="root-menu-594711-105346" label="Root Files">
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/etc">
+				<item label="/etc" icon="/usr/share/icons/gnome/24x24/places/folder.png" >
 					<action name="Execute">
 						<execute>gksudo thunar /etc</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/etc/apt/sources.list">
+				<item label="/etc/apt/sources.list" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo geany /etc/apt/sources.list</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/share">
+				<item label="/usr/share" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/share</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/share/fonts">
+				<item label="/usr/share/fonts" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/share/fonts</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/share/icons">
+				<item label="/usr/share/icons" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/share/icons</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/share/themes">
+				<item label="/usr/share/themes" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/share/themes</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/bin">
+				<item label="/usr/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/bin</execute>
 					</action>
 				</item>
-				<item icon="/usr/share/icons/gnome/24x24/places/folder.png" label="/usr/local/bin">
+				<item label="/usr/local/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/local/bin</execute>
 					</action>
@@ -143,8 +143,8 @@
 		</menu>
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
-		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
-			<item label="Screenshot" icon="/usr/share/icons/hicolor/24x24/apps/org.xfce.screenshooter.png">
+		<menu icon="/usr/share/icons/hicolor/24x24/apps/org.xfce.settings.editor.png" id="root-menu-4985" label="Utilities">
+			<item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
 				<action name="Execute">
 					<execute>grimshot save area</execute>
 				</action>
@@ -154,7 +154,7 @@
 						<execute>xfce4-settings-manager</execute>
 				</action>
 			</item>
-			<item label="Gparted" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" >
+			<item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
 				</action>
@@ -164,29 +164,24 @@
 					<execute>lxrandr</execute>
 				</action>
 			</item>
-			<item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+		 <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T "Update Options" -e sudo bash -c "xupdate; read -srn1"</execute>
 				</action>
-		 </item>
-		 <item label="Printer Setup" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
-				<action name="Execute">
-					<execute>x-terminal-emulator -T "Printer Setup" -e bash -c "printer-installer; read -srn1"</execute>
-				</action>
+		</item>
 		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
 				<action name="Execute">
 					<execute>toggle.sexy</execute>
 				</action>
 		</item>
-		 </item>
-		<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+		<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
 					<execute>bd-utilities-main-installers</execute>
 				</action>
 		</item>
 		</menu>
 		<separator/>
-				<menu id="DynamicMenu" label="All Applications" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
+				<menu id="DynamicMenu" label="All Applications " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
 		<separator/>
   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
     <action name="Reconfigure" />
