@@ -3,11 +3,7 @@ echo ""
 read -p "   [0;33mPackages Useful For Live-build, Git, And Openssh.[0m 
    
    This will install: live-build, live-config, live-boot, git, 
-   openssh-sftp-server & filezilla. Custom configurations will
-   also be added for live-build to work correctly with Lilidog.
-   
-   Live build file changes for Lilidog:
-   [0;34mhttps://github.com/sleekmason/live-build-changes/[0m
+   openssh-sftp-server & filezilla.
    
    Live build manual:
    [0;34mhttps://live-team.pages.debian.net/live-manual/[0m
@@ -29,26 +25,7 @@ FILE="$HOME/.config/jgmenu/prepend.csv"
 echo ""
 sudo apt update
 cd /tmp || exit
-
-# Remove any duplicate folders before installation
-rm -rf /tmp/master.zip
-rm -rf /tmp/live-build-changes-trixie-master
-echo ""
-echo "   [0;33mContinuing...[0m"
-echo ""
-
-# Grab the archive with the correct files
-wget https://github.com/sleekmason/live-build-changes-trixie/archive/master.zip &&
-echo ""
-sudo apt install -y live-build live-config live-boot git openssh-sftp-server filezilla &&
-
-# Copy revised files to correct location
-unzip -q /tmp/master.zip &&
-sudo cp -f /tmp/live-build-changes-trixie-master/usr/lib/live/build/config /usr/lib/live/build/config
-
-# Add line in jgmenu Utilities for filezilla
-sed -i '/Filezilla,    filezilla,                  filezilla/d' "$FILE"
-sed -i '/Extras/i Filezilla,    filezilla,                  filezilla' "$FILE"
+sudo apt install -y live-build live-config live-boot git openssh-sftp-server filezilla
 
 echo ""
 echo "----------------------------------------"
