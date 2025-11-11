@@ -141,16 +141,14 @@
 				</action>
 			</item>
 		</menu>
-		<menu icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png" id="root-menu-721334" label="Toggles">
-			<item label="Sexy Bash" icon="/usr/share/icons/gnome/24x24/actions/object-flip-horizontal.png">
-				<action name="Execute">
-					<execute>toggle.sexy</execute>
-				</action>
-			</item>
-		</menu>
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
 		<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png" id="root-menu-4985" label="Utilities">
+			<item label="Screenshot" icon="/usr/share/icons/hicolor/24x24/apps/org.xfce.screenshooter.png">
+				<action name="Execute">
+					<execute>grimshot save area</execute>
+				</action>
+		    </item>
 			<item label="Settings Manager" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png">
 				<action name="Execute">
 						<execute>xfce4-settings-manager</execute>
@@ -175,8 +173,13 @@
 				<action name="Execute">
 					<execute>x-terminal-emulator -T "Printer Setup" -e bash -c "printer-installer; read -srn1"</execute>
 				</action>
+		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+				<action name="Execute">
+					<execute>toggle.sexy</execute>
+				</action>
+		</item>
 		 </item>
-			<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+		<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>bd-utilities-main-installers</execute>
 				</action>
