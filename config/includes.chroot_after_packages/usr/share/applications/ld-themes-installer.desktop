@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=LD Themes Installer
-Exec=x-terminal-emulator -T 'Auto Themes Installer' -e "theme-chooser-installer"
-StartupNotify=false
-Terminal=false
-Icon=applications-graphics
-Categories=ld-misc-tools;

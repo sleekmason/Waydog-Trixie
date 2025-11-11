@@ -4,5 +4,5 @@ Name=Upgrade Checker
 Exec=tint2-apt-update-check
 StartupNotify=false
 Terminal=false
-Icon=applications-other
+Icon=/usr/share/icons/gnome/24x24/apps/system-software-update.png
 Categories=ld-upgrade-tools;

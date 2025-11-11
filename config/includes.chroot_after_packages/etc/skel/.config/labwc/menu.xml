@@ -181,7 +181,7 @@
 		</item>
 		</menu>
 		<separator/>
-				<menu id="DynamicMenu" label="All Applications " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
+				<menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
 		<separator/>
   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
     <action name="Reconfigure" />

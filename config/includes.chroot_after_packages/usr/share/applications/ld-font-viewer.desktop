@@ -4,5 +4,5 @@ Name=Font Viewer
 Exec=yad --font
 StartupNotify=false
 Terminal=false
-Icon=preferences-desktop-font
+Icon=/usr/share/icons/gnome/24x24/apps/accessories-character-map.png
 Categories=System;Development;Utility;

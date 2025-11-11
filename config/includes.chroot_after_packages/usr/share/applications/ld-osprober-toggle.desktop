@@ -4,5 +4,5 @@ Name=OSprober Toggle
 Exec=osprober-toggle
 StartupNotify=false
 Terminal=false
-Icon=preferences-desktop-personal
+Icon=/usr/share/icons/gnome/24x24/categories/preferences-desktop.png
 Categories=ld-misc-tools;

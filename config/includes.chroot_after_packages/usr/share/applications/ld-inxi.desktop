@@ -4,5 +4,5 @@ Name=Inxi Info
 Exec=x-terminal-emulator -T 'inxi info' -e bash -c "inxi -Fxrzm; bash"
 StartupNotify=false
 Terminal=false
-Icon=document-properties
+Icon=/usr/share/icons/gnome/24x24/apps/user-info.png
 Categories=System;

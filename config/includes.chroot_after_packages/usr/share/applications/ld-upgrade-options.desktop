@@ -4,5 +4,5 @@ Name=Upgrade Options
 Exec=update-options
 StartupNotify=false
 Terminal=false
-Icon=applications-system
+Icon=/usr/share/icons/gnome/24x24/apps/system-software-update.png
 Categories=GNOME;GTK;Settings;System;Utility;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;

@@ -40,3 +40,4 @@ mako &
 # "conkyrestart" >/dev/null 2>&1
 # fi
 
+welcome-backend.sh

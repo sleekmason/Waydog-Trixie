@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Snap Installer
-Exec=snap-installer
-StartupNotify=false
-Terminal=true
-Icon=system-software-install
-Categories=ld-misc-tools;

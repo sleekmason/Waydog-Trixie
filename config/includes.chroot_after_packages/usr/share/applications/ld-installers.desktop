@@ -4,5 +4,5 @@ Name=Waydog Installers
 Exec=bd-utilities-main-installers
 StartupNotify=false
 Terminal=false
-Icon=system-software-install
+Icon=/usr/share/icons/gnome/24x24/apps/system-software-install.png
 Categories=ld-misc-tools;
