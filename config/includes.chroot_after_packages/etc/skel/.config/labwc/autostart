@@ -4,12 +4,14 @@
 ### Mouse Pointer Highlighter - Uncomment the line below to activate on boot.
 # highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
 
-# Lock screen after 5 minutes; turn off display after another 5 minutes.
-swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'wlopm --off \*' \
-    resume 'wlopm --on \*' \
-    before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+# Automatically lock screen after 5 minutes idle
+if command -v swayidle >/dev/null 2>&1; then
+    swayidle \
+        timeout 300 'swaylock -f -c 282330' \       # lock after 5 min idle
+        timeout 600 'systemctl suspend' \           # suspend after 10 min idle
+        resume 'swaylock -f -c 000000' \            # lock on resume
+        before-sleep 'swaylock -f -c 000000' &      # lock before suspend
+fi
 	
 ### Common startup programs. Comment any item no longer wanted.
 swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg &
@@ -38,4 +40,3 @@ mako &
 # "conkyrestart" >/dev/null 2>&1
 # fi
 
-welcome-backend.sh

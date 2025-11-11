@@ -27,8 +27,10 @@ elif command -v wlr-randr >/dev/null 2>&1; then
 fi
 
     # Start optional background services
-dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_RUNTIME_DIR
-systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR
+# dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_RUNTIME_DIR
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_SEAT
+# systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR
+systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR XDG_SESSION_TYPE XDG_CURRENT_DESKTOP XDG_SEAT
 systemctl --user start pipewire wireplumber 2>/dev/null &
 systemctl --user start xdg-desktop-portal 2>/dev/null &
 systemctl --user start xdg-desktop-portal-wlr 2>/dev/null &
@@ -37,6 +39,7 @@ systemctl --user start xdg-desktop-portal-wlr 2>/dev/null &
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     eval "$(dbus-launch --sh-syntax --exit-with-session)"
 fi
+
 
 # Start gvfsd and metadata service (optional but needed for recent files)
 if ! pgrep -x gvfsd >/dev/null; then
