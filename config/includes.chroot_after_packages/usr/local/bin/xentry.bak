@@ -187,55 +187,6 @@ _add_notifications() {
         run_it
 }
 
-_add_ly() {
-    _msg="Install Ly console login manager?"
-    do_it() { cd /tmp &&
-		wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ly.zip --show-progress -q
-        echo "Installing Ly..."
-        unzip -q ly.zip &&
-        mkdir -p "/etc/ly" &&
-        cp -f "/tmp/ly/ly" "/usr/local/bin"
-        cp -f "/tmp/ly/setup.sh" "/etc/ly"
-        # Check for ly.
-        if [ ! -x /usr/local/bin/ly ]; then
-            echo "Error: /usr/local/bin/ly not found or not executable!"
-            exit 1
-        fi
-
-        # Create systemd service if not already present
-        if [ ! -f /etc/systemd/system/ly.service ]; then
-            echo "Creating Ly systemd service..."
-            cat >/etc/systemd/system/ly.service <<'EOF'
-[Unit]
-Description=Ly Console Display Manager
-After=systemd-user-sessions.service getty@tty1.service plymouth-quit-wait.service
-Conflicts=getty@tty1.service
-
-[Service]
-ExecStart=/usr/local/bin/ly
-Type=simple
-TTYPath=/dev/tty1
-TTYReset=yes
-TTYVHangup=yes
-StandardInput=tty
-Restart=always
-RestartSec=1
-
-[Install]
-Alias=display-manager.service
-WantedBy=multi-user.target
-EOF
-        fi
-
-        # Enable service
-        systemctl daemon-reload
-        systemctl enable ly.service
-        echo "Reboot when finished to use the Ly login manager." ;}
-    see_it
-    no_see
-    run_it
-}
-
 _add_conky() {
       _msg="Install Conky with custom configurations?"
       do_it() { cd /tmp &&
@@ -450,7 +401,6 @@ _sourcechanger
 #_add_transparency
 #_add_installers
 _remove_packages
-_add_ly
 _add_backports
 _upgrade_kernel
 #_add_lightdm
@@ -473,7 +423,6 @@ _sourcechanger
 #_add_transparency
 #_add_installers
 _remove_packages
-_add_ly
 _add_backports
 _upgrade_kernel
 #_add_lightdm
