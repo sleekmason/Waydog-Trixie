@@ -24,6 +24,10 @@ pnmixer &
 swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
 # kanshi &
 mako &
+pipewire &
+wireplumber &
+xdg-desktop-portal-wlr &
+xdg-desktop-portal &
 
 ### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.
 # if type 'thunar' &> /dev/null; then
