@@ -16,13 +16,13 @@ fi
 ### Common startup programs. Comment any item no longer wanted.
 swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg &
 waybar >/dev/null 2>&1 &
+/usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
 mate-power-manager >/dev/null 2>&1 &
 xfsettingsd --daemon &
 pnmixer &
-/usr/libexec/polkit-mate-authentication-agent-1 &
 swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
-kanshi &
+# kanshi &
 mako &
 
 ### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.

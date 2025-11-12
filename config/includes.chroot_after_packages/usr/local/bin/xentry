@@ -196,6 +196,7 @@ _add_ly() {
         mkdir -p "/etc/ly" &&
         cp -f "/tmp/ly/ly" "/usr/local/bin"
         cp -f "/tmp/ly/setup.sh" "/etc/ly"
+        cp -f "/tmp/ly/config.ini" "/etc/ly"
         # Check for ly.
         if [ ! -x /usr/local/bin/ly ]; then
             echo "Error: /usr/local/bin/ly not found or not executable!"
