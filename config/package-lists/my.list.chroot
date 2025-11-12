@@ -127,6 +127,7 @@ python3-xlib
 #qt5ct
 #qt5-gtk-platformtheme
 #qt6-gtk-platformtheme
+qtwayland5
 rename
 rsync
 scrot
@@ -213,3 +214,6 @@ xdg-desktop-portal-gtk
 mako-notifier
 grim
 grimshot
+qtwayland5
+libqt6waylandclient6
+xwayland

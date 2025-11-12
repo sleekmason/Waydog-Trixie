@@ -1,6 +1,5 @@
 #!/bin/bash
 #
-# Minimal, reliable Labwc startup script for TTY + seatd on Debian Trixie
 #
 
 # === 1. Basic environment ===
