@@ -18,6 +18,7 @@ export QT_QPA_PLATFORM=wayland
 export SDL_VIDEODRIVER=wayland
 export CLUTTER_BACKEND=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORM="wayland;xcb"
 
 # === 2. Only run on tty1 ===
 if [[ -z "$WAYLAND_DISPLAY" && "$(tty)" == "/dev/tty1" ]]; then
