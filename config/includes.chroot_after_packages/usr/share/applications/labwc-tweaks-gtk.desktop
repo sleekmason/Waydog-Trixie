@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Labwc Config
+GenericName=Labwc Configuration
+Comment=Configure settings for Labwc
+Exec=labwc-tweaks-gtk
+Icon=/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg
+Type=Application
+Terminal=false
+Categories=Settings;System;

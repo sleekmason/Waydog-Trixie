@@ -154,6 +154,11 @@
 						<execute>xfce4-settings-manager</execute>
 				</action>
 			</item>
+		    <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">
+				<action name="Execute">
+						<execute>labwc-tweaks-gtk</execute>
+				</action>
+			</item>
 			<item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
