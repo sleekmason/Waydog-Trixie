@@ -2,9 +2,9 @@
                        WELCOME!
                         
     Welcome to Waydog Trixie. You most likely see
-    the live screen size is not correct.
+    the screen size is not correct.
     
-    The live environment is not meant for Wayland
+    I'm not able to set the live screen size yet,
     but I think folks should see the setup if one
     wants to install.  The screen size is correct
     on installation.  Take the leap!
