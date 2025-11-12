@@ -1,0 +1,130 @@
+/* ============================================
+   Custom Fane Waybar Theme
+   Base color: #19272E
+   ============================================ */
+
+@define-color base        #19272E;
+@define-color base-light  #243840;
+@define-color border      #2E3E46;
+@define-color text        #D8DEE9;
+@define-color text-dim    #9CA8B4;
+@define-color accent      #9E9BC2;
+@define-color green       #A3BE8C;
+@define-color red         #7EB6D6;
+@define-color orange      #D08770;
+@define-color yellow      #EBCB8B;
+@define-color purple      #B48EAD;
+@define-color blue        #97B6C7;
+
+/* --------------------------------------------
+   General Bar Styling
+   -------------------------------------------- */
+#waybar {
+  background: @base;
+  color: @text;
+  font-family: "Dejavu", "Symbols Nerd Font", monospace;
+  font-size: 11pt;
+  border-top: 1px solid #19272E;
+  border-bottom: 1px solid #0D1317;
+  padding: 0 6px;
+}
+
+tooltip {
+  background: @base-light;
+  color: @text;
+  border: 1px solid @border;
+  border-radius: 8px;
+  padding: 5px 8px;
+}
+
+/* --------------------------------------------
+   Workspaces
+   -------------------------------------------- */
+#workspaces button {
+  background: transparent;
+  color: @text-dim;
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin: 2px;
+}
+
+#workspaces button.active {
+  background: @border;
+  color: @accent;
+}
+
+#workspaces button:hover {
+  background: @base-light;
+  color: @text;
+}
+
+/* --------------------------------------------
+   Modules
+   -------------------------------------------- */
+#clock {
+  color: @text;
+  background: @base-light;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+#battery {
+  color: @green;
+  padding: 0 8px;
+}
+#battery.critical {
+  color: @red;
+  background: rgba(191, 97, 106, 0.15);
+  border-radius: 6px;
+}
+
+#network {
+  color: @blue;
+  padding: 0 8px;
+}
+
+#cpu {
+  color: @yellow;
+  padding: 0 8px;
+}
+
+#memory {
+  color: @orange;
+  padding: 0 8px;
+}
+
+#temperature {
+  color: @purple;
+  padding: 0 8px;
+}
+
+#pulseaudio {
+  color: @accent;
+  padding: 0 8px;
+}
+
+/* --------------------------------------------
+   Brightness (Backlight)
+   -------------------------------------------- */
+#backlight {
+  color: @yellow;
+  padding: 0 8px;
+}
+
+/* Optional hover effect */
+#backlight:hover {
+  background: @base-light;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------
+   Tray & Power
+   -------------------------------------------- */
+#tray {
+  padding: 0 6px;
+}
+
+#custom-power {
+  color: @red;
+  padding: 0 8px;
+}

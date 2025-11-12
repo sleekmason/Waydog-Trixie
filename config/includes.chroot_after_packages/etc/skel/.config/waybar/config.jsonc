@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 22, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -33,6 +33,10 @@
         "tray",
         "custom/power"
     ],
+
+    // Add the style *outside* the module lists
+    "style": "~/.config/waybar/style.css",
+    
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -133,7 +137,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["🌕", "🌔", "🌓", "🌒", "🌑"]
     },
     "battery": {
         "states": {
@@ -168,8 +172,8 @@
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
@@ -183,8 +187,8 @@
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
@@ -198,7 +202,7 @@
         "max-length": 40,
         "format-icons": {
             "spotify": "",
-            "default": "🎜"
+            "default": ""
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
@@ -217,9 +221,9 @@
 //			"shutdown": "systemctl --no-ask-password --ignore-inhibitors poweroff"
 //		}
 //	}
-    "custom/power": {
-        "format":"",
-        "on-click": "exec ld-logout",
-        "tooltip": false,
-    }
+"custom/power": {
+    "format": "",
+    "on-click": "exec ld-logout",
+    "tooltip": false
+}
 }
