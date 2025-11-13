@@ -159,14 +159,19 @@
 						<execute>labwc-tweaks-gtk</execute>
 				</action>
 			</item>
+			<item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png" >
+				<action name="Execute">
+					<execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
+				</action>
+			</item>
+			<item label="inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" >
+				<action name="Execute">
+					<execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
+				</action>
+			</item>
 			<item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png" >
 				<action name="Execute">
 					<execute>gksudo gparted</execute>
-				</action>
-			</item>
-			<item label="Lx-Randr" icon="/usr/share/icons/gnome/24x24/categories/preferences-system-network.png">
-				<action name="Execute">
-					<execute>lxrandr</execute>
 				</action>
 			</item>
 		 <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">

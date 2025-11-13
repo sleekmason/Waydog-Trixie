@@ -85,7 +85,7 @@ libqt5svg5
 librsvg2-common
 locales
 lsb-release
-lxrandr
+#lxrandr
 manpages
 mate-polkit
 mate-power-manager
@@ -124,10 +124,6 @@ python3-pycurl
 python3-six
 python3-xdg
 python3-xlib
-#qt5ct
-#qt5-gtk-platformtheme
-#qt6-gtk-platformtheme
-qtwayland5
 rename
 rsync
 scrot
@@ -210,10 +206,10 @@ seatd
 libpam-systemd
 dbus-user-session
 xdg-desktop-portal-wlr
-xdg-desktop-portal-gtk
 mako-notifier
 grim
 grimshot
 qtwayland5
 libqt6waylandclient6
 xwayland
+wlr-randr

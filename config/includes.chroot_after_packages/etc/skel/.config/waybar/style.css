@@ -1,12 +1,12 @@
 /* ============================================
-   Custom Fane Waybar Theme
+   Custom Fane Waybar Theme For Waydog 11 Nov 2025
    Base color: #19272E
    ============================================ */
 
 @define-color base        #19272E;
-@define-color base-light  #243840;
+@define-color base-light  #203138;
 @define-color border      #2E3E46;
-@define-color text        #D8DEE9;
+@define-color text        #B6C8E0;
 @define-color text-dim    #9CA8B4;
 @define-color accent      #9E9BC2;
 @define-color green       #A3BE8C;
@@ -22,7 +22,7 @@
 #waybar {
   background: @base;
   color: @text;
-  font-family: "Dejavu", "Symbols Nerd Font", monospace;
+  font-family: "Dejavu Sans", "Symbols Nerd Font", monospace;
   font-size: 11pt;
   border-top: 1px solid #19272E;
   border-bottom: 1px solid #0D1317;
@@ -95,6 +95,11 @@ tooltip {
 
 #temperature {
   color: @purple;
+  padding: 0 8px;
+}
+
+#keyboard-state {
+  color: @text-dim;
   padding: 0 8px;
 }
 

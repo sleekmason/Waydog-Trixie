@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Fastfetch
+Exec=x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png
+Categories=System;
