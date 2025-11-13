@@ -176,7 +176,7 @@
 			</item>
 		 <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
-					<execute>x-terminal-emulator -T "Update Options" -e sudo bash -c "xupdate; read -srn1"</execute>
+					<execute>update-options</execute>
 				</action>
 		</item>
 		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
