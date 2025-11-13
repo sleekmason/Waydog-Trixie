@@ -33,7 +33,6 @@
         "tray",
         "custom/power"
     ],
-
     // Add the style *outside* the module lists
     "style": "~/.config/waybar/style.css",
     
