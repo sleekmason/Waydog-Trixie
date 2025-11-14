@@ -450,7 +450,7 @@ _sourcechanger
 #_add_transparency
 #_add_installers
 _remove_packages
-_add_ly
+#_add_ly
 _add_backports
 _upgrade_kernel
 #_add_lightdm
@@ -473,7 +473,7 @@ _sourcechanger
 #_add_transparency
 #_add_installers
 _remove_packages
-_add_ly
+#_add_ly
 _add_backports
 _upgrade_kernel
 #_add_lightdm

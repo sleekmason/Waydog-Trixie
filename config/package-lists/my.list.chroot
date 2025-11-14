@@ -213,3 +213,6 @@ qtwayland5
 libqt6waylandclient6
 xwayland
 wlr-randr
+sddm
+sddm-theme-maldives
+
