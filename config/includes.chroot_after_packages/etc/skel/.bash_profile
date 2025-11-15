@@ -43,6 +43,6 @@ if [ -d "/usr/sbin" ] ; then
     PATH="${PATH:+${PATH}:}/usr/sbin"
 fi
 
-if [[ -z $WAYLAND_DISPLAY && $(tty) == /dev/tty1 ]]; then
-    $HOME/.local/bin/labwc-start.sh
-fi
+#if [[ -z $WAYLAND_DISPLAY && $(tty) == /dev/tty1 ]]; then
+#    $HOME/.local/bin/labwc-start.sh
+#fi

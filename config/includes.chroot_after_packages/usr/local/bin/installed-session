@@ -9,7 +9,6 @@ xdg-mime default thunar.desktop inode/directory
 # Remove face icons in $HOME
 rm -f "$HOME"/.face
 rm -f "$HOME"/.face.icon
-rm -f "$HOME"/.xsessionrc
 # Add ~/Pictures and ~/Pictures/wallpapers
 mkdir -p Pictures/wallpapers
 # Change dim on battery to false

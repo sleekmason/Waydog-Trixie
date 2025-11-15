@@ -1,3 +1,0 @@
-#!/bin/bash
-# Enable ensure-sudo systemd service in chroot
-systemctl enable ensure-sudo.service

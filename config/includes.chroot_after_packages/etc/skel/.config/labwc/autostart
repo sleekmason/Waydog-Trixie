@@ -5,7 +5,7 @@
 # highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
 
 ### Common startup programs. Comment any item no longer wanted.
-swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg &
+swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &

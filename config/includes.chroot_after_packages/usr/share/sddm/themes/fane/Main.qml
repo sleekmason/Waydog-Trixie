@@ -1,5 +1,6 @@
 /***************************************************************************
 * Copyright (c) 2013 Abdurrahman AVCI <abdurrahmanavci@gmail.com>
+* Adjusted for use in Waydog by sleekmason 14 Nov 2025
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation

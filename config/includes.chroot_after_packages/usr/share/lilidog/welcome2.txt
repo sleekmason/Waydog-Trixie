@@ -1,13 +1,13 @@
 
                        WELCOME!
                         
-    Welcome to Waydog Trixie. You most likely see
-    the screen size is not correct.
+    Welcome to Waydog Trixie, a version that uses
+    Wayland, rather than x11 for the display.
     
-    I'm not able to set the live screen size yet,
-    but I think folks should see the setup if one
-    wants to install.  The screen size is correct
-    on installation.  Take the leap!
+    Waydog uses Labwc for the window manager, and
+    Waybar for panel. All keybinds are handled by
+    swhkd.  All other programs are up to the user
+    to choose, aside from a few select choices.
     
     Please visit the forum for more information:
     https://sourceforge.net/p/lilidog/discussion/

@@ -1,17 +1,17 @@
 [SddmGreeterTheme]
-Name=Maldives
-Description=Maldives Theme
-Author=Abdurrahman AVCI
-Copyright=(c) 2013, Abdurrahman AVCI
+Name=Fane
+Description=Fane Theme
+Author=sleekmason
+Copyright=(c) 2025
 License=CC-BY-SA
 Type=sddm-theme
 Version=0.1
 Website=https://github.com/sddm/sddm
-Screenshot=maldives.jpg
+Screenshot=background.jpg
 MainScript=Main.qml
 ConfigFile=theme.conf
 TranslationsDirectory=translations
-Email=abdurrahmanavci@gmail.com
-Theme-Id=maldives
+Email=sleekmason@gmail.com
+Theme-Id=fane
 Theme-API=2.0
 QtVersion=6
