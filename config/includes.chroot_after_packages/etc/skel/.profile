@@ -1,13 +1,12 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# Edited for Lilidog to add /sbin and /usr/sbin to path for shell.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
-# exists.
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
+
+# Some programs will require xcb
+export QT_QPA_PLATFORM="wayland;xcb"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -43,4 +42,3 @@ fi
 if [ -d "/usr/sbin" ] ; then
     PATH="${PATH:+${PATH}:}/usr/sbin"
 fi
-
