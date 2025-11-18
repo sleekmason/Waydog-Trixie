@@ -116,7 +116,7 @@ pciutils
 pcmciautils
 pipewire-audio
 powermgmt-base
-pnmixer
+#pnmixer
 python3-distro
 python3-notify2
 python3-pyxattr

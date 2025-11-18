@@ -6,7 +6,7 @@
 #umask 022
 
 # Some programs will require xcb
-export QT_QPA_PLATFORM="wayland;xcb"
+export QT_QPA_PLATFORM=xcb
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
