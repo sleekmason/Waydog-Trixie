@@ -15,12 +15,13 @@ var3="killall -s SIGTERM labwc"
 elif [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
 var3="pkill -x Hyprland"
 elif pgrep -x sway; then
-var3="swaymsg exit"
+var3="killall -s SIGTERM sway"
 else
 var3="loginctl terminate-session $XDG_SESSION_ID"
 fi
 
 # Other possibilities:
+# var3="swaymsg exit"
 #var3="pkill -KILL -u $USER"
 #var3="loginctl terminate-session $XDG_SESSION_ID"
 #var3="loginctl terminate-session self"

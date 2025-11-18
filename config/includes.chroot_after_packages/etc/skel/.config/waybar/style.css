@@ -23,10 +23,11 @@
   background: @base;
   color: @text;
   font-family: "Dejavu Sans", "Symbols Nerd Font", monospace;
-  font-size: 11pt;
+  font-size: 10pt;
   border-top: 1px solid #19272E;
   border-bottom: 1px solid #0D1317;
   padding: 0 6px;
+  margin: 0px;
 }
 
 tooltip {
@@ -34,7 +35,7 @@ tooltip {
   color: @text;
   border: 1px solid @border;
   border-radius: 8px;
-  padding: 5px 8px;
+  padding: 0px 8px;
 }
 
 /* --------------------------------------------
@@ -42,10 +43,12 @@ tooltip {
    -------------------------------------------- */
 #workspaces button {
   background: transparent;
+  font-family: "Jetbrains Mono";
+  font-size: 9pt;
   color: @text-dim;
   border-radius: 6px;
-  padding: 3px 8px;
-  margin: 2px;
+  padding: 0px 8px;
+  margin: 0px;
 }
 
 #workspaces button.active {
@@ -64,8 +67,8 @@ tooltip {
 #clock {
   color: @text;
   background: @base-light;
-  padding: 0 10px;
-  border-radius: 8px;
+  padding: 0 6px;
+  border-radius: 6px;
 }
 
 #battery {

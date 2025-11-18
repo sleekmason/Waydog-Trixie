@@ -2,7 +2,7 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 26, // Waybar height (to be removed for auto height)
+    "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -33,9 +33,6 @@
         "tray",
         "custom/power"
     ],
-    // Add the style *outside* the module lists
-    "style": "~/.config/waybar/style.css",
-    
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -106,7 +103,7 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 16,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",

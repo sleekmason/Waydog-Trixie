@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+date '+%a %b %d, %H:%M'
+
+
+case $BLOCK_BUTTON in
+	1) setsid break & calendar & break ;;
+	2) setsid break & calendar & break ;;
+	3) setsid break & calendar & break ;;
+esac
