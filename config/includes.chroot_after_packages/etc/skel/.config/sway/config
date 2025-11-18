@@ -60,7 +60,7 @@ exec --no-startup-id "swhkd -c $HOME/.config/swhkd/swhkdrc"
 #exec --no-startup-id "kanshi"
 
 ## USE ALTERNATING LAYOUTS
-exec --no-startup-id ~/.config/i3/scripts/alternating_layouts.py
+exec --no-startup-id ~/.config/sway/scripts/alternating_layouts.py
 
 # Use pamixer to adjust the volume.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -246,8 +246,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '              Would you like to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# exit sway (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '              Would you like to exit sway? This will end your X session.' -B 'Yes, exit sway' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -306,9 +306,9 @@ bindsym Ctrl+s sticky toggle
 #bindsym $Mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 ## Show all tags and allow user to select one though dmenu.
-bindsym $mod+m exec --no-startup-id $HOME/.config/i3/scripts/i3-dtags.sh -fn '$dfont'
+bindsym $mod+m exec --no-startup-id $HOME/.config/sway/scripts/i3-dtags.sh -fn '$dfont'
 ## Show tags, and move the current window to the one selected using dmenu.
-bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/i3/scripts/i3-dtags-moveto.sh -fn '$dfont'
+bindsym $mod+Shift+m exec --no-startup-id $HOME/.config/sway/scripts/sway-dtags-moveto.sh -fn '$dfont'
 
 ######### - BAR STUFF - ##########
 
