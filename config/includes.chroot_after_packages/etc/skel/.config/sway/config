@@ -52,11 +52,9 @@ exec --no-startup-id "swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg"
 exec --no-startup-id "/usr/libexec/polkit-mate-authentication-agent-1"
 # exec --no-startup-id "xfsettingsd --daemon"
 exec --no-startup-id "nm-applet"
-exec --no-startup-id "pnmixer"
 exec --no-startup-id "mako"
 exec --no-startup-id "swhks"
 exec --no-startup-id "swhkd -c $HOME/.config/swhkd/swhkdrc"
-#exec --no-startup-id "mate-power-manager >/dev/null 2>&1"
 #exec --no-startup-id "kanshi"
 
 ## USE ALTERNATING LAYOUTS

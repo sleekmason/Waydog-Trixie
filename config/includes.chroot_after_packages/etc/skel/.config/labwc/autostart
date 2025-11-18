@@ -10,9 +10,7 @@ swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
-mate-power-manager >/dev/null 2>&1 &
 xfsettingsd --daemon &
-pnmixer &
 swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
 # kanshi &
 mako &
