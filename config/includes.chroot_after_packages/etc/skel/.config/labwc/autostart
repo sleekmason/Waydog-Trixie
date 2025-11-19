@@ -4,8 +4,18 @@
 ### Mouse Pointer Highlighter - Uncomment the line below to activate on boot.
 # highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
 
+### export variables
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+export CLUTTER_BACKEND=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+if ! pgrep -x gvfsd >/dev/null; then
+    command -v gvfsd >/dev/null && gvfsd &
+    command -v gvfsd-metadata >/dev/null && gvfsd-metadata &
+fi
+
 ### Common startup programs. Comment any item no longer wanted.
-~/.local/bin/start.sh &
 swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
