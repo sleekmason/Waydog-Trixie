@@ -55,21 +55,15 @@
   <!--
   <menu id="client-list-combined-menu" label="Running..." />
   -->
-  <item label="Web browser">
-    <action name="Execute" command="firefox" />
-  </item>
-  <item label="Terminal">
-    <action name="Execute" command="alacritty" />
-    <include menu="DynamicMenu" />
-  </item>
-  <item label="Reconfigure">
+  <menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
+  <separator/>
+   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
     <action name="Reconfigure" />
   </item>
-  <item label="Exit">
-    <action name="Exit" />
-  </item>
-  <item label="Poweroff">
-    <action name="Execute" command="systemctl -i poweroff" />
+  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
+    <action name="Execute">
+        <execute>ld-logout</execute>
+    </action>
   </item>
 </menu>
 
@@ -196,10 +190,10 @@
   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
     <action name="Reconfigure" />
   </item>
-  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png" >
- <action name="Execute">
-						<execute>ld-logout</execute>
-					</action>
+  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
+    <action name="Execute">
+        <execute>ld-logout</execute>
+    </action>
   </item>
 </menu>
 
