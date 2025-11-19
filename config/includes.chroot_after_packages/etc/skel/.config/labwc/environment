@@ -25,6 +25,7 @@
 # XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle
 # XKB_DEFAULT_OPTIONS=grp:shift_caps_toggle
 
+QT_QPA_PLATFORM=xcb
 MOZ_ENABLE_WAYLAND=1
 SDL_VIDEODRIVER=wayland
 CLUTTER_BACKEND=wayland
