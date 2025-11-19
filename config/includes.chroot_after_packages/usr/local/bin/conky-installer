@@ -35,10 +35,6 @@ sudo cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/shar
 # Copy conkyrestart script to /usr/local/bin
 #sudo cp -f "/usr/share/lilidog/extras/conky/conkyrestart" "/usr/local/bin"
 sudo cp -f "$HOME/.config/conky/scripts/conkyrestart" "/usr/local/bin"
-echo ""
-# Copy menu entries
-	sed -i '/Conky,               conky-toggle,                                  org.xfce.settings.manager/d' ~/.config/jgmenu/prepend.csv
-	sed -i '/Xkill/i Conky,               conky-toggle,                                  org.xfce.settings.manager' ~/.config/jgmenu/prepend.csv
 
 # Place autostart entry
 if test -e "$HOME/.config/conky"; then

@@ -26,9 +26,6 @@ echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https:/
     | sudo tee /etc/apt/sources.list.d/vscodium.list
 echo""
 sudo apt update && sudo apt install codium
-sed -i '/VSCodium,          codium,                                  vscodium/d' ~/.config/jgmenu/prepend.csv &&
-sed -i '/Root Folders,^checkout(rootfiles),folder/a VSCodium,          codium,                                  vscodium' ~/.config/jgmenu/prepend.csv
-killall -q jgmenu
 echo ""
 echo "[0;33m-------------------------------------------------------------------"
 echo ""

@@ -40,10 +40,6 @@ else
 echo "" 
 echo ""
 sudo wget --prefer-family=IPv4 -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash &&
-echo ""
-sed -i '/^Joplin\b/d' ~/.config/jgmenu/prepend.csv &&
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Joplin,             ~/.joplin/Joplin.AppImage,         joplin' ~/.config/jgmenu/prepend.csv &&
-killall -q jgmenu
 echo "" 
 echo "" 
 echo "[0;32mAll Finished![0m"

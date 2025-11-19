@@ -179,24 +179,6 @@ cp /usr/share/lilidog/extras/zsh/.zshrc "$HOME"/.zshrc
 fi
 # Copy zsh-toggle .desktop file to /usr/share/applications
 sudo cp -f "/usr/share/lilidog/extras/zsh/ld-zsh-toggle.desktop" "/usr/share/applications"
-## Place menu entries
-sed -i '/Pcmanfm,            pcmanfm,                           system-file-manager/d' "$FILE"
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Pcmanfm,            pcmanfm,                           system-file-manager' "$FILE"
-sed -i '/Mousepad,           mousepad,                          accessories-text-editor/d' "$FILE"
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Mousepad,           mousepad,                          accessories-text-editor' "$FILE"
-sed -i '/bash\/zsh.*/d' "$FILE"
-sed -i '/OSprober.*/a bash\/zsh,            zsh-toggle,                                    org.xfce.settings.manager' "$FILE"
-sed -i '/Filezilla,    filezilla,                  filezilla/d' "$FILE"
-sed -i '/Extras/i Filezilla,    filezilla,                  filezilla' "$FILE"
-sed -i '/Inkscape,               inkscape,                              org.xfce.settings.color/d' "$FILE"
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Inkscape,               inkscape,                              org.xfce.settings.color' "$FILE"
-sed -i '/Gimp,               gimp,                              gimp/d' "$FILE"
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Gimp,               gimp,                              gimp' "$FILE"
-sed -i '/Thunderbird,        thunderbird,      thunderbird/d' "$FILE"
-sed -i '7i Thunderbird,        thunderbird,      thunderbird' "$FILE"
-sed -i '/Firefox,            firefox,          firefox-esr/d' "$FILE"
-sed -i '7i Firefox,            firefox,          firefox-esr' "$FILE"
-killall -q jgmenu
 ## Get rid of left over packages.
 echo ""
 echo "   [0;33m----------------------------------------------------------------"
