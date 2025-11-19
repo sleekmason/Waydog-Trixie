@@ -11,6 +11,3 @@ rm -f "$HOME"/.face
 rm -f "$HOME"/.face.icon
 # Add ~/Pictures and ~/Pictures/wallpapers
 mkdir -p Pictures/wallpapers
-# Change dim on battery to false
-gsettings set org.mate.power-manager idle-dim-battery false
-gsettings set org.mate.power-manager backlight-battery-reduce false
