@@ -95,15 +95,15 @@ echo ""
 echo 'include "/usr/share/nano/*.nanorc"';} | tee -a "$HOME/.config/nano/nanorc" > /dev/null
 
 ## Add nano to swhkd/swhkdrc
-if [ -e "$HOME/.config/swhkdrc" ]; then
-   if ! grep -Fxq "# nano editor." "$HOME/.config/swhkdrc"; then
+if [ -e "$HOME/.config/swhkd/swhkdrc" ]; then
+   if ! grep -Fxq "# nano editor." "$HOME/.config/swhkd/swhkdrc"; then
 {
-   if ! grep -Fxq "mod4 + n" "$HOME/.config/swhkdrc"; then
+   if ! grep -Fxq "mod4 + n" "$HOME/.config/swhkd/swhkdrc"; then
 echo ""
 echo "# nano editor."
 echo "mod4 + n"
 notify-send -t 8000 --urgency low "Use 'super + n' to start nano"
-elif grep -Fxq "shift + mod4 + n" "$HOME/.config/swhkdrc"; then
+elif grep -Fxq "shift + mod4 + n" "$HOME/.config/swhkd/swhkdrc"; then
 notify-send -t 8000 --urgency low "Desired keybinds already in use"
 notify-send -t 8000 --urgency low "Please add the keybind manually"
 exit
@@ -113,8 +113,7 @@ echo "# nano editor."
 echo "shift + mod4 + n"
 notify-send -t 8000 --urgency low "Use 'shift + super + n' to start nano"
    fi
-echo "	x-terminal-emulator -T 'Nano' -e nano";} | tee -a "$HOME/.config/swhkdrc" > /dev/null
-pkill -USR1 -x sxhkd
+echo "	x-terminal-emulator -T 'Nano' -e nano";} | tee -a "$HOME/.config/swhkd/swhkdrc" > /dev/null
    fi
 fi
 
