@@ -1,39 +1,40 @@
 <?xml version="1.0"?>
-
 <!--
   This is a very simple config file with many options missing. For a complete
   set of options with comments, see docs/rc.xml.all
 -->
-
 <labwc_config>
-
+	<placement>
+    <policy>cascade</policy>
+    <!--
+      When <placement><policy> is "cascade", the offset for cascading new
+      windows can be overwritten like this:
+      <cascadeOffset x="40" y="30" />
+    -->
+  </placement>
+	
   <theme>
     <name>Fanebox</name>
     <cornerRadius>8</cornerRadius>
-
-    <font name="Noto Sans" size="11" />
-
+    <font name="Noto Sans" size="11"/>
     <font place="ActiveWindow">
       <name>Noto Sans</name>
       <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
-
     <font place="InactiveWindow">
       <name>Noto Sans</name>
       <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
-
     <font place="MenuHeader">
       <name>Noto Sans</name>
       <size>11</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
-
     <font place="MenuItem">
       <name>Noto Sans</name>
       <size>11</size>
@@ -42,31 +43,102 @@
     </font>
   </theme>
 
- <placement>
-    <policy>Smart</policy>
-    <!-- 'Smart' or 'UnderMouse' -->
-    <center>yes</center>
-    <!-- whether to place windows in the center of the free area found or
-       the top left corner -->
-    <monitor>Mouse</monitor>
-    <!-- with Smart placement on a multi-monitor system, try to place new windows
-       on: 'Any' - any monitor, 'Mouse' - where the mouse is, 'Active' - where
-       the active window is, 'Primary' - only on the primary monitor -->
-    <primaryMonitor>Active</primaryMonitor>
-    <!-- The monitor where Openbox should place popup dialogs such as the
-       focus cycling popup, or the desktop switch popup.  It can be an index
-       from 1, specifying a particular monitor.  Or it can be one of the
-       following: 'Mouse' - where the mouse is, or
-                  'Active' - where the active window is -->
-  </placement>
+ <!--
+    Just as for window-rules, 'identifier' relates to app_id for native Wayland
+    windows and WM_CLASS for XWayland clients.
+  -->
+  <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="no">
+    <fields>
+      <field content="type" width="25%" />
+      <field content="trimmed_identifier" width="25%" />
+      <!-- <field content="identifier" width="25%" /> -->
+      <field content="title" width="50%" />
+    </fields>
+  </windowSwitcher>
+
+  <!--
+    When using all workspaces option of window switcher, there are extra fields
+    that can be used, workspace (variable length), state (single space),
+    type_short (3 spaces), output (variable length), and can be set up
+    like this. Note: output only shows if more than one output available.
+
+    <windowSwitcher show="yes" preview="no" outlines="no" allWorkspaces="yes">
+      <fields>
+        <field content="workspace" width="5%" />
+        <field content="state" width="3%" />
+        <field content="type_short" width="3%" />
+        <field content="output" width="9%" />
+        <field content="identifier" width="30%" />
+        <field content="title" width="50%" />
+      </fields>
+    </windowSwitcher>
+
+    custom format - (introduced in 0.7.2)
+    It allows one to replace all the above "fields" with one line, using a
+    printf style format. For field explanations, "man 5 labwc-config".
+
+    The example below would print "foobar",then type of window (wayland, X),
+    then state of window (M/m/F), then output (shows if more than 1 active),
+    then workspace name, then identifier/app-id, then the window title.
+    Uses 100% of OSD window width.
+
+    <windowSwitcher show="yes" preview="no" outlines="no" allWorkspaces="yes">
+      <fields>
+        <field content="custom" format="foobar %b %3s %-10o %-20W %-10i %t" width="100%" />
+      </fields>
+    </windowSwitcher>
+  -->
+
+  <!-- edge strength is in pixels -->
+  <resistance>
+    <screenEdgeStrength>20</screenEdgeStrength>
+    <windowEdgeStrength>20</windowEdgeStrength>
+    <!-- resistance for maximized/tiled windows -->
+    <unSnapThreshold>20</unSnapThreshold>
+    <!-- resistance for vertically/horizontally maximized windows -->
+    <unMaximizeThreshold>150</unMaximizeThreshold>
+  </resistance>
+
+  <resize>
+    <!-- Show a simple resize and move indicator -->
+    <popupShow>Never</popupShow>
+    <!-- Let client redraw its contents while resizing -->
+    <drawContents>yes</drawContents>
+    <!-- Borders are effectively 8 pixels wide regardless of visual appearance -->
+    <minimumArea>8</minimumArea>
+
+    <!--
+      Set cornerRange to a positive value to increase the size of corner
+      regions for mouse actions and diagonal window resizing. When omitted,
+      the default size of the corner region is half of the titlebar height.
+
+      <cornerRange>8</cornerRange>
+    -->
+  </resize>
+
+  <focus>
+    <followMouse>no</followMouse>
+    <followMouseRequiresMovement>yes</followMouseRequiresMovement>
+    <raiseOnFocus>no</raiseOnFocus>
+  </focus>
+
+  <snapping>
+    <!-- Set range to 0 to disable window snapping completely -->
+    <range>1</range>
+    <overlay enabled="yes">
+      <delay inner="500" outer="500" />
+    </overlay>
+    <topMaximize>yes</topMaximize>
+    <notifyClient>always</notifyClient>
+  </snapping>
+
 
   <keyboard>
-    <default />
+    <default/>
     <!-- Remove a previously defined keybind -->
     <keybind key="W-F4">
-      <action name="None" />
+      <action name="None"/>
     </keybind>
-
     <!-- Desktop switching keybinds -->
     <keybind key="W-1">
       <action name="GoToDesktop" to="1"/>
@@ -81,42 +153,36 @@
       <action name="GoToDesktop" to="4"/>
     </keybind>
     <keybind key="W-C-Left">
-      <action name="GoToDesktop" to="left" />
+      <action name="GoToDesktop" to="left"/>
     </keybind>
     <keybind key="W-C-Right">
-      <action name="GoToDesktop" to="right" />
+      <action name="GoToDesktop" to="right"/>
     </keybind>
-       <!-- OpenBox Simple SendToDesktop (Workspace)-->
-   <keybind key="W-S-1">
-  <action name="SendToDesktop"><to>1</to></action>
+    <!-- OpenBox Simple SendToDesktop (Workspace)-->
+    <keybind key="W-S-1">
+      <action name="SendToDesktop">
+        <to>1</to>
+      </action>
     </keybind>
     <keybind key="W-S-2">
-  <action name="SendToDesktop"><to>2</to></action>
+      <action name="SendToDesktop">
+        <to>2</to>
+      </action>
     </keybind>
     <keybind key="W-S-3">
-  <action name="SendToDesktop"><to>3</to></action>
+      <action name="SendToDesktop">
+        <to>3</to>
+      </action>
     </keybind>
     <keybind key="W-S-4">
-  <action name="SendToDesktop"><to>4</to></action>
+      <action name="SendToDesktop">
+        <to>4</to>
+      </action>
     </keybind>
     <keybind key="W-d">
-    <action name="Execute" command="toggleShowDesktop"/>
-</keybind>
+      <action name="Execute" command="toggleShowDesktop"/>
+    </keybind>
   </keyboard>
-
-  <mouse>
-    <default />
-    <!-- Show a custom menu on desktop right click -->
-    <context name="Root">
-      <mousebind button="Right" action="Press">
-        <action name="ShowMenu" menu="some-custom-menu" />
-      </mousebind>
-      <mousebind button="Left" action="Press">
-        <action name="ShowMenu" menu="root-menu" />
-      </mousebind>
-    </context>
-  </mouse>
-
   <desktops>
     <popupTime>1000</popupTime>
     <names>
@@ -126,4 +192,261 @@
       <name>Desktop 4</name>
     </names>
   </desktops>
+  <mouse>
+
+    <!-- time is in ms -->
+    <doubleClickTime>500</doubleClickTime>
+
+    <context name="Frame">
+      <mousebind button="A-Left" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="A-Left" action="Drag">
+        <action name="Move" />
+      </mousebind>
+      <mousebind button="A-Right" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="A-Right" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+
+    <context name="Top">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="Left">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="Right">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="Bottom">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="TRCorner">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="BRCorner">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="TLCorner">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+    <context name="BLCorner">
+      <mousebind button="Left" action="Drag">
+        <action name="Resize" />
+      </mousebind>
+    </context>
+
+    <context name="TitleBar">
+      <mousebind button="Left" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="Right" action="Click">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind direction="Up" action="Scroll">
+        <action name="Unshade" />
+        <action name="Focus" />
+      </mousebind>
+      <mousebind direction="Down" action="Scroll">
+        <action name="Unfocus" />
+        <action name="Shade" />
+      </mousebind>
+    </context>
+
+    <context name="Title">
+      <mousebind button="Left" action="Drag">
+        <action name="Move" />
+      </mousebind>
+      <mousebind button="Left" action="DoubleClick">
+        <action name="ToggleMaximize" />
+      </mousebind>
+      <mousebind button="Right" action="Click">
+        <action name="ShowMenu" menu="client-menu" />
+      </mousebind>
+    </context>
+
+    <context name="Maximize">
+      <mousebind button="Left" action="Click">
+        <action name="ToggleMaximize" />
+      </mousebind>
+      <mousebind button="Right" action="Click">
+        <action name="ToggleMaximize" direction="horizontal" />
+      </mousebind>
+      <mousebind button="Middle" action="Click">
+        <action name="ToggleMaximize" direction="vertical" />
+      </mousebind>
+    </context>
+
+    <context name="WindowMenu">
+      <mousebind button="Left" action="Click">
+        <action name="ShowMenu" menu="client-menu" atCursor="no" />
+      </mousebind>
+      <mousebind button="Right" action="Click">
+        <action name="ShowMenu" menu="client-menu" atCursor="no" />
+      </mousebind>
+    </context>
+
+    <context name="Icon">
+      <mousebind button="Left" action="Click">
+        <action name="ShowMenu" menu="client-menu" atCursor="no" />
+      </mousebind>
+      <mousebind button="Right" action="Click">
+        <action name="ShowMenu" menu="client-menu" atCursor="no" />
+      </mousebind>
+    </context>
+
+    <context name="Shade">
+      <mousebind button="Left" action="Click">
+        <action name="ToggleShade" />
+      </mousebind>
+    </context>
+
+    <context name="AllDesktops">
+      <mousebind button="Left" action="Click">
+        <action name="ToggleOmnipresent" />
+      </mousebind>
+    </context>
+
+    <context name="Iconify">
+      <mousebind button="Left" action="Click">
+        <action name="Iconify" />
+      </mousebind>
+    </context>
+
+    <context name="Close">
+      <mousebind button="Left" action="Click">
+        <action name="Close" />
+      </mousebind>
+    </context>
+
+    <context name="Client">
+      <mousebind button="Left" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="Middle" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+      <mousebind button="Right" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+    </context>
+
+    <context name="Root">
+      <mousebind button="Left" action="Press">
+        <action name="ShowMenu" menu="root-menu" />
+      </mousebind>
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="some-custom-menu"/>
+      </mousebind>
+    <mousebind button="Middle" action="Press">
+        <action name="Execute">
+            <execute>/usr/local/bin/toggleShowDesktop</execute>
+        </action>
+    </mousebind>
+      <mousebind direction="Up" action="Scroll">
+        <action name="GoToDesktop" to="left" wrap="yes" />
+      </mousebind>
+      <mousebind direction="Down" action="Scroll">
+        <action name="GoToDesktop" to="right" wrap="yes" />
+      </mousebind>
+    </context>
+  </mouse>
+    <!--
+    A touch configuration can be bound to a specific device. If device
+    name is left empty, the touch configuration applies to all touch
+    devices or functions as a fallback. Multiple touch configurations
+    can exist.
+    See the libinput device section for obtaining the device names.
+
+    Direct cursor movement to a specified output. If the compositor is
+    running in nested mode, this does not take effect.
+
+    If mouseEmulation is enabled, all touch up/down/motion events are
+    translated to mouse button and motion events.
+  -->
+  <touch deviceName="" mapToOutput="" mouseEmulation="no"/>
+   <!--
+    The tablet cursor movement can be restricted to a single output.
+    If output is left empty or the output does not exists, the tablet
+    will span all outputs.
+
+    The tablet orientation can be changed in 90 degree steps, thus
+    *rotate* can be set to [0|90|180|270]. Rotation will be applied
+    after applying tablet area transformation.
+
+    The active tablet area can be specified by setting the *top*/*left*
+    coordinate (in mm) and/or *width*/*height* (in mm). If width or
+    height are omitted or default (0.0), width/height will be set to
+    the remaining width/height seen from top/left.
+
+    The tablet can be forced to always use mouse emulation. This prevents
+    tablet specific restrictions, e.g. no support for drag&drop, but also
+    omits tablet specific features like reporting pen pressure.
+
+    Pen buttons emulate regular mouse buttons. The pen *button* can be any
+    of [Stylus|Stylus2|Stylus3] and can be mapped to mouse buttons
+    [Right|Middle|Side]. Tablet pad buttons [Pad|Pad2|Pad3|..|Pad9] also
+    emulate regular mouse buttons and can be mapped to any mouse button.
+    When using mouse emulation, the pen tip [tip] and the stylus buttons
+    can be set to any available mouse button [Left|Right|Middle|..|Task].
+  -->
+  <tablet mapToOutput="" rotate="0" mouseEmulation="no">
+    <!-- Active area dimensions are in mm -->
+    <area top="0.0" left="0.0" width="0.0" height="0.0" />
+    <map button="Tip" to="Left" />
+    <map button="Stylus" to="Right" />
+    <map button="Stylus2" to="Middle" />
+  </tablet>
+
+  <!--
+    All tablet tools, except of type mouse and lens, use absolute
+    positioning by default. The *motion* attribute allows to set tools
+    to relative motion instead. When using relative motion,
+    *relativeMotionSensitivity* controls the speed of the cursor. Using
+    a value lower than 1.0 decreases the speed, using a value greater than
+    1.0 increases the speed of the cursor.
+  -->
+  <tabletTool motion="absolute" relativeMotionSensitivity="1.0" />
+  <libinput>
+    <device category="default">
+      <naturalScroll></naturalScroll>
+      <leftHanded></leftHanded>
+      <pointerSpeed></pointerSpeed>
+      <accelProfile></accelProfile>
+      <tap>no</tap>
+      <tapButtonMap></tapButtonMap>
+      <tapAndDrag></tapAndDrag>
+      <dragLock></dragLock>
+      <middleEmulation></middleEmulation>
+      <disableWhileTyping></disableWhileTyping>
+      <clickMethod></clickMethod>
+      <sendEventsMode></sendEventsMode>
+      <calibrationMatrix></calibrationMatrix>
+      <scrollFactor>1.0</scrollFactor>
+    </device>
+  </libinput>
 </labwc_config>

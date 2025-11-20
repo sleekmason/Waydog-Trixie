@@ -7,14 +7,16 @@
 
 # i3 config file (v4)
 #
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+include /etc/sway/config.d/*
 set $mod Mod4
 set $env MOZ_ENABLE_WAYLAND 1
 set $env SDL_VIDEODRIVER wayland
 set $env CLUTTER_BACKEND wayland
 set $env QT_WAYLAND_DISABLE_WINDOWDECORATION 1
-
+set $env XDG_CURRENT_DESKTOP sway
+set $env XDG_RUNTIME_DIR "/run/user/$UID"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -23,10 +25,6 @@ font pango:jetbrains mono 10
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment sway
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -40,6 +38,11 @@ exec --no-startup-id dex --autostart --environment sway
 ## If polybar i3-bar is installed, comment out the bar section 
 ##and uncomment this line.
 #exec --no-startup-id ( polybar i3-bar > /dev/null 2>&1 )
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment sway
+
+# Needed for recents.
 exec_always {
     # Start GVFS services if not already running
     if ! pgrep -x gvfsd >/dev/null; then
