@@ -19,8 +19,8 @@ cd /tmp || exit
 sudo apt update && sudo apt-get install -y conky-all fortunes fortune-mod
 killall -q conky
 sudo rm -fr /tmp/conky*
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-waydog-trixie2.zip --show-progress -q &&
-unzip -q /tmp/conky-waydog-trixie2.zip
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-waydog-trixie.zip --show-progress -q &&
+unzip -q /tmp/conky-waydog-trixie.zip
 if test -f ~/.config/conky; then
 	mv ~/.config/conky ~/.config/conky.bak &&
 	cp -r /tmp/conky ~/.config
