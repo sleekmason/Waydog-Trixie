@@ -4,5 +4,5 @@ Name=conky
 Exec=conky-toggle
 StartupNotify=false
 Terminal=false
-Icon=conky-logomark-violet
+Icon=/usr/share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
 Categories=System;Monitor;

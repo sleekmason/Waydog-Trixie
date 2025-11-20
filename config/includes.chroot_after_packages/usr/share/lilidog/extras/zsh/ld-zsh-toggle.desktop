@@ -4,5 +4,5 @@ Name=ZSH Toggle
 Exec=zsh-toggle
 StartupNotify=false
 Terminal=false
-Icon=utilities-terminal
+Icon=/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png
 Categories=ld-misc-tools;
