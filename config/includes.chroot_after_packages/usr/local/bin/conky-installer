@@ -43,7 +43,7 @@ echo ""
 echo '## Start conkys on login if present'	
 echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
 echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
-echo 'fi';} | tee -a "$HOME/.config/openbox/autostart" > /dev/null
+echo 'fi';} | tee -a "$HOME/.config/labwc/autostart" > /dev/null
   fi
 fi
 sleep .50
