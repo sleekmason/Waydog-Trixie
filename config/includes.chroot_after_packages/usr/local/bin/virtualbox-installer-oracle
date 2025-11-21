@@ -4,20 +4,20 @@ echo ""
 read -p "   This script will install the Oracle version of VirtualBox: 
    [0;32mhttps://www.virtualbox.org/wiki/Linux_Downloads[0m
 
-   A new menu entry will be placed in the Quick Grab menu.
-
    [0;31mNote*[0m [0;33mFor Virtualbox to function,[0m [0;31mKVM may need to be disabled.[0m
 
    [0;33mFor a temporary session try in a terminal:
    sudo modprobe -r kvm
-   sudo modprobe -r kvm_intel
+   sudo modprobe -r kvm_intel (intel processors)
+   sudo modprobe -r kvm_amd  (amd processors)
    
    To disable on boot, open /etc/default/grub. Look for the line:
    GRUB_CMDLINE_LINUX_DEFAULT=, and add: kvm.enable_virt_at_load=0
 
    Or, blacklist KVM in /etc/modprobe.d/kvm-blacklist.conf, place:
    blacklist kvm
-   blacklist kvm_intel[0m
+   blacklist kvm_intel
+   blacklist kvm_amd[0m
    [0;32m-----------------------------------------------------
    
    Please press enter to install VirtualBox from Oracle.
@@ -41,32 +41,25 @@ echo -e "\e[1mInstalling packages...\e[0m"
 echo ""
 [ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || sudo apt-get update  
 sudo apt-get install -y build-essential libsdl-ttf2.0-0 linux-headers-$(uname -r) "$vb_package" || exit 1
-
-sed -i '/Virtualbox,         virtualbox,       virtualbox/d' ~/.config/jgmenu/prepend.csv &&
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Virtualbox,         virtualbox,       virtualbox' ~/.config/jgmenu/prepend.csv
-killall -q jgmenu
 echo ""
 echo "   ----------------------------------------------------------------"
 echo ""
 echo "   [0;32mAll Finished![0m"
 echo ""
-echo "   [0;33mIf installed, You should find a new menu entry under 'Quick Grab'[0m"
-echo "" 
-echo "   [0;32mMenu entries will need to be removed manually if uninstalled." 
-echo "   See Jgmenu Conf under Configuration in the menu for directions.[0m"
-echo ""
 echo "   [0;31mNote*[0m [0;33mFor Virtualbox to function,[0m [0;31mKVM may need to be disabled.[0m
 
    [0;33mFor a temporary session try in a terminal:
    sudo modprobe -r kvm
-   sudo modprobe -r kvm_intel
+   sudo modprobe -r kvm_intel (intel processors)
+   sudo modprobe -r kvm_amd  (amd processors)
    
    To disable on boot, open /etc/default/grub. Look for the line:
    GRUB_CMDLINE_LINUX_DEFAULT=, and add: kvm.enable_virt_at_load=0
 
    Or, blacklist KVM in /etc/modprobe.d/kvm-blacklist.conf, place:
    blacklist kvm
-   blacklist kvm_intel[0m"
+   blacklist kvm_intel
+   blacklist kvm_amd[0m"
 echo ""
 echo "----------------------------------------------------------------"
 else

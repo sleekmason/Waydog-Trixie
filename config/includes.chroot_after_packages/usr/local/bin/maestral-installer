@@ -67,7 +67,7 @@ echo "Name=Maestral Dropbox Client"
 echo "Exec=source maestral-venv/bin/activate && maestral gui &"
 echo "StartupNotify=false"
 echo "Terminal=false"
-echo "Icon=applications-internet"
+echo "Icon=/usr/share/icons/gnome/24x24/apps/web-browser.png"
 echo "Categories=Network;";} | sudo tee -a /usr/share/applications/maestral.desktop > /dev/null
 fi
 if ! grep -q Firefox "$HOME/.config/jgmenu/prepend.csv"; then

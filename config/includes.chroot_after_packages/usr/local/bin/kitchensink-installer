@@ -4,15 +4,13 @@ echo ""
 read -p"   [0;33mKitchensink Installer[0m 
    
    A non interactive installation script of particular packages
-   making for an easy initial system setup. This one is geared 
-   towards getting a full setup in one go.
+   making for an easy initial system setup.
    
    Installs: gimp, inkscape openssh-sftp-server, filezilla, zsh, 
-   pcmanfm, brightness slider (if backlight exists), firefox, 
-   mousepad, mpv, Circle icons, Obsidian icons, Papirus icons, 
-   and Thunderbird.
+   pcmanfm, firefox, mousepad, mpv, Circle icons, Papirus icons,
+   Obsidian icons, and Thunderbird.
    
-   Look in the Toggles menu to change shell to zsh as default.
+   Look in the 'Other' menu to change shell to zsh as default.
     
    [0;33m-------------------------------------------
    
@@ -28,7 +26,6 @@ echo ""
 cd /tmp || exit &&
 ## Get rid of left over packages.
 rm -f /tmp/circle-icons*
-rm -f /tmp/bright-gamma*
 rm -f /tmp/zshrc.zip
 rm -f /tmp/.zshrc
 echo ""
@@ -38,22 +35,9 @@ sudo apt update &&
 echo ""
 echo "   [0;33mDownloading some initial packages...[0m"
 echo ""
-if test -e /sys/class/backlight/*; then
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/bright-gamma_12.0-1_all.deb --show-progress -q
-fi
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/circle-icons_12.0-2_all.deb --show-progress -q
 echo ""
 echo "   [0;33mBeginning installation...[0m" && sleep 1
-echo ""
-## Brightness slider
-if test -e /sys/class/backlight/*; then
-sudo apt install -y /tmp/./bright-gamma* &&
-sed -i '/Brightness,          bright-gamma.*/d' "$FILE"
-sed -i '/Font Sizes/a Brightness,          bright-gamma,                                  org.xfce.settings.manager' "$FILE"
-echo ""
-echo "   [0;33mSystem tray brightness slider can be enabled through  
-   the toggles menu.[0m" && sleep 1
-fi
 echo ""
 echo "   [0;33mInstalling extra icons...[0m" && sleep 1
 echo ""

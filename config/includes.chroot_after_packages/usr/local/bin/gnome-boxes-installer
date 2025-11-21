@@ -21,20 +21,10 @@ read -p "   [0;33mGnome Boxes Installer[0m
    if : >/dev/tcp/8.8.8.8/53; then
 echo "" 
 sudo apt update && sudo apt install --install-recommends gnome-boxes dnsmasq &&
-sed -i '/Gnome Boxes,         gnome-boxes,       gnome-boxes/d' ~/.config/jgmenu/prepend.csv &&
-sed -i '/Root Folders,^checkout(rootfiles),folder/a Gnome Boxes,         gnome-boxes,       gnome-boxes' ~/.config/jgmenu/prepend.csv
-killall -q jgmenu
 echo ""
 echo "-----------------------------------------------------"
 echo ""
 echo "[0;32mAll Finished![0m"
-echo ""
-echo "[0;33mIf installed, You should find a new menu entry under 'Quick Grab'"
-echo "labeled 'Gnome Boxes'[0m"
-echo "" 
-echo "" 
-echo "[0;32mMenu entries will need to be removed manually if uninstalled." 
-echo "See Jgmenu Conf under Configuration in the menu for directions.[0m"
 echo ""
 echo "-----------------------------------------------------"
 else
