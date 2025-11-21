@@ -16,6 +16,6 @@ read -p "    [0;33mUpdate Sources Format[0m
     -----------------------------------------------------------------[0m"
 
 sudo apt modernize-sources -y
-echo
+sudo apt update
 echo
 read -n1 -p " Press any key to quit this dialog ... "

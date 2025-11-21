@@ -35,7 +35,7 @@ sudo apt update
 sudo apt-get install -y wget python3-gpg firefox-esr
 cd ~/.local/share || exit
 ### Grab dropbox.py for terminl use
-sudo --prefer-family=IPv4 wget -O /usr/local/bin/dropbox "https://www.dropbox.com/download?dl=packages/dropbox.py" &&
+sudo wget --prefer-family=IPv4 -O /usr/local/bin/dropbox "https://www.dropbox.com/download?dl=packages/dropbox.py" &&
 sudo chmod +x /usr/local/bin/dropbox
 ### Grab dropbox
 wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - &&
