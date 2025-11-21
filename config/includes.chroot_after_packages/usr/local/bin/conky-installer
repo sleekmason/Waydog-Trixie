@@ -4,7 +4,7 @@ read -r -p "   [0;33mConky Installer[0m
 
    This script will install conky-all, fortunes, and fortune-mod, and 
    install a customized conky chooser and conkys that can be accessed 
-   through either the toggles menu, or the keybind super + c.
+   through either through the menu, or the keybind super + c.
    
    [0;33m----------------------------------------------------------
    
@@ -21,7 +21,7 @@ killall -q conky
 sudo rm -fr /tmp/conky*
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-waydog-trixie.zip --show-progress -q &&
 unzip -q /tmp/conky-waydog-trixie.zip
-if test -f ~/.config/conky; then
+if test -e ~/.config/conky; then
 	mv ~/.config/conky ~/.config/conky.bak &&
 	cp -r /tmp/conky ~/.config
 else                

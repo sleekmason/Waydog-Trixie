@@ -168,6 +168,11 @@
 					<execute>gksudo gparted</execute>
 				</action>
 			</item>
+			<item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg" >
+				<action name="Execute">
+					<execute>gksudo synaptic</execute>
+				</action>
+			</item>			
 		 <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>update-options</execute>
