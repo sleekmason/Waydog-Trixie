@@ -86,8 +86,8 @@ lsb-release
 manpages
 mate-polkit
 meld
-menu
-menu-xdg
+#menu
+#menu-xdg
 mesa-utils
 mesa-va-drivers
 mesa-vdpau-drivers
@@ -104,7 +104,7 @@ network-manager-l10n
 ntfs-3g
 obsidian-icon-theme
 os-prober
-oss-compat
+#oss-compat
 p7zip-full
 pamixer
 pavucontrol
@@ -126,6 +126,7 @@ suckless-tools
 sudo
 ssft
 strace
+synaptic
 syslinux-common
 systemd-resolved
 systemd-timesyncd
@@ -154,7 +155,7 @@ wpasupplicant
 wireless-regdb
 xarchiver
 xdg-dbus-proxy
-xdg-desktop-portal-gtk
+#xdg-desktop-portal-gtk
 xdg-user-dirs
 xdg-utils
 xfce4-settings
