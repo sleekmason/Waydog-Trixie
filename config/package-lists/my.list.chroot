@@ -9,7 +9,8 @@ at-spi2-core
 avahi-autoipd
 bash-completion
 bind9-dnsutils
-brightnessctl 
+brightnessctl
+bsdmainutils
 brightness-udev
 btrfs-progs
 bzip2
