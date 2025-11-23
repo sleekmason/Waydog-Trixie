@@ -1,4 +1,0 @@
-Check For Upgrades,               tint2-apt-update-check,                                       applications-other
-System Updater,                   x-terminal-emulator -T 'Apt Update' -e 'sudo xupdate -i',     system-software-update
-BD Quick Installers,              quickinstaller,                                               system-software-install
-Beardog Installers,               ld-installers,                                                system-software-install
