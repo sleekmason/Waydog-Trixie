@@ -182,6 +182,47 @@
     <keybind key="W-d">
       <action name="Execute" command="toggleShowDesktop"/>
     </keybind>
+    <!-- ### Application keybinds ### -->
+    <keybind key="W-w">
+    <action name="Execute">
+        <execute>waybar-toggle</execute>
+    </action>
+    </keybind>
+    <keybind key="W-Return">
+    <action name="Execute">
+        <execute>x-terminal-emulator</execute>
+    </action>
+    </keybind>
+    <keybind key="W-b">
+    <action name="Execute">
+        <execute>x-www-browser</execute>
+    </action>
+    </keybind>
+    <keybind key="W-x">
+    <action name="Execute">
+        <execute>ld-logout</execute>
+    </action>
+    </keybind>
+    <keybind key="W-f">
+    <action name="Execute">
+        <execute>thunar</execute>
+    </action>
+    </keybind>
+    <keybind key="A-F5">
+    <action name="Execute">
+        <execute>fuzzel</execute>
+    </action>
+    </keybind>
+    <keybind key="W-e">
+    <action name="Execute">
+        <execute>geany</execute>
+    </action>
+    </keybind>
+    <keybind key="Print">
+    <action name="Execute">
+        <execute>grimshot save area</execute>
+    </action>
+    </keybind>
   </keyboard>
   <desktops>
     <popupTime>1000</popupTime>

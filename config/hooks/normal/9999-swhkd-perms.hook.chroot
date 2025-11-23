@@ -1,9 +1,0 @@
-#!/bin/bash
-# Set swhkd with root permissions.
-set -e
-
-if [ -f /usr/bin/swhkd ]; then
-    chown root:root /usr/bin/swhkd
-    chmod u+s /usr/bin/swhkd
-fi
-

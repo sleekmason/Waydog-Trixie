@@ -1,13 +1,5 @@
 #### labwc autostart - Place your commands here to have programs 
-### activated on login. See 'man openbox' for more information.
-
-### Mouse Pointer Highlighter - Uncomment the line below to activate on boot.
-# highlight-pointer -r 7 --show-cursor --hide-highlight --auto-hide-highlight --key-toggle-highlight 'H-space' -c violet -p green &
-
-if ! pgrep -x gvfsd >/dev/null; then
-    command -v gvfsd >/dev/null && gvfsd &
-    command -v gvfsd-metadata >/dev/null && gvfsd-metadata &
-fi
+### activated on login.
 
 ### Common startup programs. Comment any item no longer wanted.
 swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
@@ -15,15 +7,11 @@ waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
 xfsettingsd --daemon &
-swhks && swhkd -c "$HOME/.config/swhkd/swhkdrc" &
-# kanshi &
 mako &
+# kanshi &
 
 ### Start Thunar Daemon if thunar is installed. Uncomment the three lines below to enable.
 # if type 'thunar' &> /dev/null; then
 # thunar --daemon &
 # fi
-
-### Start brightness tray icon on login
-# sleep 2 && bright-gamma &
 welcome-backend.sh
