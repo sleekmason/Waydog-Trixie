@@ -222,7 +222,7 @@
         <execute>thunar</execute>
     </action>
     </keybind>
-    <keybind key="A-F5">
+    <keybind key="W-F5">
     <action name="Execute">
         <execute>fuzzel</execute>
     </action>

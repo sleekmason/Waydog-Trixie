@@ -176,6 +176,7 @@ mako-notifier
 grim
 grimshot
 qtwayland5
+qml6-module-qtquick
 libqt6waylandclient6
 xwayland
 wlr-randr
