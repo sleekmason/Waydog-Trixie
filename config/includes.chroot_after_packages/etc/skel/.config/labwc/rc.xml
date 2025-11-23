@@ -12,34 +12,48 @@
       <cascadeOffset x="40" y="30" />
     -->
   </placement>
-	
+
+  <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Fanebox</name>
-    <cornerRadius>8</cornerRadius>
-    <font name="Noto Sans" size="11"/>
+    <icon></icon>
+    <fallbackAppIcon>labwc</fallbackAppIcon>
+    <titlebar>
+      <layout>icon:iconify,max,close</layout>
+      <showTitle>yes</showTitle>
+    </titlebar>
+    <cornerRadius>4</cornerRadius>
+    <keepBorder>yes</keepBorder>
+    <dropShadows>no</dropShadows>
     <font place="ActiveWindow">
       <name>Noto Sans</name>
       <size>11</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
+      <slant>normal</slant>
+      <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
       <name>Noto Sans</name>
       <size>11</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
+      <slant>normal</slant>
+      <weight>normal</weight>
     </font>
     <font place="MenuHeader">
       <name>Noto Sans</name>
       <size>11</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
+      <slant>normal</slant>
+      <weight>normal</weight>
     </font>
     <font place="MenuItem">
       <name>Noto Sans</name>
       <size>11</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
+    <font place="OnScreenDisplay">
+      <name>Noto Sans</name>
+      <size>10</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
     </font>
   </theme>
 
