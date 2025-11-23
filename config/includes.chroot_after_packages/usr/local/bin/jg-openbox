@@ -1,6 +1,0 @@
-#!/bin/bash
-jgmenu_run init --apply-obtheme
-notify-send --urgency low "jgmenu theme updated"
-if test -e ~/.config/jgmenu/backup; then
-rm -fr ~/.config/jgmenu/backup
-fi
