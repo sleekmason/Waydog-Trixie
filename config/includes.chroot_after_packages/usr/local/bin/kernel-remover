@@ -59,6 +59,17 @@ if [ -z "$frontend" ]; then
 fi
 
 #---------------------------------------------------------------------
+# Wayland / sudo handling — force text mode if YAD cannot run properly
+#---------------------------------------------------------------------
+if [ "$frontend" = "yad" ] && [ -n "$WAYLAND_DISPLAY" ] && [ -z "$DISPLAY" ]; then
+    frontend="text"
+fi
+
+if [ "$frontend" = "yad" ] && [ -z "$DISPLAY" ]; then
+    frontend="text"
+fi
+#---------------------------------------------------------------------
+
 get_KernelList() {
     KernelList=""
     for v in /boot/vmlinuz-*; do
@@ -125,10 +136,36 @@ fi
 #---------------------------------------------------------------------
 if [ "$frontend" = "text" ]; then
     echo "$CURRENT"
-    echo "Available kernels to remove:"
-    echo "$KernelList"
     echo
-    read -rp "Enter kernel(s) to remove (space-separated): " CHOICE
+    echo "Available kernels to remove:"
+    echo
+
+    # Trim whitespace and convert to array
+    KernelList_trimmed=$(echo "$KernelList" | xargs)
+    read -r -a KARRAY <<< "$KernelList_trimmed"
+
+    # Display numbered list with colored numbers and kernel names
+    index=1
+    for k in "${KARRAY[@]}"; do
+        echo -e "  \033[0;33m$index)\033[0m \033[0;32m$k\033[0m"
+        index=$((index+1))
+    done
+    echo
+
+    echo -ne "Enter the \033[0;33mnumber\033[0m of the \033[0;32mkernel(s)\033[0m to remove (space-separated): "
+    read NUMS
+
+    # Convert numbers to kernel names
+    CHOICE=""
+    for n in $NUMS; do
+        if [[ "$n" =~ ^[0-9]+$ ]] && [ "$n" -ge 1 ] && [ "$n" -le "${#KARRAY[@]}" ]; then
+            CHOICE="$CHOICE ${KARRAY[$((n-1))]}"
+        else
+            echo "Invalid selection: $n"
+        fi
+    done
+
+    CHOICE=$(echo "$CHOICE" | xargs)  # Trim spaces
 else
     # Prepare list for yad
     yad_list=()
@@ -147,7 +184,6 @@ else
         "${yad_list[@]}" \
         2>/dev/null)
 
-    # Remove any 'TRUE' text from selection
     CHOICE=$(echo "$CHOICE" | sed 's/\bTRUE\b//g')
 fi
 
@@ -159,13 +195,14 @@ fi
 if [ "$frontend" = "text" ]; then
     echo
     echo "The following kernel(s) have been selected for removal: ${CHOICE}"
-    read -rp "Would you like to continue? [y/N]: " CONFIRM
+    echo
+    echo -ne "\033[0;33m  Would you like to continue? [y/N]: \033[0m"
+    read CONFIRM
     case "$CONFIRM" in
         [yY][eE][sS]|[yY]) ;;
         *) echo "Operation canceled."; exit 0 ;;
     esac
 else
-    # Format selection as bullet list
     BULLETS=""
     for k in ${CHOICE}; do
         BULLETS="${BULLETS}• ${k}\n"
@@ -184,6 +221,7 @@ fi
 # Proceed with confirmed removal
 #---------------------------------------------------------------------
 for i in ${CHOICE}; do
+    echo
     echo "Confirmed removal for $i"
     remove_one_kernel "$i"
 done
@@ -197,5 +235,11 @@ if [ "$frontend" = "yad" ]; then
 else
     echo "Removed kernel(s): ${CHOICE}"
 fi
+echo
+echo -e "\033[0;33m  Kernel removal completed...\033[0m"
+echo
+echo -e "\033[0;32m  Press any key to quit...\033[0m"
+echo
+read -srn1
 
 exit 0

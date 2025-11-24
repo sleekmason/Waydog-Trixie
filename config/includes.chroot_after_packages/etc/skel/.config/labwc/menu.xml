@@ -178,6 +178,11 @@
 					<execute>update-options</execute>
 				</action>
 		</item>
+	    <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
+				<action name="Execute">
+					<execute>gksudo /usr/local/bin/kernel-remover</execute>
+				</action>
+		    </item>
 		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
 				<action name="Execute">
 					<execute>toggle.sexy</execute>
