@@ -1,18 +1,16 @@
 #!/bin/bash
 
-yad --title "Utility Installers" --escape-ok --form --center --geometry=620x340-300-360 --borders=10 \
+yad --title "Utility Installers" --escape-ok --form --center --geometry=460x380-300-360 --borders=10 \
 --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
 --button="gtk-ok:0" --buttons-layout=spread \
 --text="\n Utility Installers \n" --text-align=center \
 --window-icon=applications-utilities \
-    --form --columns=4 \
+    --form --columns=3 \
     --field="Backports":FBTN "x-terminal-emulator -T 'Backports Installer' -e bash -c "backports-installer"" \
     --field="Backports Kernel":FBTN "x-terminal-emulator -T 'Backports Kernel Installer' -e bash -c "backports-kernel-installer"" \
     --field="Batsignal":FBTN "x-terminal-emulator -T 'Batsignal Installer' -e bash -c "batsignal-installer"" \
     --field="Custom Conky":FBTN "x-terminal-emulator -T 'Conky Installer' -e bash -c "conky-installer"" \
     --field="Deb Optimizer":FBTN "x-terminal-emulator -T 'Debian Sources.list Optimizer' -e bash -c "deb-source-location"" \
-    --field="Dropbox":FBTN "x-terminal-emulator -T 'Dropbox Installer' -e bash -c "dropbox-installer"" \
-    --field="   Gnome Boxes":FBTN "x-terminal-emulator -T 'Gnome Boxes Installer' -e bash -c "gnome-boxes-installer"" \
     --field="Hblock":FBTN "x-terminal-emulator -T 'Hblock Installer' -e bash -c "hblock-installer"" \
     --field="Joplin Note":FBTN "x-terminal-emulator -T ' Joplin Note' -e bash -c "joplin-installer"" \
     --field="Kitchen Sink":FBTN "x-terminal-emulator -T 'Kitchen Sink Installer' -e bash -c "kitchensink-installer"" \
