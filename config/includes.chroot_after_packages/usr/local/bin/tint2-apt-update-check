@@ -1,12 +1,9 @@
 #!/bin/bash
-
-# Simple upgrade notifier for Wayland-only systems
-# Sends a notification if no upgrades, or opens a terminal with upgrades listed
-
-# Preferred terminal order
+# Updater script for waydog.
+# Terminal order
 TERMINALS=("xfce4-terminal" "foot" "wezterm" "alacritty" "gnome-terminal" "kitty" "x-terminal-emulator")
 
-# Find first available terminal
+# First available terminal
 TERM_CMD=""
 for term in "${TERMINALS[@]}"; do
     if command -v "$term" >/dev/null 2>&1; then
@@ -16,35 +13,70 @@ for term in "${TERMINALS[@]}"; do
 done
 
 if [[ -z "$TERM_CMD" ]]; then
-    echo "No terminal emulator found. Please install xfce4-terminal, foot, wezterm, alacritty, gnome-terminal, or kitty." >&2
+    echo "No terminal emulator found." >&2
     exit 1
 fi
 
-# Check for available upgrades
+run_in_terminal() {
+    SCRIPT="$1"
+
+    case "$TERM_CMD" in
+        xfce4-terminal)
+            "$TERM_CMD" --hold --command "bash '$SCRIPT'"
+            ;;
+        gnome-terminal|x-terminal-emulator)
+            "$TERM_CMD" -- bash "$SCRIPT"
+            ;;
+        kitty)
+            "$TERM_CMD" bash "$SCRIPT"
+            ;;
+        alacritty|wezterm|foot)
+            "$TERM_CMD" -e bash "$SCRIPT"
+            ;;
+        *)
+            "$TERM_CMD" -e bash "$SCRIPT"
+            ;;
+    esac
+}
+
+# Upgrades
 num_upgrades=$(( $(apt list --upgradable 2>/dev/null | wc -l) - $(apt-mark showhold | wc -l) - 1 ))
 
-# If no upgrades, just notify
 if (( num_upgrades == 0 )); then
     notify-send -t 10000 --urgency low "No Upgrades Available"
     exit 0
 fi
 
-# If upgrades available, notify
 notify-send -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
 
-# Open terminal to show upgrades and allow user to proceed
-if [ -x /usr/bin/nala ]; then
-    "$TERM_CMD" -e sh -c 'printf "%s\n" "Available upgrades:"; \
-    apt list --upgradeable; printf "\n%s\n" "Held packages:"; \
-    apt-mark showhold; echo "... Done"; echo ""; echo \
-    "Please enter your password to continue to upgrade your system."; echo \
-    "Or close this window to quit now.  <ctrl + c>"; echo ""; \
-    sudo nala upgrade; bash;'
+# tmp script
+TMP_SCRIPT=$(mktemp)
+
+{
+echo 'echo ""'
+echo 'echo "Available upgrades:"'
+echo 'echo ""'
+echo 'echo "Press q at the end to continue,"'
+echo 'echo "or close the window to quit."'
+echo 'echo ""'
+echo 'apt list --upgradeable'
+echo 'echo ""'
+echo 'echo "Held packages:"'
+echo 'apt-mark showhold'
+echo 'echo ""'
+echo 'echo "Please enter your password to continue to upgrade your system."'
+echo 'echo "Or close this window to quit now.  <ctrl + c>"'
+echo 'echo ""'
+
+if command -v nala >/dev/null 2>&1; then
+    echo 'sudo nala upgrade'
 else
-    "$TERM_CMD" -e sh -c 'printf "%s\n" "Available upgrades:"; \
-    apt list --upgradeable; printf "\n%s\n" "Held packages:"; \
-    apt-mark showhold; echo "... Done"; echo ""; echo \
-    "Please enter your password to continue to upgrade your system."; echo \
-    "Or close this window to quit now.  <ctrl + c>"; echo ""; \
-    sudo apt upgrade; bash;'
+    echo 'sudo apt upgrade'
 fi
+
+echo 'bash'
+} > "$TMP_SCRIPT"
+
+chmod +x "$TMP_SCRIPT"
+
+run_in_terminal "$TMP_SCRIPT"
