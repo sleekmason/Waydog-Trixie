@@ -23,6 +23,7 @@ set $env SDL_VIDEODRIVER wayland
 set $env CLUTTER_BACKEND wayland
 set $env QT_WAYLAND_DISABLE_WINDOWDECORATION 1
 set $env XDG_CURRENT_DESKTOP sway
+set $env QT_QPA_PLATFORM xcb
 
 include /etc/sway/config-vars.d/*
 
