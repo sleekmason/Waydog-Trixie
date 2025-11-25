@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=waypaper
-Name=Wallpaper
+Name=Wallpapers
 Icon=waypaper
 Terminal=false
 GenericName=Waypaper wallpaper setter
