@@ -78,7 +78,7 @@
 				<execute>thunar</execute>
 			</action>
 		</item>
-				<item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png" >
+		<item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png" >
 			<action name="Execute">
 				<execute>firefox-esr</execute>
 			</action>
@@ -153,6 +153,11 @@
 						<execute>labwc-tweaks-gtk</execute>
 				</action>
 			</item>
+		    <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
+				<action name="Execute">
+					<execute>waypaper</execute>
+				</action>
+			</item>	
 			<item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png" >
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
@@ -180,7 +185,7 @@
 		</item>
 	    <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
 				<action name="Execute">
-					<execute>gksudo /usr/local/bin/kernel-remover</execute>
+					<execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
 				</action>
 		    </item>
 		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">

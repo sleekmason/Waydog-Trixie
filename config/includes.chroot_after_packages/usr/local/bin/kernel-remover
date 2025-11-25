@@ -23,7 +23,7 @@ CURRENTKERNEL=$(uname -r)
 CURRENT=" Cannot remove the active kernel  -  '${CURRENTKERNEL}'"
 
 force=0
-frontend="yad"
+frontend="text"
 xtra=0
 
 #---------------------------------------------------------------------
