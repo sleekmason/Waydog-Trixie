@@ -5,6 +5,13 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+export QT_QPA_PLATFORM=xcb
+export MOZ_ENABLE_WAYLAND=1
+export CLUTTER_BACKEND=wayland
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+#export SDL_VIDEODRIVER=wayland
+
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
