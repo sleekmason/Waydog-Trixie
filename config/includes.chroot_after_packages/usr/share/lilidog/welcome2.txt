@@ -2,12 +2,12 @@
                        WELCOME!
                         
     Welcome to Waydog Trixie, a version that uses
-    Wayland, rather than x11 for the display.
+    Wayland rather than x11 for the display.
     
     Waydog uses Labwc for the window manager, and
-    Waybar for panel. All keybinds are handled by
-    swhkd.  All other programs are up to the user
-    to choose, aside from a few select choices.
+    Waybar for panel. Keybinds are handled within
+    the Window managers. Most programs will be up
+    to the user to choose.
     
     Please visit the forum for more information:
     https://sourceforge.net/p/lilidog/discussion/
