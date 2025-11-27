@@ -177,27 +177,32 @@
 				<action name="Execute">
 					<execute>gksudo synaptic</execute>
 				</action>
-			</item>			
-		 <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+			</item>
+			<item label="Usbimager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
+				<action name="Execute">
+					<execute>/usr/local/bin/usbimager</execute>
+				</action>
+			</item>				
+		    <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>update-options</execute>
 				</action>
-		</item>
-	    <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
+		    </item>
+	        <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
 				</action>
 		    </item>
-		<item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+		    <item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
 				<action name="Execute">
 					<execute>toggle.sexy</execute>
 				</action>
-		</item>
-		<item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
+		    </item>
+		    <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
 					<execute>bd-utilities-main-installers</execute>
 				</action>
-		</item>
+		    </item>
 		</menu>
 		<separator/>
 				<menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>

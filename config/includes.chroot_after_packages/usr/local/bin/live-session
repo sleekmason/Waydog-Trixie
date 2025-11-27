@@ -6,6 +6,7 @@ gsettings set org.gnome.desktop.interface gtk-theme "Fane"
 gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Teal"
 # Remove errant mirror line.
 sudo sed -i '/file/d' /etc/apt/sources.list
+xdg-user-dirs-update
 # Remove face icons in $HOME
 rm -f "$HOME"/.face
 rm -f "$HOME"/.face.icon

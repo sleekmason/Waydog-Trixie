@@ -2,7 +2,8 @@
 ### activated on login.
 
 ### Common startup programs. Comment any item no longer wanted.
-swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
+# swaybg -i /usr/share/backgrounds/wallpapers/AiTree.jpg &
+waypaper --restore &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
