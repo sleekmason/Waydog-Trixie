@@ -4,8 +4,9 @@ read -p "   [0;33mExtra Themes Installer.[0m
    This script will download and install a selection of themes to
    include gtk-3.0, Openbox(labwc), and Geany.
    
-   There are currently 28 themes total. All are very lightweight.
-   Approx. 14MB total size installed.
+   There are currently 16 themes total. All are very lightweight.
+   Approx. 8.5MB total size installed.  These can and will change
+   over time.
    
       
    [0;33m--------------------------------------------------------------
@@ -21,11 +22,11 @@ cd /tmp || exit &&
 
 # Remove copies from /tmp
 sudo rm -fr "/tmp/themechooser"
-sudo rm -fr "/tmp/themechooser-trixie.zip"
+sudo rm -fr "/tmp/themechooser-waydog.zip"
 
 # Grab the theme files
-wget https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-trixie.zip --show-progress -q
-unzip -q "/tmp/themechooser-trixie.zip"
+wget https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-waydog.zip --show-progress -q
+unzip -q "/tmp/themechooser-waydog.zip"
 
 sudo cp -af /tmp/themechooser/themes/* "/usr/share/themes"
 
