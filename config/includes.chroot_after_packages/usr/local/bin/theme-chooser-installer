@@ -32,22 +32,10 @@ sudo rm -fr "/tmp/themechooser-trixie.zip"
 wget https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-trixie.zip --show-progress -q
 unzip "/tmp/themechooser-trixie.zip"
 
-# Backup and copy over /usr/share/themes
-if ! test -e "/usr/share/themes.bak"; then
-sudo cp -r "/usr/share/themes" "/usr/share/themes.bak"
-fi
 sudo cp -af /tmp/themechooser/themes/* "/usr/share/themes"
 
-# Backup and copy over /usr/share/geany
-if ! test -e "/usr/share/geany.bak"; then
-sudo cp -r "/usr/share/geany" "/usr/share/geany.bak"
-fi
 sudo cp -af /tmp/themechooser/geany/* "/usr/share/geany"
 
-# Backup and copy over /usr/share/xfce4
-if ! test -e "/usr/share/xfce4.bak"; then
-sudo cp -r "/usr/share/xfce4" "/usr/share/xfce4.bak"
-fi
 sudo cp -af /tmp/themechooser/xfce4/* "/usr/share/xfce4"
 
 # Copy theme scripts to /usr/local/bin
@@ -58,28 +46,10 @@ sudo cp -f "/tmp/themechooser/ld-auto-themes-other.desktop" "/usr/share/applicat
 sudo cp -f "/tmp/themechooser/ld-theme-reset.desktop" "/usr/share/applications"
 sudo cp -f "/tmp/themechooser/ld-themes.desktop" "/usr/share/applications"
 
-# copy lilidog-themes config files to ~/.config
-cp -fr "/tmp/themechooser/lilidog-themes" "$HOME/.config"
-
-# copy Rofi config files to ~/.config except for Beardog
-if ! test -e "/usr/share/lilidog/beardog"; then
-cp -ar "/tmp/themechooser/rofi" "$HOME/.config"
-fi
 
 # Copy Readme.lilidog-themes to /usr/share/lilidog
 if test -e "/usr/share/lilidog"; then
 sudo cp -f "/tmp/themechooser/Readme.lilidog-themes" "/usr/share/lilidog"
-fi
-
-# St menu item in toggles
-if test -e "/usr/local/bin/ld-entry"; then
-sed -i '/Themes,              ld-themes.*/d' "$HOME/.config/jgmenu/prepend.csv"
-sed -i '/Sounds/i Themes,              ld-themes,                                     org.xfce.settings.manager' "$HOME/.config/jgmenu/prepend.csv"
-fi
-
-if test -e "/usr/share/lilidog/beardog"; then
-sed -i '/Themes,              ld-themes.*/d' "$HOME/.config/jgmenu/prepend.csv"
-sed -i '/^Sounds/a Themes,              ld-themes,                                     org.xfce.settings.manager' "$HOME/.config/jgmenu/prepend.csv"
 fi
 
 echo ""

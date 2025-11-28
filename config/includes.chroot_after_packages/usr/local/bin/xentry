@@ -98,95 +98,6 @@ _update() {
         run_it
 }
 
-_add_lightdm() {
-      _msg="Add lightdm? (choose 'n' if wanting slick-greeter instead.)"
-      do_it() { apt-get update && apt-get install -y lightdm lightdm-gtk-greeter-settings &&
-		        cp -rf /usr/share/lilidog/extras/lightdm/ /usr/share
-		        ## Toggle to lightdm-greeter
-                sed -i '/greeter-session=.*/d' "/etc/lightdm/lightdm.conf"
-                sed -i '108a greeter-session=lightdm-gtk-greeter' "/etc/lightdm/lightdm.conf"
-                ## Menu additions
-                sed -i '/Lightdm,             lightdm-options,.*/d' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-                sed -i '/^Keybinds/a Lightdm,             lightdm-options,                                                      lightdm-gtk-greeter-settings' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-                 if [[ $(command -v lightdm) ]]; then
-                   if grep -Fxq 'exec "$session"' /home/"${SUDO_USER}"/.xsessionrc; then
-                   sed -i 's/^exec "$session"/#exec "$session"/' /home/"${SUDO_USER}"/.xsessionrc
-                   fi
-                 fi
-		        sed -i 's/^exec startx/#exec startx/g' /home/"${SUDO_USER}"/.profile ;}
-      
-        see_it
-        no_see
-        run_it
-}
-
-_add_slick() {
-      _msg="Add and use lightdm slick-greeter?" 
-      do_it() { apt-get update && apt-get install -y lightdm lightdm-settings slick-greeter &&
-		        cp -f /usr/share/lilidog/extras/slick-lightdm/slick-greeter.conf /etc/lightdm
-                cp -f /usr/share/lilidog/extras/slick-lightdm/50-slick-greeter.conf /usr/share/lightdm/lightdm.conf.d
-		        ## Toggle to lightdm-greeter
-                sed -i '/greeter-session=.*/d' "/etc/lightdm/lightdm.conf"
-                sed -i '108a greeter-session=slick-greeter' "/etc/lightdm/lightdm.conf"
-                ## Menu additions
-                sed -i '/Lightdm,             lightdm-options,.*/d' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-                sed -i '/^Keybinds/a Lightdm,             lightdm-options,                                                      lightdm-gtk-greeter-settings' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-                 if [[ $(command -v lightdm) ]]; then
-                   if grep -Fxq 'exec "$session"' /home/"${SUDO_USER}"/.xsessionrc; then
-                   sed -i 's/^exec "$session"/#exec "$session"/' /home/"${SUDO_USER}"/.xsessionrc
-                   fi
-                 fi
-		        sed -i 's/^exec startx/#exec startx/g' /home/"${SUDO_USER}"/.profile ;}
-      
-        see_it
-        no_see
-        run_it
-}
-
-_add_jgmenu() {
-      _msg=" Install jgmenu to replace the labwc default?"
-      do_it() { cd /tmp &&
-		        wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/jgmenu.zip --show-progress -q &&
-		        wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/jgmenu_4.4.0-1_amd64.deb --show-progress -q &&
-                apt-get update && apt-get install --install-recommends -y ./jgmenu_4.4.0-1_amd64.deb python3-gi gir1.2-gtk-3.0 &&
-                unzip -q jgmenu.zip &&
-                cp -r /tmp/jgmenu/jgmenu /home/"${SUDO_USER}"/.config &&
-                cp -a /tmp/jgmenu/scripts/. /usr/local/bin/ &&
-		        mv /home/"${SUDO_USER}"/.config/labwc/rc.xml /home/"${SUDO_USER}"/.config/labwc/rc.xml.bak &&
-		        cp /tmp/jgmenu/labwc/rc.xml /home/"${SUDO_USER}"/.config/labwc &&
-		        chown "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/labwc/rc.xml
-		        chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/jgmenu
-		        if egrep -q "Jgmenu" /usr/local/bin/beardog-themer; then
-                exit
-                else
-                sed -i '/labwc/i    --field="                  Jgmenu Icons!jgmenu":FBTN "jg-icon-changer" \\' /usr/local/bin/beardog-themer
-                sed -i '/labwc/i    --field="                Jgmenu Theme!jgmenu":FBTN "jg-menu-theme" \\' /usr/local/bin/beardog-themer
-                fi
-                if xhost >& /dev/null ; then labwc --reconfigure
-                else echo "Not currently in X. labwc restart deferred" ; fi }
-        see_it
-        no_see
-        run_it
-}
-
-_add_notifications() {
-      _msg="Install Dunst for notifications with sound options?"
-      do_it() { cd /tmp &&
-		  wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/dunst.zip --show-progress -q &&
-          unzip -q dunst.zip &&
-          cp -r /tmp/dunst/dunst /home/"${SUDO_USER}"/.config &&
-          cp -a /tmp/dunst/scripts/. /usr/local/bin/ &&
-          chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/dunst &&
-          apt-get update && apt-get install -y dunst
-          if egrep -q "Sounds" /usr/local/bin/beardog-themer; then
-                exit
-                else
-		        sed -i '/System/i    --field="                           Sounds!audio-headphones":FBTN "notification-sounds" \\' /usr/local/bin/beardog-themer ; fi }
-        see_it
-        no_see
-        run_it
-}
-
 _add_ly() {
     _msg="Install Ly console login manager?"
     do_it() { cd /tmp &&
@@ -272,76 +183,6 @@ _add_conky() {
         run_it
 }
 
-_add_themes() {
-      _msg="Install extra gtk3 & Openbox themes with all the Lilidog options?"
-      do_it() { cd /tmp || exit &&
-		  wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-trixie.zip --show-progress -q
-          unzip -q "/tmp/themechooser-trixie.zip"
-		  # Backup and copy over /usr/share/themes
- #         if ! test -e "/usr/share/themes.bak"; then
- #         cp -r "/usr/share/themes" "/usr/share/themes.bak"
- #         fi
-          cp -af /tmp/themechooser/themes/* "/usr/share/themes"
-		  # Backup and copy over /usr/share/geany
- #         if ! test -e "/usr/share/geany.bak"; then
- #         cp -r "/usr/share/geany" "/usr/share/geany.bak"
- #         fi
-          cp -af /tmp/themechooser/geany/* "/usr/share/geany"
-		  # Backup and copy over /usr/share/xfce4
- #         if ! test -e "/usr/share/xfce4.bak"; then
- #         cp -r "/usr/share/xfce4" "/usr/share/xfce4.bak"
- #         fi
-          cp -af /tmp/themechooser/xfce4/* "/usr/share/xfce4"
-          # Copy theme scripts to /usr/local/bin
-          cp -rf "/tmp/themechooser/scripts/." "/usr/local/bin/"
-          # copy lilidog-themes config files to ~/.config
-          cp -r "/tmp/themechooser/lilidog-themes" /home/"${SUDO_USER}"/.config
-          # Copy .desktop file to /usr/share/applications
-          cp -f "/tmp/themechooser/ld-auto-themes-other.desktop" "/usr/share/applications"
-          cp -f "/tmp/themechooser/ld-theme-reset.desktop" "/usr/share/applications"
-          cp -f "/tmp/themechooser/ld-themes.desktop" "/usr/share/applications"
-          # Copy Readme.lilidog-themes to /usr/share/lilidog
-          if test -e "/usr/share/lilidog"; then
-          cp -f "/tmp/themechooser/Readme.lilidog-themes" "/usr/share/lilidog"
-          fi
-          # Remove copies from /tmp
-          rm -fr "/tmp/themechooser"
-          rm -fr "/tmp/themechooser-trixie.zip"
-          chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/lilidog-themes
-          sed -i '/Themes,              ld-themes.*/d' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-          sed -i '/^Sounds/a Themes,              ld-themes,                                     org.xfce.settings.manager' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv ;}
-        see_it
-        no_see
-        run_it
-}
-
-_add_transparency() {
-      _msg="Install transparency with picom and enable at login?"
-      do_it() { apt-get update && apt-get install --install-recommends -y picom &&
-		        cp /usr/share/lilidog/extras/picom.conf /home/"${SUDO_USER}"/.config
-		        sed -i '/tint2/i picom &' /home/"${SUDO_USER}"/.config/labwc/autostart
-		        chown "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/picom.conf ;}
-        see_it
-        no_see
-        run_it
-}
-
-_add_installers() {
-      _msg="Add the Lilidog installers for ease of use?"
-      do_it() { cd /tmp &&
-		  wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ld-installers.zip --show-progress -q &&
-		  unzip -q ld-installers.zip &&
-		  cp -a /tmp/ld-installers/. /usr/local/bin/
-		  if egrep -q "Installers" /usr/local/bin/beardog-themer; then
-                exit
-                else
-                sed -i '/Apt Update/a       --field="            Installers!preferences-system":FBTN "ld-installers" \\' /usr/local/bin/tint2-updates
-                sed -i '/labwc/i    --field="                        Installers!preferences-system":FBTN "ld-installers" \\' /usr/local/bin/beardog-themer ; fi }
-        see_it
-        no_see
-        run_it
-}
-
 _remove_packages() {
       _msg="Remove Cryptsetup and related packages?"
       do_it() { apt-get remove -y cryptsetup cryptsetup-initramfs cryptsetup-bin ;}
@@ -363,49 +204,6 @@ _upgrade_kernel() {
       _msg="Install backports kernel? (Also adds repositories.)"
       do_it() { cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
                 apt-get update && apt-get install -y -t trixie-backports linux-image-amd64/trixie-backports linux-headers-amd64/trixie-backports libc6-dev firmware-linux ;}
-        see_it
-        no_see
-        run_it
-}
-
-_sourcechanger() {
-      _msg="Use Netselect to find a faster debian mirror? Will take a few minutes..."
-      do_it() { if ! test -e "/etc/apt/sources.list.d/debian.sources"; then
-		  apt install -y netselect-apt
-		        rm -rf /tmp/sourcechanger
-		        mkdir /tmp/sourcechanger
-		          if [ ! -e "/etc/apt/sources.list-original.bak" ]; then
-                     cp -f "/etc/apt/sources.list" "/etc/apt/sources.list-original.bak"
-                  fi
-                  if [ -e "/etc/apt/sources.list-original.bak" ]; then
-                     cp -f "/etc/apt/sources.list-original.bak" "/etc/apt/sources.list"
-                  fi
-                netselect-apt -o /tmp/sourcechanger/sources.list
-                grep -o -m1 'http[s]\?://[^ ]\+' /tmp/sourcechanger/sources.list > /tmp/sourcechanger/sources.txt
-                sed -i 's/.$//' /tmp/sourcechanger/sources.txt
-                  if grep -q "http://deb.debian.org/debian" <(head -n 4 "/etc/apt/sources.list-original.bak"); then
-                     sed -i -e "s/http:\/\/deb.debian.org\/debian/$(sed 's:/:\\/:g' /tmp/sourcechanger/sources.txt)/" /etc/apt/sources.list
-                  elif grep -q "https://deb.debian.org/debian" <(head -n 4 "/etc/apt/sources.list-original.bak"); then
-                     sed -i -e "s/https:\/\/deb.debian.org\/debian/$(sed 's:/:\\/:g' /tmp/sourcechanger/sources.txt)/" /etc/apt/sources.list
-                  else
-                     echo "   [0;31mOriginal debian mirrors not found. exiting.[0m"
-                  exit 0
-                  fi
-                  if apt-get update -eany; then
-                     echo
-                     echo "   [0;32mSuccess! Enjoy your new mirror sources.[0m"
-                     echo
-                  else
-                     echo
-                     echo "   [0;31mSomething is not quite right - defaulting to original sources.list.[0m"
-                     echo
-                     sleep 2
-                     cp -f "/etc/apt/sources.list-original.bak" "/etc/apt/sources.list"
-                     apt update
-                  fi 
-                  else
-                     echo "   [0;31mDefault /etc/apt/sources.list not found. Exiting.[0m"
-                  fi ;}
         see_it
         no_see
         run_it
@@ -443,19 +241,11 @@ _reboot() {
 
 if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
 _update
-_sourcechanger
 -apt_location
-#_add_jgmenu
-#_add_notifications
-#_add_transparency
-#_add_installers
 _remove_packages
 #_add_ly
 _add_backports
 _upgrade_kernel
-#_add_lightdm
-#_add_slick
-#_add_themes
 #_add_conky
 _osprober
 _firmware
@@ -466,19 +256,11 @@ sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 fi
 else
 _update
-_sourcechanger
 -apt_location
-#_add_jgmenu
-#_add_notifications
-#_add_transparency
-#_add_installers
 _remove_packages
 #_add_ly
 _add_backports
 _upgrade_kernel
-#_add_lightdm
-#_add_slick
-#_add_themes
 #_add_conky
 _firmware
 _reboot
