@@ -7,7 +7,7 @@ waypaper --restore &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
-xfsettingsd --daemon &
+#xfsettingsd --daemon &
 mako &
 # kanshi &
 

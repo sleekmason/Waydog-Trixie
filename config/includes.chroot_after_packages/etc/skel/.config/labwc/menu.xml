@@ -137,15 +137,15 @@
 		</menu>
 		<!--<separator/> -->
 		<!-- <menu id="/Debian"/> -->
-		<menu icon="/usr/share/icons/hicolor/24x24/apps/org.xfce.settings.editor.png" id="root-menu-4985" label="Utilities">
+	<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" id="root-menu-4985" label="Utilities">
 			<item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
 				<action name="Execute">
 					<execute>grimshot save area</execute>
 				</action>
 		    </item>
-			<item label="Settings Manager" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png">
+			<item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
 				<action name="Execute">
-						<execute>xfce4-settings-manager</execute>
+						<execute>nwg-look</execute>
 				</action>
 			</item>
 		    <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">

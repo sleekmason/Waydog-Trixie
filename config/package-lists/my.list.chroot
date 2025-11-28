@@ -155,7 +155,6 @@ xarchiver
 xdg-dbus-proxy
 xdg-user-dirs
 xdg-utils
-xfce4-settings
 xfce4-terminal
 xml-core
 xmlstarlet
@@ -181,7 +180,8 @@ libqt6waylandclient6
 xwayland
 wlr-randr
 sddm
-#sddm-theme-maldives
 wlrctl
 fuzzel
 imv
+nwg-look
+fonts-cantarell
