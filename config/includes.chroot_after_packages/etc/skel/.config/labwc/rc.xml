@@ -26,31 +26,31 @@
     <keepBorder>yes</keepBorder>
     <dropShadows>no</dropShadows>
     <font place="ActiveWindow">
-      <name>Noto Sans</name>
+      <name>Sans</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="InactiveWindow">
-      <name>Noto Sans</name>
+      <name>Sans</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuHeader">
-      <name>Noto Sans</name>
+      <name>Sans</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="MenuItem">
-      <name>Noto Sans</name>
+      <name>Sans</name>
       <size>11</size>
       <slant>normal</slant>
       <weight>normal</weight>
     </font>
     <font place="OnScreenDisplay">
-      <name>Noto Sans</name>
+      <name>Sans</name>
       <size>10</size>
       <slant>normal</slant>
       <weight>normal</weight>
