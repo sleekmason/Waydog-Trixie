@@ -20,10 +20,11 @@ set $menu wmenu-run
 
 include /etc/sway/config-vars.d/*
 
-# User startup programs
-exec --no-startup-id "waybar -c ~/.config/waybar/sway/config.jsonc"
+# User autostart
 #exec --no-startup-id "swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg"
-exec --no-startup-id "waypaper --restore"
+#exec --no-startup-id "waypaper --restore"
+exec --no-startup-id "/usr/local/bin/restore-wallpaper"
+exec --no-startup-id "waybar -c ~/.config/waybar/sway/config.jsonc"
 exec --no-startup-id "/usr/libexec/polkit-mate-authentication-agent-1"
 exec --no-startup-id "nm-applet"
 exec --no-startup-id "mako"

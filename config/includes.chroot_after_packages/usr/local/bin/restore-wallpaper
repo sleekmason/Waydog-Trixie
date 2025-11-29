@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Made for Waydog 28 Nov 2025 Requires swaybg, waypaper. Adjustable.
+
+# Set the wallpaper from the waypaper config
+config="$HOME/.config/waypaper/config.ini"
+
+if [[ -f "$config" ]]; then
+    wallpaper=$(grep -E '^wallpaper *= *' "$config" | cut -d= -f2- | xargs)
+fi
+
+# Expand leading '~' if present
+wallpaper="${wallpaper/#\~/$HOME}"
+
+# Fallback if missing
+if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
+    wallpaper="/usr/share/backgrounds/wallpapers/Fane.jpg"
+fi
+
+swaybg -m fill -i "$wallpaper" &
