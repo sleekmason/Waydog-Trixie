@@ -1,0 +1,36 @@
+#!/bin/bash
+# Made by sleekmason 30 nov 2025
+# waypaper-sddm — Select sddm background
+
+STATE_FILE="$HOME/.config/waypaper/sddm-bg/config.ini"
+CONFIG_FILE="$HOME/.config/waypaper/config.ini"
+SDDM_BG="/usr/share/sddm/themes/fane/background.jpg"
+
+# Make sure the folder exists
+mkdir -p "$(dirname "$STATE_FILE")"
+
+# sddm waypaper start
+waypaper --state-file "$STATE_FILE" >/dev/null 2>&1
+
+# copy selected image to sddm
+selected_wallpaper=$(grep -E '^wallpaper *= *' "$STATE_FILE" | cut -d= -f2- | xargs)
+selected_wallpaper="${selected_wallpaper/#\~/$HOME}"
+
+if [[ -f "$selected_wallpaper" ]]; then
+    # Only notify upon changes
+    if ! cmp -s "$selected_wallpaper" "$SDDM_BG"; then
+        pkexec cp -f "$selected_wallpaper" "$SDDM_BG"
+        NOTIFY_NAME=$(basename "$selected_wallpaper")
+        notify-send --urgency low "SDDM Login Background changed to: $NOTIFY_NAME"
+    fi
+fi
+
+# Restore wallpaper from ~/.config/waypaper/config.ini
+real_wallpaper=$(grep -E '^wallpaper *= *' "$CONFIG_FILE" | cut -d= -f2- | xargs)
+real_wallpaper="${real_wallpaper/#\~/$HOME}"
+
+if [[ -f "$real_wallpaper" ]]; then
+    swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 & disown
+fi
+
+exit 0

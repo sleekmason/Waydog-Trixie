@@ -2,11 +2,11 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=waypaper-update-wrapper
-Name=Wallpapers
+Exec=waypaper-sddm
+Name=SDDM Login BG
 Icon=waypaper
 Terminal=false
-GenericName=Waypaper wallpaper setter
+GenericName=SDDM login background
 Categories=ld-misc-tools;
 Keywords=wallpapers;
 Comment=Change wallpaper on Wayland and X11

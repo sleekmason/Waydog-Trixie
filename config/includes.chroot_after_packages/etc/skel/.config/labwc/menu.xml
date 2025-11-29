@@ -155,12 +155,12 @@
 			</item>
 		    <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
 				<action name="Execute">
-					<execute>waypaper</execute>
+					<execute>waypaper-update-wrapper</execute>
 				</action>
-			</item>	
-			<item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png" >
+			</item>
+		    <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
 				<action name="Execute">
-					<execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
+					<execute>waypaper-sddm</execute>
 				</action>
 			</item>
 			<item label="inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" >
@@ -176,6 +176,11 @@
 			<item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg" >
 				<action name="Execute">
 					<execute>gksudo synaptic</execute>
+				</action>
+			</item>
+			<item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png" >
+				<action name="Execute">
+					<execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
 				</action>
 			</item>
 			<item label="Usbimager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
