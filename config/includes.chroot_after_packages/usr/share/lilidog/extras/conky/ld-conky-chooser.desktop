@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Conky Chooser
-Exec=conky-toggle
-StartupNotify=false
-Terminal=false
-Icon=/usr/share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
-Categories=ld-misc-tools;
