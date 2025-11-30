@@ -11,50 +11,6 @@ blue='[34m'
 yellow='[33m'
 reset='[0m'
 
-
-# Function For Finding The Fastest Debian Mirror
-_UPDATE_MIRROR() {
-	echo " ${blue}--------------------------------------------"
-    echo "   ${green}Finding The Fastest Debian Mirror ..."${reset}
-    echo
-    sleep .7
-    if [ $(dpkg-query -W -f='${Status}' netselect-apt 2>/dev/null | grep -c "ok installed") -eq 0 ];
-then
-  sudo apt update && sudo apt install -y netselect-apt;
-fi
-		        rm -rf /tmp/sourcechanger
-		        mkdir /tmp/sourcechanger
-		          if [ ! -e "/etc/apt/sources.list-original.bak" ]; then
-                     cp -f "/etc/apt/sources.list" "/etc/apt/sources.list-original.bak"
-                  fi
-                  if [ -e "/etc/apt/sources.list-original.bak" ]; then
-                     cp -f "/etc/apt/sources.list-original.bak" "/etc/apt/sources.list"
-                  fi
-                netselect-apt -o /tmp/sourcechanger/sources.list
-                grep -o -m1 'http[s]\?://[^ ]\+' /tmp/sourcechanger/sources.list > /tmp/sourcechanger/sources.txt
-                sed -i 's/.$//' /tmp/sourcechanger/sources.txt
-                  if grep -q "http://deb.debian.org/debian" <(head -n 4 "/etc/apt/sources.list-original.bak"); then
-                     sed -i -e "s/http:\/\/deb.debian.org\/debian/$(sed 's:/:\\/:g' /tmp/sourcechanger/sources.txt)/" /etc/apt/sources.list
-                  elif grep -q "https://deb.debian.org/debian" <(head -n 4 "/etc/apt/sources.list-original.bak"); then
-                     sed -i -e "s/https:\/\/deb.debian.org\/debian/$(sed 's:/:\\/:g' /tmp/sourcechanger/sources.txt)/" /etc/apt/sources.list
-                  else
-                     echo "   [0;31mOriginal debian mirrors not found. exiting.[0m"
-                  exit 0
-                  fi
-                  if apt-get update -eany; then
-                     echo
-                     echo "   [0;32mSuccess! Enjoy your new debian mirror.[0m"
-                     echo
-                  else
-                     echo
-                     echo "   [0;31mSomething is not quite right - defaulting to original sources.list.[0m"
-                     echo
-                     sleep 2
-                     cp -f "/etc/apt/sources.list-original.bak" "/etc/apt/sources.list"
-                     apt update
-                  fi
-}
-
 # Function For Update Packages
 _UPDATE() {
 		echo " ${blue}--------------------------------------------"
@@ -179,49 +135,45 @@ while true; do
     echo
     echo "   ${blue}Select from the available options below:"${reset}
     echo
-    echo "    ${green}1. Find the fastest debian mirror using netselect-apt?"${reset}
-    echo "    ${green}2. Check apt repositories for package updates?"${reset}
-    echo "    ${green}3. Install available package upgrades?"${reset}
-    echo "    ${green}4. Autoremove any unneeded leftover packages?"${reset}
-    echo "    ${green}5. Clean leftover packages in the apt cache?"${reset}
-    echo "    ${green}6. Clear the thumbnail caches?"${reset}
-    echo "    ${green}7. Clear the \"Recently Used\" list?"${reset}
-    echo "    ${green}8. Update icon caches?"${reset}
-    echo "    ${green}9. For SSD's - Trim eligible ext2/3/4 filesystems?"${reset}
+    echo "    ${green}1. Check apt repositories for package updates?"${reset}
+    echo "    ${green}2. Install available package upgrades?"${reset}
+    echo "    ${green}3. Autoremove any unneeded leftover packages?"${reset}
+    echo "    ${green}4. Clean leftover packages in the apt cache?"${reset}
+    echo "    ${green}5. Clear the thumbnail caches?"${reset}
+    echo "    ${green}6. Clear the \"Recently Used\" list?"${reset}
+    echo "    ${green}7. Update icon caches?"${reset}
+    echo "    ${green}8. For SSD's - Trim eligible ext2/3/4 filesystems?"${reset}
     echo
-    echo "    ${green}10. Exit This dialog?"${reset}
+    echo "    ${green}9. Exit This dialog?"${reset}
     echo
     read -p "   ${yellow}Enter option number:" option
     echo
     case $option in
         1)
-            "_UPDATE_MIRROR"
-            ;;
-        2)
             "_UPDATE"
             ;;
-        3)
+        2)
             "_UPGRADE_PACKAGES"
             ;;
-        4)
+        3)
             "_AUTOREMOVE"
             ;;            
-        5)
+        4)
             "_CLEAN"
             ;;         
-        6)
+        5)
             "_THUMBNAILS"
             ;;                
-        7)
+        6)
             "_RECENTLY_USED"         
             ;;
-        8)
+        7)
             "_ICON_CACHE"        
             ;;
-        9)
+        8)
             "_TRIM"      
             ;;
-        10)
+        9)
             echo "   ${blue}----------------------"
             echo
             echo "        ${blue}- Finished -"${reset}
