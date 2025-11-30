@@ -31,6 +31,7 @@ fi
 # Copy .desktop file to /usr/share/applications
 sudo cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
 sudo cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
+sudo cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
 
 # Copy conkyrestart script to /usr/local/bin
 sudo cp -f "$HOME/.config/conky/scripts/conkyrestart" "/usr/local/bin"
