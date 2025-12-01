@@ -37,10 +37,10 @@ printf '%b\n' '<?xml version="1.0" encoding="UTF-8"?>
 
 # Add static items
 printf '%b\n' '
-  <item label="Terminal">
+  <item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
     <action name="Execute" command="xfce4-terminal" />
   </item>
-  <item label="Web Browser">
+  <item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png">
     <action name="Execute" command="firefox-esr" />
   </item>
   <separator />'
@@ -51,10 +51,10 @@ labwc-menu-generator -b -I -i "${ignore_files}"
 # Add footer items
 printf '%b\n' '
   <separator />
-  <item label="Reconfigure">
+  <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
     <action name="Reconfigure" />
   </item>
-  <item label="Exit">
+  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
     <action name="Exit" />
   </item>
 </openbox_menu>'

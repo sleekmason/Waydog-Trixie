@@ -16,7 +16,7 @@
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Fanebox</name>
-    <icon></icon>
+    <icon>Obsidian</icon>
     <fallbackAppIcon>labwc</fallbackAppIcon>
     <titlebar>
       <layout>icon,shade:iconify,max,close</layout>
