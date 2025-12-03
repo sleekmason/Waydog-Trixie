@@ -43,11 +43,11 @@ run_in_terminal() {
 num_upgrades=$(( $(apt list --upgradable 2>/dev/null | wc -l) - $(apt-mark showhold | wc -l) - 1 ))
 
 if (( num_upgrades == 0 )); then
-    notify-send -t 10000 --urgency low "No Upgrades Available"
+    notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" -t 10000 --urgency low "No Upgrades Available"
     exit 0
 fi
 
-notify-send -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
+notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
 
 # tmp script
 TMP_SCRIPT=$(mktemp)
