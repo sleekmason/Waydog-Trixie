@@ -1,0 +1,13 @@
+#!/bin/bash
+# Set wallpaper and edit waypaper config for current bg.
+# Made for Waydog by sleekmason 3 Dec 2025
+
+WALLPAPER="$1"
+
+# Set wallpaper
+swaybg -i "$WALLPAPER" -m fill &
+
+# Update Waypaper config
+CONFIG="$HOME/.config/waypaper/config.ini"
+
+sed -i "/^\[State\]/,/^\[/{s|^wallpaper *=.*|wallpaper = $WALLPAPER|}" "$CONFIG"
