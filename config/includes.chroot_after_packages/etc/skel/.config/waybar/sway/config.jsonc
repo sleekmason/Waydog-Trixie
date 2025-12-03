@@ -2,13 +2,17 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    // "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
+        "custom/launcher1",
+        "custom/launcher2",
+        "custom/launcher3",
+        "custom/shadow-scratchpad",
         "sway/scratchpad",
         "custom/media"
     ],
@@ -25,11 +29,10 @@
         "memory",
         "temperature",
         "backlight",
-    //  "keyboard-state",
-        "sway/language",
         "battery",
         "battery#bat2",
         "clock",
+        "sway/language",
         "tray",
         "custom/power"
     ],
@@ -59,16 +62,39 @@
 //            "unlocked": ""
 //        }
 //    },
+
+// Add some custom launchers
+    "custom/launcher1": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Menu",
+        "on-click": "fuzzel"
+    },
+    
+    "custom/launcher2": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "File Manager",
+        "on-click": "thunar"
+    },
+    
+    "custom/launcher3": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Terminal",
+        "on-click": "xfce4-terminal"
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
-        "format-icons": ["", ""],
+        "format-icons": ["", ""],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
+
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
         "format-disconnected": "Disconnected ",
@@ -146,8 +172,6 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
@@ -217,9 +241,10 @@
 //			"shutdown": "systemctl --no-ask-password --ignore-inhibitors poweroff"
 //		}
 //	}
-"custom/power": {
-    "format": "",
-    "on-click": "exec ld-logout",
-    "tooltip": false
-}
+    "custom/power": {
+        "format": "",
+        "on-click": "exec ld-logout",
+        "tooltip": true,
+        "tooltip-format": "Exit"
+    }
 }

@@ -1,20 +1,33 @@
 /* ============================================
-   Custom Fane Waybar Theme For Waydog 11 Nov 2025
-   Base color: #19272E
+   Custom Waybar Theme For Waydog 11 Nov 2025
+   Base color: #18252B
    ============================================ */
 
-@define-color base        #19272E;
+@define-color base        #18252B;
 @define-color base-light  #203138;
 @define-color border      #2E3E46;
+@define-color border2     #31434D;
 @define-color text        #B6C8E0;
 @define-color text-dim    #9CA8B4;
-@define-color accent      #9E9BC2;
+@define-color violet      #9E9BC2;
+@define-color hiviolet    #D0CCFF;
 @define-color green       #A3BE8C;
-@define-color red         #7EB6D6;
+@define-color medgreen    #72B862;
+@define-color brightgreen #51B862;
+@define-color higreen     #4AFF77;
+@define-color red         #FF7D7D;
+@define-color maroon      #A65151;
+@define-color indigo      #827CC2;
+@define-color hiindigo    #B5B3FF;
 @define-color orange      #D08770;
 @define-color yellow      #EBCB8B;
+@define-color hiyellow    #F5DAA4;
 @define-color purple      #B48EAD;
 @define-color blue        #97B6C7;
+@define-color brightblue  #5FA2C7;
+@define-color hiblue      #7AD0FF;
+@define-color coolblue    #7EB6D6;
+@define-color white       #ffffff;
 
 /* --------------------------------------------
    General Bar Styling
@@ -22,10 +35,8 @@
 #waybar {
   background: @base;
   color: @text;
-  font-family: "Dejavu Sans", "Symbols Nerd Font", monospace;
+  font-family: "Dejavu Sans";
   font-size: 10pt;
-  border-top: 1px solid #19272E;
-  border-bottom: 1px solid #0D1317;
   padding: 0 6px;
   margin: 0px;
 }
@@ -42,23 +53,24 @@ tooltip {
    Workspaces
    -------------------------------------------- */
 #workspaces button {
-  background: transparent;
-  font-family: "Jetbrains Mono";
+  background: @base-light;
+  font-family: "Dejavu Sans";
   font-size: 9pt;
-  color: @text-dim;
+  color: @text;
   border-radius: 6px;
   padding: 0px 8px;
-  margin: 0px;
+  margin-left: 0px;
+  margin-right: 2px;
 }
 
 #workspaces button.active {
   background: @border;
-  color: @accent;
+  color: @violet;
 }
 
 #workspaces button:hover {
-  background: @base-light;
-  color: @text;
+  background: @border2;
+  color: @white;
 }
 
 /* --------------------------------------------
@@ -67,8 +79,15 @@ tooltip {
 #clock {
   color: @text;
   background: @base-light;
-  padding: 0 6px;
-  border-radius: 6px;
+  padding: 0 10px;
+  border-radius: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#clock:hover {
+    background: @border2; /* border2 */
+    color: @white;
 }
 
 #battery {
@@ -107,8 +126,14 @@ tooltip {
 }
 
 #pulseaudio {
-  color: @accent;
+  color: @violet;
   padding: 0 8px;
+}
+  
+  #pulseaudio:hover {
+  background: @base-light;
+  color: @hiviolet;
+  border-radius: 8px;
 }
 
 /* --------------------------------------------
@@ -119,20 +144,173 @@ tooltip {
   padding: 0 8px;
 }
 
-/* Optional hover effect */
 #backlight:hover {
   background: @base-light;
-  border-radius: 6px;
+  color: @hiyellow;
+  border-radius: 8px;
 }
 
 /* --------------------------------------------
-   Tray & Power
+   Tray
    -------------------------------------------- */
 #tray {
   padding: 0 6px;
 }
 
-#custom-power {
-  color: @red;
+/* ---------------------------------------------
+   Sway Language Module
+   --------------------------------------------- */
+#language {
+    color: #97B6C7;       /* blue */
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 11pt;
+    margin-right: 6px;
+}
+
+#language:hover {
+    background: #31454F;  /* border2 */
+    color: @white;
+}
+
+/* ---------------------------------------------
+   ⚡ Idle Inhibitor Styling
+   --------------------------------------------- */
+
+/* Base idle inhibitor block */
+#idle_inhibitor {
+    color: @text;
+    padding: 0px 9px;
+    border-radius: 8px;
+    margin: 0 4px;
+    font-size: 12pt;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Disabled state */
+#idle_inhibitor.deactivated {
+    color: @maroon;
+}
+
+/* Active inhibitor */
+#idle_inhibitor.activated {
+    color: @green;
+}
+
+/* Hover */
+#idle_inhibitor:hover {
+    background: @base-light;
+    color: @green;
+}
+
+/* --------------------------------------------
+   Launcher 1
+   -------------------------------------------- */
+#custom-launcher1 {
+  background: @base-light;
+  color: @indigo;
   padding: 0 8px;
+  border-radius: 8px;
+  font-size: 13pt;
+  margin-right: 2px;
+}
+#custom-launcher1:hover {
+  background: @border2;
+  color: @hiindigo;
+}
+
+/* --------------------------------------------
+   Launcher 2
+   -------------------------------------------- */
+#custom-launcher2 {
+  background: @base-light;
+  color: @brightblue;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 11pt;
+  margin-right: 2px;
+}
+#custom-launcher2:hover {
+  background: @border2;
+  color: @hiblue;
+}
+
+/* --------------------------------------------
+   Launcher 3
+   -------------------------------------------- */
+#custom-launcher3 {
+  background: @base-light;
+  color: @brightgreen;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 10pt;
+  margin-right: 14px;
+}
+#custom-launcher3:hover {
+  background: @border2;
+  color: @higreen;
+}
+
+/* --------------------------------------------
+   Launcher 4
+   -------------------------------------------- */
+#custom-launcher4 {
+  background: @base-light;
+  color: @text-dim;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 9pt;
+  margin-right: 6px;
+}
+#custom-launcher4:hover {
+  background: @border2;
+  color: @text;
+}
+
+/* --------------------------------------------
+   Scratchpad
+   -------------------------------------------- */
+#scratchpad {
+    background: #203138; /* base-light */
+    color: #9CA8B4;      /* text */
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 9pt;
+    margin-right: 6px;
+}
+
+#scratchpad:hover {
+    background: #31454F; /* border2 */
+    color: #ffffff;
+}
+
+/* --------------------------------------------
+   MPD
+   -------------------------------------------- */
+#mpd {
+  background: @base-light;
+  color: @purple;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11pt;
+  margin-right: 6px;
+}
+#mpd:hover {
+  background: @border2;
+}
+
+/* --------------------------------------------
+   Power Button
+   -------------------------------------------- */
+#custom-power {
+background: @base-light;
+  color: @coolblue;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 10pt;
+  margin-left: 2px;
+}
+#custom-power:hover {
+  background: @border2;
+  color: @hiblue;
 }

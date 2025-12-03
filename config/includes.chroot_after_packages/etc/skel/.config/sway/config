@@ -6,8 +6,9 @@
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
+# Logo key.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -15,8 +16,6 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term x-terminal-emulator
-# Your preferred application launcher
-set $menu wmenu-run
 
 include /etc/sway/config-vars.d/*
 
@@ -29,6 +28,13 @@ exec --no-startup-id "/usr/libexec/polkit-mate-authentication-agent-1"
 exec --no-startup-id "nm-applet"
 exec --no-startup-id "mako"
 #exec --no-startup-id "kanshi"
+
+# Input country code(s) below. Use Alt + Shift to toggle the codes.
+input * {
+    xkb_layout "us,gb"
+    xkb_options "grp:alt_shift_toggle"
+}
+
 
 ### Output configuration
 #
@@ -57,8 +63,8 @@ exec --no-startup-id "mako"
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
+### Other Input configurations
+
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -82,10 +88,11 @@ exec --no-startup-id "mako"
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec fuzzel
     
     # User added programs
 bindsym $mod+F5 exec --no-startup-id "fuzzel"
+bindsym alt+w exec --no-startup-id "waybar-toggle"
 bindsym $mod+shift+f exec --no-startup-id "thunar"
 bindsym $mod+shift+i exec --no-startup-id "bd-utilities-main-installers"
 bindsym $mod+shift+p exec --no-startup-id "geany"

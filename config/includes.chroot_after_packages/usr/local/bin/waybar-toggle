@@ -1,12 +1,15 @@
 #!/bin/bash
-if pgrep -xf waybar > /dev/null; then
-    pkill -xf waybar &
-    pkill -f nm-applet &
-    pkill -f pnmixer &
-    pkill -f mate-power-manager
+# Waybar toggle for labwc and sway.
+# Made by sleekmason for waydog.
+ 
+ if pgrep -x waybar > /dev/null; then
+    pkill -x waybar
+    pkill -x nm-applet
 else
-    waybar & 
+    if pgrep -x sway > /dev/null; then
+        waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
+    else
+        waybar &
+    fi
     nm-applet &
-    pnmixer & 
-    mate-power-manager & 
 fi

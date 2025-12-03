@@ -2,13 +2,17 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 26, // Waybar height (to be removed for auto height)
+    "height": 28, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
+        "custom/launcher1",
+        "custom/launcher2",
+        "custom/launcher3",
+        "custom/launcher4",
         "sway/scratchpad",
         "custom/media"
     ],
@@ -62,6 +66,35 @@
 //            "unlocked": ""
 //        }
 //    },
+
+// Add some custom launchers
+    "custom/launcher1": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Fuzzel Menu",
+        "on-click": "fuzzel"
+    },
+    
+    "custom/launcher2": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "File Manager",
+        "on-click": "thunar"
+    },
+    
+    "custom/launcher3": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Terminal",
+        "on-click": "xfce4-terminal"
+    },
+    
+    "custom/launcher4": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Show Desktop",
+        "on-click": "toggleShowDesktop"
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -106,7 +139,7 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
+        // "icon-size": 16,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",
@@ -223,6 +256,7 @@
 "custom/power": {
     "format": "",
     "on-click": "exec ld-logout",
-    "tooltip": false
+    "tooltip": true,
+    "tooltip-format": "Exit"
 }
 }
