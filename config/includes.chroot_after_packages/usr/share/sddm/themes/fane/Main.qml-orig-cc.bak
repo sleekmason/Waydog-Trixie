@@ -164,12 +164,12 @@ Rectangle {
 
                 Row {
                     spacing: 4
-                    width: parent.width
+                    width: parent.width / 2
                     z: 100
 
                     Column {
                         z: 100
-                        width: parent.width
+                        width: parent.width * 1.3
                         spacing : 4
                         anchors.bottom: parent.bottom
 
@@ -192,10 +192,37 @@ Rectangle {
                             model: sessionModel
                             index: sessionModel.lastIndex
 
-                            KeyNavigation.backtab: password; KeyNavigation.tab: loginButton
+                            KeyNavigation.backtab: password; KeyNavigation.tab: layoutBox
                         }
                     }
 
+                    Column {
+                        z: 101
+                        width: parent.width * 0.7
+                        spacing : 4
+                        anchors.bottom: parent.bottom
+
+                        visible: keyboard.enabled && keyboard.layouts.length > 0
+
+                        Text {
+                            id: lblLayout
+                            width: parent.width
+                            text: textConstants.layout
+                            wrapMode: TextEdit.WordWrap
+                            font.bold: true
+                            font.pixelSize: 12
+                        }
+
+                        LayoutBox {
+                            id: layoutBox
+                            width: parent.width; height: 30
+                            font.pixelSize: 14
+
+                            arrowIcon: Qt.resolvedUrl("angle-down.png")
+
+                            KeyNavigation.backtab: session; KeyNavigation.tab: loginButton
+                        }
+                    }
                 }
 
                 Column {
@@ -221,7 +248,7 @@ Rectangle {
 
                         onClicked: sddm.login(name.text, password.text, sessionIndex)
 
-                        KeyNavigation.backtab: session; KeyNavigation.tab: shutdownButton
+                        KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
                     }
 
                     Button {

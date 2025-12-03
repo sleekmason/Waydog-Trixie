@@ -227,7 +227,7 @@ tooltip {
   color: @brightblue;
   padding: 0 8px;
   border-radius: 8px;
-  font-size: 11pt;
+  font-size: 10pt;
   margin-right: 2px;
 }
 #custom-launcher2:hover {
