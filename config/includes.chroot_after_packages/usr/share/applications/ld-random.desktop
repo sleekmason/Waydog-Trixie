@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wallpapers Random
+Exec=toggle-random
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png
+Categories=ld-misc-tools;

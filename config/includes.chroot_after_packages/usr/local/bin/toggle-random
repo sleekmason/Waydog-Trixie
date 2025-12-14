@@ -1,0 +1,14 @@
+#!/bin/bash
+# Toggle wrapper for Random-wallpaper in Waydog.
+# Made by sleekmason 13 Dec 2025
+
+PIDFILE="/tmp/random-wallpaper.pid"
+
+if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+    kill -TERM "$(cat "$PIDFILE")"
+    notify-send -i preferences-desktop-wallpaper -u low "Random wallpaper changer stopped."
+else
+    nohup random-wallpaper >/dev/null 2>&1 &
+    disown
+    notify-send -i preferences-desktop-wallpaper -u low "Random wallpaper changer started." "Settings are in: ~/.config/random.ini."
+fi

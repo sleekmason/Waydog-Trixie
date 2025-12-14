@@ -163,6 +163,11 @@
 					<execute>waypaper-sddm</execute>
 				</action>
 			</item>
+			<item label="Random" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
+				<action name="Execute">
+					<execute>toggle-random</execute>
+				</action>
+			</item>
 			<item label="inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" >
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
