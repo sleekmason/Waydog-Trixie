@@ -196,6 +196,9 @@
     <keybind key="W-d">
       <action name="Execute" command="toggleShowDesktop"/>
     </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="labwc --reconfigure"/>
+    </keybind>
     <!-- ### Application keybinds ### -->
     <keybind key="W-w">
     <action name="Execute">
