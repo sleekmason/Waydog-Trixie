@@ -117,12 +117,15 @@ while true; do
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
 
     for i in "${!CMD_ARRAY[@]}"; do
-        ## Pick a random wallpaper different from the current one.
-        while true; do
-            WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
-            [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
-        done
-
+    ## Pick a random wallpaper different from the current one.
+ if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
+    WALLPAPER="${WALLPAPERS[0]}"
+else
+    while true; do
+        WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
+        [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
+    done
+fi
         ## Launch swaybg.
         ${CMD_ARRAY[i]} "$WALLPAPER" &
 
