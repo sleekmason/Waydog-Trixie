@@ -2,7 +2,7 @@
 # Toggle wrapper for Random-wallpaper in Waydog.
 # Made by sleekmason 13 Dec 2025
 
-PIDFILE="/tmp/random-wallpaper.pid"
+PIDFILE="$XDG_RUNTIME_DIR/random-wallpaper.pid"
 
 if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
     kill -TERM "$(cat "$PIDFILE")"

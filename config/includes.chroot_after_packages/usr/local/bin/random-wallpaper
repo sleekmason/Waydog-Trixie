@@ -5,7 +5,7 @@
 ## Made by sleekmason 13 Dec 2025.
 
 CONFIG="$HOME/.config/random.ini"
-PIDFILE="/tmp/random-wallpaper.pid"
+PIDFILE="$XDG_RUNTIME_DIR/random-wallpaper.pid"
 WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
 
 ## Defaults.
@@ -94,7 +94,7 @@ trap '
         done
     fi
 
-    # Update Waypaper config if enabled
+    ## Update Waypaper config if enabled.
     if [ "$WAYPAPER_ENABLED" = true ] && [ -n "$CURRENT_WALLPAPER" ]; then
         folder=$(dirname "$CURRENT_WALLPAPER")
         wallpaper="$CURRENT_WALLPAPER"
@@ -112,34 +112,25 @@ while true; do
     # Pick a random directory.
     DIR=$(printf "%s\n" "${ACTIVE_WALLDIRS[@]}" | shuf -n 1)
 
-    # Load all wallpapers in that directory.
+    ## Load all wallpapers in the directory.
     mapfile -t WALLPAPERS < <(find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \))
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
 
-    # Kill existing swaybg instances.
-    pkill -f "^swaybg -m" 2>/dev/null
-
     for i in "${!CMD_ARRAY[@]}"; do
-        # Exclude the current wallpaper from selection
-        AVAILABLE=("${WALLPAPERS[@]/$CURRENT_WALLPAPER/}")
+        ## Pick a random wallpaper different from the current one
+        while true; do
+            WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
+            [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
+        done
 
-        # Pick a random wallpaper from the available ones
-        if [ "${#AVAILABLE[@]}" -eq 0 ]; then
-            WALLPAPER="${WALLPAPERS[0]}"
-        else
-            WALLPAPER="${AVAILABLE[RANDOM % ${#AVAILABLE[@]}]}"
-        fi
-
-        # Launch swaybg.
+        ## Launch swaybg.
         ${CMD_ARRAY[i]} "$WALLPAPER" &
 
-        # Update Waypaper config if in Waydog.
-        if [ "$WAYPAPER_ENABLED" = true ] && [ "${#CMD_ARRAY[@]}" -eq 1 ]; then
-            CURRENT_WALLPAPER="$WALLPAPER"
-        fi
+        ## Update current wallpaper tracking.
+        CURRENT_WALLPAPER="$WALLPAPER"
     done
 
-    # Wait for the interval.
+    ## Wait for the interval.
     sleep "$INTERVAL" &
     wait $!
 done
