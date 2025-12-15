@@ -22,6 +22,11 @@ CURRENT_WALLPAPER=""
 WAYPAPER_ENABLED=false
 [ -f "$WAYPAPER_CONFIG" ] && WAYPAPER_ENABLED=true
 
+## Don't use the listed wallpaper from waypaper state on startup.
+if [ "$WAYPAPER_ENABLED" = true ] && [ -f "$WAYPAPER_CONFIG" ]; then
+    CURRENT_WALLPAPER=$(awk -F' *= *' '/^wallpaper *=/ {print $2}' "$WAYPAPER_CONFIG")
+fi
+
 ## Usage.
 usage() {
     echo "Usage:"
@@ -109,31 +114,27 @@ trap '
 
 ## Main loop.
 while true; do
-    ## Pick a random directory.
-    DIR=$(printf "%s\n" "${ACTIVE_WALLDIRS[@]}" | shuf -n 1)
-
-    ## Load all wallpapers in the directory.
-    mapfile -t WALLPAPERS < <(find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \))
+    mapfile -t WALLPAPERS < <(
+        find "${ACTIVE_WALLDIRS[@]}" -type f \
+        \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \)
+    )
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
 
     for i in "${!CMD_ARRAY[@]}"; do
-    ## Pick a random wallpaper different from the current one.
- if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
-    WALLPAPER="${WALLPAPERS[0]}"
-else
-    while true; do
-        WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
-        [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
-    done
-fi
-        ## Launch swaybg.
+        if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
+            WALLPAPER="${WALLPAPERS[0]}"
+        else
+            while true; do
+                WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
+                [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
+            done
+        fi
+
         ${CMD_ARRAY[i]} "$WALLPAPER" &
-
-        ## Update current wallpaper tracking.
-        CURRENT_WALLPAPER="$WALLPAPER"
     done
 
-    ## Wait for the interval.
+    CURRENT_WALLPAPER="$WALLPAPER"
+
     sleep "$INTERVAL" &
     wait $!
 done
