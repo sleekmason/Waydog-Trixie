@@ -86,6 +86,15 @@ echo "$BASHPID" > "$PIDFILE"
 ## Cleanup on exit.
 trap '
     rm -f "$PIDFILE"
+
+    if [ -n "$CURRENT_WALLPAPER" ]; then
+        # Relaunch the last wallpaper
+        for cmd in "${CMD_ARRAY[@]}"; do
+            $cmd "$CURRENT_WALLPAPER" &
+        done
+    fi
+
+    # Update Waypaper config if enabled
     if [ "$WAYPAPER_ENABLED" = true ] && [ -n "$CURRENT_WALLPAPER" ]; then
         folder=$(dirname "$CURRENT_WALLPAPER")
         wallpaper="$CURRENT_WALLPAPER"
@@ -94,34 +103,43 @@ trap '
             sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
         done
     fi
+
     exit
 ' INT TERM EXIT
 
 ## Main loop.
 while true; do
+    # Pick a random directory.
     DIR=$(printf "%s\n" "${ACTIVE_WALLDIRS[@]}" | shuf -n 1)
 
-    ## Load all wallpapers.
+    # Load all wallpapers in that directory.
     mapfile -t WALLPAPERS < <(find "$DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \))
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
 
-    ## Kill existing swaybg instances.
+    # Kill existing swaybg instances.
     pkill -f "^swaybg -m" 2>/dev/null
 
-    ## Shuffle wallpapers.
-    mapfile -t SHUFFLED < <(printf "%s\n" "${WALLPAPERS[@]}" | shuf)
-
     for i in "${!CMD_ARRAY[@]}"; do
-        WALLPAPER="${SHUFFLED[i % ${#SHUFFLED[@]}]}"
-        [ -n "$WALLPAPER" ] || continue
+        # Exclude the current wallpaper from selection
+        AVAILABLE=("${WALLPAPERS[@]/$CURRENT_WALLPAPER/}")
+
+        # Pick a random wallpaper from the available ones
+        if [ "${#AVAILABLE[@]}" -eq 0 ]; then
+            WALLPAPER="${WALLPAPERS[0]}"
+        else
+            WALLPAPER="${AVAILABLE[RANDOM % ${#AVAILABLE[@]}]}"
+        fi
+
+        # Launch swaybg.
         ${CMD_ARRAY[i]} "$WALLPAPER" &
 
-        ## Update Waypaper if on single-monitor in waydog.
+        # Update Waypaper config if in Waydog.
         if [ "$WAYPAPER_ENABLED" = true ] && [ "${#CMD_ARRAY[@]}" -eq 1 ]; then
             CURRENT_WALLPAPER="$WALLPAPER"
         fi
     done
 
+    # Wait for the interval.
     sleep "$INTERVAL" &
     wait $!
 done
