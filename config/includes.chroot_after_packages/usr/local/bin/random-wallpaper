@@ -50,7 +50,7 @@ for dir in "${WALLDIRS[@]}"; do
     dir="${dir/#\~/$HOME}"
     ACTIVE_WALLDIRS+=("$dir")
 done
-[ "${#ACTIVE_WALLDIRS[@]}" -gt 0 ] || { echo "No valid wallpaper folders defined."; exit 1; }
+[ "${#ACTIVE_WALLDIRS[@]}" -gt 0 ] || exit 1
 
 ## Filter only valid directories with images.
 VALID_WALLDIRS=()
@@ -109,7 +109,7 @@ trap '
 
 ## Main loop.
 while true; do
-    # Pick a random directory.
+    ## Pick a random directory.
     DIR=$(printf "%s\n" "${ACTIVE_WALLDIRS[@]}" | shuf -n 1)
 
     ## Load all wallpapers in the directory.
@@ -117,7 +117,7 @@ while true; do
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
 
     for i in "${!CMD_ARRAY[@]}"; do
-        ## Pick a random wallpaper different from the current one
+        ## Pick a random wallpaper different from the current one.
         while true; do
             WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
             [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
