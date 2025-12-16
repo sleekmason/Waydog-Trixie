@@ -77,7 +77,7 @@ osd.window-switcher.item.padding.x: 10
 osd.window-switcher.item.padding.y: 1
 osd.window-switcher.item.active.border.width: 2
 osd.window-switcher.preview.border.width: 1
-osd.window-switcher.preview.border.color: #dddda6,#000000,#dddda6
+osd.window-switcher.preview.border.color: #6AA6B8,#000000,#6AA6B8
 
 osd.workspace-switcher.boxes.width: 20
 osd.workspace-switcher.boxes.height: 20
