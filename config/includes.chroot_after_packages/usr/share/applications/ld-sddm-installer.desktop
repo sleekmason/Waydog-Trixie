@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'SDDM Dispay Manager Installer' -e bash -c "sddm-installer; echo $'Press any key to close'; read -srn1"
+Name=SDDM Installer
+Icon=applications-system
+Terminal=true
+GenericName=SDDM display manager installer
+Categories=ld-misc-tools;
+Keywords=wallpapers;
+Comment=SDDM display manager installer
