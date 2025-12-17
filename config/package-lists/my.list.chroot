@@ -80,7 +80,6 @@ libnotify-bin
 libnss-myhostname
 libnss-resolve
 libnss-systemd
-libpam-systemd
 libpipewire-0.3-common
 libqt5svg5
 librsvg2-common
