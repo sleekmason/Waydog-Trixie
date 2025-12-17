@@ -1,9 +1,10 @@
 #!/bin/bash
 # Updater script for waydog.
-# Terminal order
+
+# Terminal order preference.
 TERMINALS=("xfce4-terminal" "foot" "wezterm" "alacritty" "gnome-terminal" "kitty" "x-terminal-emulator")
 
-# First available terminal
+# Find first available terminal.
 TERM_CMD=""
 for term in "${TERMINALS[@]}"; do
     if command -v "$term" >/dev/null 2>&1; then
@@ -17,9 +18,15 @@ if [[ -z "$TERM_CMD" ]]; then
     exit 1
 fi
 
+# Determine whether to use nala or apt.
+if command -v nala >/dev/null 2>&1; then
+    UPGRADE_CMD="nala"
+else
+    UPGRADE_CMD="apt"
+fi
+
 run_in_terminal() {
     SCRIPT="$1"
-
     case "$TERM_CMD" in
         xfce4-terminal)
             "$TERM_CMD" --hold --command "bash '$SCRIPT'"
@@ -39,44 +46,51 @@ run_in_terminal() {
     esac
 }
 
-# Upgrades
+# Count upgrades. (excluding held packages)
 num_upgrades=$(( $(apt list --upgradable 2>/dev/null | wc -l) - $(apt-mark showhold | wc -l) - 1 ))
 
 if (( num_upgrades == 0 )); then
-    notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" -t 10000 --urgency low "No Upgrades Available"
+    notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" \
+        -t 10000 --urgency low "No upgrades available."
     exit 0
 fi
 
-notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" -t 10000 --urgency low "$num_upgrades Upgrade(s) Currently Available"
+notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" \
+    -t 10000 --urgency low "$num_upgrades Upgrade(s) currently available."
 
-# tmp script
+# Temporary script to run in terminal.
 TMP_SCRIPT=$(mktemp)
 
 {
-echo 'echo ""'
-echo 'echo "Available upgrades:"'
-echo 'echo ""'
-echo 'echo "Press q at the end to continue,"'
-echo 'echo "or close the window to quit."'
-echo 'echo ""'
-echo 'apt list --upgradeable'
-echo 'echo ""'
-echo 'echo "Held packages:"'
-echo 'apt-mark showhold'
-echo 'echo ""'
-echo 'echo "Please enter your password to continue to upgrade your system."'
-echo 'echo "Or close this window to quit now.  <ctrl + c>"'
-echo 'echo ""'
+    echo 'echo ""'
+    echo 'echo "[0;33mAvailable upgrades:[0m"'
+    echo 'echo ""'
+    if [[ "$UPGRADE_CMD" == "nala" ]]; then
+        echo 'nala list --upgradeable'
+    else
+        echo 'APT_PAGER=cat apt list --upgradable'
+    fi
+    echo 'echo ""'
+    echo 'echo "[0;32m-------------------------------------------------------[0m"'
+    echo 'echo ""'
+    echo 'held=$(apt-mark showhold)'
+    echo 'if [[ -z "$held" ]]; then'
+    echo '    echo "[0;34mHeld packages:[0m 0"'
+    echo 'else'
+    echo '    echo "[0;34mHeld packages:[0m $held"'
+    echo 'fi'
+    echo 'echo ""'
+    echo 'echo "[0;33mPlease enter your password to upgrade, or exit to quit.[0m"'
+    echo 'echo ""'
 
-if command -v nala >/dev/null 2>&1; then
-    echo 'sudo nala upgrade'
-else
-    echo 'sudo apt upgrade'
-fi
+    if [[ "$UPGRADE_CMD" == "nala" ]]; then
+        echo 'sudo nala upgrade'
+    else
+        echo 'sudo apt upgrade'
+    fi
 
-echo 'bash'
+    echo 'bash'
 } > "$TMP_SCRIPT"
 
 chmod +x "$TMP_SCRIPT"
-
 run_in_terminal "$TMP_SCRIPT"
