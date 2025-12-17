@@ -205,6 +205,11 @@
         <execute>waybar-toggle</execute>
     </action>
     </keybind>
+    <keybind key="W-v">
+    <action name="Execute">
+        <execute>toggle-random</execute>
+    </action>
+    </keybind>
     <keybind key="W-Return">
     <action name="Execute">
         <execute>x-terminal-emulator</execute>

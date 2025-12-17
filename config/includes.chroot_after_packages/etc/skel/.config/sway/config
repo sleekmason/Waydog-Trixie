@@ -106,6 +106,7 @@ bindsym $mod+shift+f exec --no-startup-id "thunar"
 bindsym $mod+shift+i exec --no-startup-id "bd-utilities-main-installers"
 bindsym $mod+shift+p exec --no-startup-id "geany"
 bindsym $mod+shift+b exec --no-startup-id "x-www-browser"
+bindsym $mod+shift+v exec --no-startup-id "toggle-random"
 bindsym $mod+shift+x exec --no-startup-id "ld-logout"
 
     # Drag floating windows by holding down $mod and left mouse button.
