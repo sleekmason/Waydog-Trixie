@@ -4,10 +4,10 @@
     Welcome to Waydog Trixie, a version that uses
     Wayland rather than x11 for the display.
     
-    Waydog uses Labwc for the window manager, and
-    Waybar for panel. Keybinds are handled within
-    the Window managers. Most programs will be up
-    to the user to choose.
+    Waydog has Labwc for the window manager along
+    with Waybar for the panel as default. Sway WM 
+    is a separate option at login. Look around to 
+    see how to customize further.
     
     Please visit the forum for more information:
     https://sourceforge.net/p/lilidog/discussion/
