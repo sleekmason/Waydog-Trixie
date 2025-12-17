@@ -35,6 +35,15 @@ input * {
     xkb_options "grp:alt_shift_toggle"
 }
 
+## Lock screen options.
+# Suspend only. Usual behavior.
+exec swayidle -w timeout 600 'systemctl suspend'
+
+# 5 minute lockscreen delay
+# exec swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring'
+
+# 5 minute lockscreen + 10 minute suspend
+# exec swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring' timeout 600 'systemctl suspend'
 
 ### Output configuration
 #
