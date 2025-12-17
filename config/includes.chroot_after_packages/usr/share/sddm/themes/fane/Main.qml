@@ -78,7 +78,7 @@ Rectangle {
             anchors.margins: 5
             anchors.top: parent.top; anchors.right: parent.right
 
-            color: "white"
+            color: "#B7BBBD"
             timeFont.family: "Oxygen"
         }
 

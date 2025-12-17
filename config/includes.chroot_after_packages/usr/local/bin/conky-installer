@@ -4,7 +4,7 @@ read -r -p "   [0;33mConky Installer[0m
 
    This script will install conky-all, fortunes, and fortune-mod, and 
    install a customized conky chooser and conkys that can be accessed 
-   through either through the menu, or the keybind super + c.
+   through through the menu.
    
    [0;33m----------------------------------------------------------
    
