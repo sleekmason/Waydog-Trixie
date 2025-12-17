@@ -2,6 +2,12 @@
 # Made by sleekmason 30 nov 2025
 # waypaper-sddm — Select sddm background
 
+# Exit if sddm doesn't exist.
+if ! command -v sddm >/dev/null 2>&1; then
+    notify-send -u low "Install SDDM to use this feature."
+    exit 0
+fi
+
 STATE_FILE="$HOME/.config/waypaper/sddm-bg/config.ini"
 CONFIG_FILE="$HOME/.config/waypaper/config.ini"
 SDDM_BG="/usr/share/sddm/themes/fane/background.jpg"
