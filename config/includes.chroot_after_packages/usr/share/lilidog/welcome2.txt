@@ -5,8 +5,8 @@
     Wayland rather than x11 for the display.
     
     Waydog has Labwc for the window manager along
-    with Waybar for the panel as default. Sway WM 
-    is a separate option at login. Look around to 
+    with Waybar for the panel as default. Sway WM
+    is a separate option at login. Look around to
     see how to customize further.
     
     Please visit the forum for more information:
