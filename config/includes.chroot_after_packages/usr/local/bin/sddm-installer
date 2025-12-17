@@ -1,0 +1,59 @@
+#!/bin/bash
+# sddm-installer for waydog.
+set -euo pipefail
+echo
+read -p "   [0;33mSDDM Display Manager Installer[0m
+
+   This script will install the SDDM display manager on your computer
+   with the waydog theme, and remove Ly if installed.
+   
+   For more information: 
+   
+   [0;34mhttps://github.com/sddm/sddm/wiki[0m
+   
+   [0;32m----------------------------------------------------
+   
+   Please press enter to install SDDM.
+   
+   ----------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+## Check for internet connection
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit
+rm -fr /tmp/sddm /tmp/sddm.zip
+# Install sddm prior to ly removal
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/sddm.zip --show-progress -q || exit 1
+sudo apt-get update
+sudo apt-get install -y sddm || exit 1
+unzip -q "/tmp/sddm.zip" || exit 1
+sudo cp -fr "/tmp/sddm/themes" "/usr/share/sddm"
+sudo cp -fr "/tmp/sddm/sddm.conf.d" "/etc"
+sudo cp -fr "/tmp/sddm/sddm" "/etc"
+sudo systemctl enable --force sddm.service
+
+# Remove ly files
+sudo systemctl disable ly.service 2>/dev/null
+sudo rm -f "/usr/bin/ly"
+#sudo rm -f "/etc/systemd/system/ly.service"
+#sudo rm -fr "/etc/ly"
+
+sudo systemctl daemon-reload
+echo ""
+echo
+echo "[0;33mInstallation is complete.[0m"
+echo "[0;32mReboot your system to use sddm.[0m"
+echo
+else
+echo ""
+ echo "   [0;31m-------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------[0m"
+echo ""
+fi
+echo ""
+read -n1 -p " Press any key to quit this dialog ... "
+
