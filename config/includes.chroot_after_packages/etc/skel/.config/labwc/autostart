@@ -2,13 +2,13 @@
 ### activated on login.
 
 ### Screenlock and suspend options.
-## Suspend only. Usual behavior.
-swayidle -w timeout 600 'systemctl suspend' &
+## Suspend only.
+# swayidle -w timeout 600 'systemctl suspend' &
 
 ## 5 minute lockscreen delay.
 # swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring' &
 
-## For 5 minute lockscreen + 10 minute suspend.
+## 5 minute lockscreen + 10 minute suspend.
 # swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring' timeout 600 'systemctl suspend' &
 
 ### Common startup programs. Comment any item no longer wanted.
@@ -23,4 +23,4 @@ mako &
 # if type 'thunar' &> /dev/null; then
 # thunar --daemon &
 # fi
-welcome-backend.sh
+welcome-backend.sh &
