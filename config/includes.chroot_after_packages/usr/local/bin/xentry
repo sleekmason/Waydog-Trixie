@@ -228,7 +228,7 @@ _firmware() {
 }
 
 _reboot() {
-      _msg="Reboot? - After kernel or login manager installation."
+      _msg="Reboot? - After kernel installation."
       do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 		  if ! grep hypervisor /proc/cpuinfo ; then
           sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart

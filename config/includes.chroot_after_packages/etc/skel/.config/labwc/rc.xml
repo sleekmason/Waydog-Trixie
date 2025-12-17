@@ -24,7 +24,7 @@
     </titlebar>
     <cornerRadius>4</cornerRadius>
     <keepBorder>yes</keepBorder>
-    <dropShadows>no</dropShadows>
+    <dropShadows>yes</dropShadows>
     <font place="ActiveWindow">
       <name>Sans</name>
       <size>11</size>
