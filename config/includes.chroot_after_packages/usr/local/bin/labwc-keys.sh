@@ -64,9 +64,8 @@ BLUE="\033[34m"
 MAGENTA="\033[35m"
 RESET="\033[0m"
 
-
-echo -e "${BLUE}LABWC KEYBINDS   Legend: W=Super  S=Shift  C=Ctrl${RESET}"
-echo -e "${GREEN}--------------------------------------------------------${RESET}"
+echo -e " ${BLUE}LABWC KEYBINDS   Legend: W=Super  S=Shift  C=Ctrl${RESET}"
+echo -e " ${GREEN}--------------------------------------------------------${RESET}"
 
 awk '
 BEGIN {
@@ -118,18 +117,19 @@ BEGIN {
   }
 
   if (detail!="")
-    printf "%s%-15s%s  %s%-15s%s  %s%s%s\n",
+    printf " %s%-15s%s  %s%-15s%s  %s%s%s\n",
       CKEY, key, CRESET,
       CACT, action, CRESET,
       CDET, detail, CRESET
   else
-    printf "%s%-15s%s  %s%-15s%s\n",
+    printf " %s%-15s%s  %s%-15s%s\n",
       CKEY, key, CRESET,
       CACT, action, CRESET
 }
 ' "$CONFIG" | sort
 
-echo -e "${GREEN}--------------------------------------------------------${RESET}"
+echo -e " ${GREEN}--------------------------------------------------------${RESET}"
+
 exec "$SHELL"
 EOF
 
