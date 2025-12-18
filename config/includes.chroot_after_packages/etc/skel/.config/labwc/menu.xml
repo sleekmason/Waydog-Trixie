@@ -198,6 +198,11 @@
 					<execute>update-options</execute>
 				</action>
 		    </item>
+		    <item label="Labwc Keybinds" icon="/usr/share/icons/gnome/24x24/apps/accessories-character-map.png">
+				<action name="Execute">
+					<execute>labwc-keys.sh</execute>
+				</action>
+		    </item>
 	        <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>

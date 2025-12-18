@@ -146,13 +146,8 @@
     <notifyClient>always</notifyClient>
   </snapping>
 
-
-  <keyboard>
+<keyboard>
     <default/>
-    <!-- Remove a previously defined keybind -->
-    <keybind key="W-F4">
-      <action name="None"/>
-    </keybind>
     <!-- Desktop switching keybinds -->
     <keybind key="W-1">
       <action name="GoToDesktop" to="1"/>
@@ -194,56 +189,65 @@
       </action>
     </keybind>
     <keybind key="W-d">
-      <action name="Execute" command="toggleShowDesktop"/>
+      <action name="Execute">
+        <execute>toggleShowDesktop</execute>
+      </action>
     </keybind>
     <keybind key="W-r">
-      <action name="Execute" command="labwc --reconfigure"/>
+      <action name="Execute">
+        <execute>labwc --reconfigure</execute>
+      </action>
     </keybind>
     <!-- ### Application keybinds ### -->
     <keybind key="W-w">
-    <action name="Execute">
+      <action name="Execute">
         <execute>waybar-toggle</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-v">
-    <action name="Execute">
+      <action name="Execute">
         <execute>toggle-random</execute>
-    </action>
+      </action>
+    </keybind>
+    <keybind key="W-F1">
+      <action name="Execute">
+        <execute>labwc-keys.sh</execute>
+      </action>
     </keybind>
     <keybind key="W-Return">
-    <action name="Execute">
+      <action name="Execute">
         <execute>x-terminal-emulator</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-b">
-    <action name="Execute">
+      <action name="Execute">
         <execute>x-www-browser</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-x">
-    <action name="Execute">
+      <action name="Execute">
         <execute>ld-logout</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-f">
-    <action name="Execute">
+      <action name="Execute">
         <execute>thunar</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-F5">
-    <action name="Execute">
+      <action name="Execute">
         <execute>fuzzel</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="W-e">
-    <action name="Execute">
+      <action name="Execute">
         <execute>geany</execute>
-    </action>
+      </action>
     </keybind>
     <keybind key="Print">
-    <action name="Execute">
+      <action name="Execute">
         <execute>grimshot save area</execute>
-    </action>
+      </action>
     </keybind>
   </keyboard>
   <desktops>
