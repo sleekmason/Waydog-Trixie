@@ -5,7 +5,8 @@
 
 @define-color base        #18252B;
 @define-color base-light  #203138;
-@define-color base-dark   #ADB099;
+@define-color tan         #ADB099;
+@define-color hitan       #D1D6B0;
 @define-color border      #2E3E46;
 @define-color border2     #31434D;
 @define-color text        #B6C8E0;
@@ -14,19 +15,19 @@
 @define-color hiviolet    #D0CCFF;
 @define-color green       #A3BE8C;
 @define-color medgreen    #72B862;
-@define-color brightgreen #85BE89;
-@define-color higreen     #4AFF77;
+@define-color brightgreen #86D19C;
+@define-color higreen     #ADFFC2;
 @define-color red         #FF7D7D;
 @define-color maroon      #A65151;
-@define-color indigo      #827CC2;
-@define-color hiindigo    #B5B3FF;
+@define-color indigo      #9892D1;
+@define-color hiindigo    #CDC7FF;
 @define-color orange      #D08770;
 @define-color yellow      #EBCB8B;
 @define-color hiyellow    #F5DAA4;
 @define-color purple      #B48EAD;
 @define-color blue        #97B6C7;
 @define-color brightblue  #7BAEC7;
-@define-color hiblue      #7AD0FF;
+@define-color hiblue      #9CD2F0;
 @define-color coolblue    #7EB6D6;
 @define-color white       #ffffff;
 
@@ -259,7 +260,7 @@ tooltip {
    -------------------------------------------- */
 #custom-launcher4 {
   background: @base-light;
-  color: @base-dark;
+  color: @tan;
   padding: 0 8px;
   border-radius: 8px;
   font-size: 10px;
@@ -267,7 +268,7 @@ tooltip {
 }
 #custom-launcher4:hover {
   background: @border2;
-  color: @text;
+  color: @hitan;
 }
 
 /* --------------------------------------------
