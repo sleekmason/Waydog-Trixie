@@ -90,37 +90,37 @@
 			<menu icon="/usr/share/icons/gnome/24x24/places/folder.png" id="root-menu-594711-105346" label="Root Files">
 				<item label="/etc" icon="/usr/share/icons/gnome/24x24/places/folder.png" >
 					<action name="Execute">
-						<execute>gksudo thunar /etc</execute>
+						<execute>thunar /etc</execute>
 					</action>
 				</item>
 				<item label="/usr/share" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/share</execute>
+						<execute>thunar /usr/share</execute>
 					</action>
 				</item>
 				<item label="/usr/share/fonts" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/share/fonts</execute>
+						<execute>thunar /usr/share/fonts</execute>
 					</action>
 				</item>
 				<item label="/usr/share/icons" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/share/icons</execute>
+						<execute>thunar /usr/share/icons</execute>
 					</action>
 				</item>
 				<item label="/usr/share/themes" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/share/themes</execute>
+						<execute>thunar /usr/share/themes</execute>
 					</action>
 				</item>
 				<item label="/usr/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/bin</execute>
+						<execute>thunar /usr/bin</execute>
 					</action>
 				</item>
 				<item label="/usr/local/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
-						<execute>gksudo thunar /usr/local/bin</execute>
+						<execute>thunar /usr/local/bin</execute>
 					</action>
 				</item>
 			</menu>
