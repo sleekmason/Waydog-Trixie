@@ -1,0 +1,69 @@
+#!/bin/bash
+# Disable notifications for random-wallpaper.
+# Made for Waydog by sleekmason 19 Dec 2025
+
+CMD="toggle-random"
+FLAG="--nonoti"
+
+XML_FILES=(
+  "$HOME/.config/labwc/rc.xml"
+  "$HOME/.config/labwc/menu.xml"
+)
+
+SWAY_FILE="$HOME/.config/sway/config"
+
+CHANGED=0
+HAS_FLAG=0
+
+## Detect global state
+for file in "${XML_FILES[@]}"; do
+    if xmlstarlet sel -t -v "//execute[text()='$CMD $FLAG']" "$file" | grep -q .; then
+        HAS_FLAG=1
+        break
+    fi
+done
+
+## Apply global state to all XML files
+for file in "${XML_FILES[@]}"; do
+    if [[ $HAS_FLAG -eq 1 ]]; then
+        xmlstarlet ed -L \
+            -u "//execute[text()='$CMD $FLAG']" \
+            -v "$CMD" \
+            "$file"
+        CHANGED=1
+    else
+        xmlstarlet ed -L \
+            -u "//execute[text()='$CMD']" \
+            -v "$CMD $FLAG" \
+            "$file"
+        CHANGED=1
+    fi
+done
+
+## Sway
+if [[ $HAS_FLAG -eq 1 ]]; then
+    sed -i "/bindsym .*\"$CMD $FLAG\"/s/\"$CMD $FLAG\"/\"$CMD\"/" "$SWAY_FILE"
+    CHANGED=1
+else
+    sed -i "/bindsym .*\"$CMD\"/s/\"$CMD\"/\"$CMD $FLAG\"/" "$SWAY_FILE"
+    CHANGED=1
+fi
+
+## Reload configs
+if [[ $CHANGED -eq 1 ]]; then
+    if pgrep -x labwc >/dev/null; then
+        labwc --reconfigure >/dev/null 2>&1
+    fi
+
+    if pgrep -x sway >/dev/null && command -v swaymsg >/dev/null; then
+        swaymsg reload >/dev/null 2>&1
+    fi
+
+    if [[ $HAS_FLAG -eq 1 ]]; then
+        notify-send -i preferences-desktop-wallpaper --urgency low \
+          "Random wallpaper notifications enabled."
+    else
+        notify-send -i preferences-desktop-wallpaper --urgency low \
+          "Random wallpaper notifications disabled."
+    fi
+fi

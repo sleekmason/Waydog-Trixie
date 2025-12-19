@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Notifications Random
+Exec=toggle-notifications-random
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png
+Categories=ld-misc-tools;

@@ -1,16 +1,28 @@
 #!/bin/bash
 # Toggle wrapper for Random-wallpaper in Waydog.
 # Made by sleekmason 13 Dec 2025
+# Use --nonoti to remove notifications during the toggle.
+# In Waydog, toggle with toggle-notifications-random
 
 PIDFILE="$XDG_RUNTIME_DIR/random-wallpaper.pid"
 
+# Default - notifications enabled
+NOTIFY_CMD="notify-send -i preferences-desktop-wallpaper"
+
+for arg in "$@"; do
+    case "$arg" in
+        --nonoti)
+            NOTIFY_CMD=":"
+            ;;
+    esac
+done
+
 if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
     kill -TERM "$(cat "$PIDFILE")"
-    notify-send -i preferences-desktop-wallpaper -u low \
-        "Random wallpaper changer stopped."
+    $NOTIFY_CMD "Random Wallpaper Stopped"
 else
     random-wallpaper &
-    notify-send -i preferences-desktop-wallpaper -u low \
-        "Random wallpaper changer started." \
-        "Settings are in: ~/.config/random.ini."
+    $NOTIFY_CMD \
+        "Random Wallpaper (super + v)" \
+        "Settings: ~/.config/random.ini"
 fi
