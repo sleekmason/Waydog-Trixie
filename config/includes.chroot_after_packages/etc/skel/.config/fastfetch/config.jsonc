@@ -23,7 +23,7 @@
     "break",
         {
       "type": "custom",
-      "format": "\u001b[0;34m┌───────────────\u001b[0;34m \u001b[1mLilidog Linux\u001b[0m \u001b[0;34m───────────────┐\u001b[0m"
+      "format": "\u001b[0;34m┌───────────────\u001b[0;34m \u001b[1mWaydog Linux\u001b[0m \u001b[0;34m───────────────┐\u001b[0m"
     },
     "break",
         {
