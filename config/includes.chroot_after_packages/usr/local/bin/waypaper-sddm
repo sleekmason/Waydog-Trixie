@@ -4,7 +4,7 @@
 
 # Exit if sddm doesn't exist.
 if ! command -v sddm >/dev/null 2>&1; then
-    notify-send -i preferences-system -u low "Please install SDDM for this feature."
+    notify-send -i preferences-system -u low "Please install SDDM to use this feature."
     exit 0
 fi
 
