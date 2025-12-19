@@ -44,7 +44,7 @@ window.inactive.shadow.color: #00000040
 # menu
 menu.overlap.x: 0
 menu.overlap.y: 0
-menu.width.min: 20
+menu.width.min: 170
 menu.width.max: 210
 menu.border.width: 1
 menu.border.color: #0F3A45
