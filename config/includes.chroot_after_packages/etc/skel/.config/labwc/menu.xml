@@ -93,11 +93,6 @@
 						<execute>gksudo thunar /etc</execute>
 					</action>
 				</item>
-				<item label="/etc/apt/sources.list" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>gksudo geany /etc/apt/sources.list</execute>
-					</action>
-				</item>
 				<item label="/usr/share" icon="/usr/share/icons/gnome/24x24/places/folder.png">
 					<action name="Execute">
 						<execute>gksudo thunar /usr/share</execute>
