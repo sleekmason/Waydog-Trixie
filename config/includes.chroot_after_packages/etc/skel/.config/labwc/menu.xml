@@ -203,11 +203,6 @@
 					<execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
 				</action>
 		    </item>
-		    <item label="Sexy Bash Toggle" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
-				<action name="Execute">
-					<execute>toggle.sexy</execute>
-				</action>
-		    </item>
 		    <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
 					<execute>bd-utilities-main-installers</execute>

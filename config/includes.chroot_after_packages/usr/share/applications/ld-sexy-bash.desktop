@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Sexy Bash Toggle
+Exec=toggle.sexy
+StartupNotify=false
+Terminal=false
+Icon=/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png
+Categories=ld-misc-tools;
