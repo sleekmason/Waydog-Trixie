@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Sexy Bash Toggle
+Name=Sexy Bash Prompt
 Exec=toggle.sexy
 StartupNotify=false
 Terminal=false
