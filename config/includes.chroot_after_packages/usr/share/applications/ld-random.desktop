@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Wallpapers Random
+Name=Random Toggle
 Exec=toggle-random
 StartupNotify=false
 Terminal=false

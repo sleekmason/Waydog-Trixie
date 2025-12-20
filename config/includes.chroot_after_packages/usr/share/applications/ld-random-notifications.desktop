@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Notifications Random
+Name=Random Notifications
 Exec=toggle-notifications-random
 StartupNotify=false
 Terminal=false
