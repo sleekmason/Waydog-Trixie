@@ -9,7 +9,6 @@ selected at login, and others can be added at will.
 https://sourceforge.net/projects/lilidog/files/Releases/
 
 ### Current Release:
-
 The version number shown is the date of the release beginning with the
 year, followed by the month, and then the day. So as an example,
 release 25.12.20 stands for the 20th of Dec, 2025.
@@ -18,14 +17,12 @@ To identify a Waydog build date after installation, in a terminal, try:
 `cat /usr/share/lilidog/GPL/current-build`
 
 ### Updating:
-
 Waydog uses the 'stable' version of Debian, which is currently Trixie.
 Updates to Debian packages are gained by using apt:
 
 `sudo apt update && sudo apt upgrade`
 
 ### Directions For Installation:
-
 One easy way to install Waydog is to grab the live-usb-maker app:
 https://github.com/MX-Linux/lum-qt-appimage/releases/tag/19.11.02  
 Download the AppImage.tar.gz and open a terminal:
@@ -40,7 +37,6 @@ The boot screen for Waydog gives a choice of using as a live session or
 installing if you like what you see.
 
 ### Navigating Waydog:
-
 For live login use: Live Username = 'user', and Live Password = 'live'.
 The live session starts in the SDDM display manager after boot.
 
@@ -48,28 +44,27 @@ Waydog can be run in a VM, but not very well due to apparent Wayland
 requirements. Ample video memory is a must.
 
 ### Features:
-Labwc and Sway window managers. Choose either at login.
-SDDM display manager for logging in. An installer for Ly is included.
-Waybar provides the panel top bar.
-NWG Look provides an interface for GTK settings.
-Labwc Tweaks provides for common Labwc adjustments.
-Usbimager to create USB images.
-Kernel remover for those that build their own, or just to clean up.
-Waypaper wallpaper setter for both wallpaper and SDDM login screen.
-Random background changer. Works in conjunction with the other changers.
-Labwc keybinds. 'Super + F1' will show all the current keybinds.
-Grimshot screenshot. Adds screenshots directly to ~/Pictures.
-Fuzzel menu. (dmenu equivalent) (Super + F5)
-Mako provides the system notifications.
-Sway has gaps!
-Optional installers for a few different items. Kernels, VirtualBox,
-extra themes, Conky, Dropbox, and others.
+- Labwc and Sway window managers. Choose either at login.
+- SDDM display manager for logging in. An installer for Ly is included.
+- Waybar provides the panel top bar.
+- NWG Look provides an interface for GTK settings.
+- Labwc Tweaks provides for common Labwc adjustments.
+- Usbimager to create USB images.
+- Kernel remover for those that build their own, or just to clean up.
+- Waypaper wallpaper setter for both wallpaper and SDDM login screen.
+- Random background changer. Works in conjunction with the other changers.
+- Labwc keybinds. 'Super + F1' will show all the current keybinds.
+- Grimshot screenshot. Adds screenshots directly to ~/Pictures.
+- Fuzzel menu. (dmenu equivalent) (Super + F5)
+- Mako provides the system notifications.
+- Sway has gaps!
+- Optional installers for a few different items. Kernels, VirtualBox,
+  extra themes, Conky, Dropbox, and others.
 
 There are only a few more user-related programs to get you started.
 Firefox, Geany, Thunar, and Xfce4-terminal are standard.
 
 ### Building Waydog:
-
 No need to wait for a new release if wanting to keep up with the latest.
 In fact, this is a great way to make personal changes, and to help with
 testing new features.
