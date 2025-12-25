@@ -100,6 +100,7 @@ input * {
     bindsym $mod+d exec fuzzel
     
     # User added programs
+bindsym $mod+F1 exec --no-startup-id "sway-keys.sh"    
 bindsym $mod+F5 exec --no-startup-id "fuzzel"
 bindsym alt+w exec --no-startup-id "waybar-toggle"
 bindsym $mod+shift+f exec --no-startup-id "thunar"
@@ -119,8 +120,8 @@ bindsym $mod+shift+x exec --no-startup-id "ld-logout"
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+ # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
