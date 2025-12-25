@@ -67,6 +67,9 @@ RESET="\033[0m"
 echo -e " ${BLUE}LABWC KEYBINDS   Legend: W=Super  S=Shift  C=Ctrl${RESET}"
 echo -e " ${GREEN}--------------------------------------------------------${RESET}"
 
+# Hardcoded Alt+Tab Window Switcher at the top
+printf " \033[33m%-15s\033[0m  \033[32m%-15s\033[0m  \033[34m%s\033[0m\n" "Alt+Tab" "WindowSwitcher" "Switch Windows"
+
 awk '
 BEGIN {
   KEY_COLOR=33     # yellow
