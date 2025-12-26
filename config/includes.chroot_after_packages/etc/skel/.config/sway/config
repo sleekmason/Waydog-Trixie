@@ -21,7 +21,7 @@ include /etc/sway/config-vars.d/*
 
 # User autostart
 #exec --no-startup-id "swaybg -i /usr/share/backgrounds/wallpapers/Fane.jpg"
-#exec --no-startup-id "waypaper --restore"
+exec --no-startup-id "welcome-backend.sh"
 exec --no-startup-id "/usr/local/bin/restore-wallpaper"
 exec --no-startup-id "waybar -c ~/.config/waybar/sway/config.jsonc"
 exec --no-startup-id "/usr/libexec/polkit-mate-authentication-agent-1"
@@ -44,6 +44,10 @@ input * {
 
 # 5 minute lockscreen + 10 minute suspend.
 # exec swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring' timeout 600 'systemctl suspend'
+
+### Rules for floating windows
+## Yad
+for_window [app_id="yad"] floating enable, move position center
 
 ### Output configuration
 #
