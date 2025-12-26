@@ -4,8 +4,9 @@
   set of options with comments, see docs/rc.xml.all
 -->
 <labwc_config>
-	<placement>
+  <placement>
     <policy>cascade</policy>
+    <cascadeOffset x="360" y="180"/>
     <!--
       When <placement><policy> is "cascade", the offset for cascading new
       windows can be overwritten like this:

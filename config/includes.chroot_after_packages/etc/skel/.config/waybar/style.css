@@ -3,7 +3,7 @@
    Base color: #18252B
    ============================================ */
 
-@define-color base        rgba(24, 37, 43, 0.90); /* Allows for transparency. Change the fourth value.  Currently set to 10% */
+@define-color base        rgba(24, 37, 43, 0.9); /* Allows for transparency. Change the fourth value.  Currently set to 10% */
 /* @define-color base        #18252B; */
 @define-color base-light  #203138;
 @define-color tan         #ADB099;
