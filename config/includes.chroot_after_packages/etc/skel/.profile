@@ -11,6 +11,8 @@ export CLUTTER_BACKEND=wayland
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 #export SDL_VIDEODRIVER=wayland
 
+# Override the default terminal
+# export TERMINAL=xfce4-terminal
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
