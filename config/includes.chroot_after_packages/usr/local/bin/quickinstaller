@@ -1,3 +1,6 @@
 #!/bin/bash
-# Frontend for quick installers.  See quickinstaller-backend to make changes.
-xfce4-terminal -T "Quick Installers" -e bash -c "gksudo /usr/local/bin/quickinstaller-backend; echo $'\n\nPress any key to close.'; read -srn1"
+# Frontend for quick installers
+
+TERMINAL_CMD="${TERMINAL:-x-terminal-emulator}"
+
+$TERMINAL_CMD -T "Quick Installers" -e bash -c "gksudo /usr/local/bin/quickinstaller-backend; exec bash"
