@@ -320,7 +320,7 @@ mode "$mode_gaps" {
 }
 
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
+        bindsym equal  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
         bindsym 0     gaps outer current set 0
 
@@ -332,7 +332,7 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
+        bindsym equal  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
 
@@ -344,7 +344,7 @@ mode "$mode_gaps_inner" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_horiz" {
-        bindsym plus  gaps horizontal current plus 5
+        bindsym equal  gaps horizontal current plus 5
         bindsym minus gaps horizontal current minus 5
         bindsym 0     gaps horizontal current set 0
 
@@ -356,7 +356,7 @@ mode "$mode_gaps_horiz" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_verti" {
-        bindsym plus  gaps vertical current plus 5
+        bindsym equal  gaps vertical current plus 5
         bindsym minus gaps vertical current minus 5
         bindsym 0     gaps vertical current set 0
 
@@ -368,7 +368,7 @@ mode "$mode_gaps_verti" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_top" {
-        bindsym plus  gaps top current plus 5
+        bindsym equal  gaps top current plus 5
         bindsym minus gaps top current minus 5
         bindsym 0     gaps top current set 0
 
@@ -380,7 +380,7 @@ mode "$mode_gaps_top" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_right" {
-        bindsym plus  gaps right current plus 5
+        bindsym equal  gaps right current plus 5
         bindsym minus gaps right current minus 5
         bindsym 0     gaps right current set 0
 
@@ -392,7 +392,7 @@ mode "$mode_gaps_right" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_bottom" {
-        bindsym plus  gaps bottom current plus 5
+        bindsym equal  gaps bottom current plus 5
         bindsym minus gaps bottom current minus 5
         bindsym 0     gaps bottom current set 0
 
@@ -404,7 +404,7 @@ mode "$mode_gaps_bottom" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_left" {
-        bindsym plus  gaps left current plus 5
+        bindsym equal  gaps left current plus 5
         bindsym minus gaps left current minus 5
         bindsym 0     gaps left current set 0
 

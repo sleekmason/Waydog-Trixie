@@ -32,7 +32,7 @@ run_in_terminal() {
   SCRIPT="$1"
   case "$TERM_CMD" in
     xfce4-terminal)
-      "$TERM_CMD" --hold -x "$SCRIPT"
+      "$TERM_CMD" -x "$SCRIPT"
       ;;
     gnome-terminal|x-terminal-emulator)
       "$TERM_CMD" -- "$SCRIPT"
@@ -132,8 +132,9 @@ BEGIN {
 ' "$CONFIG" | sort
 
 echo -e " ${GREEN}--------------------------------------------------------${RESET}"
-
-exec "$SHELL"
+echo
+read -n1 -s -r -p "Press any key to close..."
+echo
 EOF
 
 chmod +x "$TMP_SCRIPT"
