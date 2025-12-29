@@ -35,6 +35,9 @@ input * {
     xkb_options "grp:alt_shift_toggle"
 }
 
+## Alternating Autotile Layouts - install the "autotiling" package to use.
+#exec_always --no-startup-id "autotiling"
+
 ## Lock screen options.
 # Suspend only.
 # exec swayidle -w timeout 600 'systemctl suspend'
