@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Niri Compositor Installer' -e bash -c "niri-installer"
+Name=Niri Installer
+Icon=preferences-desktop-display
+Terminal=true
+GenericName=Niri Compositor Installer
+Categories=ld-misc-tools;
+Keywords=installer;
+Comment=Niri Compositor Installer
