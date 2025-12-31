@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if pgrep -x "niri"; then
+niri msg action toggle-overview
+else
+
 CACHE_FILE="$HOME/.cache/.tsd"
 
 if wlrctl window find state:unminimized; then
@@ -12,3 +16,5 @@ else
 	done < "$CACHE_FILE"
 	> "$CACHE_FILE"
 fi
+fi
+

@@ -7,7 +7,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "sway/workspaces",
+        "niri/workspaces",
         "sway/mode",
         "custom/launcher1",
         "custom/launcher2",
@@ -29,7 +29,7 @@
         "memory",
         "temperature",
         "backlight",
-    //  "keyboard-state",
+        // "keyboard-state",
         "sway/language",
         "battery",
         "battery#bat2",

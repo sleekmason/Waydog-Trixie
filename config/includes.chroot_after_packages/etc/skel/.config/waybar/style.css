@@ -58,18 +58,18 @@ tooltip {
    Workspaces
    -------------------------------------------- */
 #workspaces button {
-  background: @base-light;
+  min-height: 0px;
   font-family: "Dejavu Sans";
   font-size: 11px;
   color: @text;
   border-radius: 6px;
-  padding: 0px 8px;
+  padding: 0px 2px;
   margin-left: 0px;
   margin-right: 2px;
 }
 
 #workspaces button.active {
-  background: @border;
+  background: @base-light;
   color: @violet;
 }
 
