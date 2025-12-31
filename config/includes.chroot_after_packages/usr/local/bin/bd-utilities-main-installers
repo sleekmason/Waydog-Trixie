@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yad --title "Utility Installers" --escape-ok --form --center --geometry=524x336-300-360 --borders=10 \
+yad --title "Utility Installers" --escape-ok --form --center --geometry=524x412-300-360 --borders=10 \
 --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
 --button="gtk-ok:0" --buttons-layout=spread \
 --text="\n Utility Installers \n" --text-align=center \
