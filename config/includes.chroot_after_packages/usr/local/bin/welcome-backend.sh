@@ -46,7 +46,7 @@ if command -v yad >/dev/null; then
       --fontname="JetBrains Mono Light 11" \
       --fore="#DAE4E8"
   else
-    yad --title "Welcome To Waydog live!" \
+    yad --title "Welcome To Waydog Live" \
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
       --width=488 --height=538 --center \
       --escape-ok --undecorated --skip-taskbar \

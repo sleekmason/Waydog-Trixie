@@ -30,7 +30,7 @@
         "temperature",
         "backlight",
         // "keyboard-state",
-        "sway/language",
+        "niri/language",
         "battery",
         "battery#bat2",
         "clock",
