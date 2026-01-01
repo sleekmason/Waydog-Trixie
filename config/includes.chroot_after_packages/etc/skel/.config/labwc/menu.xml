@@ -163,6 +163,11 @@
 					<execute>toggle-random</execute>
 				</action>
 			</item>
+			<item label="Displays" icon="/usr/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg">
+                <action name="Execute">
+                    <execute>wdisplays</execute>
+               </action>
+            </item>
 			<item label="Inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" >
 				<action name="Execute">
 					<execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
