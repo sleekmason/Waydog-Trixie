@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Wayfire Compositor Installer' -e bash -c "wayfire-installer"
+Name=Wayfire Installer
+Icon=preferences-desktop-display
+Terminal=true
+GenericName=Wayfire Compositor Installer
+Categories=ld-misc-tools;
+Keywords=installer;
+Comment=Wayfire Compositor Installer
