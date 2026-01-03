@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yad --title "Utility Installers" --escape-ok --form --center --geometry=524x412-300-360 --borders=10 \
+yad --title "Utility Installers" --escape-ok --form --center --geometry=524x428-300-360 --borders=10 \
 --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
 --button="gtk-ok:0" --buttons-layout=spread \
 --text="\n Utility Installers \n" --text-align=center \
@@ -19,11 +19,11 @@ yad --title "Utility Installers" --escape-ok --form --center --geometry=524x412-
     --field="Liquorix Kernel":FBTN "x-terminal-emulator -T 'Liquorix Kernel Installer' -e bash -c "liquorix-kernel-installer"" \
     --field="Live Build Apps":FBTN "x-terminal-emulator -T 'Live Build Apps Installer' -e bash -c "live-build-apps-installer"" \
     --field="Ly Installer":FBTN "x-terminal-emulator -T 'Ly Display Manager Installer' -e bash -c "ly-installer"" \
-    --field="Nano Editor":FBTN "x-terminal-emulator -T 'Nano Installer' -e bash -c "nano-installer"" \
     --field="Niri Installer":FBTN "x-terminal-emulator -T 'Niri Compositor Installer' -e bash -c "niri-installer"" \
     --field="Penguins Eggs":FBTN "x-terminal-emulator -T 'Penguin Eggs Installer' -e bash -c "penguins-eggs-installer"" \
     --field="Qemu":FBTN "x-terminal-emulator -T 'Qemu Installer' -e bash -c "qemu-installer"" \
     --field="Sddm Installer":FBTN "x-terminal-emulator -T 'SDDM Display Manager Installer' -e bash -c "sddm-installer"" \
     --field="Virtualbox":FBTN "x-terminal-emulator -T 'Virtualbox Installer' -e bash -c "virtualbox-installer-oracle"" \
     --field="VSCodium Editor":FBTN "x-terminal-emulator -T 'VSCodium Installer' -e bash -c "vscodium-installer"" \
+    --field="Wayfire Installer":FBTN "x-terminal-emulator -T 'Wayfire Compositor Installer' -e bash -c "wayfire-installer"" \
     --field="Xanmod Kernel":FBTN "x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer""
