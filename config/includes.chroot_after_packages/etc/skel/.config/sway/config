@@ -36,7 +36,7 @@ input * {
 }
 
 ## Alternating Autotile Layouts - install the "autotiling" package to use.
-#exec_always --no-startup-id "autotiling"
+exec_always --no-startup-id "autotiling"
 
 ## Lock screen options.
 # Suspend only.

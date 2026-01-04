@@ -164,6 +164,7 @@ yad
 zstd
 
 # Wayland specific
+autotiling
 fuzzel
 grim
 grimshot
