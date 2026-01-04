@@ -18,6 +18,8 @@ elif pgrep -x "sway"; then
 var3="killall -s SIGTERM sway"
 elif pgrep -x "niri"; then
 var3="niri msg action quit"
+elif pgrep -x "wayfire"; then
+var3="killall -s SIGTERM wayfire"
 else
 var3="loginctl terminate-session $XDG_SESSION_ID"
 fi
