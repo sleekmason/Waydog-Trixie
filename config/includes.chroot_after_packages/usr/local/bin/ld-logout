@@ -17,16 +17,12 @@ var3="pkill -x Hyprland"
 elif pgrep -x "sway"; then
 var3="killall -s SIGTERM sway"
 elif pgrep -x "niri"; then
-var3='sh -c "pkill -TERM -x niri; sleep 1; chvt 2"'
+var3='sh -c "pkill -TERM -x niri; chvt 2"'
 elif pgrep -x "wayfire"; then
 var3="killall -s SIGTERM wayfire"
 else
 var3="loginctl terminate-session $XDG_SESSION_ID"
 fi
-
-# Other niri possibilities:
-#var3='sh -c "pkill -TERM -x niri; chvt 2; while pgrep -x niri >/dev/null; do sleep 0.1; done"'
-#var3='sh -c "pkill -TERM -x niri; chvt 2"'
 
 # Main styles
 yad --title "Logout" --center --fixed --width=500 --height=50 --borders=5 \
