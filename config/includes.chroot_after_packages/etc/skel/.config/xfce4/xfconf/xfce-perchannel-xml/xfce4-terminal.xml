@@ -23,6 +23,6 @@
   <property name="misc-menubar-default" type="bool" value="false"/>
   <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
   <property name="background-darkness" type="double" value="0.92000000000000004"/>
-  <property name="command-login-shell" type="bool" value="true"/>
-  <property name="misc-show-unsafe-paste-dialog" type="bool" value="true"/>
+  <property name="command-login-shell" type="bool" value="false"/>
+  <property name="misc-show-unsafe-paste-dialog" type="bool" value="false"/>
 </channel>
