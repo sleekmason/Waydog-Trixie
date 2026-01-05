@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-terminal" version="1.0">
   <property name="color-foreground" type="string" value="#c5c5d4d4dbdb"/>
-  <property name="color-background" type="string" value="#1d1d2b2b3333"/>
+  <property name="color-background" type="string" value="#181826252e2e"/>
   <property name="color-background-vary" type="bool" value="false"/>
   <property name="color-cursor-foreground" type="string" value=""/>
   <property name="color-cursor" type="string" value=""/>
@@ -18,9 +18,11 @@
   <property name="tab-activity-color" type="string" value="#aa0000"/>
   <property name="scrolling-bar" type="string" value="TERMINAL_SCROLLBAR_NONE"/>
   <property name="scrolling-lines" type="uint" value="10000"/>
-  <property name="font-name" type="string" value="JetBrains Mono Light 11"/>
+  <property name="font-name" type="string" value="JetBrains Mono Light 10"/>
   <property name="misc-default-geometry" type="string" value="80x26"/>
   <property name="misc-menubar-default" type="bool" value="false"/>
   <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
   <property name="background-darkness" type="double" value="0.92000000000000004"/>
+  <property name="command-login-shell" type="bool" value="true"/>
+  <property name="misc-show-unsafe-paste-dialog" type="bool" value="true"/>
 </channel>
