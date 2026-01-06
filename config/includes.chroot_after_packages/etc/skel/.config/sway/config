@@ -48,9 +48,10 @@ exec_always --no-startup-id "autotiling"
 # 5 minute lockscreen + 10 minute suspend.
 # exec swayidle -w timeout 300 'swaylock -f -e -c 072836 --ring-color 0C5E5B --line-uses-ring' timeout 600 'systemctl suspend'
 
-### Rules for floating windows
-## Yad
+## Rules for floating windows
 for_window [app_id="yad"] floating enable, move position center
+for_window [app_id="usbimager"] floating enable, move position center
+for_window [app_id="nwg-look"] floating enable, move position center
 
 ### Output configuration
 #
