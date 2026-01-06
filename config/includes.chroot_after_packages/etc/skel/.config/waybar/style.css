@@ -86,8 +86,8 @@ tooltip {
   background: @base-light;
   padding: 0 10px;
   border-radius: 8px;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 #clock:hover {
@@ -97,7 +97,8 @@ tooltip {
 
 #battery {
   color: @green;
-  padding: 0 8px;
+  padding: 0 6px;
+  border-radius: 6px;
 }
 #battery.critical {
   color: @red;
@@ -112,7 +113,7 @@ tooltip {
 
 #cpu {
   color: @yellow;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 
 #memory {
@@ -146,7 +147,7 @@ tooltip {
    -------------------------------------------- */
 #backlight {
   color: @yellow;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 
 #backlight:hover {
@@ -167,10 +168,11 @@ tooltip {
    --------------------------------------------- */
 #language {
     color: #97B6C7;       /* blue */
-    padding: 0 8px;
+    padding: 0 6px;
     border-radius: 6px;
     font-size: 13px;
-    margin-right: 6px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 #language:hover {
@@ -187,7 +189,7 @@ tooltip {
     color: @text;
     padding: 0px 9px;
     border-radius: 8px;
-    margin: 0 4px;
+    margin: 0 0px;
     font-size: 14px;
     transition: background 0.2s ease, color 0.2s ease;
 }

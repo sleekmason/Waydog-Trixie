@@ -230,7 +230,7 @@
         <execute>ld-logout</execute>
       </action>
     </keybind>
-    <keybind key="W-f">
+    <keybind key="W-t">
       <action name="Execute">
         <execute>thunar</execute>
       </action>
