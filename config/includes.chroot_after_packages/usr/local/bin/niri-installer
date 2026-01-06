@@ -42,6 +42,7 @@ fi
 ## Copy files from /tmp.
 mkdir -p "$HOME/.config/niri"
 cp -f "/tmp/niri/config.kdl" "$HOME/.config/niri"
+sudo cp -f "/tmp/niri/xwayland-satellite" "/usr/local/bin"
 
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"
