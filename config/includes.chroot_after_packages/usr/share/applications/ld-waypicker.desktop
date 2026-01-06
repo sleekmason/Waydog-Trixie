@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Color Picker
+GenericName=Color Picker
+Comment=Color picker for use in Wayland.
+Keywords=color;picker;waypicker;
+Categories=Graphics;2DGraphics;
+Exec=waypicker
+Hidden=false
+Terminal=false
+Icon=applications-graphics

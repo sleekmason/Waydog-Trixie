@@ -192,7 +192,12 @@
 				<action name="Execute">
 					<execute>/usr/local/bin/usbimager</execute>
 				</action>
-			</item>				
+			</item>
+			<item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png" >
+			    <action name="Execute">
+				    <execute>waypicker</execute>
+			    </action>
+		    </item>			
 		    <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
 				<action name="Execute">
 					<execute>update-options</execute>
