@@ -1,14 +1,6 @@
 #!/bin/bash
 #
-# License: MIT
-#
-# A script to easily pick a color on a wayland session by using:
-# slurp to select the location, grim to get the pixel, convert
-# to make the pixel a hex number and yad to display a nice color
-# selector dialog where the picked color can be tweaked further
-# or aselection to "Pick Again".
-#
-# Based from: https://github.com/jgmdev/wl-color-picker
+# Based originally from: https://github.com/jgmdev/wl-color-picker
 # Made for Waydog by sleekmason 5 Jan 2025.
 
 showhelp() {
@@ -55,9 +47,9 @@ while true; do
     position=$(slurp -b 00000000 -p) || exit 0
 
     # Prevent grim timing issue.
-    sleep 0.10
+    sleep 0.50
 
-    # Store the hex color value.
+    # Store hex color value.
     if command -v /usr/bin/gm &> /dev/null; then
         color=$(grim -g "$position" -t png - \
             | /usr/bin/gm convert - -format '%[pixel:p{0,0}]' txt:- \
@@ -71,29 +63,37 @@ while true; do
     if [ "$CLIPBOARD" -eq 1 ]; then
         echo "$color" | wl-copy -n
         if [ "$NO_NOTIFY" -ne 1 ]; then
-            notify-send "Color copied to clipboard." "$color"
+            notify-send "Color copied to clipboard" "$color"
         fi
         exit 0
     fi
 
+    # Copy initial color.
     echo "$color" | wl-copy -n
 
-    yad --color \
+    yad_output=$(yad --color \
         --title="Color Copied To Clipboard" \
         --init-color="$color" \
-        --button=" Pick!emblem-synchronizing":10 \
-        --button=" Exit!emblem-default":0
+        --button=" Repick!emblem-synchronizing":10 \
+        --button=" OK!emblem-default":0
+    )
 
-    case $? in
-        10)
-            # Pick again.
-            continue
-            ;;
-        0)
-            exit 0
-            ;;
-        *)
-            exit 0
-            ;;
-    esac
+case $? in
+    10)
+        continue
+        ;;
+    0)
+        if [ -n "$yad_output" ] && [ "$yad_output" != "$color" ]; then
+            final_color="$yad_output"
+        else
+            final_color="$color"
+        fi
+
+        echo "$final_color" | wl-copy -n
+        exit 0
+        ;;
+    *)
+        exit 0
+        ;;
+esac
 done
