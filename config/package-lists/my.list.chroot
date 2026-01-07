@@ -54,12 +54,12 @@ gnome-icon-theme
 gnome-themes-extra
 gnupg
 gparted
+graphicsmagick
 gtk2-engines-murrine
 gtk2-engines-pixbuf
 gvfs
 gvfs-backends
 gvfs-fuse
-imagemagick
 intel-microcode
 inxi
 iproute2
