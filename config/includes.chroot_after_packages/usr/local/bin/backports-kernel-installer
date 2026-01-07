@@ -3,6 +3,9 @@
 ## Simple script to add backports and install latest kernel, headers, and firmware.
 read -p "
    [0;33mAdd trixie backport sources and install the latest kernel[0m
+   
+   Note * Do not install this kernel first if planning on using the
+   Liquorix or Xanmod kernels. (backports dependency conflicts)
      
    This script will add the trixie Backports repository and install 
    the trixie backports kernel, headers, and firmware if available.

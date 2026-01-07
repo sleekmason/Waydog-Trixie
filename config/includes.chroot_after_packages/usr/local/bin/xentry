@@ -245,7 +245,7 @@ _update
 _remove_packages
 #_add_ly
 _add_backports
-_upgrade_kernel
+#_upgrade_kernel
 #_add_conky
 _osprober
 _firmware
@@ -260,7 +260,7 @@ _update
 _remove_packages
 #_add_ly
 _add_backports
-_upgrade_kernel
+#_upgrade_kernel
 #_add_conky
 _firmware
 _reboot
