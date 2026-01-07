@@ -5,7 +5,8 @@
 # A script to easily pick a color on a wayland session by using:
 # slurp to select the location, grim to get the pixel, convert
 # to make the pixel a hex number and yad to display a nice color
-# selector dialog where the picked color can be tweaked further.
+# selector dialog where the picked color can be tweaked further
+# or aselection to "Pick Again".
 #
 # Based from: https://github.com/jgmdev/wl-color-picker
 # Made for Waydog by sleekmason 5 Jan 2025.
@@ -37,66 +38,62 @@ while [ "$1" ]; do
             NO_NOTIFY=1
             ;;
     esac
-
     shift
 done
 
 # Check if running under wayland.
-if [ "$WAYLAND_DISPLAY" = "" ]; then
+if [ -z "$WAYLAND_DISPLAY" ]; then
     yad --error --width=400 \
         --title="No wayland session found." \
         --text="This color picker must be run under a valid wayland session."
-
     exit 1
 fi
 
-# Get color position
-position=$(slurp -b 00000000 -p)
+# Main loop.
+while true; do
+    # Get color position.
+    position=$(slurp -b 00000000 -p) || exit 0
 
-# Sleep at least for a second to prevent issues with grim always
-# returning improper color.
-sleep 1
+    # Prevent grim timing issue.
+    sleep 0.10
 
-# Store the hex color value using graphicsmagick or imagemagick.
-if command -v /usr/bin/gm &> /dev/null; then
-    color=$(grim -g "$position" -t png - \
-        | /usr/bin/gm convert - -format '%[pixel:p{0,0}]' txt:- \
-        | tail -n 1 \
-        | rev \
-        | cut -d ' ' -f 1 \
-        | rev
-    )
-else
-    color=$(grim -g "$position" -t png - \
-        | convert - -format '%[pixel:p{0,0}]' txt:- \
-        | tail -n 1 \
-        | cut -d ' ' -f 4
-    )
-fi
-
-if [ $CLIPBOARD -eq 1 ]; then
-    echo $color | wl-copy -n
-    if [ $NO_NOTIFY -ne 1 ]; then
-        notify-send "Color copied to clipboard." $color
+    # Store the hex color value.
+    if command -v /usr/bin/gm &> /dev/null; then
+        color=$(grim -g "$position" -t png - \
+            | /usr/bin/gm convert - -format '%[pixel:p{0,0}]' txt:- \
+            | tail -n 1 | rev | cut -d ' ' -f 1 | rev)
+    else
+        color=$(grim -g "$position" -t png - \
+            | convert - -format '%[pixel:p{0,0}]' txt:- \
+            | tail -n 1 | cut -d ' ' -f 4)
     fi
-else
+
+    if [ "$CLIPBOARD" -eq 1 ]; then
+        echo "$color" | wl-copy -n
+        if [ "$NO_NOTIFY" -ne 1 ]; then
+            notify-send "Color copied to clipboard." "$color"
+        fi
+        exit 0
+    fi
 
     echo "$color" | wl-copy -n
-    # Display a color picker and store the returned rgb color
-    rgb_color=$(yad --color \
-        --title="Color copied to clipboard" \
-        --init-color="${color}"
-    )
 
-    # Execute if user didn't click cancel
-    if [ "$rgb_color" != "" ]; then
-        # Convert rgb color to hex
-        hex_color="#"
-        for value in $(echo "${rgb_color}" | grep -E -o '[0-9]+'); do
-           hex_color="$hex_color$(printf "%.2x" $value)"
-        done
+    yad --color \
+        --title="Color Copied To Clipboard" \
+        --init-color="$color" \
+        --button=" Pick!emblem-synchronizing":10 \
+        --button=" Exit!emblem-default":0
 
-        # Copy user selection to clipboard
-        echo $hex_color | wl-copy -n
-    fi
-fi
+    case $? in
+        10)
+            # Pick again.
+            continue
+            ;;
+        0)
+            exit 0
+            ;;
+        *)
+            exit 0
+            ;;
+    esac
+done
