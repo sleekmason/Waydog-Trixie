@@ -84,7 +84,7 @@ else
     echo "$color" | wl-copy -n
     # Display a color picker and store the returned rgb color
     rgb_color=$(yad --color \
-        --title="Copy color to Clipboard" \
+        --title="Color copied to clipboard" \
         --init-color="${color}"
     )
 
