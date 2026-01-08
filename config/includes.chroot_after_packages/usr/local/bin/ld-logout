@@ -17,7 +17,11 @@ var3="pkill -x Hyprland"
 elif pgrep -x "sway"; then
 var3="killall -s SIGTERM sway"
 elif pgrep -x "niri"; then
+if pgrep -x "sddm"; then
 var3='sh -c "pkill -TERM -x niri; chvt 2"'
+else
+var3="niri msg action quit --skip-confirmation"
+fi
 elif pgrep -x "wayfire"; then
 var3="killall -s SIGTERM wayfire"
 else
