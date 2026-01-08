@@ -249,7 +249,7 @@ _add_backports
 #_add_conky
 _osprober
 _firmware
-_reboot
+#_reboot
 sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 if ! grep hypervisor /proc/cpuinfo ; then
 sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
@@ -263,7 +263,7 @@ _add_backports
 #_upgrade_kernel
 #_add_conky
 _firmware
-_reboot
+#_reboot
 sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 if ! grep hypervisor /proc/cpuinfo ; then
 sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
