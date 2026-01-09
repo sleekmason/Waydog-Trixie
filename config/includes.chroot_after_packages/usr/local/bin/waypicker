@@ -71,7 +71,7 @@ while true; do
     # Copy initial color.
     echo "$color" | wl-copy -n
 
-    yad_output=$(yad --color \
+    yad_output=$(yad --color --gtk-palette --palette=/usr/share/X11/rgb.txt \
         --title="Color Copied To Clipboard" \
         --init-color="$color" \
         --button=" Repick!emblem-synchronizing":10 \
