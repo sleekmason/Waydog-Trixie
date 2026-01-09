@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=x-terminal-emulator -T 'Wayfire Compositor Installer' -e bash -c "wayfire-installer"
-Name=Wayfire Installer
+Name=Wayfire WM Installer
 Icon=preferences-desktop-display
 Terminal=true
 GenericName=Wayfire Compositor Installer

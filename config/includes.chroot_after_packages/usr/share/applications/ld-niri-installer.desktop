@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=x-terminal-emulator -T 'Niri Compositor Installer' -e bash -c "niri-installer"
-Name=Niri Installer
+Name=Niri WM Installer
 Icon=preferences-desktop-display
 Terminal=true
 GenericName=Niri Compositor Installer

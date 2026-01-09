@@ -3,7 +3,7 @@
 Encoding=UTF-8
 Type=Application
 Exec=x-terminal-emulator -T 'SDDM Dispay Manager Installer' -e bash -c "sddm-installer; echo $'Press any key to close'; read -srn1"
-Name=SDDM Installer
+Name=SDDM Login Installer
 Icon=applications-system
 Terminal=true
 GenericName=SDDM display manager installer
