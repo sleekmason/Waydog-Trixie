@@ -52,6 +52,9 @@ exec_always --no-startup-id "autotiling"
 for_window [app_id="yad"] floating enable, move position center
 for_window [app_id="usbimager"] floating enable, move position center
 for_window [app_id="nwg-look"] floating enable, move position center
+for_window [app_id="wdisplays"] floating enable, move position center
+for_window [app_id="Usermount"] floating enable, move position center
+for_window [app_id="dconf-editor"] floating enable, move position center
 
 ### Output configuration
 #
