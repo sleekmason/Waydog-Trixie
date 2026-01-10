@@ -2,13 +2,11 @@
 uses the new Wayland protocol for its display server.
 
 Labwc and Sway are installed by default, with separate installation
-options for Niri and Wayfire compositors in the Waydog installers.
+options for Niri and Wayfire compositors. Both are also customized
+for Waydog use. These can be found in the Waydog installers. 
 
-Both Niri and Wayfire are also customized for Waydog use. Both can be
-installed from the Waydog installers. 
-
-On initial live login, either Labwc or Sway can be selected. The other
-WMs can also be installed and tried out during a Live session.
+On initial live login, either Labwc or Sway can be selected. Niri and
+Wayfire can also be installed and tested during a Live session.
 
 https://sourceforge.net/projects/lilidog/files/Releases/
 
