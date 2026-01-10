@@ -1,12 +1,12 @@
 ﻿Waydog is a lightweight Linux distro based on Debian Trixie. Waydog
 uses the new Wayland protocol for its display server.
 
-Labwc and Sway are installed by default, with separate installation
-options for Niri and Wayfire compositors. Both are also customized
-for Waydog use. These can be found in the Waydog installers. 
+Labwc and Sway are installed by default, with separate installation options
+for Niri and Wayfire compositors. Both are also customized for Waydog
+use. These can be found in the Waydog installers. 
 
-On initial live login, either Labwc or Sway can be selected. Niri and
-Wayfire can also be installed and tested during a Live session.
+Initial login will allow either Labwc or Sway to be selected. Niri and
+Wayfire can also be installed and tested during live session use.
 
 https://sourceforge.net/projects/lilidog/files/Releases/
 
@@ -38,7 +38,7 @@ Use "image mode" in the live-usb maker when burning the image.
 The boot screen for Waydog gives a choice of using as a live session or
 installing if you like what you see.
 
-### Navigating Waydog:
+### Exploring Waydog:
 For live login use: Live Username = 'user', and Live Password = 'live'
 The live session starts in the SDDM display manager after boot.
 
