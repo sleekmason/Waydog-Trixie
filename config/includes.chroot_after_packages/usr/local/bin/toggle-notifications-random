@@ -11,45 +11,72 @@ XML_FILES=(
 )
 
 SWAY_FILE="$HOME/.config/sway/config"
+NIRI_FILE="$HOME/.config/niri/config.kdl"
+WAYFIRE_FILE="$HOME/.config/wayfire.ini"
+
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
+STATE_FILE="$STATE_DIR/random-state"
 
 CHANGED=0
-HAS_FLAG=0
 
-## Detect global state
-for file in "${XML_FILES[@]}"; do
-    if xmlstarlet sel -t -v "//execute[text()='$CMD $FLAG']" "$file" | grep -q .; then
-        HAS_FLAG=1
-        break
-    fi
-done
+mkdir -p "$STATE_DIR"
 
-## Apply global state to all XML files
+if [[ -f "$STATE_FILE" ]]; then
+    HAS_FLAG=1
+else
+    HAS_FLAG=0
+fi
+
+## Labwc
 for file in "${XML_FILES[@]}"; do
-    if [[ $HAS_FLAG -eq 1 ]]; then
-        xmlstarlet ed -L \
-            -u "//execute[text()='$CMD $FLAG']" \
-            -v "$CMD" \
-            "$file"
-        CHANGED=1
-    else
-        xmlstarlet ed -L \
-            -u "//execute[text()='$CMD']" \
-            -v "$CMD $FLAG" \
-            "$file"
+    if [[ -f "$file" ]]; then
+        if [[ $HAS_FLAG -eq 1 ]]; then
+            xmlstarlet ed -L -u "//execute[text()='$CMD']" -v "$CMD $FLAG" "$file"
+        else
+            xmlstarlet ed -L -u "//execute[text()='$CMD $FLAG']" -v "$CMD" "$file"
+        fi
         CHANGED=1
     fi
 done
 
 ## Sway
-if [[ $HAS_FLAG -eq 1 ]]; then
-    sed -i "/bindsym .*\"$CMD $FLAG\"/s/\"$CMD $FLAG\"/\"$CMD\"/" "$SWAY_FILE"
-    CHANGED=1
-else
-    sed -i "/bindsym .*\"$CMD\"/s/\"$CMD\"/\"$CMD $FLAG\"/" "$SWAY_FILE"
+if [[ -f "$SWAY_FILE" ]]; then
+    if [[ $HAS_FLAG -eq 1 ]]; then
+        sed -i "/bindsym .*\"$CMD\"/s/\"$CMD\"/\"$CMD $FLAG\"/" "$SWAY_FILE"
+    else
+        sed -i "/bindsym .*\"$CMD $FLAG\"/s/\"$CMD $FLAG\"/\"$CMD\"/" "$SWAY_FILE"
+    fi
     CHANGED=1
 fi
 
-## Reload configs
+## Niri
+if [[ -f "$NIRI_FILE" ]]; then
+    if [[ $HAS_FLAG -eq 1 ]]; then
+        sed -i '/hotkey-overlay-title="Random Wallpaper: toggle-random"/s|{ spawn .*; }|{ spawn "random-nonoti"; }|' "$NIRI_FILE"
+    else
+        sed -i '/hotkey-overlay-title="Random Wallpaper: toggle-random"/s|{ spawn .*; }|{ spawn "toggle-random"; }|' "$NIRI_FILE"
+    fi
+    CHANGED=1
+fi
+
+## Wayfire
+if [[ -f "$WAYFIRE_FILE" ]]; then
+    if [[ $HAS_FLAG -eq 1 ]]; then
+        sed -i "/command_random = $CMD/s/$CMD/$CMD $FLAG/" "$WAYFIRE_FILE"
+    else
+        sed -i "/command_random = $CMD $FLAG/s/$CMD $FLAG/$CMD/" "$WAYFIRE_FILE"
+    fi
+    CHANGED=1
+fi
+
+## Update state
+if [[ $HAS_FLAG -eq 1 ]]; then
+    rm -f "$STATE_FILE"
+else
+    touch "$STATE_FILE"
+fi
+
+## Reload
 if [[ $CHANGED -eq 1 ]]; then
     if pgrep -x labwc >/dev/null; then
         labwc --reconfigure >/dev/null 2>&1
@@ -57,6 +84,10 @@ if [[ $CHANGED -eq 1 ]]; then
 
     if pgrep -x sway >/dev/null && command -v swaymsg >/dev/null; then
         swaymsg reload >/dev/null 2>&1
+    fi
+
+    if pgrep -x niri >/dev/null; then
+        niri msg action load-config-file >/dev/null 2>&1
     fi
 
     if [[ $HAS_FLAG -eq 1 ]]; then
