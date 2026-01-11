@@ -92,9 +92,9 @@ if [[ $CHANGED -eq 1 ]]; then
 
     if [[ $HAS_FLAG -eq 1 ]]; then
         notify-send -i preferences-desktop-wallpaper --urgency low \
-          "Random wallpaper notifications enabled."
+          "Random wallpaper notifications disabled."
     else
         notify-send -i preferences-desktop-wallpaper --urgency low \
-          "Random wallpaper notifications disabled."
+          "Random wallpaper notifications enabled."
     fi
 fi
