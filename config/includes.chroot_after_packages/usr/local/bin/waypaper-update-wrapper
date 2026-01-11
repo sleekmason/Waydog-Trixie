@@ -8,7 +8,7 @@ CONFIG_FILE="$HOME/.config/waypaper/config.ini"
 # Start waypaper
 waypaper --state-file "$STATE_FILE" "$@"
 
-# 3. Read folder and wallpaper from state file
+# Read folder and wallpaper from state file
 folder=$(grep -E '^folder *= *' "$STATE_FILE" | cut -d= -f2- | xargs)
 wallpaper=$(grep -E '^wallpaper *= *' "$STATE_FILE" | cut -d= -f2- | xargs)
 
@@ -16,7 +16,13 @@ wallpaper=$(grep -E '^wallpaper *= *' "$STATE_FILE" | cut -d= -f2- | xargs)
 folder="${folder/#\~/$HOME}"
 wallpaper="${wallpaper/#\~/$HOME}"
 
-# 5. Update folder and wallpaper in config.ini
+# Update wf-shell
+WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
+if [ -n "$wallpaper" ]; then
+    sed -i "s|^image *=.*|image=$wallpaper|" "$WF_SHELL_CONFIG" 2>/dev/null
+fi
+
+# Update folder and wallpaper in config.ini
 for key in folder wallpaper; do
     value="${!key}"
     if grep -q "^$key *= *" "$CONFIG_FILE"; then

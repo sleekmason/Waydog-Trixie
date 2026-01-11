@@ -97,16 +97,20 @@ trap '
         for cmd in "${CMD_ARRAY[@]}"; do
             $cmd "$CURRENT_WALLPAPER" &
         done
-    fi
 
-    ## Update Waypaper config if enabled.
-    if [ "$WAYPAPER_ENABLED" = true ] && [ -n "$CURRENT_WALLPAPER" ]; then
-        folder=$(dirname "$CURRENT_WALLPAPER")
-        wallpaper="$CURRENT_WALLPAPER"
-        for key in folder wallpaper; do
-            value="${!key}"
-            sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
-        done
+        # Update ~/.config/wf-shell.ini
+        WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
+        sed -i "s|^image *=.*|image=$CURRENT_WALLPAPER|" "$WF_SHELL_CONFIG" 2>/dev/null
+
+        # Update Waypaper config if enabled
+        if [ "$WAYPAPER_ENABLED" = true ]; then
+            folder=$(dirname "$CURRENT_WALLPAPER")
+            wallpaper="$CURRENT_WALLPAPER"
+            for key in folder wallpaper; do
+                value="${!key}"
+                sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
+            done
+        fi
     fi
 
     exit
