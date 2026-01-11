@@ -43,8 +43,12 @@ fi
 
 # Main loop.
 while true; do
-    # Get color position.
-    position=$(slurp -b 00000000 -p) || exit 0
+# Get color position.
+position=$(slurp -b 00000000 -p)
+if [ -z "$position" ]; then
+    [ "$CLIPBOARD" -eq 1 ] && exit 0
+    continue
+fi
 
     # Prevent grim timing issue.
     sleep 0.50
