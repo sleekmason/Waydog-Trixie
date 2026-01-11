@@ -189,6 +189,9 @@
         <to>4</to>
       </action>
     </keybind>
+    <keybind key="W-f">
+      <action name="ToggleFullscreen"/>
+    </keybind>    
     <keybind key="W-d">
       <action name="Execute">
         <execute>toggleShowDesktop</execute>
