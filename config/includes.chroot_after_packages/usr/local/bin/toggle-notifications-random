@@ -21,6 +21,7 @@ CHANGED=0
 
 mkdir -p "$STATE_DIR"
 
+# disabled if state file exists
 if [[ -f "$STATE_FILE" ]]; then
     HAS_FLAG=1
 else
@@ -30,7 +31,7 @@ fi
 ## Labwc
 for file in "${XML_FILES[@]}"; do
     if [[ -f "$file" ]]; then
-        if [[ $HAS_FLAG -eq 1 ]]; then
+        if [[ $HAS_FLAG -eq 0 ]]; then
             xmlstarlet ed -L -u "//execute[text()='$CMD']" -v "$CMD $FLAG" "$file"
         else
             xmlstarlet ed -L -u "//execute[text()='$CMD $FLAG']" -v "$CMD" "$file"
@@ -41,7 +42,7 @@ done
 
 ## Sway
 if [[ -f "$SWAY_FILE" ]]; then
-    if [[ $HAS_FLAG -eq 1 ]]; then
+    if [[ $HAS_FLAG -eq 0 ]]; then
         sed -i "/bindsym .*\"$CMD\"/s/\"$CMD\"/\"$CMD $FLAG\"/" "$SWAY_FILE"
     else
         sed -i "/bindsym .*\"$CMD $FLAG\"/s/\"$CMD $FLAG\"/\"$CMD\"/" "$SWAY_FILE"
@@ -51,7 +52,7 @@ fi
 
 ## Niri
 if [[ -f "$NIRI_FILE" ]]; then
-    if [[ $HAS_FLAG -eq 1 ]]; then
+    if [[ $HAS_FLAG -eq 0 ]]; then
         sed -i '/hotkey-overlay-title="Random Wallpaper: toggle-random"/s|{ spawn .*; }|{ spawn "random-nonoti"; }|' "$NIRI_FILE"
     else
         sed -i '/hotkey-overlay-title="Random Wallpaper: toggle-random"/s|{ spawn .*; }|{ spawn "toggle-random"; }|' "$NIRI_FILE"
@@ -61,7 +62,7 @@ fi
 
 ## Wayfire
 if [[ -f "$WAYFIRE_FILE" ]]; then
-    if [[ $HAS_FLAG -eq 1 ]]; then
+    if [[ $HAS_FLAG -eq 0 ]]; then
         sed -i "/command_random = $CMD/s/$CMD/$CMD $FLAG/" "$WAYFIRE_FILE"
     else
         sed -i "/command_random = $CMD $FLAG/s/$CMD $FLAG/$CMD/" "$WAYFIRE_FILE"
@@ -70,10 +71,10 @@ if [[ -f "$WAYFIRE_FILE" ]]; then
 fi
 
 ## Update state
-if [[ $HAS_FLAG -eq 1 ]]; then
-    rm -f "$STATE_FILE"
-else
+if [[ $HAS_FLAG -eq 0 ]]; then
     touch "$STATE_FILE"
+else
+    rm -f "$STATE_FILE"
 fi
 
 ## Reload
@@ -90,7 +91,7 @@ if [[ $CHANGED -eq 1 ]]; then
         niri msg action load-config-file >/dev/null 2>&1
     fi
 
-    if [[ $HAS_FLAG -eq 1 ]]; then
+    if [[ $HAS_FLAG -eq 0 ]]; then
         notify-send -i preferences-desktop-wallpaper --urgency low \
           "Random wallpaper notifications disabled."
     else
