@@ -186,5 +186,6 @@ waybar
 wdisplays
 wlrctl
 wlr-randr
+wmenu
 xdg-desktop-portal-wlr
 xwayland

@@ -1,0 +1,25 @@
+# Main options for wmenu.
+# Man wmenu for all options.
+# Wmenu in Waydog is started from /usr/local/bin/wdmenu
+
+WMENU_OPTS=(
+# Font
+  -f "Cantarell 10"
+#  -f "DejaVu Sans 10"
+  
+# case insensitively
+  -i
+
+# wmenu on bottom  
+#  -b
+
+# Colors background
+  -M 11191f               # prompt bg
+  -N 11191fBB             # main bg
+  -S 2e707a               # selection bg
+
+# Colors foreground
+  -m C9CFD1               # prompt fg
+  -n C9CFD1               # main fg
+  -s FFFFFF               # selection fg 
+)

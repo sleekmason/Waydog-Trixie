@@ -238,6 +238,11 @@
         <execute>thunar</execute>
       </action>
     </keybind>
+    <keybind key="W-F3">
+      <action name="Execute">
+        <execute>wdmenu</execute>
+      </action>
+    </keybind>
     <keybind key="W-F5">
       <action name="Execute">
         <execute>fuzzel</execute>

@@ -1,0 +1,78 @@
+#!/bin/bash
+# wdmenu  Made for waydog by sleekmason 13 Jan 2026
+# See config settings in ~/.config/wmenu/config
+# Note line 11 for allowed directories
+
+set -euo pipefail
+
+showhelp() {
+    echo "wdmenu - Wrapper for wmenu. Shows only those programs with"
+    echo "  .desktop files, and any scripts in ~/bin or ~/.local/bin."
+    echo ""
+    echo "Usage:"
+    echo "  wdmenu [options]"
+    echo ""
+    echo "Options:"
+    echo "  --all      Show all programs available on the system."
+}
+if [ "${1-}" = "--help" ] || [ "${1-}" = "-h" ]; then
+    showhelp
+    exit 0
+fi
+
+CONFIG="$HOME/.config/wmenu/config"
+[ -f "$CONFIG" ] && source "$CONFIG"
+
+# If --all, pass everything to wmenu-run
+[ "${1-}" = "--all" ] && { shift; exec wmenu-run "${WMENU_OPTS[@]}" "$@"; }
+
+# Allowed directories
+ALLOWED_DIRS="/usr/bin /usr/local/bin /usr/sbin $HOME/bin $HOME/.local/bin /usr/libexec /snap/bin"
+
+# Build menu
+declare -A MENU_MAP
+
+# Add entries from .desktop files
+for f in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop /var/lib/snapd/desktop/applications/*.desktop; do
+    [ -f "$f" ] || continue
+
+    # Get Name and Exec from the .desktop file
+    NAME=$(awk -F= '/^Name=/ {print $2; exit}' "$f")
+    EXEC=$(awk -F= '/^Exec=/ {print $2; exit}' "$f")
+
+    # Remove common placeholders
+    for ph in %U %F %f %i %c %k; do
+    EXEC=${EXEC//$ph/}
+    done
+
+    # Skip empty Exec
+    [ -z "$EXEC" ] && continue
+
+    # Check if the executable is in allowed directory
+    EXEC_PATH=$(command -v "${EXEC%% *}" 2>/dev/null) || continue
+    include=false
+    for dir in $ALLOWED_DIRS; do
+        [[ "$EXEC_PATH" == "$dir/"* ]] && include=true && break
+    done
+    $include || continue
+
+
+    MENU_MAP["$NAME"]="$EXEC"
+done
+
+# Include all executables in ~/bin and ~/.local/bin
+for dir in "$HOME/bin" "$HOME/.local/bin"; do
+    [ -d "$dir" ] || continue
+    for exe in "$dir"/*; do
+        [ -x "$exe" ] || continue
+        name=$(basename "$exe")
+        [ -n "${MENU_MAP[$name]+x}" ] && continue  # skip if already in menu
+        MENU_MAP["$name"]="$exe"
+    done
+done
+
+# Sorted case-insensitive 
+selected=$(printf '%s\n' "${!MENU_MAP[@]}" | sort -f | wmenu "${WMENU_OPTS[@]}")
+
+# Launch
+[ -n "$selected" ] && exec "${MENU_MAP["$selected"]}"
