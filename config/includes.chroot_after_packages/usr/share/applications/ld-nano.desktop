@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Nano Installer
+Exec=x-terminal-emulator -T 'Nano Installer' -e bash -c "nano-installer"
+StartupNotify=false
+Terminal=true
+Icon=utilities-terminal
+Categories=ld-misc-tools;

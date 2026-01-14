@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Calibre Ebook Installer
+Exec=x-terminal-emulator -T 'Calibre Installer' -e bash -c "calibre-installer"
+StartupNotify=false
+Terminal=true
+Icon=preferences-desktop-accessibility
+Categories=ld-misc-tools;

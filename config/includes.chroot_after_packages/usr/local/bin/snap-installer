@@ -1,0 +1,62 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mSnap Installer[0m
+
+   This will install Snapd and the Snap App Store, the app store 
+   for Linux.
+   
+   Please note that the installation can take a while for a slow
+   connection as snap searches for resources. About 7 minutes on
+   a fairly decent connection here.
+   
+   [0;33mLogging out and back in will be necessary for installed items
+   to be called from menu entries without the full path.[0m
+
+   [0;34mhttps://snapcraft.io//[0m
+   
+   [0;32m-------------------------------------------------------------
+   
+   Please press enter to install Snap.
+   
+   -------------------------------------------------------------[0m
+   
+   
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
+fs=$(basename "$full_fs")
+if grep -q "$fs" /proc/partitions; then
+echo ""
+sudo apt update && sudo apt install -y snapd &&
+sleep 2
+echo
+echo "[0;32mEnabling and starting snapd service...[0m"
+sudo systemctl enable --now snapd.service &&
+sleep 2
+echo
+echo "[0;32mInstalling the Snap Store ... This can take a while.[0m"
+sudo snap install snap-store
+echo ""
+echo ""
+echo "---------------------------------------------------------------"
+echo ""
+echo "[0;32mAll finished![0m"
+echo "" 
+echo "[0;33mLog out and back in for snap to be in your path.[0m"
+echo "" 
+echo "---------------------------------------------------------------"
+else
+echo "" 
+echo "[0;32mPlease install Waydog to use Snap. Exiting...[0m"
+echo ""
+fi
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "
