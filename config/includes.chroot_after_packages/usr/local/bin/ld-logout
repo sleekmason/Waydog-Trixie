@@ -1,7 +1,6 @@
 #!/bin/bash
-# Created by sleekmason for Lilidog 12 Jan 2025.
+# Created by sleekmason for Waydog 28 Oct 2025.
 # Choose from the available icons in /usr/share/icons/ld-icons/pixmaps.
-# Change items using /usr/local/bin/logout-theme-chooser or manually.
 
 # Horizontal and vertical. With or without icons.
 # Icon style
