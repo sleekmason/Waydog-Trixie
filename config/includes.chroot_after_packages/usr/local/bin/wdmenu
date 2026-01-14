@@ -42,20 +42,23 @@ for f in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop
 
     # Remove common placeholders
     for ph in %U %F %f %i %c %k; do
-    EXEC=${EXEC//$ph/}
+        EXEC=${EXEC//$ph/}
     done
 
     # Skip empty Exec
     [ -z "$EXEC" ] && continue
 
-    # Check if the executable is in allowed directory
-    EXEC_PATH=$(command -v "${EXEC%% *}" 2>/dev/null) || continue
-    include=false
-    for dir in $ALLOWED_DIRS; do
-        [[ "$EXEC_PATH" == "$dir/"* ]] && include=true && break
-    done
-    $include || continue
+    # Directory check
+    EXE_NAME="${EXEC%% *}"
+    EXEC_PATH=$(command -v "$EXE_NAME" 2>/dev/null) || continue
+    EXE_DIR=$(dirname "$EXEC_PATH")
+    [[ " $ALLOWED_DIRS " == *" $EXE_DIR "* ]] || continue
 
+    # Terminal detection .desktop
+    TYPE=$(awk -F= '/^Terminal=/ {print $2; exit}' "$f")
+    if [[ "$TYPE" == "true" ]]; then
+        EXEC="x-terminal-emulator -e $EXEC"
+    fi
 
     MENU_MAP["$NAME"]="$EXEC"
 done
@@ -67,7 +70,15 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
         [ -x "$exe" ] || continue
         name=$(basename "$exe")
         [ -n "${MENU_MAP[$name]+x}" ] && continue  # skip if already in menu
-        MENU_MAP["$name"]="$exe"
+
+        # Terminal detection for ~/bin and ~/.local/bin
+        needs_terminal=false
+        if grep -qE '(^|[[:space:]])read\b|select\b' "$exe" 2>/dev/null; then
+            needs_terminal=true
+        fi
+        [ "$needs_terminal" = true ] && EXEC="x-terminal-emulator -e $exe" || EXEC="$exe"
+
+        MENU_MAP["$name"]="$EXEC"
     done
 done
 
@@ -75,4 +86,7 @@ done
 selected=$(printf '%s\n' "${!MENU_MAP[@]}" | sort -f | wmenu "${WMENU_OPTS[@]}")
 
 # Launch
-[ -n "$selected" ] && exec "${MENU_MAP["$selected"]}"
+if [ -n "$selected" ]; then
+    cmd="${MENU_MAP["$selected"]}"
+    bash -c "$cmd" &
+fi
