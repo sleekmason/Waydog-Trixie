@@ -215,7 +215,7 @@
 		    </item>
 		    <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
 				<action name="Execute">
-					<execute>bd-utilities-main-installers</execute>
+					<execute>waydog-installers</execute>
 				</action>
 		    </item>
 		</menu>

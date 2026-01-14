@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Waydog Installers
-Exec=bd-utilities-main-installers
+Exec=waydog-installers
 StartupNotify=false
 Terminal=false
 Icon=/usr/share/icons/gnome/24x24/apps/system-software-install.png

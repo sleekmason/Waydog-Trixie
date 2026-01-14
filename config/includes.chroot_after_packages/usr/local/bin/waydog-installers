@@ -1,0 +1,52 @@
+#!/bin/bash
+
+term="x-terminal-emulator"
+
+installers=(
+  "Backports|Backports Installer|backports-installer"
+  "Backports Kernel|Backports Kernel Installer|backports-kernel-installer"
+  "Batsignal|Batsignal Installer|batsignal-installer"
+  "Custom Conky|Conky Installer|conky-installer"
+  "Deb Optimizer|Debian Sources.list Optimizer|deb-source-location"
+  "Dropbox|Dropbox Installer|dropbox-installer"
+  "Extra Themes|Extra Themes|extra-themes-installer"
+  "Hblock|Hblock Installer|hblock-installer"
+  "Kernel Apps|Kernel Apps Installer|kernel-apps-installer"
+  "Kitchen Sink|Kitchen Sink Installer|kitchensink-installer"
+  "Liquorix Kernel|Liquorix Kernel Installer|liquorix-kernel-installer"
+  "Live Build Apps|Live Build Apps Installer|live-build-apps-installer"
+  "Ly Login|Ly Display Manager Installer|ly-installer"
+  "Niri WM|Niri Compositor Installer|niri-installer"
+  "Penguins Eggs|Penguin Eggs Installer|penguins-eggs-installer"
+  "Qemu|Qemu Installer|qemu-installer"
+  "Sddm Login|SDDM Display Manager Installer|sddm-installer"
+  "Virtualbox|Virtualbox Installer|virtualbox-installer-oracle"
+  "VSCodium Editor|VSCodium Installer|vscodium-installer"
+  "Wayfire WM|Wayfire Compositor Installer|wayfire-installer"
+  "Xanmod Kernel|Xanmod Kernel Installer|xanmod-kernel-installer"
+)
+
+fields=()
+
+for item in "${installers[@]}"; do
+  IFS='|' read -r label title cmd <<< "$item"
+  fields+=(
+    --field="$label":FBTN \
+    "$term -T \"$title\" -e bash -c \"$cmd\" &"
+  )
+done
+
+yad --title="Utility Installers" \
+    --escape-ok \
+    --form \
+    --center \
+    --geometry=524x428-300-360 \
+    --borders=10 \
+    --columns=3 \
+    --buttons-layout=spread \
+    --window-icon=applications-utilities \
+    --text="\n Utility Installers \n" \
+    --text-align=center \
+    --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
+    --button="gtk-ok:0" \
+    "${fields[@]}"
