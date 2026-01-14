@@ -23,7 +23,6 @@ fi
 CONFIG="$HOME/.config/wmenu/config"
 [ -f "$CONFIG" ] && source "$CONFIG"
 
-# If --all, pass everything to wmenu-run
 [ "${1-}" = "--all" ] && { shift; exec wmenu-run "${WMENU_OPTS[@]}" "$@"; }
 
 BIN_DIRS="/usr/bin /usr/local/bin /usr/sbin $HOME/bin $HOME/.local/bin /usr/libexec /snap/bin"
@@ -44,19 +43,26 @@ for d in "${DESKTOP_DIRS[@]}"; do
         NAME=""
         EXEC=""
         TYPE=""
+
         while IFS='=' read -r key value; do
             case $key in
-                Name)     NAME=$value ;;
-                Exec)     EXEC=$value ;;
+                Name) NAME=$value ;;
+                Exec)
+                    EXEC=$value
+                    break
+                    ;;
                 Terminal) TYPE=$value ;;
             esac
         done < "$f"
+
         [ -z "$EXEC" ] && continue
+        [ -z "$NAME" ] && continue
+
         for ph in %U %F %f %i %c %k; do
             EXEC=${EXEC//$ph/}
         done
 
-        # check
+        # Directory check
         EXE_NAME="${EXEC%% *}"
         if [[ -z "${CMD_CACHE[$EXE_NAME]+x}" ]]; then
             CMD_CACHE[$EXE_NAME]=$(command -v "$EXE_NAME" 2>/dev/null || echo "")
@@ -65,9 +71,11 @@ for d in "${DESKTOP_DIRS[@]}"; do
         [ -z "$EXEC_PATH" ] && continue
         EXE_DIR=$(dirname "$EXEC_PATH")
         [[ " $BIN_DIRS " == *" $EXE_DIR "* ]] || continue
+
         if [[ "$TYPE" == "true" ]]; then
-            EXEC="x-terminal-emulator -e $EXEC"
+            EXEC="x-terminal-emulator -e \"$EXEC\""
         fi
+
         MENU_MAP["$NAME"]="$EXEC"
     done
 done
@@ -84,7 +92,7 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
             needs_terminal=true
         fi
         if [ "$needs_terminal" = true ]; then
-            EXEC="x-terminal-emulator -e $exe"
+            EXEC="x-terminal-emulator -e \"$exe\""
         else
             EXEC="$exe"
         fi
