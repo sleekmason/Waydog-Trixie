@@ -1,7 +1,5 @@
 #!/bin/bash
-# wdmenu  Made for waydog by sleekmason 13 Jan 2026
-# See config settings in ~/.config/wmenu/config
-# See the whitelist section for problematic programs
+# wdmenu  Made for waydog by sleekmason 15 Jan 2026
 
 set -euo pipefail
 
@@ -26,10 +24,7 @@ CONFIG="$HOME/.config/wmenu/config"
 
 [ "${1-}" = "--all" ] && { shift; exec wmenu-run "${WMENU_OPTS[@]}" "$@"; }
 
-BIN_DIRS="/usr/bin /usr/local/bin /usr/sbin $HOME/bin $HOME/.local/bin /usr/libexec /snap/bin"
-
 declare -A MENU_MAP
-declare -A CMD_CACHE
 
 DESKTOP_DIRS=(
     "/usr/share/applications"
@@ -43,9 +38,22 @@ for d in "${DESKTOP_DIRS[@]}"; do
         [ -f "$f" ] || continue
         NAME=""
         EXEC=""
-        TYPE=""
+        TYPE="false"
+        in_desktop_entry=false
 
         while IFS='=' read -r key value; do
+            case $key in
+                "[Desktop Entry]")
+                    in_desktop_entry=true
+                    continue
+                    ;;
+                \[*])
+                    break
+                    ;;
+            esac
+
+            [ "$in_desktop_entry" = true ] || continue
+
             case $key in
                 Name) NAME=$value ;;
                 Exec) EXEC=$value ;;
@@ -53,30 +61,23 @@ for d in "${DESKTOP_DIRS[@]}"; do
             esac
         done < "$f"
 
-        [ -z "$EXEC" ] && continue
         [ -z "$NAME" ] && continue
+        [ -z "$EXEC" ] && continue
 
-        for ph in %U %F %f %i %c %k; do
+        for ph in %U %u %F %f %i %c %k; do
             EXEC=${EXEC//$ph/}
         done
 
-        EXE_NAME="${EXEC%% *}"
-        if [[ -z "${CMD_CACHE[$EXE_NAME]+x}" ]]; then
-            CMD_CACHE[$EXE_NAME]=$(command -v "$EXE_NAME" 2>/dev/null || echo "")
-        fi
-        EXEC_PATH=${CMD_CACHE[$EXE_NAME]}
-        [ -z "$EXEC_PATH" ] && continue
-        EXE_DIR=$(dirname "$EXEC_PATH")
-        [[ " $BIN_DIRS " == *" $EXE_DIR "* ]] || continue
+        EXEC=$(echo "$EXEC" | sed 's/[[:space:]]\+/ /g' | sed 's/[[:space:]]*$//')
 
         if [[ "$TYPE" == "true" ]]; then
             EXEC="x-terminal-emulator -e \"$EXEC\""
         fi
+
         MENU_MAP["$NAME"]="$EXEC"
     done
 done
 
-# Include ~/bin and ~/.local/bin
 for dir in "$HOME/bin" "$HOME/.local/bin"; do
     [ -d "$dir" ] || continue
     for exe in "$dir"/*; do
@@ -95,24 +96,6 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
         fi
         MENU_MAP["$name"]="$EXEC"
     done
-done
-
-# Whitelist rograms with problematic placeholders - %U
-ADDED_DESKTOPS=(
-    "/usr/share/applications/thunderbird.desktop"
-)
-for f in "${ADDED_DESKTOPS[@]}"; do
-    [ -f "$f" ] || continue
-    NAME=$(grep -E '^Name=' "$f" | head -n1 | cut -d'=' -f2)
-    EXEC=$(grep -E '^Exec=' "$f" | head -n1 | cut -d'=' -f2)
-    TYPE=$(grep -E '^Terminal=' "$f" | head -n1 | cut -d'=' -f2 || echo "false")
-    EXEC="${EXEC//$'\r'/}"
-    EXEC="${EXEC//$'\n'/}"
-
-    if [[ "$TYPE" == "true" ]]; then
-        EXEC="x-terminal-emulator -e \"$EXEC\""
-    fi
-    MENU_MAP["$NAME"]="$EXEC"
 done
 
 selected=$(printf '%s\n' "${!MENU_MAP[@]}" | sort -f | wmenu "${WMENU_OPTS[@]}")
