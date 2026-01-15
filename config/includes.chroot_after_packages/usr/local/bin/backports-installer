@@ -2,26 +2,22 @@
 ## Made by Sleekmason 18 Feb 2022
 ## Simple script to add backports and Fast Track to your sources.
 read -p "   
-                          [0;33mADD ADDITIONAL SOURCES[0m
+                          [0;32mADD ADDITIONAL SOURCES[0m
    
    
-   This script will add the Trixie Backports repository 
-   
-   More info:
+   This script adds the Trixie Backports repository to your sources.
    
    [0;31mhttps://backports.debian.org/Instructions/[0m
    
    
-   [0;33m---------------------------------------------------------
+   [0;33m-----------------------------------------------------------------
    
    Please press Enter to add Trixie Backports.
    
-   ---------------------------------------------------------[0m
-   
-   
+   -----------------------------------------------------------------[0m
 
 
-   Or close this terminal window to quit." ;
+   Or, close this terminal window to quit." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
    echo ""

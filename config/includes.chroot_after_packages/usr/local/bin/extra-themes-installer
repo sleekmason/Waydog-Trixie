@@ -15,7 +15,7 @@ read -p "   [0;33mExtra Themes Installer.[0m
    
    --------------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 cd /tmp || exit &&

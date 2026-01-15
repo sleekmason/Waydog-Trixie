@@ -1,24 +1,20 @@
 #!/bin/bash
 echo ""
-echo ""
-echo ""
-read -p "   [0;33mAll Packages Necessary To Compile The Linux Kernel.[0m 
+read -p "   [0;33mPackages To Compile The Linux Kernel[0m 
    
-   This will install: bc, bison build-essential, fakeroot, 
-   flex, libelf-dev, libncurses5-dev, libssl-dev
+   This will install all the packages currently necessary to compile 
+   the linux kernel.
    
-   This will NOT install A new kernel. 
-   Few will really want these installed.
+   This script will NOT install A new kernel.  Few really want this.  
    
-   
-   ------------------------------------------
+   [0;32m-----------------------------------------------------------------[0m
    
    [0;32mPlease press enter to install the packages.[0m
    
-   ------------------------------------------
+   [0;32m-----------------------------------------------------------------[0m
    
    
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 sudo apt update && sudo apt install bc bison dh-make pbuilder build-essential fakeroot \

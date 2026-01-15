@@ -1,24 +1,21 @@
 #!/bin/bash
 echo ""
-echo ""
-echo ""
 read -p "   [0;33mQemu Installer[0m
 
    Qemu/kvm is a virtual machine, similar to VirtualBox.
-   This will install Qemu with --recommends enabled.
+   This will install Qemu with all --recommends enabled.
 
-   https://qemu-project.gitlab.io/qemu/
-   
-    
-   
-   ---------------------------------------------------------
-   
-   [0;32mPlease press enter to install Qemu.[0m
-   
-   ---------------------------------------------------------
+   [0;34mhttps://qemu-project.gitlab.io/qemu/[0m
    
    
-   Or close this terminal window to quit the install." ;
+   [0;32m-----------------------------------------------------
+   
+   Please press enter to install Qemu.
+   
+   -----------------------------------------------------[0m
+   
+   
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo "" 
 sudo apt update && sudo apt install --install-recommends qemu-system-x86 virt-manager &&

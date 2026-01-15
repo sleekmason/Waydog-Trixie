@@ -5,21 +5,20 @@ read -p "   [0;33mXanmod Kernel Installer[0m
    See: [0;34mhttps://xanmod.org/[0m for more information.
 
    Be aware that the highest numbered kernel is automatically
-   booted, and you may need to go to 'advanced options' on
-   boot if you previously installed a higher numbered kernel.
+   booted, and you may need to go to advanced options on boot
+   if you previously installed a higher numbered kernel.
    
-   If this kernel or any others do not work for you, reboot 
-   and choose your old kernel in the Advanced Options screen,
-   then after boot, use apt or the kernel remover from the
-   menu to remove the offending kernel and headers.
+   To remove this kernel, reboot and choose another kernel in
+   the Advanced Options screen. Then after reboot, use apt or
+   the kernel remover to remove the kernel and headers.
 
-   ---------------------------------------------------
+   [0;32m----------------------------------------------------------
    
-   [0;32mPlease press enter to install the xanmod kernel.[0m
+   Please press enter to install the xanmod kernel.
    
-   --------------------------------------------------- 
+   ----------------------------------------------------------[0m 
    
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 wget --prefer-family=IPv4 -qO - https://dl.xanmod.org/archive.key | sudo gpg --dearmor -o /usr/share/keyrings/xanmod-archive-keyring.gpg
 echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | sudo tee /etc/apt/sources.list.d/xanmod-release.list

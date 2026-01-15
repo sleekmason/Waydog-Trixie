@@ -3,18 +3,18 @@ echo ""
 read -p "   [0;33mPenguins Eggs Installer[0m
 
    This script will download and install Penguins Eggs, allowing the 
-   creation of an installable snapshot of your existing system and 
+   creation of an installable snapshot of your existing system, with
    The ability to redistribute it as a live image on usb or PXE.
      
-   [0;33mhttps://github.com/pieroproietti/penguins-eggs[0m
+   [0;34mhttps://github.com/pieroproietti/penguins-eggs[0m
    
-   [0;33m----------------------------------------------------------
+   [0;32m-----------------------------------------------------------------
    
    Please press enter to install Penguins Eggs.
    
-   ----------------------------------------------------------[0m
+   -----------------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 cd /tmp || exit &&

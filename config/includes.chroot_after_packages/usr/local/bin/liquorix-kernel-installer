@@ -2,27 +2,26 @@
 echo ""
 read -p "   [0;33mLiquorix Kernel Installer[0m
    
-   See: https://liquorix.net/ for more info. Great for gaming.
+   See https://liquorix.net/ for more info. Great for gaming.
 
    Be aware that the highest numbered kernel is automatically
-   booted, and you may need to go to 'advanced options' on
-   boot if you previously installed a higher numbered kernel.
+   booted, and you may need to go to advanced options on boot
+   if you previously installed a higher numbered kernel.
    
-   If this kernel or any others do not work for you, reboot 
-   and choose your old kernel in the Advanced Options screen,
-   then after boot, use apt or the kernel remover from the
-   menu to remove the offending kernel and headers.
+   To remove this kernel, reboot and choose another kernel in
+   the Advanced Options screen. Then after reboot, use apt or
+   the kernel remover to remove the kernel and headers.
 
-   This script will install the Liquorix kernel and headers
-   and other related packaged. 
+   This script will install the Liquorix kernel, headers, and
+   other related packaged. 
      
-   --------------------------------------------------
+   [0;32m----------------------------------------------------------
    
-   [0;32mPlease press enter to install the kernel packages.[0m
+   Press enter to install the Liquorix kernel and headers.
    
-   --------------------------------------------------  
+   ----------------------------------------------------------[0m  
    
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 sudo curl -s 'https://liquorix.net/install-liquorix.sh' | sudo bash
 sudo sed -i '1s/# deb/deb/g' /etc/apt/sources.list.d/liquorix.list

@@ -5,23 +5,18 @@ read -p "   [0;32mDropbox Installer[0m
    This script will download and install Dropbox. Securely store, 
    organize, and share all of your files.
    
-   Note* A web browser is required for dropbox initialization.
+   Note* A web browser is required for dropbox initialization and
    firefox-esr will be installed if not already present.
    
    [0;33mhttps://www.dropbox.com/[0m
    
-   After installation, start dropbox from: 
-   [0;32mMenu --> All Programs --> Internet[0m
-   
-   Warning* - Do not use dropbox and Maestral at the same time!
-   
-  [0;32m----------------------------------------
+  [0;32m---------------------------------------------------------------
    
    Please press enter to install Dropbox.
    
-  ----------------------------------------[0m
+  ---------------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 echo ""
 ### Check for internet connection
    if : >/dev/tcp/8.8.8.8/53; then

@@ -3,11 +3,11 @@ echo ""
 read -r -p "   [0;32mHblock Installer[0m
 
    hBlock is a POSIX-compliant shell script that gets a list of domains 
-   that serve ads, tracking scripts and malware from multiple sources 
-   and creates a hosts file, among other formats, that prevents your 
-   system from connecting to them. [0;33mhttps://github.com/hectorm/hblock[0m
+   that serve ads, tracking scripts, and malware from multiple sources,
+   and creates a hosts file that prevents your system from connecting
+   to them. [0;33mhttps://github.com/hectorm/hblock[0m
    
-   WARNING - hBlock by default replaces the hosts file of your system. 
+   WARNING* - hBlock by default replaces the hosts file of your system. 
    A backup of your existing hosts file will be made to /etc/hosts.bak.
    
    Please note that you will be logged out of everywhere that passwords 
@@ -19,7 +19,7 @@ read -r -p "   [0;32mHblock Installer[0m
    
    ----------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 cd /tmp || exit

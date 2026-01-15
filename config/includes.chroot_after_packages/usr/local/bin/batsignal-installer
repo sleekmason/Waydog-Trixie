@@ -2,23 +2,23 @@
 echo ""
 read -p "   [0;33mBatsignal Installer[0m
    
-   Batsignal is a lightweight battery daemon that notifies the
-   user about various battery states through notifications.
+   Batsignal is a lightweight battery daemon that notifies the user
+   about various battery states through notifications.
    
-   Default settings are: 10% critical, 20% warning, 98% full.
-   Adjust settings in ~/.config/systemd/user/options.conf
+   Default settings are: 10% critical - 20% warning - 98% full. The
+   settings can be adjusted in: ~/.config/systemd/user/options.conf
    
    For more information: 
    
-   [0;33mhttps://github.com/electrickite/batsignal[0m
+   [0;34mhttps://github.com/electrickite/batsignal[0m
    
-   [0;32m----------------------------------------------------
+   [0;32m----------------------------------------------------------------
    
    Please press enter to install Batsignal.
    
-   ----------------------------------------------------[0m
+   ----------------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Check for internet connection
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""

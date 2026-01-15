@@ -6,20 +6,18 @@ read -p"   [0;33mKitchensink Installer[0m
    A non interactive installation script of particular packages
    making for an easy initial system setup.
    
-   Installs: gimp, inkscape openssh-sftp-server, filezilla, zsh, 
-   pcmanfm, firefox, mousepad, mpv, Circle icons, Papirus icons,
-   Obsidian icons, and Thunderbird.
-   
-   Look in the 'Other' menu to change shell to zsh as default.
+   Now installs: gimp, openssh-sftp-server, filezilla, mousepad
+   pcmanfm, firefox, mpv, Circle icons, Papirus icons, obsidian
+   icons, and Thunderbird.
     
-   [0;33m-------------------------------------------
+   [0;32m------------------------------------------------------------
    
    Please press enter to install the packages.
    
-   -------------------------------------------[0m
+   ------------------------------------------------------------[0m
    
    
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 echo ""
@@ -144,26 +142,9 @@ echo "   [0;33mContinuing...[0m"
 sudo update-icon-caches /usr/share/icons/*
 ## The rest of the packages
 sudo apt install -y mousepad openssh-sftp-server filezilla firefox-esr thunderbird \
-hunspell-en-us zsh gimp gimp-data-extras ghostscript libgts-bin \
+hunspell-en-us gimp gimp-data-extras ghostscript libgts-bin \
 gimp-texturize pcmanfm
 echo ""
-sudo apt install --install-recommends -y inkscape
-if test -e "$HOME"/.zshrc ; then
-echo ""
-echo "   [0;33mMoving existing ~/.zshrc to ~/.zshrc.bak and installing zsh ...[0m"
-echo ""
-echo "   [0;31mIn order to use your old version of ~/.zshrc
-   delete ~/.zshrc and rename the backup.[0m"
-mv "$HOME"/.zshrc "$HOME"/.zshrc.bak &&
-cp /usr/share/lilidog/extras/zsh/.zshrc "$HOME"/.zshrc
-#sudo chsh -s /bin/zsh "$USER"
-else
-cp /usr/share/lilidog/extras/zsh/.zshrc "$HOME"/.zshrc
-#sudo chsh -s /bin/zsh "$USER"
-fi
-# Copy zsh-toggle .desktop file to /usr/share/applications
-sudo cp -f "/usr/share/lilidog/extras/zsh/ld-zsh-toggle.desktop" "/usr/share/applications"
-## Get rid of left over packages.
 echo ""
 echo "   [0;33m----------------------------------------------------------------"
 echo ""
@@ -179,4 +160,6 @@ echo ""
  echo "   [0;31m-----------------------------------------------------[0m"
 echo ""
 fi
+echo ""
+echo ""
 read -n1 -p " Press any key to quit this dialog ... "
