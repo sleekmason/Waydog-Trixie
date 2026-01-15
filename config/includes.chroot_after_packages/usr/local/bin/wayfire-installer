@@ -19,7 +19,7 @@ read -p "   [0;33mWayfire Compositor Installer[0m
 
    ----------------------------------------------------------[0m
 
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Make sure of internet connection.
 #if : >/dev/tcp/8.8.8.8/53; then
 if ping -c 1 -W 2 8.8.8.8 &> /dev/null || curl -s --head https://google.com | head -n 1 | grep "HTTP" &> /dev/null; then

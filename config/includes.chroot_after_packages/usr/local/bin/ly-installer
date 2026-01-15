@@ -3,25 +3,25 @@
 echo
 read -p "   [0;33mLy Display Manager Installer[0m
 
-   This script will install Ly, replacing sddm on your system.
+   This script will install Ly, replacing SDDM on your system.
    
    [0;34mImportant![0m This script builds Ly directly on your computer.
    Total download = 85.1MB.
    
-   If this script becomes unusable due to upstream changes,
-   please let me know immediately and I'll adjust it. 
+   If this script doesn't work due to upstream changes, please
+   let me know immediately and I'll adjust it for further use. 
    
    For more information: 
    
    [0;34mhttps://codeberg.org/fairyglade/ly[0m
    
-   [0;32m----------------------------------------------------
+   [0;32m-----------------------------------------------------------
    
-   Please press enter to install Ly.
+   Please press enter to install the Ly display manager.
    
-   ----------------------------------------------------[0m
+   -----------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Check for internet connection
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""

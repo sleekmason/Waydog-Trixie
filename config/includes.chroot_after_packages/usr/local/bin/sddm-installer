@@ -5,19 +5,19 @@ echo
 read -p "   [0;33mSDDM Display Manager Installer[0m
 
    This script will install the SDDM display manager on your computer
-   with the waydog theme, and remove Ly if installed.
+   with the waydog theme, and will also remove Ly if installed.
    
    For more information: 
    
    [0;34mhttps://github.com/sddm/sddm/wiki[0m
    
-   [0;32m----------------------------------------------------
+   [0;32m------------------------------------------------------------------
    
-   Please press enter to install SDDM.
+   Please press enter to install the SDDM display manager.
    
-   ----------------------------------------------------[0m
+   ------------------------------------------------------------------[0m
       
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Check for internet connection
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""

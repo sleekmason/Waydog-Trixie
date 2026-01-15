@@ -2,20 +2,20 @@
 read -p "   [0;33mNiri Compositor Installer[0m
 
    Niri is a scrollable-tiling Wayland compositor. This script will
-   install Niri and provide a ~/.config/niri/config.kdl placed for
+   install Niri, and provide a ~/.config/niri/config.kdl placed for
    initial Waydog settings. 
    
    There are many options to customize further.
    
    [0;32mhttps://yalter.github.io/niri/[0m
    
-   [0;32m----------------------------------------------------------
+   [0;32m----------------------------------------------------------------
 
-   Please press enter to install Niri.
+   Please press enter to install the Niri Compositor.
 
-   ----------------------------------------------------------[0m
+   ----------------------------------------------------------------[0m
 
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Make sure of internet connection.
 if : >/dev/tcp/8.8.8.8/53; then
 
