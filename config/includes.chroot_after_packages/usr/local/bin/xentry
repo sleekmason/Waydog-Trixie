@@ -136,9 +136,9 @@ _firmware() {
 _end_message() {
 	echo " [0;32m--------------------------------------------------------------[0m"
     echo ""
-    echo -e "  \e[0;33mDone.\e[0m"
+    echo -e "  \e[0;33mThat's all for now!\e[0m"
     echo ""
-    echo -e "  \e[0;33mThank you for choosing Waydog!\e[0m"
+    echo -e "  \e[0;33mThank you for choosing Waydog:)\e[0m"
     echo ""
     echo -e "  \e[0;33mType 'welcome' in a terminal to run this script at any time.\e[0m"
 }
