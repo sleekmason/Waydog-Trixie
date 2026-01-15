@@ -1,6 +1,7 @@
 #!/bin/bash
 # wdmenu  Made for waydog by sleekmason 13 Jan 2026
 # See config settings in ~/.config/wmenu/config
+# See the whitelist section for problematic programs
 
 set -euo pipefail
 
@@ -47,10 +48,7 @@ for d in "${DESKTOP_DIRS[@]}"; do
         while IFS='=' read -r key value; do
             case $key in
                 Name) NAME=$value ;;
-                Exec)
-                    EXEC=$value
-                    break
-                    ;;
+                Exec) EXEC=$value ;;
                 Terminal) TYPE=$value ;;
             esac
         done < "$f"
@@ -62,7 +60,6 @@ for d in "${DESKTOP_DIRS[@]}"; do
             EXEC=${EXEC//$ph/}
         done
 
-        # Directory check
         EXE_NAME="${EXEC%% *}"
         if [[ -z "${CMD_CACHE[$EXE_NAME]+x}" ]]; then
             CMD_CACHE[$EXE_NAME]=$(command -v "$EXE_NAME" 2>/dev/null || echo "")
@@ -75,12 +72,11 @@ for d in "${DESKTOP_DIRS[@]}"; do
         if [[ "$TYPE" == "true" ]]; then
             EXEC="x-terminal-emulator -e \"$EXEC\""
         fi
-
         MENU_MAP["$NAME"]="$EXEC"
     done
 done
 
-# Include ~/bin and ~/.local/bin with terminal detection
+# Include ~/bin and ~/.local/bin
 for dir in "$HOME/bin" "$HOME/.local/bin"; do
     [ -d "$dir" ] || continue
     for exe in "$dir"/*; do
@@ -88,7 +84,8 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
         name=$(basename "$exe")
         [ -n "${MENU_MAP[$name]+x}" ] && continue
         needs_terminal=false
-        if head -n 20 "$exe" 2>/dev/null | grep -qE '(^|[[:space:]])(read|select)\b'; then
+        first_line=$(head -n 1 "$exe" 2>/dev/null || echo "")
+        if [[ "$first_line" == *read* ]] || [[ "$first_line" == *select* ]]; then
             needs_terminal=true
         fi
         if [ "$needs_terminal" = true ]; then
@@ -98,6 +95,24 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
         fi
         MENU_MAP["$name"]="$EXEC"
     done
+done
+
+# Whitelist rograms with problematic placeholders - %U
+ADDED_DESKTOPS=(
+    "/usr/share/applications/thunderbird.desktop"
+)
+for f in "${ADDED_DESKTOPS[@]}"; do
+    [ -f "$f" ] || continue
+    NAME=$(grep -E '^Name=' "$f" | head -n1 | cut -d'=' -f2)
+    EXEC=$(grep -E '^Exec=' "$f" | head -n1 | cut -d'=' -f2)
+    TYPE=$(grep -E '^Terminal=' "$f" | head -n1 | cut -d'=' -f2 || echo "false")
+    EXEC="${EXEC//$'\r'/}"
+    EXEC="${EXEC//$'\n'/}"
+
+    if [[ "$TYPE" == "true" ]]; then
+        EXEC="x-terminal-emulator -e \"$EXEC\""
+    fi
+    MENU_MAP["$NAME"]="$EXEC"
 done
 
 selected=$(printf '%s\n' "${!MENU_MAP[@]}" | sort -f | wmenu "${WMENU_OPTS[@]}")
