@@ -85,7 +85,7 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
         name=$(basename "$exe")
         [ -n "${MENU_MAP[$name]+x}" ] && continue
         needs_terminal=false
-        first_line=$(head -n 1 "$exe" 2>/dev/null || echo "")
+        first_line=$(head -n 4 "$exe" 2>/dev/null || echo "")
         if [[ "$first_line" == *read* ]] || [[ "$first_line" == *select* ]]; then
             needs_terminal=true
         fi
