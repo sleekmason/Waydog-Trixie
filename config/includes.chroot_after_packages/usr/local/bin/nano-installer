@@ -1,13 +1,16 @@
 #!/bin/bash
 
-read -p "   [0;32mNano Installer[0m
+read -p "   [0;32mNano Editor Installer[0m
 
-   Nano comes installed.  Want a file manager menu option for nano?
-
-   This adds the nano text editor to the 'right-click' menu in your
-   file manager.
-
-   All Nano settings are exposed in ~/.config/nano/nanorc.
+   Nano comes pre-installed but the options are not easily exposed for
+   user adjustment.  
+   
+   This script adds a right-click action to your file manager to allow
+   for choosing nano when editing documents, and also copies the nano
+   configuration file to ~/.config for user adjustment.
+   
+   *Note - Most will not want this unless already using nano, or want
+   to learn more.
 
    [0;32m----------------------------------------------------------------
 

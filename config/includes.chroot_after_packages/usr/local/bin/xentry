@@ -89,95 +89,10 @@ _update() {
 	run_it
 }
 
--apt_location() {
+_apt_location() {
 	  _msg="Update sources style to the new deb822 format?"
       do_it() { apt modernize-sources -y
 	  apt update ;}
-        see_it
-        no_see
-        run_it
-}
-
-_add_ly() {
-    _msg="Install Ly console login manager?"
-    do_it() { cd /tmp &&
-		wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ly.zip --show-progress -q
-        echo "Installing Ly..."
-        unzip -q ly.zip &&
-        mkdir -p "/etc/ly" &&
-        cp -f "/tmp/ly/ly" "/usr/local/bin"
-        cp -f "/tmp/ly/setup.sh" "/etc/ly"
-        # Check for ly.
-        if [ ! -x /usr/local/bin/ly ]; then
-            echo "Error: /usr/local/bin/ly not found or not executable!"
-            exit 1
-        fi
-
-        # Create systemd service if not already present
-        if [ ! -f /etc/systemd/system/ly.service ]; then
-            echo "Creating Ly systemd service..."
-            cat >/etc/systemd/system/ly.service <<'EOF'
-[Unit]
-Description=Ly Console Display Manager
-After=systemd-user-sessions.service getty@tty1.service plymouth-quit-wait.service
-Conflicts=getty@tty1.service
-
-[Service]
-ExecStart=/usr/local/bin/ly
-Type=simple
-TTYPath=/dev/tty1
-TTYReset=yes
-TTYVHangup=yes
-StandardInput=tty
-Restart=always
-RestartSec=1
-
-[Install]
-Alias=display-manager.service
-WantedBy=multi-user.target
-EOF
-        fi
-
-        # Enable service
-        systemctl daemon-reload
-        systemctl enable ly.service
-        echo "Reboot when finished to use the Ly login manager." ;}
-    see_it
-    no_see
-    run_it
-}
-
-_add_conky() {
-      _msg="Install Conky with custom configurations?"
-      do_it() { cd /tmp &&
-		  rm -fr /tmp/conky*
-		  wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-bear-trixie2.zip --show-progress -q &&
-		        unzip -q conky-bear-trixie2.zip
-		        if test -f /home/"${SUDO_USER}"/.config/conky; then
-		        mv /home/"${SUDO_USER}"/.config/conky /home/"${SUDO_USER}"/.config/conky.bak &&
-		        cp -r /tmp/conky /home/"${SUDO_USER}"/.config
-                else                
-                cp -r /tmp/conky /home/"${SUDO_USER}"/.config              
-		        fi
-		        chown -R "${SUDO_USER}":"${SUDO_USER}" /home/"${SUDO_USER}"/.config/conky &&
-		        apt-get update && apt-get install -y conky-all fortunes fortune-mod &&
-		        if test -e /home/"${SUDO_USER}"/.config/conky; then
-    if ! grep -wq "conky-restart-list" /home/"${SUDO_USER}"/.config/labwc/autostart; then
-		{
-		echo ""
-		echo '## Start conkys on login if present'	
-		echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
-		echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
-		echo '"conkyrestart" >/dev/null 2>&1'
-		echo 'fi';} | tee -a /home/"${SUDO_USER}"/.config/labwc/autostart > /dev/null
-		fi
-	fi
-	    cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
-        cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
-        cp -f /home/"${SUDO_USER}"/.config/conky/scripts/conkyrestart "/usr/local/bin"
-        
-        sed -i '/Conky,               conky-toggle,                                  org.xfce.settings.manager/d' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv
-	    sed -i '/Xkill/i Conky,               conky-toggle,                                  org.xfce.settings.manager' /home/"${SUDO_USER}"/.config/jgmenu/prepend.csv ;}
         see_it
         no_see
         run_it
@@ -200,15 +115,6 @@ _add_backports() {
         run_it
 }
 
-_upgrade_kernel() {
-      _msg="Install backports kernel? (Also adds repositories.)"
-      do_it() { cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
-                apt-get update && apt-get install -y -t trixie-backports linux-image-amd64/trixie-backports linux-headers-amd64/trixie-backports libc6-dev firmware-linux ;}
-        see_it
-        no_see
-        run_it
-}
-
 _osprober() {
       _msg="Enable osprober to find other distro entries in grub?"
       do_it() { sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' "/etc/default/grub" &&
@@ -220,59 +126,51 @@ _osprober() {
 
 _firmware() {
       _msg="Install isenkram-cli to check for missing firmware?"
-      do_it() { apt update && sudo apt install -y isenkram-cli &&
+      do_it() { apt update && apt install -y isenkram-cli &&
 		isenkram-autoinstall-firmware ;}
         see_it
         no_see
         run_it
 }
 
-_reboot() {
-      _msg="Reboot? - After kernel installation."
-      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
-		  if ! grep hypervisor /proc/cpuinfo ; then
-          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
-          fi
-          reboot ;}
-        see_it
-        no_see
-        run_it
+_end_message() {
+	echo " [0;32m--------------------------------------------------------------[0m"
+    echo ""
+    echo -e "  \e[0;33mDone.\e[0m"
+    echo ""
+    echo -e "  \e[0;33mThank you for choosing Waydog!\e[0m"
+    echo ""
+    echo -e "  \e[0;33mType 'welcome' in a terminal to run this script at any time.\e[0m"
 }
 
 if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
-_update
--apt_location
-_remove_packages
-#_add_ly
-_add_backports
-#_upgrade_kernel
-#_add_conky
-_osprober
-_firmware
-#_reboot
-sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
-if ! grep hypervisor /proc/cpuinfo ; then
-sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
-fi
+    _update
+    _apt_location
+    _remove_packages
+    _add_backports
+    _osprober
+    _firmware
 else
-_update
--apt_location
-_remove_packages
-#_add_ly
-_add_backports
-#_upgrade_kernel
-#_add_conky
-_firmware
-#_reboot
+    _update
+    _apt_location
+    _remove_packages
+    _add_backports
+    _firmware
+fi
+
 sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 if ! grep hypervisor /proc/cpuinfo ; then
-sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
+    sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
 fi
+ 
+_end_message
+
+if [ "$_interactive" = "yes" ]; then
+    echo
+    echo $'\n\nPress any key to quit ...'
+    read -srn1
+    echo
 fi
-[ "$_interactive" = "yes" ]
-echo
-echo
-echo $'\n\nPress any key to quit ...'; read -srn1
 echo
 else
 echo ""
@@ -294,4 +192,3 @@ else
  echo ""
 echo $'\n\nPress any key to quit ...'; read -srn1
  fi
-
