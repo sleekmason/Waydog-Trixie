@@ -1,24 +1,24 @@
 #!/bin/bash
 
-read -p "   [0;32mNano Editor Installer[0m
+read -p "   [0;32mNano Installer[0m
 
-   Nano comes pre-installed but the options are not easily exposed for
-   user adjustment.  
+   Nano comes pre-installed, but the configuration file is not located
+   where it can be easily adjusted, and there is no right-click action
+   added to the file manager for editing files. 
    
    This script adds a right-click action to your file manager to allow
-   for choosing nano when editing documents, and also copies the nano
-   configuration file to ~/.config for user adjustment.
+   choosing nano when editing files, and also copies the configuration
+   file to ~/.config/nano/nanorc for easy user adjustment.
    
-   *Note - Most will not want this unless already using nano, or want
-   to learn more.
+   Note * Maybe try out Nano if you haven't before making this change.
 
-   [0;32m----------------------------------------------------------------
+   [0;32m-------------------------------------------------------------------
 
-   Press enter to install the nano editor with custom options.
+   Press enter to install Nano editor with customizations in place.
 
-   ----------------------------------------------------------------[0m
+   -------------------------------------------------------------------[0m
 
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
 ## Make sure of internet connection
 if : >/dev/tcp/8.8.8.8/53; then
 echo ""

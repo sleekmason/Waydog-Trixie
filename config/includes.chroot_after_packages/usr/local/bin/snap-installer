@@ -9,8 +9,8 @@ read -p "   [0;33mSnap Installer[0m
    connection as snap searches for resources. About 7 minutes on
    a fairly decent connection here.
    
-   [0;33mLogging out and back in will be necessary for installed items
-   to be called from menu entries without the full path.[0m
+   [0;33mLogging out and then back in might be necessary for installed
+   items to be shown in the menu.[0m
 
    [0;34mhttps://snapcraft.io//[0m
    
@@ -21,7 +21,7 @@ read -p "   [0;33mSnap Installer[0m
    -------------------------------------------------------------[0m
    
    
-   Or close this terminal window to quit the install." ;
+   Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
 fs=$(basename "$full_fs")
