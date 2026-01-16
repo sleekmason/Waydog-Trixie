@@ -10,14 +10,14 @@ read -p "   [0;33mWayfire Compositor Installer[0m
    wayfire and wf-shell customizations.
    
    
-   [0;32mhttps://wayfire.org/[0m
+   [0;34mhttps://wayfire.org/[0m
    
    
-   [0;32m----------------------------------------------------------
+   [0;32m---------------------------------------------------------------
 
-   Please press enter to install Wayfire.
+   Please press enter to install the Wayfire Compositor.
 
-   ----------------------------------------------------------[0m
+   ---------------------------------------------------------------[0m
 
    Or, close this terminal window to quit the install." ;
 ## Make sure of internet connection.

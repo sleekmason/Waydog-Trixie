@@ -13,11 +13,11 @@ read -r -p "   [0;32mHblock Installer[0m
    Please note that you will be logged out of everywhere that passwords 
    are used on the web.
    
-   [0;32m----------------------------------------------------------
+   [0;32m--------------------------------------------------------------------
    
    Please press enter to install hblock.
    
-   ----------------------------------------------------------[0m
+   --------------------------------------------------------------------[0m
       
    Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then

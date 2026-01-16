@@ -7,13 +7,13 @@ read -r -p "   [0;33mCalibre Installer[0m
    beyond normal e-book software.  It’s also completely free and 
    open source and works great for all users. 
     
-   [0;33mhttps://calibre-ebook.com/[0m
+   [0;34mhttps://calibre-ebook.com/[0m
    
-   [0;33m-----------------------------------------------------------------
+   [0;32m-------------------------------------------------------------
    
    Please press enter to install Calibre.
    
-   -----------------------------------------------------------------[0m
+   -------------------------------------------------------------[0m
       
    Or, close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then

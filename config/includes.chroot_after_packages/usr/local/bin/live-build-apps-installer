@@ -2,18 +2,18 @@
 echo ""
 read -p "   [0;33mPackages Useful For Live-build, Git, And Openssh.[0m 
    
-   This will install: live-build, live-config, live-boot, git, 
-   openssh-sftp-server & filezilla.
+   This will install: live-build, live-config, live-boot 
+   git, openssh-sftp-server & filezilla.
    
    Live build manual:
    [0;34mhttps://live-team.pages.debian.net/live-manual/[0m
    
    
-   -------------------------------------------
+   [0;32m-----------------------------------------------------
    
-   [0;33mPlease press enter to install the packages.[0m
+   Please press enter to install the packages.
    
-   -------------------------------------------
+   -----------------------------------------------------[0m
    
    
    Or close this terminal window to quit the install." ;
