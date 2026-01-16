@@ -8,9 +8,6 @@ read -p "   [0;33mSnap Installer[0m
    Please note that the installation can take a while for a slow
    connection as snap searches for resources. About 7 minutes on
    a fairly decent connection here.
-   
-   [0;33mLogging out and then back in might be necessary for installed
-   items to be shown in the menu.[0m
 
    [0;34mhttps://snapcraft.io//[0m
    
@@ -22,39 +19,32 @@ read -p "   [0;33mSnap Installer[0m
    
    
    Or, close this terminal window to quit the install." ;
-   if : >/dev/tcp/8.8.8.8/53; then
-full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
-fs=$(basename "$full_fs")
-if grep -q "$fs" /proc/partitions; then
+if curl -fs https://api.snapcraft.io >/dev/null 2>&1; then
 echo ""
-sudo apt update && sudo apt install -y snapd &&
-sleep 2
-echo
-echo "[0;32mEnabling and starting snapd service...[0m"
-sudo systemctl enable --now snapd.service &&
-sleep 2
+sudo apt update
+sudo apt install -y snapd &&
+echo "[0;32mEnabling snapd service...[0m"
+sudo systemctl enable --now snapd.socket
+sudo snap wait system seed.loaded
+echo "[0;32mInstalling required snap base...[0m"
+sudo snap install core || true
 echo
 echo "[0;32mInstalling the Snap Store ... This can take a while.[0m"
-sudo snap install snap-store
+sudo snap install snap-store &&
 echo ""
 echo ""
-echo "---------------------------------------------------------------"
+echo "[0;32m---------------------------------------------------------------"
 echo ""
-echo "[0;32mAll finished![0m"
+echo "All finished! For menus other than Wmenu, logging out and back in"
+echo "will be necessary for the App Center to show in the menu."
 echo "" 
-echo "[0;33mLog out and back in for snap to be in your path.[0m"
+echo "---------------------------------------------------------------[0m"
 echo "" 
-echo "---------------------------------------------------------------"
-else
-echo "" 
-echo "[0;33mSnap needs an installed environment. Exiting...[0m"
-echo ""
-fi
 else
 echo ""
  echo "   [0;31m-----------------------------------------------------[0m"
  echo ""
- echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo "   [0;33mNo connection for Snap. Please connect and try again.[0m"
  echo ""
  echo "   [0;31m-----------------------------------------------------[0m"
 echo ""
