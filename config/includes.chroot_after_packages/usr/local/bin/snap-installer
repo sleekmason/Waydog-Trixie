@@ -47,7 +47,7 @@ echo ""
 echo "---------------------------------------------------------------"
 else
 echo "" 
-echo "[0;32mPlease install Waydog to use Snap. Exiting...[0m"
+echo "[0;33mSnap needs an installed environment. Exiting...[0m"
 echo ""
 fi
 else
