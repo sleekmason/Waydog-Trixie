@@ -1,0 +1,70 @@
+#!/bin/bash
+read -p "   [0;33mWine Installer[0m
+
+   Wine (originally an acronym for 'Wine Is Not an Emulator' is a
+   compatibility layer capable of running Windows applications on
+   several POSIX-compliant systems, such as Linux, macOS, & BSD.
+   
+   Wine Download size: 403 MB
+   Space needed: 2,238 MB
+   
+   [0;34mhttps://www.winehq.org/[0m
+   
+   [0;32m--------------------------------------------------------------
+
+   Please press enter to install Wine.
+
+   --------------------------------------------------------------[0m
+
+   Or, close this terminal window to quit the install." ;
+## Make sure of internet connection.
+if : >/dev/tcp/8.8.8.8/53; then
+sudo dpkg --add-architecture i386 || exit
+echo ""
+echo "   [0;32mAdding i386 architecture...[0m"
+sleep 1
+echo ""
+echo "   [0;32mUpdating sources to include the wine repositories...[0m"
+echo ""
+sleep 1
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key || exit
+
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/trixie/winehq-trixie.sources || exit
+echo "   [0;32mInstalling Wine...[0m"
+echo ""
+sleep 1
+sudo apt update
+sudo apt install --install-recommends -y winehq-stable || exit
+echo ""
+echo "   [0;32mSetting up the environment...[0m"
+sleep 2
+echo ""
+echo "   [0;33mClick 'Install' to install wine-mono through wine.[0m"
+echo "   [0;33mWine-mono is not available through Debian.[0m"
+echo "   [0;33mClick OK to use windows 10, or change as desired.[0m"
+echo ""
+sleep 2
+winecfg
+echo ""
+echo "   [0;33mStarting Wine clock to check the installation...[0m"
+echo ""
+sleep 1
+wine clock &
+echo ""
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+echo "   [0;32mAll Finished. Enjoy Wine![0m"
+echo ""
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

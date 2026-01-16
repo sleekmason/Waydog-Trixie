@@ -19,13 +19,13 @@ installers=(
   "Ly Login|Ly Display Manager Installer|ly-installer"
   "Nano Editor|Nano Editor Installer|nano-installer"
   "Niri WM|Niri Compositor Installer|niri-installer"
-  "Penguins Eggs|Penguin Eggs Installer|penguins-eggs-installer"
   "Qemu|Qemu Installer|qemu-installer"
   "Sddm Login|SDDM Display Manager Installer|sddm-installer"
   "Snap Store|Snap Installer|snap-installer"
   "Virtualbox|Virtualbox Installer|virtualbox-installer-oracle"
   "VSCodium Editor|VSCodium Installer|vscodium-installer"
   "Wayfire WM|Wayfire Compositor Installer|wayfire-installer"
+  "Wine|Wine Installer|wine-installer"
   "Xanmod Kernel|Xanmod Kernel Installer|xanmod-kernel-installer"
 )
 
