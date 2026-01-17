@@ -24,26 +24,26 @@ read -p "   [0;33mSnap Installer[0m
     sudo apt update
     sudo apt install -y snapd || true
 
-    echo "[0;32mEnabling snapd service...[0m"
+    echo "  [0;32mEnabling snapd service...[0m"
     sudo systemctl enable --now snapd.socket
     sudo systemctl enable --now snapd.service
 
-    echo "Waiting for snapd to become ready..."
+    echo "[0;32mWaiting for snapd to become ready...[0m"
     for _ in {1..60}; do
         snap version >/dev/null 2>&1 && break
         sleep 2
     done
 
     if ! snap version >/dev/null 2>&1; then
-        echo "[0;31mSnapd failed to start.[0m"
-        read -n1 -p " Press any key to quit this dialog ... "
+        echo "  [0;31mSnapd failed to start.[0m"
+        read -n1 -p " Press any key to quit this dialog... "
         exit 1
     fi
 
 
-    echo "[0;32mInstalling the Snap Store ... This can take a while.[0m"
+    echo "  [0;32mInstalling the Snap Store... This can take a while.[0m"
     if ! sudo snap install snap-store; then
-        echo "Snap failed — applying IPv4 workaround..."
+        echo "  [0;32mSnap failed — Retrying using IPv4 only...[0m"
 
         sudo mkdir -p /etc/systemd/system/snapd.service.d
         sudo tee /etc/systemd/system/snapd.service.d/ipv4.conf >/dev/null <<'EOF'
@@ -54,23 +54,23 @@ EOF
         sudo systemctl daemon-reexec
         sudo systemctl restart snapd
 
-        echo "Retrying Snap Store install..."
+        echo "  [0;32mRetrying Snap Store install...[0m"
         if ! sudo snap install snap-store; then
             echo ""
-            echo "[0;31mSnap installation failed even after workaround.[0m"
-            echo "[0;31mPlease check network/DNS and try again.[0m"
-            read -n1 -p " Press any key to quit this dialog ... "
+            echo "  [0;31mSnap installation failed even after workaround.[0m"
+            echo "  [0;31mPlease check network/DNS and try again.[0m"
+            read -n1 -p " Press any key to quit this dialog... "
             exit 1
         fi
     fi
 
     echo ""
-    echo "[0;32m---------------------------------------------------------------"
+    echo "  [0;32m--------------------------------------------------------------"
     echo ""
-    echo "All finished! For menus other than Wmenu, logging out and back in"
-    echo "will be necessary for the App Center to show in the menu."
+    echo "  All finished! For menus other than Wmenu, logging out and back"
+    echo "  in will be necessary for the App Center to appear in the menu."
     echo "" 
-    echo "---------------------------------------------------------------[0m"
+    echo "  --------------------------------------------------------------[0m"
     echo ""
 
 read -n1 -p " Press any key to quit this dialog ... "
