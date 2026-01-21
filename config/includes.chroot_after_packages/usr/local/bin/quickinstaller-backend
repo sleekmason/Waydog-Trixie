@@ -2,115 +2,127 @@
 # Backend for quick installers.  See also quickinstaller.
 
 if : >/dev/tcp/8.8.8.8/53; then
-PROGNAME="quickinstaller"
-[ "$USER" != "root" ] &&
-   echo -e "[0;31m\t$PROGNAME should be run with 'sudo $PROGNAME'[0m" && exit
-   echo ""
-echo ""
-echo "[0;33m----------------------------------------------------------------------[0m"
-echo ""
-echo "[0;34m   Now running apt-update to update your repositories...[0m"
-echo ""
-echo "[0;33m   The Quick Installers dialog will open upon apt-update completion.[0m"
-echo ""
-echo "[0;33m   Select any desired applications and press the Install button.[0m"
-echo ""
-echo "[0;34m   After selection, installation will continue in this window.[0m"
-echo "" 
-echo "[0;33m----------------------------------------------------------------------[0m"
-echo ""
-echo ""
-apt-get update
-menu=( 	
-    " Firefox-ESR Browser|apt-get install firefox-esr -y" 
-	" Chromium Browser|apt-get install --install-recommends chromium -y"
-	" Thunderbird Mail|apt-get install thunderbird hunspell-en-us -y"
-	" Sylpheed Mail|apt-get install sylpheed sylpheed-i18n sylfilter sylpheed-plugins -y"
-	" Geary Mail|apt-get install --install-recommends geary hunspell-en-us enchant-2 -y"
-    " VLC Media Player|apt-get install --install-recommends vlc -y"
-    " MPV Media Player|apt-get install --install-recommends mpv -y" 
-	" SMPlayer Media Player|apt-get install --install-recommends smplayer -y"
-    " Parole Media Player|apt-get install --install-recommends parole -y"
-    " Openshot Media Editor|apt-get install --install-recommends openshot -y"
-    " Audacious Music Player|apt-get install --install-recommends audacious audacious-plugins -y"
-	" Clementine Music Player|apt-get install --install-recommends clementine -y"
-	" Pragha Music Player|apt-get install --install-recommends pragha -y"
-    " QMMP Music Player|apt-get install --install-recommends qmmp -y"
-    " Totem Music Player|apt-get install --install-recommends totem -y"
-    " Audacity Audio Editor|apt-get install --install-recommends audacity -y"
- 	" GIMP Image Editor|apt-get install gimp gimp-data-extras ghostscript libgts-bin gimp-texturize -y"
-    " Inkscape Graphics Editor|apt-get install --install-recommends inkscape -y"
-    " Blender Graphics Editor|apt-get install --install-recommends blender -y"
-    " GPicView Image Viewer|apt-get install gpicview -y"
-    " Abiword Word Processor|apt-get install --install-recommends abiword -y"
-    " Gnumeric Spreadsheets|apt-get install --install-recommends gnumeric -y"
-    " LibreOffice Full Suite|apt-get install libreoffice libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
-    " LibreOffice Writer|apt-get install libreoffice-writer libreoffice-gtk3 -y"
-    " LibreOffice Math|apt-get install libreoffice-math libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
-	" LibreOffice Calc|apt-get install libreoffice-calc libreoffice-gtk3 -y"
-	" LibreOffice Draw|apt-get install libreoffice-draw libreoffice-impress libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
-	" LibreOffice Impress|apt-get install libreoffice-impress libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y" 
-	" Evince PDF Viewer|apt-get install --install-recommends evince -y"
-    " Geany Text Editor|apt-get install --install-recommends geany -y" 
-	" Geany Plugins|apt-get install geany-plugins -y"
-	" Mousepad Editor|apt-get install mousepad -y"
-	" Neovim Editor|apt-get install neovim python3-pynvim xxd -y"
-	" Pluma Text Editor|apt-get install pluma -y"
-	" Calculator|apt-get install --install-recommends galculator -y"
-	" Xarchiver|apt-get install --install-recommends xarchiver -y" 
-	" File Roller|apt-get install file-roller -y"
-	" MC File Manager|apt-get install mc -y"
-	" Pcmanfm File Manager|apt-get install --install-recommends pcmanfm -y"
-	" Bluetooth Support|apt-get install bluetooth bluez-tools blueman libspa-0.2-bluetooth gstreamer1.0-gl gstreamer1.0-x gstreamer1.0-plugins-bad rfkill -y"
-	" Synaptic Package Manager|apt-get install synaptic libgtk3-perl xdg-utils -y"
-	" Gnome Boxes|apt-get install --install-recommends gnome-boxes dnsmasq -y"
-	" Qemu VM|apt-get install --install-recommends qemu-system-x86 virt-manager -y"
-	" Xscreensaver|apt-get install --install-recommends xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y"
-	 )
 
-yad_opts=( --form
-           --title="Quick Installers"
-           --text="  Installer dialog for some commonly used applications including any extra\n  packages necessary for proper use. For third party applications or to have\n  automatic menu entries, please use the individual Lilidog installers.\n\n  Please choose all desired applications and then click the Install button.\n  This dialog will close and installation will continue in the terminal.\n"
-           --image="system-software-install"
-           --window-icon="system-software-install"
-           --align=left
-           --width=600
-           --height=600
-           --center
-	       --scroll
-           --columns=2
-           --borders=4
-           --buttons-layout=spread
-           --button="Install!gtk-save"
-           --button="gtk-cancel:1" )
-	   
+    echo ""
+    echo "[0;33m----------------------------------------------------------------------[0m"
+    echo ""
+    echo "[0;34m   Now running apt-update to update your repositories...[0m"
+    echo ""
+    echo "[0;33m   The Quick Installers dialog will open upon apt-update completion.[0m"
+    echo ""
+    echo "[0;33m   Select any desired applications and press the Install button.[0m"
+    echo ""
+    echo "[0;34m   After selection, installation will continue in this window.[0m"
+    echo ""
+    echo "[0;33m----------------------------------------------------------------------[0m"
+    echo ""
+    echo ""
 
-for m in "${menu[@]}"
-do
-  yad_opts+=( --field="${m%|*}:CHK" )
-done
-IFS='|' read -ra ans < <( yad "${yad_opts[@]}" )
+    apt-get update
 
-for i in "${!ans[@]}"
-do
-  if [[ ${ans[$i]} == TRUE ]]
-  then
-    m=${menu[$i]}
-    name=${m%|*}
-    cmd=${m#*|}
-    echo "selected: $name ($cmd)"
-    $cmd
-  fi
-done
-#bash
-exit 0
+    menu=(
+        " Firefox-ESR Browser|apt-get install firefox-esr -y"
+        " Chromium Browser|apt-get install --install-recommends chromium -y"
+        " Thunderbird Mail|apt-get install thunderbird hunspell-en-us -y"
+        " Sylpheed Mail|apt-get install sylpheed sylpheed-i18n sylfilter sylpheed-plugins -y"
+        " Geary Mail|apt-get install --install-recommends geary hunspell-en-us enchant-2 -y"
+        " VLC Media Player|apt-get install --install-recommends vlc -y"
+        " MPV Media Player|apt-get install --install-recommends mpv -y"
+        " SMPlayer Media Player|apt-get install --install-recommends smplayer -y"
+        " Parole Media Player|apt-get install --install-recommends parole -y"
+        " Openshot Media Editor|apt-get install --install-recommends openshot -y"
+        " Audacious Music Player|apt-get install --install-recommends audacious audacious-plugins -y"
+        " Clementine Music Player|apt-get install --install-recommends clementine -y"
+        " Pragha Music Player|apt-get install --install-recommends pragha -y"
+        " QMMP Music Player|apt-get install --install-recommends qmmp -y"
+        " Totem Music Player|apt-get install --install-recommends totem -y"
+        " Audacity Audio Editor|apt-get install --install-recommends audacity -y"
+        " GIMP Image Editor|apt-get install gimp gimp-data-extras ghostscript libgts-bin gimp-texturize -y"
+        " Inkscape Graphics Editor|apt-get install --install-recommends inkscape -y"
+        " Blender Graphics Editor|apt-get install --install-recommends blender -y"
+        " GPicView Image Viewer|apt-get install gpicview -y"
+        " Abiword Word Processor|apt-get install --install-recommends abiword -y"
+        " Gnumeric Spreadsheets|apt-get install --install-recommends gnumeric -y"
+        " LibreOffice Full Suite|apt-get install libreoffice libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
+        " LibreOffice Writer|apt-get install libreoffice-writer libreoffice-gtk3 -y"
+        " LibreOffice Math|apt-get install libreoffice-math libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
+        " LibreOffice Calc|apt-get install libreoffice-calc libreoffice-gtk3 -y"
+        " LibreOffice Draw|apt-get install libreoffice-draw libreoffice-impress libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
+        " LibreOffice Impress|apt-get install libreoffice-impress libreoffice-gtk3 hunspell-en-us hyphen-en-us libpaper-utils -y"
+        " Evince PDF Viewer|apt-get install --install-recommends evince -y"
+        " Geany Text Editor|apt-get install --install-recommends geany -y"
+        " Geany Plugins|apt-get install geany-plugins -y"
+        " Mousepad Editor|apt-get install mousepad -y"
+        " Neovim Editor|apt-get install neovim python3-pynvim xxd -y"
+        " Pluma Text Editor|apt-get install pluma -y"
+        " Calculator|apt-get install --install-recommends galculator -y"
+        " Xarchiver|apt-get install --install-recommends xarchiver -y"
+        " File Roller|apt-get install file-roller -y"
+        " MC File Manager|apt-get install mc -y"
+        " Pcmanfm File Manager|apt-get install --install-recommends pcmanfm -y"
+        " Bluetooth Support|apt-get install bluetooth bluez-tools blueman libspa-0.2-bluetooth gstreamer1.0-gl gstreamer1.0-x gstreamer1.0-plugins-bad rfkill -y"
+        " Synaptic Package Manager|apt-get install synaptic libgtk3-perl xdg-utils -y"
+        " Gnome Boxes|apt-get install --install-recommends gnome-boxes dnsmasq -y"
+        " Qemu VM|apt-get install --install-recommends qemu-system-x86 virt-manager -y"
+        " Xscreensaver|apt-get install --install-recommends xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y"
+    )
+
+    REAL_USER=${SUDO_USER:-$(logname 2>/dev/null || true)}
+    [ -z "$REAL_USER" ] && REAL_USER=$(getent passwd 1000 | cut -d: -f1)
+
+    yad_opts=(
+        --form
+        --title="Quick Installers"
+        --text="  Installer dialog for some commonly used applications including any extra
+  packages necessary for proper use. For third party applications or to have
+  automatic menu entries, please use the individual Lilidog installers.
+
+  Please choose all desired applications and then click the Install button.
+  This dialog will close and installation will continue in the terminal.
+"
+        --image="system-software-install"
+        --window-icon="system-software-install"
+        --align=left
+        --width=600
+        --height=600
+        --center
+        --scroll
+        --columns=2
+        --borders=4
+        --buttons-layout=spread
+        --button="Install!gtk-save"
+        --button="gtk-cancel:1"
+    )
+
+    for m in "${menu[@]}"; do
+        yad_opts+=( --field="${m%|*}:CHK" )
+    done
+
+    IFS='|' read -ra ans < <(
+    sudo -u "$REAL_USER" \
+        XDG_RUNTIME_DIR="/run/user/$(id -u "$REAL_USER")" \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u "$REAL_USER")/bus" \
+        yad "${yad_opts[@]}"
+)
+
+    for i in "${!ans[@]}"; do
+        if [[ ${ans[$i]} == TRUE ]]; then
+            m=${menu[$i]}
+            name=${m%|*}
+            cmd=${m#*|}
+            echo "selected: $name ($cmd)"
+            $cmd
+        fi
+    done
+    
+    exit 0
 
 else
-echo ""
- echo "   -------------------------------------------------------"
- echo ""
- echo "   No Internet connection. Please connect and try again."
- echo ""
- echo "   -------------------------------------------------------"
-echo ""
+    echo ""
+    echo "   -------------------------------------------------------"
+    echo ""
+    echo "   No Internet connection. Please connect and try again."
+    echo ""
+    echo "   -------------------------------------------------------"
+    echo ""
 fi
