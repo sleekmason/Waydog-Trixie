@@ -42,7 +42,8 @@ sleep 2
 echo ""
 echo "   [0;33mClick 'Install' to install wine-mono through wine.[0m"
 echo "   [0;33mWine-mono is not available through Debian.[0m"
-echo "   [0;33mClick OK to use windows 10, or change as desired.[0m"
+echo ""
+echo "   [0;34mClick OK to use windows 10, or change as desired.[0m"
 echo ""
 sleep 2
 winecfg
@@ -54,7 +55,9 @@ wine clock &
 echo ""
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
-echo "   [0;32mAll Finished. Enjoy Wine![0m"
+echo "   [0;33mAll Finished. Enjoy Wine![0m"
+echo ""
+echo "   [0;34mConsider installing Winetricks + zenity for a Wine GUI.[0m"
 echo ""
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
