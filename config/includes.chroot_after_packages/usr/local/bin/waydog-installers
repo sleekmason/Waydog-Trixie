@@ -51,4 +51,5 @@ yad --title="Waydog Installers" \
     --text-align=center \
     --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
     --button="gtk-ok:0" \
-    "${fields[@]}"
+    "${fields[@]}" \
+    2>/dev/null

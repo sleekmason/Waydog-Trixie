@@ -1,4 +1,4 @@
 #!/bin/bash
 # Frontend for quick installers
 
-x-terminal-emulator -T "Quick Installers" -e bash -c "gksudo /usr/local/bin/quickinstaller-backend; exec bash"
+x-terminal-emulator -T "Quick Installers" -e bash -c "gksudo bash -c /usr/local/bin/quickinstaller-backend 2>/dev/null; exec bash"
