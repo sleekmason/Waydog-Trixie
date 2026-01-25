@@ -218,7 +218,7 @@ tooltip {
   color: @indigo;
   padding: 0 8px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   margin-right: 2px;
 }
 #custom-launcher1:hover {
@@ -234,7 +234,7 @@ tooltip {
   color: @brightblue;
   padding: 0 8px;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 11px;
   margin-right: 2px;
 }
 #custom-launcher2:hover {
@@ -266,7 +266,7 @@ tooltip {
   color: @tan;
   padding: 0 8px;
   border-radius: 8px;
-  font-size: 10px;
+  font-size: 9px;
   margin-right: 6px;
 }
 #custom-launcher4:hover {
