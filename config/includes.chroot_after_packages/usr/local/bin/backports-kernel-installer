@@ -1,6 +1,4 @@
 #!/bin/bash
-## Made by Sleekmason 10 May 2022
-## Simple script to add backports and install latest kernel, headers, and firmware.
 read -p "
    [0;33mAdds Trixie backport repository, and installs the latest kernel.[0m
    
