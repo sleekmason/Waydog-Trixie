@@ -24,7 +24,7 @@ wget --prefer-family=IPv4 -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-
 echo ""
 echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
     | sudo tee /etc/apt/sources.list.d/vscodium.list
-echo""
+echo ""
 sudo apt update && sudo apt install codium
 echo ""
 echo "[0;33m-------------------------------------------------------------------"

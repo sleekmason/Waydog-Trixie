@@ -1,18 +1,20 @@
 #!/bin/bash
 read -p "   [0;33mWine Installer[0m
 
-   Wine (originally an acronym for 'Wine Is Not an Emulator' is a
+   Wine, originally an acronym for 'Wine Is Not an Emulator' is a
    compatibility layer capable of running Windows applications on
    several POSIX-compliant systems, such as Linux, macOS, & BSD.
    
-   Wine Download size: 403 MB
-   Space needed: 2,238 MB
+   This installer will install Wine and the Winetricks package to
+   provide a Wine GUI. Note, the i386 architecture will be added.
+     
+   Wine Download size: 413 MB  Reqauired space: 2,237 MB
    
    [0;34mhttps://www.winehq.org/[0m
    
    [0;32m--------------------------------------------------------------
 
-   Please press enter to install Wine.
+   Please press enter to install Wine and Winetricks.
 
    --------------------------------------------------------------[0m
 
@@ -35,7 +37,7 @@ echo "   [0;32mInstalling Wine...[0m"
 echo ""
 sleep 1
 sudo apt update
-sudo apt install --install-recommends -y winehq-stable || exit
+sudo apt install --install-recommends -y winehq-stable winetricks zenity || exit
 echo ""
 echo "   [0;32mSetting up the environment...[0m"
 sleep 2
@@ -53,13 +55,13 @@ echo ""
 sleep 1
 wine clock &
 echo ""
-echo "   [0;32m--------------------------------------------------------[0m"
+echo "   [0;34m---------------------------------------------------------[0m"
 echo ""
 echo "   [0;33mAll Finished. Enjoy Wine![0m"
 echo ""
-echo "   [0;34mConsider installing Winetricks + zenity for a Wine GUI.[0m"
+echo "   [0;34mPlease look for Winetricks in the menu for an easy start.[0m"
 echo ""
-echo "   [0;32m--------------------------------------------------------[0m"
+echo "   [0;34m---------------------------------------------------------[0m"
 echo ""
 else
 echo ""
