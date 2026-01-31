@@ -19,8 +19,24 @@ read -p "   [0;33mWine Installer[0m
    --------------------------------------------------------------[0m
 
    Or, close this terminal window to quit the install." ;
-## Make sure of internet connection.
+
+if [ -e /run/live/medium ] || [ -e /lib/live/mount ] || \
+   findmnt -n -o FSTYPE / | grep -Eq 'overlay|squashfs'; then
+    echo ""
+    echo "   [0;31m--------------------------------------------------------------[0m"
+    echo ""
+    echo "   [0;33mLive environment detected.[0m"
+    echo ""
+    echo "   [0;33mInstallation of Wine in a live environment is not supported."
+    echo ""
+    echo "   [0;31m--------------------------------------------------------------[0m"
+    echo ""
+    read -n1 -p " Press any key to quit this dialog ... "
+    exit 0
+fi
+
 if : >/dev/tcp/8.8.8.8/53; then
+
 sudo dpkg --add-architecture i386 || exit
 echo ""
 echo "   [0;32mAdding i386 architecture...[0m"
