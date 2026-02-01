@@ -14,6 +14,8 @@ showhelp() {
     echo "  --all      Show all programs available on the system."
 }
 
+shopt -s nullglob
+
 if [ "${1-}" = "--help" ] || [ "${1-}" = "-h" ]; then
     showhelp
     exit 0
@@ -34,8 +36,8 @@ DESKTOP_DIRS=(
 
 for d in "${DESKTOP_DIRS[@]}"; do
     [ -d "$d" ] || continue
+    
     for f in "$d"/*.desktop; do
-        [ -f "$f" ] || continue
         NAME=""
         EXEC=""
         TYPE="false"
@@ -64,11 +66,11 @@ for d in "${DESKTOP_DIRS[@]}"; do
         [ -z "$NAME" ] && continue
         [ -z "$EXEC" ] && continue
 
-        for ph in %U %u %F %f %i %c %k; do
-            EXEC=${EXEC//$ph/}
-        done
+        EXEC="${EXEC//%[UuFfiCk]/}"
 
-        EXEC=$(echo "$EXEC" | sed 's/[[:space:]]\+/ /g' | sed 's/[[:space:]]*$//')
+        EXEC="${EXEC#"${EXEC%%[![:space:]]*}"}"
+        EXEC="${EXEC%"${EXEC##*[![:space:]]}"}"
+        EXEC="${EXEC//  / }"
 
         if [[ "$TYPE" == "true" ]]; then
             EXEC="x-terminal-emulator -e \"$EXEC\""

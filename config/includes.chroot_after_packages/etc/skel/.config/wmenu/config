@@ -3,11 +3,8 @@
 # Wmenu in Waydog is started from /usr/local/bin/wdmenu
 
 WMENU_OPTS=(
-# Font
   -f "Cantarell 10"
-#  -f "DejaVu Sans 10"
-  
-# case insensitively
+  -p 'Type to search:' 
   -i
 
 # wmenu on bottom  
