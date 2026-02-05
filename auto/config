@@ -17,7 +17,7 @@ lb config noauto \
      --firmware-chroot 'true' \
      --security 'true' \
      --memtest 'memtest86+' \
-     --image-name 'Waydog-Trixie-26.01.21' \
+     --image-name 'Waydog-Trixie-26.02.06' \
      --iso-application 'Waydog-Trixie' \
      --iso-publisher 'Waydog-Trixie GNU/Linux' \
      --iso-volume 'Waydog-Trixie' \
