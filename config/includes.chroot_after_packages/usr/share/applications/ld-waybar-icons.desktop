@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Waybar Icons
+Exec=waybar-icon-dialog
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-font
+Categories=ld-misc-tools;

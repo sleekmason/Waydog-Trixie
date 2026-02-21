@@ -1,0 +1,37 @@
+#!/bin/bash
+# Yad dialog to switch settings in Waybar for text and icons
+
+CONFIG="$HOME/.config/waybar/config.jsonc"
+
+LONG=21
+SHORT=12
+
+if ! pgrep -x labwc >/dev/null && ! pgrep -x niri >/dev/null; then
+    notify-send -i applications-engineering "Waybar Icons" "Only for Labwc or Niri sessions"
+    exit 0
+fi
+
+
+set_format() {
+    local FORMAT="$1"
+
+    sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"'"$FORMAT"'"/' "$CONFIG"
+
+    pkill -x waybar
+    waybar &
+}
+
+export -f set_format
+export CONFIG
+export LONG
+export SHORT
+
+yad --title "Waybar Icons" --escape-ok \
+--button="Quit!gtk-quit:0" \
+--form --center --width=230 --height=240 --borders=10 \
+    --field="":LBL "" \
+    --field="      Text Only!preferences-desktop-font":FBTN "bash -c 'set_format \"{title:.$LONG}\"'" \
+    --field="    Icons Only!applications-office":FBTN "bash -c 'set_format \"{icon}\"'" \
+    --field="   Icons+Text!applications-games":FBTN "bash -c 'set_format \"{icon} {title:.$LONG}\"'" \
+    --field="      Compact!preferences-desktop-accessories":FBTN "bash -c 'set_format \"{icon} {title:.$SHORT}\"'" \
+    --field="":LBL ""
