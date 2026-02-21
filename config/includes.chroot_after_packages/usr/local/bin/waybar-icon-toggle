@@ -1,0 +1,22 @@
+#!/bin/bash
+# Three-way toggle for Waybar icons, text, text+icons
+# Made by sleekmason for Waydog 18 Feb 2026
+
+CONFIG="$HOME/.config/waybar/config.jsonc"
+
+current=$(awk '/"wlr\/taskbar": {/,/}/ { if($0 ~ /"format":/) { print $0 } }' "$CONFIG" | grep -Po '"format":\s*"\K[^"]+')
+
+case "$current" in
+    "{icon}")
+        sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{title:.20}"/' "$CONFIG"
+        ;;
+    "{title:.20}")
+        sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{icon} {title:.20}"/' "$CONFIG"
+        ;;
+    "{icon} {title:.20}")
+        sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{icon}"/' "$CONFIG"
+        ;;
+esac
+
+pkill -x waybar
+waybar &

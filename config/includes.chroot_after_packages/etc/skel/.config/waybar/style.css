@@ -321,3 +321,40 @@ background: @base-light;
   background: @border2;
   color: @hiblue;
 }
+
+/* --------------------------------------------
+   WLR Taskbar
+   -------------------------------------------- */
+
+#taskbar {
+  background: transparent;
+  padding: 0;
+  margin-left: 2px;
+  border: none;
+}
+
+#taskbar button {
+  font-family: "Dejavu";
+  font-size: 12px;
+  min-height: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+  margin: 0 8px;
+  border: none;
+}
+
+#taskbar button:hover image {
+  -gtk-icon-transform: scale(1.15);
+}
+
+#taskbar button:active image {
+  -gtk-icon-transform: scale(0.92);
+}
+
+#custom-separator1 {
+    color: @text-dim;
+    margin-left: 8px;
+    margin-right: 5px;
+}

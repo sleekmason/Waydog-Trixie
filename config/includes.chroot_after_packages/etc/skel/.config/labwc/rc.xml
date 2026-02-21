@@ -208,6 +208,11 @@
         <execute>waybar-toggle</execute>
       </action>
     </keybind>
+    <keybind key="W-S-w">
+      <action name="Execute">
+        <execute>waybar-icon-toggle</execute>
+      </action>
+    </keybind>
     <keybind key="W-v">
       <action name="Execute">
         <execute>toggle-random</execute>
