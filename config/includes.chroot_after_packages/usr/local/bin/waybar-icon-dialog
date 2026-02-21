@@ -1,5 +1,6 @@
 #!/bin/bash
 # Yad dialog to switch settings in Waybar for text and icons
+# Made by sleekmason for Waydog 21 Feb 2026
 
 CONFIG="$HOME/.config/waybar/config.jsonc"
 
@@ -11,7 +12,6 @@ if ! pgrep -x labwc >/dev/null && ! pgrep -x niri >/dev/null; then
     exit 0
 fi
 
-
 set_format() {
     local FORMAT="$1"
 
@@ -19,6 +19,21 @@ set_format() {
 
     pkill -x waybar
     waybar &
+
+    case "$FORMAT" in
+        "{title:.$LONG}" | "{title:.$SHORT}")
+            notify-send -i preferences-desktop-personal "text only"
+            ;;
+        "{icon}")
+            notify-send -i preferences-desktop-personal "icons only"
+            ;;
+        "{icon} {title:.$LONG}")
+            notify-send -i preferences-desktop-personal "text + icons - long"
+            ;;
+        "{icon} {title:.$SHORT}")
+            notify-send -i preferences-desktop-personal "text + icons - compact"
+            ;;
+    esac
 }
 
 export -f set_format
@@ -32,6 +47,5 @@ yad --title "Waybar Icons" --escape-ok \
     --field="":LBL "" \
     --field="      Text Only!preferences-desktop-font":FBTN "bash -c 'set_format \"{title:.$LONG}\"'" \
     --field="    Icons Only!applications-office":FBTN "bash -c 'set_format \"{icon}\"'" \
-    --field="   Icons+Text!applications-games":FBTN "bash -c 'set_format \"{icon} {title:.$LONG}\"'" \
-    --field="      Compact!preferences-desktop-accessories":FBTN "bash -c 'set_format \"{icon} {title:.$SHORT}\"'" \
-    --field="":LBL ""
+    --field="   Text+Icons!applications-games":FBTN "bash -c 'set_format \"{icon} {title:.$LONG}\"'" \
+    --field="      Compact!preferences-desktop-accessories":FBTN "bash -c 'set_format \"{icon} {title:.$SHORT}\"'"

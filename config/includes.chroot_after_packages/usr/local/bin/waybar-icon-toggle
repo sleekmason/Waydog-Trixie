@@ -11,20 +11,25 @@ current=$(awk '/"wlr\/taskbar": {/,/}/ { if($0 ~ /"format":/) print }' "$CONFIG"
           | grep -Po '"format":\s*"\K[^"]+')
 
 case "$current" in
-    "{title:"*)
+    "{title:.$LONG}" | "{title:.$SHORT}")
         new="{icon}"
+        notify-send -i preferences-desktop-personal "icons only"
         ;;
     "{icon}")
         new="{icon} {title:.$LONG}"
+        notify-send -i preferences-desktop-personal "text + icons - long"
         ;;
     "{icon} {title:.$LONG}")
         new="{icon} {title:.$SHORT}"
+        notify-send -i preferences-desktop-personal "text + icons - compact"
         ;;
     "{icon} {title:.$SHORT}")
         new="{title:.$LONG}"
+        notify-send -i preferences-desktop-personal "text only"
         ;;
     *)
-        new="{title:.$LONG}"
+        new="{icon} {title:.$LONG}"
+        notify-send -i preferences-desktop-personal "text + icons - long"
         ;;
 esac
 
