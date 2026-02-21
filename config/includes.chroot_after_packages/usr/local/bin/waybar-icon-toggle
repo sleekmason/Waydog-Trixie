@@ -70,13 +70,13 @@ dialog_mode() {
     export CONFIG LONG SHORT
 
     yad --title "Waybar Icons" --escape-ok \
-    --button="Quit!gtk-quit:0" \
+    --button=" Okay!gtk-ok:0" \
     --form --center --width=230 --height=240 --borders=10 \
         --field="":LBL "" \
-        --field="      Text Only!preferences-desktop-font":FBTN "bash -c 'apply_format \"{title:.$LONG}\"'" \
-        --field="    Icons Only!applications-office":FBTN "bash -c 'apply_format \"{icon}\"'" \
-        --field="   Text+Icons!applications-games":FBTN "bash -c 'apply_format \"{icon} {title:.$LONG}\"'" \
-        --field="      Compact!preferences-desktop-accessories":FBTN "bash -c 'apply_format \"{icon} {title:.$SHORT}\"'"
+        --field="         Text Only!preferences-desktop-font":FBTN "bash -c 'apply_format \"{title:.$LONG}\"'" \
+        --field="       Icons Only!applications-games":FBTN "bash -c 'apply_format \"{icon}\"'" \
+        --field="    Text + Icons!applications-office":FBTN "bash -c 'apply_format \"{icon} {title:.$LONG}\"'" \
+        --field="         Compact!applications-accessories":FBTN "bash -c 'apply_format \"{icon} {title:.$SHORT}\"'"
 }
 
 case "$1" in
