@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=Waybar Icons
-Exec=waybar-icon-dialog
+Exec=waybar-icon-toggle dialog
 StartupNotify=false
 Terminal=false
-Icon=preferences-desktop-font
+Icon=applications-other
 Categories=ld-misc-tools;

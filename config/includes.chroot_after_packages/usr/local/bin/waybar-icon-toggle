@@ -1,39 +1,89 @@
 #!/bin/bash
-# 4-step toggle for Waybar icons
+# Waybar format switcher
 # Made by sleekmason for Waydog 21 Feb 2026
 
 CONFIG="$HOME/.config/waybar/config.jsonc"
 
-LONG=21
-SHORT=12
+LONG=22
+SHORT=11
 
-current=$(awk '/"wlr\/taskbar": {/,/}/ { if($0 ~ /"format":/) print }' "$CONFIG" \
-          | grep -Po '"format":\s*"\K[^"]+')
+if ! pgrep -x labwc >/dev/null && ! pgrep -x niri >/dev/null; then
+    notify-send -i applications-engineering "Waybar Format Switcher" "Only for Labwc or Niri sessions"
+    exit 0
+fi
 
-case "$current" in
-    "{title:.$LONG}" | "{title:.$SHORT}")
-        new="{icon}"
-        notify-send -i preferences-desktop-personal "icons only"
-        ;;
-    "{icon}")
-        new="{icon} {title:.$LONG}"
-        notify-send -i preferences-desktop-personal "text + icons - long"
-        ;;
-    "{icon} {title:.$LONG}")
-        new="{icon} {title:.$SHORT}"
-        notify-send -i preferences-desktop-personal "text + icons - compact"
-        ;;
-    "{icon} {title:.$SHORT}")
-        new="{title:.$LONG}"
-        notify-send -i preferences-desktop-personal "text only"
+get_current() {
+    awk '/"wlr\/taskbar": {/,/}/ { if($0 ~ /"format":/) print }' "$CONFIG" \
+    | grep -Po '"format":\s*"\K[^"]+'
+}
+
+apply_format() {
+    local FORMAT="$1"
+
+    sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"'"$FORMAT"'"/' "$CONFIG"
+
+    pkill -x waybar
+    waybar &
+
+    case "$FORMAT" in
+        "{title:.$LONG}" | "{title:.$SHORT}")
+            notify-send -i preferences-desktop-personal "text only"
+            ;;
+        "{icon}")
+            notify-send -i preferences-desktop-personal "icons only"
+            ;;
+        "{icon} {title:.$LONG}")
+            notify-send -i preferences-desktop-personal "text + icons - long"
+            ;;
+        "{icon} {title:.$SHORT}")
+            notify-send -i preferences-desktop-personal "text + icons - compact"
+            ;;
+    esac
+}
+
+toggle_mode() {
+    current=$(get_current)
+
+    case "$current" in
+        "{title:.$LONG}" | "{title:.$SHORT}")
+            new="{icon}"
+            ;;
+        "{icon}")
+            new="{icon} {title:.$LONG}"
+            ;;
+        "{icon} {title:.$LONG}")
+            new="{icon} {title:.$SHORT}"
+            ;;
+        "{icon} {title:.$SHORT}")
+            new="{title:.$LONG}"
+            ;;
+        *)
+            new="{icon} {title:.$LONG}"
+            ;;
+    esac
+
+    apply_format "$new"
+}
+
+dialog_mode() {
+    export -f apply_format
+    export CONFIG LONG SHORT
+
+    yad --title "Waybar Icons" --escape-ok \
+    --button="Quit!gtk-quit:0" \
+    --form --center --width=230 --height=240 --borders=10 \
+        --field="":LBL "" \
+        --field="      Text Only!preferences-desktop-font":FBTN "bash -c 'apply_format \"{title:.$LONG}\"'" \
+        --field="    Icons Only!applications-office":FBTN "bash -c 'apply_format \"{icon}\"'" \
+        --field="   Text+Icons!applications-games":FBTN "bash -c 'apply_format \"{icon} {title:.$LONG}\"'" \
+        --field="      Compact!preferences-desktop-accessories":FBTN "bash -c 'apply_format \"{icon} {title:.$SHORT}\"'"
+}
+
+case "$1" in
+    dialog)
+        dialog_mode
         ;;
     *)
-        new="{icon} {title:.$LONG}"
-        notify-send -i preferences-desktop-personal "text + icons - long"
+        toggle_mode
         ;;
 esac
-
-sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"'"$new"'"/' "$CONFIG"
-
-pkill -x waybar
-waybar &

@@ -267,7 +267,7 @@
     "tooltip-format": "Exit"
 },
 "wlr/taskbar": {
-    "format": "{icon} {title:.20}",
+    "format": "{icon} {title:.22}",
     "icon-size": 14,
     "tooltip-format": "{title}",
     "on-click": "activate",

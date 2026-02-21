@@ -148,6 +148,11 @@
 						<execute>labwc-tweaks-gtk</execute>
 				</action>
 			</item>
+			<item label="Waybar Icons" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-personal.png">
+				<action name="Execute">
+					<execute>bash -c "waybar-icon-toggle dialog"</execute>
+				</action>
+		    </item>
 		    <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
 				<action name="Execute">
 					<execute>waypaper-update-wrapper</execute>
