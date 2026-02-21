@@ -31,6 +31,7 @@
 @define-color hiblue      #9CD2F0;
 @define-color coolblue    #7EB6D6;
 @define-color white       #ffffff;
+@define-color light       #E0E0E0;
 
 /* --------------------------------------------
    General Bar Styling
@@ -336,6 +337,7 @@ background: @base-light;
 #taskbar button {
   font-family: "Dejavu";
   font-size: 12px;
+  color: @light;
   min-height: 0;
   background: transparent;
   box-shadow: none;
