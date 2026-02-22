@@ -27,16 +27,16 @@ apply_format() {
 
     case "$FORMAT" in
         "{title:.$LONG}" | "{title:.$SHORT}")
-            notify-send -i preferences-desktop-personal "text only"
+            notify-send -i preferences-desktop-personal "Text only"
             ;;
         "{icon}")
-            notify-send -i preferences-desktop-personal "icons only"
+            notify-send -i preferences-desktop-personal "Icons only"
             ;;
         "{icon} {title:.$LONG}")
-            notify-send -i preferences-desktop-personal "text + icons - long"
+            notify-send -i preferences-desktop-personal "Text + icons - long"
             ;;
         "{icon} {title:.$SHORT}")
-            notify-send -i preferences-desktop-personal "text + icons - compact"
+            notify-send -i preferences-desktop-personal "Text + icons - compact"
             ;;
     esac
 }
