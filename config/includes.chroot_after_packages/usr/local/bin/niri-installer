@@ -21,10 +21,10 @@ if : >/dev/tcp/8.8.8.8/53; then
 
 echo ""
 cd /tmp || exit
-rm -f "niri.zip"
+rm -f "niri-trixie.zip"
 rm -fr "niri"
-wget https://raw.githubusercontent.com/sleekmason/packages/master/niri.zip --show-progress -q || exit
-unzip -q "/tmp/niri.zip"
+wget https://raw.githubusercontent.com/sleekmason/packages/master/niri-trixie.zip --show-progress -q || exit
+unzip -q "/tmp/niri-trixie.zip"
 cd /tmp/niri
 sudo apt update
 sudo apt install -y ./niri_25.11-1_amd64.deb || exit
@@ -41,9 +41,12 @@ fi
 
 ## Copy files from /tmp.
 mkdir -p "$HOME/.config/niri"
+mkdir -p "$HOME/.config/waybar/niri"
 cp -f "/tmp/niri/config.kdl" "$HOME/.config/niri"
 sudo cp -f "/tmp/niri/xwayland-satellite" "/usr/local/bin"
 sudo cp -f "/tmp/niri/random-nonoti" "/usr/local/bin"
+sudo cp -f "/tmp/niri/waybar-toggle" "/usr/local/bin"
+cp -f "/tmp/niri/config.jsonc" "$HOME/.config/waybar/niri"
 
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"

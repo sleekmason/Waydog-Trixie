@@ -202,6 +202,9 @@
         <execute>labwc --reconfigure</execute>
       </action>
     </keybind>
+    <keybind key="W-Space">
+      <action name="ShowMenu" menu="some-custom-menu" />
+    </keybind>
     <!-- ### Application keybinds ### -->
     <keybind key="W-w">
       <action name="Execute">
