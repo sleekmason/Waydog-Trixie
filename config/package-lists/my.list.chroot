@@ -175,8 +175,11 @@ libpam-systemd
 libqt6waylandclient6
 mako-notifier
 nwg-look
-qtwayland5
 qml6-module-qtquick
+qtwayland5
+qt6-wayland
+qt6ct
+qt6-style-kvantum
 sddm
 seatd
 swaybg
