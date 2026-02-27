@@ -8,6 +8,7 @@ apt-utils
 at-spi2-core
 avahi-autoipd
 bash-completion
+bc
 bind9-dnsutils
 brightnessctl
 bsdmainutils

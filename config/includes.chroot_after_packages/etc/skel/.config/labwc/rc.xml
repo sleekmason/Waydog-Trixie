@@ -213,7 +213,7 @@
     </keybind>
     <keybind key="W-S-w">
       <action name="Execute">
-        <execute>waybar-icon-toggle</execute>
+        <execute>waybar-icon-toggle dialog</execute>
       </action>
     </keybind>
     <keybind key="W-v">

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Waybar Icons
+Name=Waybar Options
 Exec=waybar-icon-toggle dialog
 StartupNotify=false
 Terminal=false

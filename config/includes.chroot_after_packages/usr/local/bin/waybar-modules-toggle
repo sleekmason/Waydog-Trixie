@@ -1,0 +1,84 @@
+#!/bin/bash
+# Waybar Module Toggle
+# Made by sleekmason for Waydog 25 Feb 2026
+
+STYLE="$HOME/.config/waybar/style.css"
+
+restart_waybar() {
+    pkill -x waybar
+    if pgrep -x sway >/dev/null; then
+        waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
+    elif pgrep -x niri >/dev/null; then
+        waybar -c "$HOME/.config/waybar/niri/config.jsonc" &
+    else
+        waybar &
+    fi
+}
+
+HIDE="min-width: 0; min-height: 0; padding: 0; margin: 0; font-size: 0;"
+
+toggle_module() {
+    local mod="$1"
+
+    [[ -f "$STYLE" ]] || {
+        notify-send -i preferences-desktop-warning "Waybar Modules" \
+            "CSS file not found: $STYLE"
+        return
+    }
+
+    if grep -qx "#${mod} { ${HIDE} }" "$STYLE"; then
+        sed -i "/^#${mod} { ${HIDE} }$/d" "$STYLE"
+        notify-send -i preferences-desktop "${mod} Module  ▸  ON"
+    else
+        echo "#${mod} { ${HIDE} }" >> "$STYLE"
+        notify-send -i preferences-desktop " ${mod} Module  ▸  OFF"
+    fi
+
+    restart_waybar
+}
+
+reset_modules() {
+    [[ -f "$STYLE" ]] || return
+    sed -i "/^#[a-zA-Z_-]\+.*min-width: 0.*$/d" "$STYLE"
+    notify-send -i preferences-desktop "All modules restored"
+    restart_waybar
+}
+
+case "$1" in
+    cpu)                        toggle_module cpu ;;
+    memory)                     toggle_module memory ;;
+    temperature)                toggle_module temperature ;;
+    pulseaudio)                 toggle_module pulseaudio ;;
+    backlight)                  toggle_module backlight ;;
+    language)                   toggle_module language ;;
+    network)                    toggle_module network ;;
+    battery)                    toggle_module battery ;;
+    launcher2)                  toggle_module "custom-launcher2" ;;
+    launcher3)                  toggle_module "custom-launcher3" ;;
+    launcher4)                  toggle_module "custom-launcher4" ;;
+    reset)                      reset_modules ;;
+    *)
+        SELF="$(realpath "$BASH_SOURCE")"
+        while true; do
+            yad --title "Modules" \
+                --width=180 --height=520 --borders=10 --center \
+                --buttons-layout=spread --form \
+                --button="Reset!edit-clear":"bash '$SELF' reset" \
+                --button="Close!gtk-close:1" \
+                --field="":LBL "" \
+                --field="Audio":FBTN             "bash '$SELF' pulseaudio" \
+                --field="Backlight":FBTN         "bash '$SELF' backlight" \
+                --field="Battery":FBTN           "bash '$SELF' battery" \
+                --field="CPU":FBTN               "bash '$SELF' cpu" \
+                --field="Language":FBTN          "bash '$SELF' language" \
+                --field="Memory":FBTN            "bash '$SELF' memory" \
+                --field="Network":FBTN           "bash '$SELF' network" \
+                --field="Temperature":FBTN       "bash '$SELF' temperature" \
+                --field="":LBL "" \
+                --field="Files Icon":FBTN        "bash '$SELF' launcher2" \
+                --field="Terminal Icon":FBTN     "bash '$SELF' launcher3" \
+                --field="Desktop Icon":FBTN  "bash '$SELF' launcher4" \
+                || break
+        done
+        ;;
+esac

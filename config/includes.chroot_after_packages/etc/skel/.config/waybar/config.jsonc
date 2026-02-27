@@ -14,7 +14,7 @@
         "custom/launcher3",
         "custom/launcher4",
         "sway/scratchpad",
-     // "custom/separator1",
+        "custom/separator1",
         "wlr/taskbar",
         "custom/media"
     ],
@@ -24,6 +24,7 @@
     "modules-right": [
         "mpd",
         "idle_inhibitor",
+        "custom/separator1",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
@@ -37,6 +38,7 @@
         "battery#bat2",
         "clock",
         "tray",
+        "custom/separator1",
         "custom/power"
     ],
     // Add the style *outside* the module lists
@@ -146,7 +148,7 @@
         }
     },
     "tray": {
-        // "icon-size": 16,
+        "icon-size": 14,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",
@@ -271,6 +273,7 @@
     "icon-size": 14,
     "tooltip-format": "{title}",
     "on-click": "activate",
-    "on-click-middle": "close"
+    "on-click-middle": "close",
+    "on-click-right": "close"
 }
 }
