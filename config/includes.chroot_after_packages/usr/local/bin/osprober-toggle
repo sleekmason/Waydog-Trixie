@@ -1,26 +1,68 @@
 #!/bin/bash
-# Frontend dialog for the osprober toggle
-# made by sleekmason 23 Mar 2023
-# Associated files: /usr/local/bin/osprober-toggle-backend
-# and /usr/share/lilidog/osprober.txt
+# Dialog for an osprober toggle.
+# made by sleekmason Feb 28 2026
 
 FILE="/etc/default/grub"
-full_fs=$(df ~ | tail -1 | awk '{print $1;}')  # find partition
-fs=$(basename "$full_fs")
-if grep -q "$fs" /proc/partitions; then
-if grep -q '#GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
-notify-send  -t 10000 --urgency low "OSprober Is Currently Disabled"
-else
-notify-send  -t 10000 --urgency low "OSprober Is Currently Enabled"
+LOG="/var/log/grub-update.log"
+SELF="$(realpath "$0")"
+
+if [[ "$1" == "--backend" ]]; then
+    current=$(grep -E '^\s*GRUB_DISABLE_OS_PROBER=' "$FILE" | tail -1 | awk -F= '{print $2}' | tr -d ' ')
+    if [[ "$current" == "false" ]]; then
+        sed -i 's/^\s*GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=true/' "$FILE"
+    else
+        if grep -q '^\s*GRUB_DISABLE_OS_PROBER=' "$FILE"; then
+            sed -i 's/^\s*GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=false/' "$FILE"
+        else
+            sed -i '/^# Uncomment to disable graphical terminal/i GRUB_DISABLE_OS_PROBER=false' "$FILE"
+        fi
+    fi
+    update-grub 2>&1 >> "$LOG"
+    exit 0
 fi
 
-  yad --title "OSprober Toggle" --window-icon=applications-utilities \
---width=375 --height=340 --center --escape-ok \
---button="View Log"!/usr/share/icons/gnome/22x22/apps/accessories-text-editor.png!:"geany /var/log/grub-update.log" \
---button="Toggle On/Off"!/usr/share/icons/gnome/22x22/actions/object-flip-horizontal.png!:"gksudo /usr/local/bin/osprober-toggle-backend" \
---button="gtk-quit:1" --buttons-layout=spread \
---text-info --justify=left --wrap < /usr/share/lilidog/osprober.txt --fontname="JetBrains Mono Light 11" \
---fore="#C0DDEB"; exit
+full_fs=$(df ~ | tail -1 | awk '{print $1;}')
+fs=$(basename "$full_fs")
+
+if ! grep -q "$fs" /proc/partitions; then
+    notify-send -t 10000 --urgency low "OSprober Toggle Requires An Installed System"
+    exit 1
+fi
+
+if grep -q '^GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
+    STATUS="OSprober Is Currently Enabled"
 else
-notify-send  -t 10000 --urgency low "OSprober Toggle Requires An Installed System"
+    STATUS="OSprober Is Currently Disabled"
+fi
+
+notify-send -t 10000 --urgency low "$STATUS"
+
+yad --title "OSprober Toggle" --window-icon=applications-utilities \
+    --width=488 --height=360 --center --escape-ok \
+    --button="View Log"!/usr/share/icons/gnome/22x22/apps/accessories-text-editor.png!:"geany $LOG" \
+    --button="Toggle On/Off:2" \
+    --button="gtk-quit:1" --buttons-layout=spread \
+    --text-info --justify=left --wrap < /usr/share/lilidog/osprober.txt \
+    --fontname="JetBrains Mono Light 11" \
+    --fore="#C0DDEB"
+
+RET=$?
+
+if [[ $RET -eq 2 ]]; then
+    pkexec "$SELF" --backend
+
+    yad --width=360 --height=50 \
+        --window-type=normal \
+        --skip-taskbar --undecorated \
+        --title="OSprober Grub Update" \
+        --progress --pulsate \
+        --no-buttons --auto-kill --auto-close \
+        --text="\n          Updating grub. Please wait ..." &
+    YAD_PID=$!
+
+    sleep 1.5
+    kill "$YAD_PID" 2>/dev/null || true
+    wait "$YAD_PID" 2>/dev/null
+    sleep 0.25
+    notify-send -t 15000 --urgency low "Grub Update Finished!"
 fi
