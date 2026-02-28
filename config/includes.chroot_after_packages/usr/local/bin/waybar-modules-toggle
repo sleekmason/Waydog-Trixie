@@ -15,7 +15,7 @@ restart_waybar() {
     fi
 }
 
-HIDE="min-width: 0; min-height: 0; padding: 0; margin: 0; font-size: 0;"
+HIDE="min-width: 0; min-height: 0; padding: 0; margin: 0; font-size: 0; border: none; background: transparent;"
 
 toggle_module() {
     local mod="$1"
@@ -26,12 +26,12 @@ toggle_module() {
         return
     }
 
-    if grep -qx "#${mod} { ${HIDE} }" "$STYLE"; then
-        sed -i "/^#${mod} { ${HIDE} }$/d" "$STYLE"
+    if grep -q "^#${mod} .*min-width: 0" "$STYLE"; then
+        sed -i "/^#${mod} .*min-width: 0.*$/d" "$STYLE"
         notify-send -i preferences-desktop "${mod} Module  ▸  ON"
     else
         echo "#${mod} { ${HIDE} }" >> "$STYLE"
-        notify-send -i preferences-desktop " ${mod} Module  ▸  OFF"
+        notify-send -i preferences-desktop "${mod} Module  ▸  OFF"
     fi
 
     restart_waybar
@@ -46,6 +46,8 @@ reset_modules() {
 
 case "$1" in
     cpu)                        toggle_module cpu ;;
+    clock)                      toggle_module clock ;;
+    idle_inhibitor)             toggle_module idle_inhibitor ;;
     memory)                     toggle_module memory ;;
     temperature)                toggle_module temperature ;;
     pulseaudio)                 toggle_module pulseaudio ;;
@@ -53,6 +55,7 @@ case "$1" in
     language)                   toggle_module language ;;
     network)                    toggle_module network ;;
     battery)                    toggle_module battery ;;
+    launcher1)                  toggle_module "custom-launcher1" ;;
     launcher2)                  toggle_module "custom-launcher2" ;;
     launcher3)                  toggle_module "custom-launcher3" ;;
     launcher4)                  toggle_module "custom-launcher4" ;;
@@ -61,23 +64,25 @@ case "$1" in
         SELF="$(realpath "$BASH_SOURCE")"
         while true; do
             yad --title "Modules" \
-                --width=180 --height=520 --borders=10 --center \
+                --width=180 --height=352 --borders=10 --center \
+                --columns=2 \
                 --buttons-layout=spread --form \
                 --button="Reset!edit-clear":"bash '$SELF' reset" \
                 --button="Close!gtk-close:1" \
-                --field="":LBL "" \
                 --field="Audio":FBTN             "bash '$SELF' pulseaudio" \
                 --field="Backlight":FBTN         "bash '$SELF' backlight" \
-                --field="Battery":FBTN           "bash '$SELF' battery" \
                 --field="CPU":FBTN               "bash '$SELF' cpu" \
-                --field="Language":FBTN          "bash '$SELF' language" \
+                --field="Idle Inhibitor":FBTN    "bash '$SELF' idle_inhibitor" \
                 --field="Memory":FBTN            "bash '$SELF' memory" \
+                --field="Files Icon":FBTN        "bash '$SELF' launcher2" \
+                --field="Desktop Icon":FBTN      "bash '$SELF' launcher4" \
+                --field="Battery":FBTN           "bash '$SELF' battery" \
+                --field="Clock":FBTN             "bash '$SELF' clock" \
+                --field="Language":FBTN          "bash '$SELF' language" \
                 --field="Network":FBTN           "bash '$SELF' network" \
                 --field="Temperature":FBTN       "bash '$SELF' temperature" \
-                --field="":LBL "" \
-                --field="Files Icon":FBTN        "bash '$SELF' launcher2" \
+                --field="Menu Icon":FBTN         "bash '$SELF' launcher1" \
                 --field="Terminal Icon":FBTN     "bash '$SELF' launcher3" \
-                --field="Desktop Icon":FBTN  "bash '$SELF' launcher4" \
                 || break
         done
         ;;

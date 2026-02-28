@@ -89,10 +89,11 @@ tooltip {
   border-radius: 8px;
   margin-left: 4px;
   margin-right: 4px;
+  font-size: 13px;
 }
 
 #clock:hover {
-    background: @border2; /* border2 */
+    background: @border2;
     color: @white;
 }
 
@@ -100,7 +101,9 @@ tooltip {
   color: @green;
   padding: 0 6px;
   border-radius: 6px;
+  font-size: 13px;
 }
+
 #battery.critical {
   color: @red;
   background: rgba(191, 97, 106, 0.15);
@@ -110,45 +113,43 @@ tooltip {
 #network {
   color: @blue;
   padding: 0 8px;
+  font-size: 13px;
 }
 
 #cpu {
   color: @yellow;
   padding: 0 6px;
+  font-size: 13px;
 }
 
 #memory {
   color: @orange;
   padding: 0 8px;
+  font-size: 13px;
 }
 
 #temperature {
   color: @purple;
   padding: 0 8px;
-}
-
-#keyboard-state {
-  color: @text-dim;
-  padding: 0 8px;
+  font-size: 13px;
 }
 
 #pulseaudio {
   color: @violet;
   padding: 0 8px;
+  font-size: 13px;
 }
-  
-  #pulseaudio:hover {
+
+#pulseaudio:hover {
   background: @base-light;
   color: @hiviolet;
   border-radius: 8px;
 }
 
-/* --------------------------------------------
-   Brightness (Backlight)
-   -------------------------------------------- */
 #backlight {
   color: @yellow;
   padding: 0 6px;
+  font-size: 13px;
 }
 
 #backlight:hover {
@@ -311,7 +312,7 @@ tooltip {
    Power Button
    -------------------------------------------- */
 #custom-power {
-background: @base-light;
+  background: @base-light;
   color: @coolblue;
   padding: 0 10px;
   border-radius: 8px;

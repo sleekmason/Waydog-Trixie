@@ -1,6 +1,6 @@
 #!/bin/bash
 # Waybar options
-# Made by sleekmason for Waydog 25 Feb 2026
+# Made by sleekmason for Waydog 27 Feb 2026
 
 CONFIG=(
     "$HOME/.config/waybar/config.jsonc"
@@ -8,9 +8,11 @@ CONFIG=(
     "$HOME/.config/waybar/niri/config.jsonc"
 )
 
+SIZES_INI="$HOME/.config/waybar/module_defaults.ini"
+STATE_FILE="$HOME/.config/waybar/first_run"
 STYLE="$HOME/.config/waybar/style.css"
 SELF="$(realpath "$BASH_SOURCE")"
-MODULES="$(dirname "$SELF")/waybar-modules-toggle"
+MODULES="waybar-modules-toggle"
 
 LONG=22
 SHORT=11
@@ -91,6 +93,14 @@ toggle_separator() {
 declare -A DEFAULT_SIZES=(
     ["#workspaces button"]=11
     ["#waybar"]=13
+    ["#clock"]=13
+    ["#cpu"]=13
+    ["#memory"]=13
+    ["#temperature"]=13
+    ["#pulseaudio"]=13
+    ["#backlight"]=13
+    ["#network"]=13
+    ["#battery"]=13
     ["#language"]=13
     ["#idle_inhibitor"]=14
     ["#custom-launcher1"]=14
@@ -102,6 +112,129 @@ declare -A DEFAULT_SIZES=(
     ["#custom-power"]=12
 )
 
+INI_ENTRIES=(
+    "waybar|#waybar|Main bar fontsize"
+    "workspaces button|#workspaces button|Workspaces"
+    "clock|#clock|Clock"
+    "cpu|#cpu|CPU"
+    "memory|#memory|Memory"
+    "temperature|#temperature|Temperature"
+    "pulseaudio|#pulseaudio|Audio"
+    "backlight|#backlight|Backlight"
+    "network|#network|Network"
+    "battery|#battery|Battery"
+    "scratchpad|#scratchpad|Scratchpad"
+    "idle_inhibitor|#idle_inhibitor|Idle Inhibitor"
+    "mpd|#mpd|Music Player"
+    "language|#language|Language"
+    "custom-power|#custom-power|Power Button"
+    "custom-launcher1|#custom-launcher1|Menu Icon"
+    "custom-launcher2|#custom-launcher2|Files Icon"
+    "custom-launcher3|#custom-launcher3|Terminal Icon"
+    "custom-launcher4|#custom-launcher4|Showdesktop Icon"
+)
+
+read_size_from_css() {
+    local selector="$1"
+    local escaped
+    escaped=$(echo "$selector" | sed 's/ /\\ /g')
+    sed -n "/$escaped {/,/}/ {/font-size:/ {s/.*font-size: \([0-9.]\+\)px;.*/\1/p}}" "$STYLE"
+}
+
+write_ini_file() {
+    if [[ ! -f "$STATE_FILE" ]]; then
+        mkdir -p "$(dirname "$STATE_FILE")"
+        touch "$STATE_FILE"
+        use_css=true
+    else
+        use_css=false
+    fi
+
+    mkdir -p "$(dirname "$SIZES_INI")"
+    {
+        echo "# These are your reset values used by the Reset All button. Edit these"
+        echo "# values to define your own baseline, or delete this file and press"
+        echo "# 'Waybar Main Size' to regenerate it with the distro defaults."
+        echo ""
+        echo "# To generate it from the current style.css file instead, remove the"
+        echo "# 'first_run' file before pressing 'Waybar Main Size'."
+        for entry in "${INI_ENTRIES[@]}"; do
+            IFS='|' read -r ini_key css_selector label <<< "$entry"
+            if [[ "$use_css" == true && -f "$STYLE" ]]; then
+                val=$(read_size_from_css "$css_selector")
+                val="${val:-${DEFAULT_SIZES[$css_selector]}}"
+            else
+                val="${DEFAULT_SIZES[$css_selector]}"
+            fi
+            echo ""
+            echo "# ${label}"
+            echo "${ini_key}=${val}"
+        done
+    } > "$SIZES_INI"
+}
+
+read_ini_file() {
+    local -n _target=$1
+    while IFS='=' read -r key val; do
+        [[ -z "$key" || "$key" == "# "* ]] && continue
+        # Strip carriage returns
+        key="${key%$'\r'}"
+        val="${val%$'\r'}"
+        # Strip leading/trailing whitespace only
+        key="${key#"${key%%[![:space:]]*}"}"
+        key="${key%"${key##*[![:space:]]}"}"
+        val="${val#"${val%%[![:space:]]*}"}"
+        val="${val%"${val##*[![:space:]]}"}"
+        [[ -n "$key" && -n "$val" ]] && _target[$key]="$val"
+    done < "$SIZES_INI"
+}
+
+ini_key_to_selector() {
+    local ini_key="$1"
+    for entry in "${INI_ENTRIES[@]}"; do
+        IFS='|' read -r ik css label <<< "$entry"
+        if [[ "$ik" == "$ini_key" ]]; then
+            echo "$css"
+            return
+        fi
+    done
+}
+
+toggle_barcolor() {
+    declare -A COLORS=(
+        ["24,37,43"]="Blue"
+        ["0,0,0"]="Black"
+        ["26,26,26"]="Brown"
+        ["25,31,41"]="Purple"
+        ["54,59,61"]="Gray"
+        ["16,36,26"]="Green"
+    )
+    COLOR_CYCLE=(
+        "24,37,43"
+        "0,0,0"
+        "26,26,26"
+        "25,31,41"
+        "54,59,61"
+        "16,36,26"
+    )
+
+    current=$(sed -n 's/@define-color base *rgba(\([0-9]\+, *[0-9]\+, *[0-9]\+\),.*/\1/p' "$STYLE" | tr -d ' ')
+
+    idx=0
+    for i in "${!COLOR_CYCLE[@]}"; do
+        [[ "${COLOR_CYCLE[$i]}" == "$current" ]] && idx=$i
+    done
+
+    next_idx=$(( (idx + 1) % ${#COLOR_CYCLE[@]} ))
+    new="${COLOR_CYCLE[$next_idx]}"
+    label="${COLORS[$new]}"
+
+    sed -i "s/@define-color base *rgba([0-9]\+, *[0-9]\+, *[0-9]\+,/@define-color base        rgba(${new},/" "$STYLE"
+
+    notify-send -i preferences-desktop "Waybar Bar Color  ▸  $label"
+    restart_waybar
+}
+
 toggle_iconscale() {
     if ! command -v bc >/dev/null 2>&1; then
         notify-send -i preferences-desktop-font \
@@ -109,21 +242,31 @@ toggle_iconscale() {
         return
     fi
 
-    scale=$(grep -oP '/\* ICON_SCALE:\K-?[0-9]+' "$STYLE")
-    case "$scale" in
-        -3) new=-2 ;;
-        -2) new=-1 ;;
-        -1) new=0 ;;
-         0) new=1 ;;
-         1) new=2 ;;
-         2) new=-3 ;;
-         *) new=0 ;;
-    esac
+    if [[ ! -f "$SIZES_INI" ]]; then
+        write_ini_file
+        notify-send -i preferences-desktop-font \
+            "Created module_defaults.ini — edit to customise your reset baseline"
+    fi
 
-    for selector in "${!DEFAULT_SIZES[@]}"; do
-        base=${DEFAULT_SIZES[$selector]}
-        newsize=$(bc <<< "scale=1; $base + $new")
-        sed -i "/$selector {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${newsize}px;/" "$STYLE"
+    scale=$(grep -oP '/\*\s*ICON_SCALE:\K-?[0-9]+' "$STYLE" | head -n1)
+    [[ -z "$scale" ]] && scale=0
+
+    new=$((scale + 1))
+    [[ $new -gt 2 ]] && new=-3
+
+    delta=$((new - scale))
+
+    for entry in "${INI_ENTRIES[@]}"; do
+        IFS='|' read -r ini_key css_selector label <<< "$entry"
+        escaped=$(echo "$css_selector" | sed 's/ /\\ /g')
+        base=$(read_size_from_css "$css_selector")
+        base="${base:-${DEFAULT_SIZES[$css_selector]}}"
+        newsize=$(bc <<< "scale=1; $base + $delta")
+        if grep -q "font-size:" < <(sed -n "/$escaped {/,/}/p" "$STYLE"); then
+            sed -i "/$escaped {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${newsize}px;/" "$STYLE"
+        else
+            sed -i "/$escaped {/ a\\  font-size: ${newsize}px;" "$STYLE"
+        fi
     done
 
     if grep -q "ICON_SCALE" "$STYLE"; then
@@ -138,14 +281,13 @@ toggle_iconscale() {
         sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\1'"$tray_size"'/; b }; ba }' "$cfg"
     done
 
-    case "$new" in
-        -3) label="11" ;;
-        -2) label="12" ;;
-        -1) label="13" ;;
-         0) label="14 (Default)" ;;
-         1) label="15" ;;
-         2) label="16" ;;
-    esac
+    SCALE_OPTIONS=(-3 -2 -1 0 1 2)
+    SCALE_LABELS=("Smallest" "Small" "Medium" "Default" "Large" "Largest")
+    idx=0
+    for i in "${!SCALE_OPTIONS[@]}"; do
+        [[ "${SCALE_OPTIONS[$i]}" == "$new" ]] && idx=$i
+    done
+    label="${SCALE_LABELS[$idx]}"
 
     notify-send -i preferences-desktop-font "Waybar Main  ▸  $label"
     restart_waybar
@@ -153,7 +295,10 @@ toggle_iconscale() {
 
 toggle_taskbar_iconsize() {
     DEFAULT_ICON=14
-    OPTIONS=(10 12 14 16 18)
+    OPTIONS=(10 12 14 16 18 20)
+    LABELS=("Smallest" "Small" "Default" "Large" "Extra Large" "Largest")
+
+    idx=0
 
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
@@ -161,8 +306,12 @@ toggle_taskbar_iconsize() {
         break
     done
 
-    if ! [[ " ${OPTIONS[*]} " =~ " $current " ]]; then current=$DEFAULT_ICON; fi
-    for i in "${!OPTIONS[@]}"; do [[ "${OPTIONS[$i]}" == "$current" ]] && idx=$i; done
+    [[ " ${OPTIONS[*]} " =~ " $current " ]] || current=$DEFAULT_ICON
+
+    for i in "${!OPTIONS[@]}"; do
+        [[ "${OPTIONS[$i]}" == "$current" ]] && idx=$i
+    done
+
     next_idx=$(( (idx + 1) % ${#OPTIONS[@]} ))
     new=${OPTIONS[$next_idx]}
 
@@ -171,7 +320,7 @@ toggle_taskbar_iconsize() {
         sed -i '/"wlr\/taskbar": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\1'"$new"'/; b }; ba }' "$cfg"
     done
 
-    if [[ "$new" -eq $DEFAULT_ICON ]]; then notify_label="$new (Default)"; else notify_label="$new"; fi
+    notify_label="${LABELS[$next_idx]}"
     notify-send -i preferences-desktop-font "Taskbar Icon Size  ▸  $notify_label"
     restart_waybar
 }
@@ -249,12 +398,32 @@ reset_defaults() {
         [[ -f "$cfg" ]] || continue
         sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{icon} {title:.'"$LONG"'}"/' "$cfg"
         sed -i '/"wlr\/taskbar": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
+        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
     done
 
-    for selector in "${!DEFAULT_SIZES[@]}"; do
-        sed -i "/$selector {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${DEFAULT_SIZES[$selector]}px;/" "$STYLE"
+    declare -A RESET_SIZES
+    if [[ -f "$SIZES_INI" ]]; then
+        read_ini_file RESET_SIZES
+    else
+        for entry in "${INI_ENTRIES[@]}"; do
+            IFS='|' read -r ini_key css_selector label <<< "$entry"
+            RESET_SIZES[$ini_key]="${DEFAULT_SIZES[$css_selector]}"
+        done
+    fi
+
+    for ini_key in "${!RESET_SIZES[@]}"; do
+        selector=$(ini_key_to_selector "$ini_key")
+        [[ -z "$selector" ]] && continue
+        escaped=$(echo "$selector" | sed 's/ /\\ /g')
+        if grep -q "font-size:" < <(sed -n "/$escaped {/,/}/p" "$STYLE"); then
+            sed -i "/$escaped {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${RESET_SIZES[$ini_key]}px;/" "$STYLE"
+        else
+            sed -i "/$escaped {/ a\\  font-size: ${RESET_SIZES[$ini_key]}px;" "$STYLE"
+        fi
     done
+
     sed -i "s/\/\* ICON_SCALE:.*\*\//\/\* ICON_SCALE:0 \*\//" "$STYLE"
+    sed -i "s/@define-color base *rgba([0-9]\+, *[0-9]\+, *[0-9]\+,/@define-color base        rgba(24,37,43,/" "$STYLE"
     sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\112px;/' "$STYLE"
     sed -i '/#taskbar button {/,/}/ s/\(color:\s*\)[^;]\+;/\1#E0E0E0;/' "$STYLE"
     sed -i "s/\(@define-color base *rgba([^,]*,[^,]*,[^,]*, *\)[0-9.]\+/\10.9/" "$STYLE"
@@ -264,7 +433,6 @@ reset_defaults() {
     margin: 0;\
     padding: 0;\
 }' "$STYLE"
-
     sed -i '/^#[a-zA-Z_-]\+.*min-width: 0.*$/d' "$STYLE"
 
     notify-send -i preferences-desktop "Settings restored to default"
@@ -272,10 +440,34 @@ reset_defaults() {
 }
 
 sway_reset_defaults() {
-    for selector in "${!DEFAULT_SIZES[@]}"; do
-        sed -i "/$selector {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${DEFAULT_SIZES[$selector]}px;/" "$STYLE"
+    for cfg in "${CONFIG[@]}"; do
+        [[ -f "$cfg" ]] || continue
+        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
     done
+
+    declare -A RESET_SIZES
+    if [[ -f "$SIZES_INI" ]]; then
+        read_ini_file RESET_SIZES
+    else
+        for entry in "${INI_ENTRIES[@]}"; do
+            IFS='|' read -r ini_key css_selector label <<< "$entry"
+            RESET_SIZES[$ini_key]="${DEFAULT_SIZES[$css_selector]}"
+        done
+    fi
+
+    for ini_key in "${!RESET_SIZES[@]}"; do
+        selector=$(ini_key_to_selector "$ini_key")
+        [[ -z "$selector" ]] && continue
+        escaped=$(echo "$selector" | sed 's/ /\\ /g')
+        if grep -q "font-size:" < <(sed -n "/$escaped {/,/}/p" "$STYLE"); then
+            sed -i "/$escaped {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${RESET_SIZES[$ini_key]}px;/" "$STYLE"
+        else
+            sed -i "/$escaped {/ a\\  font-size: ${RESET_SIZES[$ini_key]}px;" "$STYLE"
+        fi
+    done
+
     sed -i "s/\/\* ICON_SCALE:.*\*\//\/\* ICON_SCALE:0 \*\//" "$STYLE"
+    sed -i "s/@define-color base *rgba([0-9]\+, *[0-9]\+, *[0-9]\+,/@define-color base        rgba(24,37,43,/" "$STYLE"
     sed -i "s/\(@define-color base *rgba([^,]*,[^,]*,[^,]*, *\)[0-9.]\+/\10.9/" "$STYLE"
     sed -i '/#custom-separator1 {/,/}/c\
 #custom-separator1 {\
@@ -283,7 +475,6 @@ sway_reset_defaults() {
     margin: 0;\
     padding: 0;\
 }' "$STYLE"
-
     sed -i '/^#[a-zA-Z_-]\+.*min-width: 0.*$/d' "$STYLE"
 
     notify-send -i preferences-desktop "Settings restored to default"
@@ -299,45 +490,48 @@ sway_dialog_mode() {
     yad --title "Waybar Options" --escape-ok \
         --button=" Reset All!edit-clear":"bash '$SELF' sway_reset" \
         --button=" Close!gtk-ok:0" \
-        --form --center --width=260 --height=250 --borders=10 \
+        --form --center --width=260 --height=280 --borders=10 \
         --field="":LBL "" \
-        --field="         Waybar Icon Size!view-fullscreen":FBTN      "bash '$SELF' iconscale" \
-        --field="               Transparency!weather-clear":FBTN     "bash '$SELF' transparency" \
-        --field="                   Separators!view-sort-descending":FBTN "bash '$SELF' separator" \
-        --field="                       Modules!system-run":FBTN     "bash '$MODULES' &"
+        --field="       Waybar Main Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
+        --field="         Waybar Icon Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
+        --field="               Transparency!weather-clear":FBTN           "bash '$SELF' transparency" \
+        --field="                   Separators!view-sort-descending":FBTN  "bash '$SELF' separator" \
+        --field="                       Modules!system-run":FBTN           "bash '$MODULES' &"
 }
 
 dialog_mode() {
-	if pgrep -x sway >/dev/null; then
+    if pgrep -x sway >/dev/null; then
         notify-send -i applications-engineering "Waybar Options" \
             "Try 'Super + Shift + W' for a dialog"
         exit 0
     fi
     yad --title "Waybar Options" \
-       --button=" Reset All!edit-clear":"bash '$SELF' reset" \
-       --button=" Close!gtk-ok:0" \
-        --form --center --width=266 --height=400 --borders=10 \
+        --button=" Reset All!edit-clear":"bash '$SELF' reset" \
+        --button=" Close!gtk-ok:0" \
+        --form --center --width=266 --height=436 --borders=10 \
         --field="":LBL "" \
-        --field="     Cycle Taskbar Mode!view-refresh":FBTN               "bash '$SELF'" \
-        --field="         Waybar Main Size!view-fullscreen":FBTN       "bash '$SELF' iconscale" \
-        --field="         Taskbar Icon Size!view-fullscreen":FBTN       "bash '$SELF' taskbar_iconsize" \
-        --field="         Taskbar Font Size!format-justify-center":FBTN "bash '$SELF' fontsize" \
-        --field="            Text Brightness!semi-starred":FBTN        "bash '$SELF' textcolor" \
-        --field="               Transparency!weather-clear":FBTN      "bash '$SELF' transparency" \
-        --field="                  Separators!view-sort-descending":FBTN    "bash '$SELF' separator" \
-        --field="                      Modules!system-run":FBTN "bash '$MODULES' &"
+        --field="      Cycle Taskbar Mode!view-refresh":FBTN                "bash '$SELF'" \
+        --field="       Waybar Main Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
+        --field="         Waybar Main Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
+        --field="         Taskbar Icon Size!view-fullscreen":FBTN          "bash '$SELF' taskbar_iconsize" \
+        --field="         Taskbar Font Size!format-justify-center":FBTN    "bash '$SELF' fontsize" \
+        --field="            Text Brightness!semi-starred":FBTN            "bash '$SELF' textcolor" \
+        --field="               Transparency!weather-clear":FBTN           "bash '$SELF' transparency" \
+        --field="                  Separators!view-sort-descending":FBTN   "bash '$SELF' separator" \
+        --field="                      Modules!system-run":FBTN            "bash '$MODULES' &"
 }
 
 case "$1" in
     dialog)           dialog_mode ;;
-    sway_dialog) sway_dialog_mode ;;
+    sway_dialog)      sway_dialog_mode ;;
     separator)        toggle_separator ;;
     fontsize)         toggle_fontsize ;;
+    barcolor)         toggle_barcolor ;;
     transparency)     toggle_transparency ;;
     textcolor)        toggle_textcolor ;;
     iconscale)        toggle_iconscale ;;
     taskbar_iconsize) toggle_taskbar_iconsize ;;
-    sway_reset)  sway_reset_defaults ;;
+    sway_reset)       sway_reset_defaults ;;
     reset)            reset_defaults ;;
     *)                toggle_mode ;;
 esac
