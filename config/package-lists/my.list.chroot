@@ -167,6 +167,7 @@ zstd
 # Wayland specific
 autotiling
 fuzzel
+gir1.2-gtklayershell-0.1
 grim
 grimshot
 imv

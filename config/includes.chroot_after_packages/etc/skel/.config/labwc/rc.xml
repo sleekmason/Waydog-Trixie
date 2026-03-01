@@ -256,6 +256,11 @@
         <execute>fuzzel</execute>
       </action>
     </keybind>
+    <keybind key="W-z">
+    <action name="Execute">
+        <execute>hotcorners-toggle</execute>
+    </action>
+    </keybind>
     <keybind key="W-e">
       <action name="Execute">
         <execute>geany</execute>

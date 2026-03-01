@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+#
+# ld-hotcorners: Waydog version for Wayland compositors.
+# Requires: gir1.2-gtk-3.0, gir1.2-gtklayershell-0.1
+# Created by sleekmason for Waydog 1 Mar 2026
+#
+# Should work on any wlroots-based compositor.
+# Supports multiple monitors - same corner commands apply to all.
+
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version("GtkLayerShell", "0.1")
+
+from gi.repository import Gtk, Gdk, GLib, GtkLayerShell
+import subprocess
+import argparse
+import time
+import os
+import configparser
+import sys
+
+CONFIG_PATH = os.path.expanduser("~/.config/ld-hotcorners/ld-hotcornersrc")
+
+DEFAULTS = {
+    "top_left_corner_command": "",
+    "top_right_corner_command": "",
+    "bottom_left_corner_command": "",
+    "bottom_right_corner_command": "",
+    "corner_delay": "0.2",
+    "cooldown": "1.0",
+    "corner_margin": "4",
+}
+
+# --------------------------------------------------------
+
+ap = argparse.ArgumentParser(
+    description="ld-hotcorners - hot corner daemon for Wayland compositors.",
+    epilog=(
+        "Timing defaults can be changed in DEFAULTS at the top of this script.\n"
+        "Changes only take effect on first run when the config is created.\n"
+        "\n"
+        "Per-user config: ~/.config/ld-hotcorners/ld-hotcornersrc\n"
+        "Edit that file to set corner commands and fine-tune timing.\n"
+        "\n"
+        "  corner_delay  : time in seconds before a corner command fires\n"
+        "  cooldown      : time before the same corner can trigger again (seconds)\n"
+        "  corner_margin : size in pixels of each corner hotspot"
+    ),
+    formatter_class=argparse.RawDescriptionHelpFormatter
+)
+ap.add_argument("-k", "--kill", help="kill any running instances",
+                action="store_true")
+opts = ap.parse_args(sys.argv[1:])
+
+if opts.kill:
+    print("Attempting to kill any running instances...")
+    os.system("pkill -f ld-hotcorners")
+    sys.exit()
+
+# --------------------------------------------------------
+
+def load_config():
+    config = configparser.ConfigParser()
+    if not os.path.exists(CONFIG_PATH):
+        os.makedirs(os.path.dirname(CONFIG_PATH), exist_ok=True)
+        with open(CONFIG_PATH, "w") as f:
+            f.write("[Hot Corners]\n\n")
+            for key in ["top_left_corner_command",
+                        "top_right_corner_command",
+                        "bottom_left_corner_command",
+                        "bottom_right_corner_command"]:
+                f.write(f"{key} = {DEFAULTS[key]}\n")
+            f.write("\n")
+            f.write("# Time in seconds before command triggers\n")
+            f.write(f"corner_delay = {DEFAULTS['corner_delay']}\n")
+            f.write("# Time before the same corner can trigger again\n")
+            f.write(f"cooldown = {DEFAULTS['cooldown']}\n")
+            f.write("# Size in pixels of each corner hotspot\n")
+            f.write(f"corner_margin = {DEFAULTS['corner_margin']}\n")
+
+    config.read(CONFIG_PATH)
+    return config["Hot Corners"]
+
+# --------------------------------------------------------
+
+class HotCorner(Gtk.Window):
+    def __init__(self, corner_name, anchor_edges, monitor):
+        super().__init__()
+
+        self.corner_name = corner_name
+        self.command = ""
+        self.delay_timer = None
+        self.last_trigger = 0
+
+        self.set_decorated(False)
+        self.set_app_paintable(True)
+        self.set_accept_focus(False)
+
+        GtkLayerShell.init_for_window(self)
+        GtkLayerShell.set_layer(self, GtkLayerShell.Layer.OVERLAY)
+        GtkLayerShell.set_exclusive_zone(self, -1)
+        GtkLayerShell.set_keyboard_mode(self, GtkLayerShell.KeyboardMode.NONE)
+        GtkLayerShell.set_monitor(self, monitor)
+
+        for edge in anchor_edges:
+            GtkLayerShell.set_anchor(self, edge, True)
+
+        self.add_events(Gdk.EventMask.ENTER_NOTIFY_MASK |
+                        Gdk.EventMask.LEAVE_NOTIFY_MASK)
+
+        self.connect("enter-notify-event", self.on_enter)
+        self.connect("leave-notify-event", self.on_leave)
+
+        self.update_config()
+        self.show_all()
+
+    def update_config(self):
+        cfg = load_config()
+        self.command = cfg.get(f"{self.corner_name}_corner_command", "").strip()
+        self.delay = float(cfg.get("corner_delay", DEFAULTS["corner_delay"]))
+        self.cooldown = float(cfg.get("cooldown", DEFAULTS["cooldown"]))
+        self.margin = int(cfg.get("corner_margin", DEFAULTS["corner_margin"]))
+        self.set_size_request(self.margin, self.margin)
+
+    def on_enter(self, widget, event):
+        if self.delay_timer:
+            GLib.source_remove(self.delay_timer)
+        self.delay_timer = GLib.timeout_add(int(self.delay * 1000), self.trigger)
+
+    def on_leave(self, widget, event):
+        if self.delay_timer:
+            GLib.source_remove(self.delay_timer)
+            self.delay_timer = None
+
+    def trigger(self):
+        now = time.time()
+        if now - self.last_trigger >= self.cooldown:
+            if self.command:
+                subprocess.Popen(self.command, shell=True, env=os.environ.copy(),
+                                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            self.last_trigger = now
+        self.delay_timer = None
+        return False
+
+# --------------------------------------------------------
+
+def main():
+    corner_defs = [
+        ("top_left",    [GtkLayerShell.Edge.TOP,    GtkLayerShell.Edge.LEFT]),
+        ("top_right",   [GtkLayerShell.Edge.TOP,    GtkLayerShell.Edge.RIGHT]),
+        ("bottom_left", [GtkLayerShell.Edge.BOTTOM, GtkLayerShell.Edge.LEFT]),
+        ("bottom_right",[GtkLayerShell.Edge.BOTTOM, GtkLayerShell.Edge.RIGHT]),
+    ]
+
+    display = Gdk.Display.get_default()
+    n_monitors = display.get_n_monitors()
+
+    windows = []
+    for i in range(n_monitors):
+        monitor = display.get_monitor(i)
+        for name, edges in corner_defs:
+            win = HotCorner(name, edges, monitor)
+            windows.append(win)
+
+    Gtk.main()
+
+if __name__ == "__main__":
+    main()

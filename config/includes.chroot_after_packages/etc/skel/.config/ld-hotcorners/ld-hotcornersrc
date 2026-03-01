@@ -1,0 +1,13 @@
+[Hot Corners]
+
+top_left_corner_command = thunar
+top_right_corner_command = geany
+bottom_left_corner_command = x-terminal-emulator
+bottom_right_corner_command = ld-logout
+
+# Time in seconds before command triggers
+corner_delay = 0.2
+# Time before the same corner can trigger again
+cooldown = 1.0
+# Size in pixels of each corner hotspot
+corner_margin = 4

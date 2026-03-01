@@ -1,0 +1,8 @@
+#!/bin/bash
+if pgrep -f "python3.*ld-hotcorners" > /dev/null; then
+    pkill -f "python3.*ld-hotcorners"
+    notify-send --urgency low "Hotcorners Off"
+else
+    ld-hotcorners &
+    notify-send --urgency low "Hotcorners On"
+fi

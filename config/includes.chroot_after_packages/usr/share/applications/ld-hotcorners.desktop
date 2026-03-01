@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Hotcorners Toggle
+Exec=hotcorners-toggle
+StartupNotify=false
+Terminal=false
+Icon=preferences-desktop-accessibility
+Categories=ld-misc-tools;

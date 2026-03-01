@@ -198,6 +198,11 @@
 					<execute>/usr/local/bin/usbimager</execute>
 				</action>
 			</item>
+		    <item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/actions/zoom-fit-best.png">
+				<action name="Execute">
+					<execute>hotcorners-toggle</execute>
+				</action>
+			</item>
 			<item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png" >
 			    <action name="Execute">
 				    <execute>waypicker</execute>
