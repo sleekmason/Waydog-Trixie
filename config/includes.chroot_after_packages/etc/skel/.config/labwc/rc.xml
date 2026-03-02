@@ -205,7 +205,7 @@
     <keybind key="W-Space">
       <action name="ShowMenu" menu="some-custom-menu" />
     </keybind>
-    <keybind key="W-slash">
+    <keybind key="W-F9">
       <action name="Execute">
         <command>wl-find-cursor</command>
       </action>
