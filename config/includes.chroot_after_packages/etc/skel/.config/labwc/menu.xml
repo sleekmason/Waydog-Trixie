@@ -1,245 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <openbox_menu>
-<!-- Note: for localization support of menu items "client-menu" has to be removed here -->
-<menu id="client-menu">
-  <item label="Minimize">
-    <action name="Iconify" />
-  </item>
-  <item label="Maximize">
-    <action name="ToggleMaximize" />
-  </item>
-  <item label="Fullscreen">
-    <action name="ToggleFullscreen" />
-  </item>
-  <item label="Roll Up/Down">
-    <action name="ToggleShade" />
-  </item>
-  <item label="Decorations">
-    <action name="ToggleDecorations" />
-  </item>
-  <item label="Always on Top">
-    <action name="ToggleAlwaysOnTop" />
-  </item>
-  <!--
-    Any menu with the id "workspaces" will be hidden
-    if there is only a single workspace available.
-  -->
-  <menu id="workspaces" label="Workspace">
-    <item label="Move Left">
-      <action name="SendToDesktop" to="left" />
+  <!-- Note: for localization support of menu items "client-menu" has to be removed here -->
+  <menu id="client-menu">
+    <item label="Minimize">
+      <action name="Iconify"/>
     </item>
-    <item label="Move Right">
-      <action name="SendToDesktop" to="right" />
+    <item label="Maximize">
+      <action name="ToggleMaximize"/>
     </item>
-    <separator />
-    <item label="Always on Visible Workspace">
-      <action name="ToggleOmnipresent" />
+    <item label="Fullscreen">
+      <action name="ToggleFullscreen"/>
+    </item>
+    <item label="Roll Up/Down">
+      <action name="ToggleShade"/>
+    </item>
+    <item label="Decorations">
+      <action name="ToggleDecorations"/>
+    </item>
+    <item label="Always on Top">
+      <action name="ToggleAlwaysOnTop"/>
+    </item>
+    <!--
+      Any menu with the id "workspaces" will be hidden
+      if there is only a single workspace available.
+    -->
+    <menu id="workspaces" label="Workspace">
+      <item label="Move Left">
+        <action name="SendToDesktop" to="left"/>
+      </item>
+      <item label="Move Right">
+        <action name="SendToDesktop" to="right"/>
+      </item>
+      <separator/>
+      <item label="Always on Visible Workspace">
+        <action name="ToggleOmnipresent"/>
+      </item>
+    </menu>
+    <!--
+      openbox default workspace selector
+      to use replace above workspace menu with the example below
+      the label is required, but you can change the text.
+
+      <menu id="client-send-to-menu" label="Send to..." />
+    -->
+    <item label="Close">
+      <action name="Close"/>
     </item>
   </menu>
-  <!--
-    openbox default workspace selector
-    to use replace above workspace menu with the example below
-    the label is required, but you can change the text.
-
-    <menu id="client-send-to-menu" label="Send to..." />
-  -->
-  <item label="Close">
-    <action name="Close" />
-  </item>
-</menu>
-
-<menu id="root-menu">
-  <!-- Make client-list-combined-menu a submenu of root-menu
-       You must supply a label or it will not appear in root-menu -->
-  <!--
-  <menu id="client-list-combined-menu" label="Running..." />
-  -->
-  <menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
-  <separator/>
-   <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
-    <action name="Reconfigure" />
-  </item>
-  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
-    <action name="Execute">
+  <menu id="root-menu">
+    <!-- Make client-list-combined-menu a submenu of root-menu
+         You must supply a label or it will not appear in root-menu -->
+    <!--
+    <menu id="client-list-combined-menu" label="Running..." />
+    -->
+    <menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
+    <separator/>
+    <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
+      <action name="Reconfigure"/>
+    </item>
+    <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
+      <action name="Execute">
         <execute>ld-logout</execute>
-    </action>
-  </item>
-</menu>
-
-<menu id="some-custom-menu">
-		<item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png" >
-			<action name="Execute">
-				<execute>x-terminal-emulator</execute>
-			</action>
-		</item>
-		<item label="Thunar" icon="/usr/share/icons/gnome/24x24/apps/system-file-manager.png" >
-			<action name="Execute">
-				<execute>thunar</execute>
-			</action>
-		</item>
-		<item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png" >
-			<action name="Execute">
-				<execute>firefox-esr</execute>
-			</action>
-		</item>
-		<!-- This requires the presence of the 'openbox-menu' package to work -->
-		<separator/>
-		<menu icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png" id="root-menu-594711" label="Quick Grab">
-			<menu execute="pipe-recent-files" icon="/usr/share/icons/gnome/24x24/places/folder.png" id="ID41" label="Recent Files "/>
-			<menu icon="/usr/share/icons/gnome/24x24/places/folder.png" id="root-menu-594711-105346" label="Root Files">
-				<item label="/etc" icon="/usr/share/icons/gnome/24x24/places/folder.png" >
-					<action name="Execute">
-						<execute>thunar /etc</execute>
-					</action>
-				</item>
-				<item label="/usr/share" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/share</execute>
-					</action>
-				</item>
-				<item label="/usr/share/fonts" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/share/fonts</execute>
-					</action>
-				</item>
-				<item label="/usr/share/icons" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/share/icons</execute>
-					</action>
-				</item>
-				<item label="/usr/share/themes" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/share/themes</execute>
-					</action>
-				</item>
-				<item label="/usr/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/bin</execute>
-					</action>
-				</item>
-				<item label="/usr/local/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
-					<action name="Execute">
-						<execute>thunar /usr/local/bin</execute>
-					</action>
-				</item>
-			</menu>
-			<item label="Geany" icon="/usr/share/icons/hicolor/24x24/apps/geany.png">
-				<action name="Execute">
-					<execute>geany</execute>
-				</action>
-			</item>
-		</menu>
-		<!--<separator/> -->
-		<!-- <menu id="/Debian"/> -->
-	<menu icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" id="root-menu-4985" label="Utilities">
-			<item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
-				<action name="Execute">
-					<execute>grimshot save area</execute>
-				</action>
-		    </item>
-			<item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
-				<action name="Execute">
-						<execute>nwg-look</execute>
-				</action>
-			</item>
-			<item label="Waybar Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-personal.png">
-				<action name="Execute">
-					<execute>bash -c "waybar-icon-toggle dialog"</execute>
-				</action>
-		    </item>
-		    <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">
-				<action name="Execute">
-						<execute>labwc-tweaks-gtk</execute>
-				</action>
-			</item>
-		    <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
-				<action name="Execute">
-					<execute>waypaper-update-wrapper</execute>
-				</action>
-			</item>
-		    <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg" >
-				<action name="Execute">
-					<execute>waypaper-sddm</execute>
-				</action>
-			</item>
-			<item label="Random" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
-				<action name="Execute">
-					<execute>toggle-random</execute>
-				</action>
-			</item>
-			<item label="Displays" icon="/usr/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg">
-                <action name="Execute">
-                    <execute>wdisplays</execute>
-               </action>
-            </item>
-			<item label="Inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png" >
-				<action name="Execute">
-					<execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
-				</action>
-			</item>
-			<item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png" >
-				<action name="Execute">
-					<execute>gksudo gparted</execute>
-				</action>
-			</item>
-			<item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg" >
-				<action name="Execute">
-					<execute>gksudo synaptic</execute>
-				</action>
-			</item>
-			<item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png" >
-				<action name="Execute">
-					<execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
-				</action>
-			</item>
-			<item label="Usbimager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
-				<action name="Execute">
-					<execute>/usr/local/bin/usbimager</execute>
-				</action>
-			</item>
-		    <item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/actions/zoom-fit-best.png">
-				<action name="Execute">
-					<execute>hotcorners-toggle</execute>
-				</action>
-			</item>
-			<item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png" >
-			    <action name="Execute">
-				    <execute>waypicker</execute>
-			    </action>
-		    </item>			
-		    <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
-				<action name="Execute">
-					<execute>update-options</execute>
-				</action>
-		    </item>
-		    <item label="Labwc Keybinds" icon="/usr/share/icons/gnome/24x24/apps/accessories-character-map.png">
-				<action name="Execute">
-					<execute>labwc-keys.sh</execute>
-				</action>
-		    </item>
-	        <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
-				<action name="Execute">
-					<execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
-				</action>
-		    </item>
-		    <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
-				<action name="Execute">
-					<execute>waydog-installers</execute>
-				</action>
-		    </item>
-		</menu>
-		<separator/>
-				<menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
-		<separator/>
-  <item  label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png" >
-    <action name="Reconfigure" />
-  </item>
-  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
-    <action name="Execute">
+      </action>
+    </item>
+  </menu>
+  <menu id="some-custom-menu">
+    <item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+      <action name="Execute">
+        <execute>x-terminal-emulator</execute>
+      </action>
+    </item>
+    <item label="Thunar" icon="/usr/share/icons/gnome/24x24/apps/system-file-manager.png">
+      <action name="Execute">
+        <execute>thunar</execute>
+      </action>
+    </item>
+    <item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png">
+      <action name="Execute">
+        <execute>firefox-esr</execute>
+      </action>
+    </item>
+    <!-- This requires the presence of the 'openbox-menu' package to work -->
+    <separator/>
+    <menu icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png" id="root-menu-594711" label="Quick Grab">
+      <menu execute="pipe-recent-files" icon="/usr/share/icons/gnome/24x24/places/folder.png" id="ID41" label="Recent Files "/>
+      <menu icon="/usr/share/icons/gnome/24x24/places/folder.png" id="root-menu-594711-105346" label="Root Files">
+        <item label="/etc" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /etc</execute>
+          </action>
+        </item>
+        <item label="/usr/share" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/share</execute>
+          </action>
+        </item>
+        <item label="/usr/share/fonts" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/share/fonts</execute>
+          </action>
+        </item>
+        <item label="/usr/share/icons" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/share/icons</execute>
+          </action>
+        </item>
+        <item label="/usr/share/themes" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/share/themes</execute>
+          </action>
+        </item>
+        <item label="/usr/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/bin</execute>
+          </action>
+        </item>
+        <item label="/usr/local/bin" icon="/usr/share/icons/gnome/24x24/places/folder.png">
+          <action name="Execute">
+            <execute>thunar /usr/local/bin</execute>
+          </action>
+        </item>
+      </menu>
+      <item label="Geany" icon="/usr/share/icons/hicolor/24x24/apps/geany.png">
+        <action name="Execute">
+          <execute>geany</execute>
+        </action>
+      </item>
+    </menu>
+    <!--<separator/> -->
+    <!-- <menu id="/Debian"/> -->
+    <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" id="toggles-314" label="Toggles">
+      <item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-accessibility.png">
+        <action name="Execute">
+          <execute>hotcorners-toggle</execute>
+        </action>
+      </item>
+      <item label="Random BG" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
+        <action name="Execute">
+          <execute>toggle-random</execute>
+        </action>
+      </item>
+      <item label="Random BG Notifications" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-peripherals.png">
+        <action name="Execute">
+          <execute>toggle-notifications-random</execute>
+        </action>
+      </item>
+      <item label="OSProber" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
+        <action name="Execute">
+          <execute>osprober-toggle</execute>
+        </action>
+      </item>
+      <item label="Sexy Bash Prompt" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
+        <action name="Execute">
+          <execute>toggle.sexy</execute>
+        </action>
+      </item>
+    </menu>
+    <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-system.png" id="root-menu-4985" label="Utilities">
+      <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
+        <action name="Execute">
+          <execute>grimshot save area</execute>
+        </action>
+      </item>
+      <item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
+        <action name="Execute">
+          <execute>nwg-look</execute>
+        </action>
+      </item>
+      <item label="Waybar Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-personal.png">
+        <action name="Execute">
+          <execute>bash -c "waybar-icon-toggle dialog"</execute>
+        </action>
+      </item>
+      <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">
+        <action name="Execute">
+          <execute>labwc-tweaks-gtk</execute>
+        </action>
+      </item>
+      <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-update-wrapper</execute>
+        </action>
+      </item>
+      <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-sddm</execute>
+        </action>
+      </item>
+      <item label="Displays" icon="/usr/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg">
+        <action name="Execute">
+          <execute>wdisplays</execute>
+        </action>
+      </item>
+      <item label="Inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png">
+        <action name="Execute">
+          <execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
+        </action>
+      </item>
+      <item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png">
+        <action name="Execute">
+          <execute>gksudo gparted</execute>
+        </action>
+      </item>
+      <item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg">
+        <action name="Execute">
+          <execute>gksudo synaptic</execute>
+        </action>
+      </item>
+      <item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
+        <action name="Execute">
+          <execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
+        </action>
+      </item>
+      <item label="Usbimager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
+        <action name="Execute">
+          <execute>/usr/local/bin/usbimager</execute>
+        </action>
+      </item>
+      <item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png">
+        <action name="Execute">
+          <execute>waypicker</execute>
+        </action>
+      </item>
+      <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+        <action name="Execute">
+          <execute>update-options</execute>
+        </action>
+      </item>
+      <item label="Labwc Keybinds" icon="/usr/share/icons/gnome/24x24/apps/accessories-character-map.png">
+        <action name="Execute">
+          <execute>labwc-keys.sh</execute>
+        </action>
+      </item>
+      <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
+        <action name="Execute">
+          <execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
+        </action>
+      </item>
+      <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
+        <action name="Execute">
+          <execute>waydog-installers</execute>
+        </action>
+      </item>
+    </menu>
+    <separator/>
+    <menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
+    <separator/>
+    <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
+      <action name="Reconfigure"/>
+    </item>
+    <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
+      <action name="Execute">
         <execute>ld-logout</execute>
-    </action>
-  </item>
-</menu>
-
+      </action>
+    </item>
+  </menu>
 </openbox_menu>
