@@ -44,7 +44,6 @@ mkdir -p "$HOME/.config/niri"
 mkdir -p "$HOME/.config/waybar/niri"
 cp -f "/tmp/niri/config.kdl" "$HOME/.config/niri"
 sudo cp -f "/tmp/niri/xwayland-satellite" "/usr/local/bin"
-sudo cp -f "/tmp/niri/random-nonoti" "/usr/local/bin"
 sudo cp -f "/tmp/niri/waybar-toggle" "/usr/local/bin"
 cp -f "/tmp/niri/config.jsonc" "$HOME/.config/waybar/niri"
 
