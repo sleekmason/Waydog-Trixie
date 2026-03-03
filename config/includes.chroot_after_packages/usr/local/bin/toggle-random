@@ -20,6 +20,12 @@ for arg in "$@"; do
     esac
 done
 
+# If calling 'once', avoid notify if daemon is running
+if [ "$1" = "once" ] && [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+    random-wallpaper once
+    exit 0
+fi
+
 if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
     kill -TERM "$(cat "$PIDFILE")"
     $NOTIFY_CMD "Random Wallpaper Stopped"

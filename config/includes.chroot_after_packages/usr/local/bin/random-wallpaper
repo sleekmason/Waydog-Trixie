@@ -69,7 +69,6 @@ else
 fi
 
 if [ "$1" = "once" ]; then
-    # Gather all wallpapers
     mapfile -t WALLPAPERS < <(
         find "${ACTIVE_WALLDIRS[@]}" -type f \
         \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \)
@@ -85,22 +84,31 @@ if [ "$1" = "once" ]; then
         done
     fi
 
-    for cmd in "${CMD_ARRAY[@]}"; do
-        $cmd "$WALLPAPER" &
-    done
-
-    CURRENT_WALLPAPER="$WALLPAPER"
-
-    if [ "$WAYPAPER_ENABLED" = true ]; then
-        folder=$(dirname "$CURRENT_WALLPAPER")
-        wallpaper="$CURRENT_WALLPAPER"
-        for key in folder wallpaper; do
-            value="${!key}"
-            sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
+    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+        for cmd in "${CMD_ARRAY[@]}"; do
+            $cmd "$WALLPAPER" &
         done
+    else
+        pkill -x swaybg 2>/dev/null
+        for cmd in "${CMD_ARRAY[@]}"; do
+            $cmd "$WALLPAPER" &
+        done
+
+        CURRENT_WALLPAPER="$WALLPAPER"
+
+        if [ "$WAYPAPER_ENABLED" = true ]; then
+            folder=$(dirname "$CURRENT_WALLPAPER")
+            wallpaper="$CURRENT_WALLPAPER"
+            for key in folder wallpaper; do
+                value="${!key}"
+                sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
+            done
+        fi
+
+        WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
+        sed -i "s|^image *=.*|image=$CURRENT_WALLPAPER|" "$WF_SHELL_CONFIG" 2>/dev/null
     fi
-    WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
-    sed -i "s|^image *=.*|image=$CURRENT_WALLPAPER|" "$WF_SHELL_CONFIG" 2>/dev/null
+
     exit 0
 fi
 
@@ -119,6 +127,7 @@ trap '
 
     if [ -n "$CURRENT_WALLPAPER" ]; then
         # Relaunch the last wallpaper
+        pkill -x swaybg 2>/dev/null
         for cmd in "${CMD_ARRAY[@]}"; do
             $cmd "$CURRENT_WALLPAPER" &
         done
@@ -146,7 +155,7 @@ while true; do
         \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \)
     )
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
-
+    pkill -x swaybg 2>/dev/null
     for i in "${!CMD_ARRAY[@]}"; do
         if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
             WALLPAPER="${WALLPAPERS[0]}"
