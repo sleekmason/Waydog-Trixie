@@ -140,11 +140,6 @@
           <execute>toggle-random</execute>
         </action>
       </item>
-      <item label="Random BG Notifications" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-peripherals.png">
-        <action name="Execute">
-          <execute>toggle-notifications-random</execute>
-        </action>
-      </item>
       <item label="OSProber" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
         <action name="Execute">
           <execute>osprober-toggle</execute>

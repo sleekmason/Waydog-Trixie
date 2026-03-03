@@ -223,6 +223,11 @@
     </keybind>
     <keybind key="W-v">
       <action name="Execute">
+        <execute>random-wallpaper once</execute>
+      </action>
+    </keybind>
+    <keybind key="W-S-v">
+      <action name="Execute">
         <execute>toggle-random</execute>
       </action>
     </keybind>

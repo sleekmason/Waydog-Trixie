@@ -1,41 +1,36 @@
 #!/bin/bash
 
-## Random wallpaper script for Waydog on wayland.
+## Random wallpaper script for Waydog on Wayland.
 ## Works with single or multiple monitors.
-## Made by sleekmason 13 Dec 2025.
+## Made by sleekmason 02 Mar 2026.
 
 CONFIG="$HOME/.config/random.ini"
 PIDFILE="$XDG_RUNTIME_DIR/random-wallpaper.pid"
 WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
 
-## Defaults.
 WALLDIRS=("/usr/share/backgrounds/wallpapers")
 SWAYBG_CMD="swaybg -m fill -i"
 SWAYBG_CMDS=()
 INTERVAL_MINUTES=10
 CURRENT_WALLPAPER=""
 
-## Load ~/.config/random settings if present.
 [ -f "$CONFIG" ] && source "$CONFIG"
 
-## Check if Waypaper config exists.
 WAYPAPER_ENABLED=false
 [ -f "$WAYPAPER_CONFIG" ] && WAYPAPER_ENABLED=true
 
-## Don't use the listed wallpaper from waypaper state on startup.
 if [ "$WAYPAPER_ENABLED" = true ] && [ -f "$WAYPAPER_CONFIG" ]; then
     CURRENT_WALLPAPER=$(awk -F' *= *' '/^wallpaper *=/ {print $2}' "$WAYPAPER_CONFIG")
 fi
 
-## Usage.
 usage() {
     echo "Usage:"
     echo "  random-wallpaper -d <minutes>"
     echo "  random-wallpaper -d test"
+    echo "  random-wallpaper once"
     exit 1
 }
 
-## Determine interval.
 if [ "$1" = "-d" ]; then
     [ -z "$2" ] && usage
     if [ "$2" = "test" ]; then
@@ -48,7 +43,6 @@ else
     INTERVAL=$(( INTERVAL_MINUTES == "test" ? 10 : INTERVAL_MINUTES * 60 ))
 fi
 
-## Prepare active wallpaper directories.
 ACTIVE_WALLDIRS=()
 for dir in "${WALLDIRS[@]}"; do
     [[ -z "$dir" || "$dir" =~ ^# ]] && continue
@@ -57,7 +51,6 @@ for dir in "${WALLDIRS[@]}"; do
 done
 [ "${#ACTIVE_WALLDIRS[@]}" -gt 0 ] || exit 1
 
-## Filter only valid directories with images.
 VALID_WALLDIRS=()
 for d in "${ACTIVE_WALLDIRS[@]}"; do
     if [ -d "$d" ] && find "$d" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \) -print -quit | grep -q .; then
@@ -67,7 +60,6 @@ done
 [ "${#VALID_WALLDIRS[@]}" -gt 0 ] || exit 1
 ACTIVE_WALLDIRS=("${VALID_WALLDIRS[@]}")
 
-## Check the swaybg command used.
 if [ "${#SWAYBG_CMDS[@]}" -gt 0 ]; then
     CMD_ARRAY=("${SWAYBG_CMDS[@]}")
 elif [ -n "$SWAYBG_CMD" ]; then
@@ -76,7 +68,42 @@ else
     exit 1
 fi
 
-## Prevent multiple instances.
+if [ "$1" = "once" ]; then
+    # Gather all wallpapers
+    mapfile -t WALLPAPERS < <(
+        find "${ACTIVE_WALLDIRS[@]}" -type f \
+        \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \)
+    )
+    [ "${#WALLPAPERS[@]}" -gt 0 ] || exit 1
+
+    if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
+        WALLPAPER="${WALLPAPERS[0]}"
+    else
+        while true; do
+            WALLPAPER="${WALLPAPERS[RANDOM % ${#WALLPAPERS[@]}]}"
+            [ "$WALLPAPER" != "$CURRENT_WALLPAPER" ] && break
+        done
+    fi
+
+    for cmd in "${CMD_ARRAY[@]}"; do
+        $cmd "$WALLPAPER" &
+    done
+
+    CURRENT_WALLPAPER="$WALLPAPER"
+
+    if [ "$WAYPAPER_ENABLED" = true ]; then
+        folder=$(dirname "$CURRENT_WALLPAPER")
+        wallpaper="$CURRENT_WALLPAPER"
+        for key in folder wallpaper; do
+            value="${!key}"
+            sed -i "s|^$key *=.*|$key = $value|" "$WAYPAPER_CONFIG" 2>/dev/null
+        done
+    fi
+    WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
+    sed -i "s|^image *=.*|image=$CURRENT_WALLPAPER|" "$WF_SHELL_CONFIG" 2>/dev/null
+    exit 0
+fi
+
 if [ -f "$PIDFILE" ]; then
     PID=$(<"$PIDFILE")
     if kill -0 "$PID" 2>/dev/null; then
@@ -85,10 +112,8 @@ if [ -f "$PIDFILE" ]; then
         rm -f "$PIDFILE"
     fi
 fi
-
 echo "$BASHPID" > "$PIDFILE"
 
-## Cleanup on exit.
 trap '
     rm -f "$PIDFILE"
 
@@ -112,11 +137,9 @@ trap '
             done
         fi
     fi
-
     exit
 ' INT TERM EXIT
 
-## Main loop.
 while true; do
     mapfile -t WALLPAPERS < <(
         find "${ACTIVE_WALLDIRS[@]}" -type f \
