@@ -5,7 +5,11 @@
 STYLE="$HOME/.config/waybar/style.css"
 
 restart_waybar() {
-    pkill -x waybar
+    if pgrep -x waybar >/dev/null; then
+        pkill -USR2 waybar
+        return
+    fi
+
     if pgrep -x sway >/dev/null; then
         waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
     elif pgrep -x niri >/dev/null; then

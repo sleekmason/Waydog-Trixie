@@ -18,7 +18,11 @@ LONG=22
 SHORT=11
 
 restart_waybar() {
-    pkill -x waybar
+    if pgrep -x waybar >/dev/null; then
+        pkill -USR2 waybar
+        return
+    fi
+
     if pgrep -x sway >/dev/null; then
         waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
     elif pgrep -x niri >/dev/null; then
@@ -26,6 +30,14 @@ restart_waybar() {
     else
         waybar &
     fi
+}
+
+hard_reset_waybar() {
+    pkill -x waybar
+    while pgrep -x waybar >/dev/null; do
+    sleep 0.05
+    done
+    restart_waybar
 }
 
 get_current_format() {
@@ -87,7 +99,7 @@ toggle_separator() {
         notify_label="ON"
     fi
     notify-send -i preferences-desktop "Separator  ▸  $notify_label"
-    restart_waybar
+    hard_reset_waybar
 }
 
 declare -A DEFAULT_SIZES=(
@@ -282,7 +294,7 @@ toggle_iconscale() {
     done
 
     SCALE_OPTIONS=(-3 -2 -1 0 1 2)
-    SCALE_LABELS=("Smallest" "Small" "Medium" "Default" "Large" "Largest")
+    SCALE_LABELS=("Smallest" "Small" "Medium" "Default" "Larger" "Largest")
     idx=0
     for i in "${!SCALE_OPTIONS[@]}"; do
         [[ "${SCALE_OPTIONS[$i]}" == "$new" ]] && idx=$i
@@ -296,7 +308,7 @@ toggle_iconscale() {
 toggle_taskbar_iconsize() {
     DEFAULT_ICON=14
     OPTIONS=(10 12 14 16 18 20)
-    LABELS=("Smallest" "Small" "Default" "Large" "Extra Large" "Largest")
+    LABELS=("Smallest" "Small" "Default" "Large" "Larger" "Largest")
 
     idx=0
 
@@ -436,7 +448,7 @@ reset_defaults() {
     sed -i '/^#[a-zA-Z_-]\+.*min-width: 0.*$/d' "$STYLE"
 
     notify-send -i preferences-desktop "Settings restored to default"
-    restart_waybar
+    hard_reset_waybar
 }
 
 sway_reset_defaults() {
@@ -478,7 +490,7 @@ sway_reset_defaults() {
     sed -i '/^#[a-zA-Z_-]\+.*min-width: 0.*$/d' "$STYLE"
 
     notify-send -i preferences-desktop "Settings restored to default"
-    restart_waybar
+    hard_reset_waybar
 }
 
 sway_dialog_mode() {
