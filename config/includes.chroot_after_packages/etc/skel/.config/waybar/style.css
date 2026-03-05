@@ -87,8 +87,8 @@ tooltip {
   background: @base-light;
   padding: 0 10px;
   border-radius: 8px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   font-size: 13px;
 }
 
@@ -118,7 +118,7 @@ tooltip {
 
 #cpu {
   color: @yellow;
-  padding: 0 6px;
+  padding: 0 7px;
   font-size: 13px;
 }
 
@@ -136,7 +136,7 @@ tooltip {
 
 #pulseaudio {
   color: @violet;
-  padding: 0 8px;
+  padding: 0 6px;
   font-size: 13px;
 }
 

@@ -137,8 +137,6 @@ trap '
     rm -f "$PIDFILE"
 
     if [ -n "$CURRENT_WALLPAPER" ]; then
-        # Relaunch the last wallpaper
-        pkill -x swaybg 2>/dev/null
         for cmd in "${CMD_ARRAY[@]}"; do
             $cmd "$CURRENT_WALLPAPER" &
         done
@@ -164,7 +162,6 @@ while true; do
         \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.webp' \)
     )
     [ "${#WALLPAPERS[@]}" -gt 0 ] || { sleep 1; continue; }
-    pkill -x swaybg 2>/dev/null
 
     for i in "${!CMD_ARRAY[@]}"; do
         if [ "${#WALLPAPERS[@]}" -eq 1 ]; then
@@ -177,10 +174,6 @@ while true; do
         fi
 
         ${CMD_ARRAY[i]} "$WALLPAPER" &
-        sleep 0.05
-        while ! pgrep -x swaybg >/dev/null; do
-            sleep 0.01
-        done
     done
 
     CURRENT_WALLPAPER="$WALLPAPER"

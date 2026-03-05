@@ -36,6 +36,10 @@ file as well as the module_defaults.ini, and on first press of
 'Waybar Main Size' a new modules_default.ini will be created using the
 current values in style.css.
 
+* What about changing icons, padding, and margins?
+
+Edit ~/.config/waybar/style.css as you like for these options.
+
 Attention:
 
 Be aware that if the state file exists, the values are copied from the
