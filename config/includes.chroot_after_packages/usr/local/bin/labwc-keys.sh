@@ -4,11 +4,14 @@
 
 declare -A FRIENDLY_NAMES=(
   ["wl-find-cursor"]="Highlight Cursor"
-  ["grimshot save area"]="Screenshot Select Area"
   ["labwc-keys.sh"]="Keybinds Labwc"
+  ["hotcorners-toggle"]="Hotcorners On/Off"
+  ["waybar-toggle"]="Waybar On/Off"
   ["waybar-icon-toggle dialog"]="Waybar Options"
   ["labwc --reconfigure"]="Reload labwc"
   ["toggleShowDesktop"]="Show Desktop"
+  ["toggle-random"]="Random Wallpaper - Daemon"
+  ["random-wallpaper once"]="Random Wallpaper - Once"
 )
 
 CONFIG="$HOME/.config/labwc/rc.xml"

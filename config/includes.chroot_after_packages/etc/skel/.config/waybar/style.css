@@ -85,9 +85,9 @@ tooltip {
 #clock {
   color: @text;
   background: @base-light;
-  padding: 0 10px;
+  padding: 0 8px;
   border-radius: 8px;
-  margin-left: 6px;
+  margin-left: 4px;
   margin-right: 6px;
   font-size: 13px;
 }
