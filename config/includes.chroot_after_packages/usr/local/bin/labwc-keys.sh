@@ -2,6 +2,8 @@
 # Display labwc keybindings
 # Created for Waydog by sleekmason 17 Dec 2025
 
+#Use friendy names to change the desired output.
+
 declare -A FRIENDLY_NAMES=(
   ["wl-find-cursor"]="Highlight Cursor"
   ["labwc-keys.sh"]="Keybinds Labwc"
@@ -13,9 +15,7 @@ declare -A FRIENDLY_NAMES=(
   ["toggle-random"]="Random Wallpaper - Daemon"
   ["random-wallpaper once"]="Random Wallpaper - Once"
 )
-
 CONFIG="$HOME/.config/labwc/rc.xml"
-
 TERMINALS=(
   "xfce4-terminal"
   "foot"
@@ -36,7 +36,6 @@ if [[ -z "$TERM_CMD" ]]; then
   notify-send "labwc-keys" "No terminal emulator found"
   exit 1
 fi
-
 run_in_terminal() {
   SCRIPT="$1"
   case "$TERM_CMD" in
@@ -46,12 +45,10 @@ run_in_terminal() {
     *) "$TERM_CMD" -e "$SCRIPT" ;;
   esac
 }
-
 TMP_NAMES=$(mktemp)
 for key in "${!FRIENDLY_NAMES[@]}"; do
   printf '%s\t%s\n' "$key" "${FRIENDLY_NAMES[$key]}"
 done > "$TMP_NAMES"
-
 TMP_SCRIPT=$(mktemp)
 cat >"$TMP_SCRIPT" <<EOF
 #!/bin/bash
@@ -84,7 +81,21 @@ awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
 }
 /<\/keybind>/ {
   CKEY="\033[33m"; CACT="\033[32m"; CDET="\033[34m"; CR="\033[0m"
-  if (detail in names) detail=names[detail]
+  # Extract label from terminal -e calls (POSIX-compatible)
+  if (detail ~ /^(xfce4-terminal|foot|wezterm|alacritty|gnome-terminal|kitty|x-terminal-emulator).*-e /) {
+    tmp=detail; sub(/^[^ ]+ .*-e /,"",tmp); sub(/ .*/,"",tmp)
+    detail=tmp
+  }
+  # Longest-match friendly name lookup
+  bestlen=0
+  bestval=""
+  for (f in names) {
+    if (index(detail, f) && length(f) > bestlen) {
+      bestval = names[f]
+      bestlen = length(f)
+    }
+  }
+  if (bestlen > 0) detail=bestval
   if (action=="GoToDesktop" && detail=="") {
     if (key ~ /-[0-9]+$/) detail="Desktop " substr(key, match(key,/[0-9]+$/))
     else if (key ~ /Left$/) detail="Desktop Left"
