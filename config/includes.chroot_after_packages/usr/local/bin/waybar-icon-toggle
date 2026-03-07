@@ -525,8 +525,8 @@ dialog_mode() {
         --field="      Cycle Taskbar Mode!view-refresh":FBTN                "bash '$SELF'" \
         --field="       Waybar Main Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
         --field="         Waybar Main Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
-        --field="         Taskbar Icon Size!view-fullscreen":FBTN          "bash '$SELF' taskbar_iconsize" \
         --field="         Taskbar Font Size!format-justify-center":FBTN    "bash '$SELF' fontsize" \
+        --field="         Taskbar Icon Size!view-fullscreen":FBTN          "bash '$SELF' taskbar_iconsize" \
         --field="            Text Brightness!semi-starred":FBTN            "bash '$SELF' textcolor" \
         --field="               Transparency!weather-clear":FBTN           "bash '$SELF' transparency" \
         --field="                  Separators!view-sort-descending":FBTN   "bash '$SELF' separator" \

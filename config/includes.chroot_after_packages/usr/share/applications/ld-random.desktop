@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Random Toggle
+Name=Random BG Toggle
 Exec=toggle-random
 StartupNotify=false
 Terminal=false
