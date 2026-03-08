@@ -1,5 +1,5 @@
 #!/bin/sh
-# global PATH setup — /etc/profile.d/user-bin.sh
+# PATH setup
 
 path_prepend() {
     case ":$PATH:" in
@@ -15,20 +15,9 @@ path_append() {
     esac
 }
 
-# System paths
-path_append /sbin
-path_append /bin
-path_append /usr/sbin
-path_append /usr/bin
-path_append /usr/games
-path_append /usr/local/games
-
-# Local
-path_prepend /usr/local/sbin
-path_prepend /usr/local/bin
-
-# User
 path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/bin"
+path_append /sbin
+path_append /usr/sbin
 
 export PATH
