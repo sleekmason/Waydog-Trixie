@@ -48,10 +48,10 @@ menu.width.min: 180
 menu.width.max: 240
 menu.border.width: 1
 menu.border.color: #0F3A45
-menu.items.bg.color: #1E2F38EE
-menu.items.text.color: #D0DCE3
+menu.items.bg.color: #1E2F38DE
+menu.items.text.color: #CBD4D9
 menu.items.active.bg.color: #2a656d
-menu.items.active.text.color: #EBF5FA
+menu.items.active.text.color: #E6ECF0
 menu.items.padding.x: 10
 menu.items.padding.y: 4
 menu.separator.width: 1
