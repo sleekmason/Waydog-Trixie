@@ -14,6 +14,7 @@ declare -A FRIENDLY_NAMES=(
   ["toggleShowDesktop"]="Show Desktop"
   ["toggle-random"]="Random Wallpaper - Daemon"
   ["random-wallpaper once"]="Random Wallpaper - Once"
+  ["waypaper-update-wrapper"]="Wallpapers"
 )
 CONFIG="$HOME/.config/labwc/rc.xml"
 TERMINALS=(

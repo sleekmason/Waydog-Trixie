@@ -17,7 +17,7 @@ path_append() {
 
 path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/bin"
-path_append /sbin
 path_append /usr/sbin
+path_append /sbin
 
 export PATH
