@@ -135,7 +135,7 @@
           <execute>hotcorners-toggle</execute>
         </action>
       </item>
-      <item label="Random BG" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
+      <item label="Random BG Daemon" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
         <action name="Execute">
           <execute>toggle-random</execute>
         </action>
