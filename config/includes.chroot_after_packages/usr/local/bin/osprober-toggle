@@ -14,38 +14,37 @@ if [[ "$1" == "--backend" ]]; then
         if grep -q '^\s*GRUB_DISABLE_OS_PROBER=' "$FILE"; then
             sed -i 's/^\s*GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=false/' "$FILE"
         else
-            sed -i '/^# Uncomment to disable graphical terminal/i GRUB_DISABLE_OS_PROBER=false' "$FILE"
+            echo "GRUB_DISABLE_OS_PROBER=false" >> "$FILE"
         fi
     fi
-    update-grub 2>&1 >> "$LOG"
+    update-grub > "$LOG" 2>&1
     exit 0
 fi
 
 full_fs=$(df ~ | tail -1 | awk '{print $1;}')
 fs=$(basename "$full_fs")
-
 if ! grep -q "$fs" /proc/partitions; then
-    notify-send -t 10000 --urgency low "OSprober Toggle Requires An Installed System"
+    notify-send -t 6000 --urgency low "OSprober Toggle Requires An Installed System"
     exit 1
 fi
 
-if grep -q '^GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
+if grep -q '^[[:space:]]*GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
     STATUS="OSprober Is Currently Enabled"
 else
     STATUS="OSprober Is Currently Disabled"
 fi
 
-notify-send -t 10000 --urgency low "$STATUS"
+sleep 0.2
+notify-send -t 6000 --urgency low "$STATUS"
 
 yad --title "OSprober Toggle" --window-icon=applications-utilities \
-    --width=488 --height=360 --center --escape-ok \
+    --width=435 --height=328 --center \
     --button="View Log"!/usr/share/icons/gnome/22x22/apps/accessories-text-editor.png!:"geany $LOG" \
     --button="Toggle On/Off:2" \
     --button="gtk-quit:1" --buttons-layout=spread \
     --text-info --justify=left --wrap < /usr/share/lilidog/osprober.txt \
-    --fontname="JetBrains Mono Light 11" \
+    --fontname="JetBrains Mono Regular 10" \
     --fore="#C0DDEB"
-
 RET=$?
 
 if [[ $RET -eq 2 ]]; then
@@ -59,10 +58,16 @@ if [[ $RET -eq 2 ]]; then
         --no-buttons --auto-kill --auto-close \
         --text="\n          Updating grub. Please wait ..." &
     YAD_PID=$!
+    sleep 1.8
+    kill "$YAD_PID" 2>/dev/null; wait "$YAD_PID" 2>/dev/null
 
+    if grep -q '^[[:space:]]*GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
+        STATUS_AFTER="OSprober Is Now Enabled"
+    else
+        STATUS_AFTER="OSprober Is Now Disabled"
+    fi
+
+    notify-send -t 6000 --urgency low "Grub Update Finished"
     sleep 1.5
-    kill "$YAD_PID" 2>/dev/null || true
-    wait "$YAD_PID" 2>/dev/null
-    sleep 0.25
-    notify-send -t 15000 --urgency low "Grub Update Finished!"
+    notify-send -t 7000 --urgency low "$STATUS_AFTER"
 fi
