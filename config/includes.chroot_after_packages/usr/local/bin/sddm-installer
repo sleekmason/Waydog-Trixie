@@ -33,6 +33,20 @@ sudo cp -fr "/tmp/sddm/sddm.conf.d" "/etc"
 sudo cp -fr "/tmp/sddm/sddm" "/etc"
 sudo systemctl enable --force sddm.service
 
+# Apply current
+WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
+SDDM_BG="/usr/share/sddm/themes/fane/background.jpg"
+
+    if [[ -f "$WAYPAPER_CONFIG" ]]; then
+        selected_wallpaper=$(awk '/^\[State\]/{found=1} found && /^wallpaper[[:space:]]*=/{
+            sub(/^wallpaper[[:space:]]*=[[:space:]]*/, ""); print; exit}' "$WAYPAPER_CONFIG")
+        selected_wallpaper="${selected_wallpaper/\$HOME/$HOME}"
+        selected_wallpaper="${selected_wallpaper/#\~/$HOME}"
+        if [[ -n "$selected_wallpaper" && -f "$selected_wallpaper" ]]; then
+            sudo cp -f "$selected_wallpaper" "$SDDM_BG"
+        fi
+    fi
+
 # Remove ly files
 sudo systemctl disable ly.service 2>/dev/null
 sudo rm -f "/usr/bin/ly"
