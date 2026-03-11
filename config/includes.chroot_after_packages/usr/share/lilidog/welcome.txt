@@ -1,10 +1,10 @@
                    
                        WELCOME!
                         
-    Thank you for trying out Waydog! This Wayland
-    based release may still have potential issues
-    that will need to be addressed.
-
+    Thank you for trying out Waydog! Use Super+F1
+    For a list of current keybinds.  For any bugs
+    or other issues, please post here:
+    
     https://sourceforge.net/p/lilidog/discussion/
     
     This is the 'Waydog' minimal version allowing
