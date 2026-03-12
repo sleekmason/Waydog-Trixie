@@ -37,24 +37,24 @@ if command -v yad >/dev/null; then
   if [ "$MODE" = "installed" ]; then
     yad --title "Welcome!" \
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
-      --width=488 --height=444 --center \
+      --width=428 --height=406 --center \
       --escape-ok --undecorated --skip-taskbar \
       --button=" Begin"!/usr/share/icons/gnome/22x22/places/debian-swirl.png!:"x-terminal-emulator -T 'Customization' -e 'sudo xentry -i'" \
       --button=" Exit!application-exit:0" \
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome.txt \
-      --fontname="JetBrains Mono Light 11" \
-      --fore="#DAE4E8"
+      --fontname="JetBrains Mono Regular 10" \
+      --fore="#C9D6DB"
   else
-    yad --title "Welcome To Waydog Live" \
+    yad --title "Welcome To Waydog Live!" \
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
-      --width=488 --height=538 --center \
+      --width=428 --height=498 --center \
       --escape-ok --undecorated --skip-taskbar \
       --button="gtk-ok:0" \
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome2.txt \
-      --fontname="JetBrains Mono Light 11" \
-      --fore="#DAE4E8"
+      --fontname="JetBrains Mono Regular 10" \
+      --fore="#C9D6DB"
   fi
 fi
 
