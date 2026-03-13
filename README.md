@@ -1,19 +1,22 @@
 ﻿Waydog is a lightweight Linux distro based on Debian Trixie. Waydog
 uses the new Wayland protocol for its display server.
 
-Labwc and Sway are installed by default, with separate installation options
-for Niri and Wayfire compositors. Both are also customized for Waydog
-use. These can be found in the Waydog installers. 
+Labwc and Sway are installed by default, with separate installation
+options for Niri and Wayfire compositors in the Waydog installers.
 
-Initial login will allow either Labwc or Sway to be selected. Niri and
-Wayfire can also be installed and tested during live session use.
+Both Niri and Wayfire are also customized for Waydog use. These can be
+installed from the Waydog installers. 
+
+On live login, either Labwc or Sway can be selected initially, though
+both Niri and Wayfire can be installed to test during a live 
+session.  Just log out and back in to change WMs.
 
 https://sourceforge.net/projects/lilidog/files/Releases/
 
 ### Current Release:
 The version number shown is the date of the release beginning with the
 year, followed by the month, and then the day. So as an example,
-release 25.12.20 stands for the 20th of Dec, 2025.
+release 26.03.14 stands for the 14th of Mar, 2026.
 
 To identify a Waydog build date after installation, in a terminal, try:
 `cat /usr/share/lilidog/GPL/current-build`
@@ -49,21 +52,25 @@ requirements. Ample video memory is a must.
 - Keybinds. All window managers use 'Super + F1' to show the list.
 - Labwc and Sway window managers installed by default. Choose at login.
 - Niri and Wayfire WMs also install options. Try in a live session.
-- SDDM display manager for logging in. An installer for Ly is included.
+- SDDM display manager for initial login.
+- Ly login manager is included as a separate install option.
 - Waybar provides the panel top bar.
-- NWG Look provides an interface for GTK settings.
+- Waybar Options provides a dialog to adjust waybar settings on the fly.
+- NWG Look provides the interface for GTK settings.
 - Labwc Tweaks provides for common Labwc adjustments.
 - Usbimager to create USB images.
 - Waypicker color picker for Wayland use. Copies selection to clipboard.
 - Kernel remover for those that build their own, or just to clean up.
 - Waypaper wallpaper setter for both wallpaper and SDDM login screen.
-- Random background changer. Toggle with a keybind.
+- Random BG changer using 'Super+v'.
+- Ld-hotcorners providing four hotcorners for program use. 'Super + z'
+- Random BG Daemon from the Toggles menu, or using 'Super + Shift + r'.
 - Grimshot screenshot. Adds screenshots directly to ~/Pictures.
 - Fuzzel menu. (dmenu equivalent) (Super + F5)
 - Mako provides the system notifications.
 - Sway has gaps!
-- Optional installers for a few different items. Kernels, VirtualBox,
-  extra themes, Conky, Dropbox, and others.
+- Optional Waydog installers for a few different items. VirtualBox,
+  kernels, extra themes, Conky, Dropbox, and more.
 
 There are only a few more programs to get you started. Firefox, Geany,
 Thunar, and Xfce4-terminal are standard for the main programs.  It is
