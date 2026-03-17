@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'HW-Probe Installer' -e bash -c "hw-probe-installer"
+Name=HWProbe Installer
+Icon=media-flash
+Terminal=true
+GenericName=HWProbe installer
+Categories=ld-misc-tools;
+Keywords=system;
+Comment=HWProbe installer

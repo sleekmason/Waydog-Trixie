@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Printer Installer' -e bash -c "printer-installer"
+Name=Printer Installer
+Icon=printer
+Terminal=true
+GenericName=Printer installer
+Categories=ld-misc-tools;
+Keywords=system;
+Comment=Printer installer

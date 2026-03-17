@@ -1,0 +1,78 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mPrinter Setup Installer[0m 
+   
+   This will install the packages necessary for printing and
+   scanning on your computer. After installation, search for
+   All Programs -> System -> Print Settings to continue your
+   printer setup.
+   
+   [0;32m---------------------------------------------------------
+   
+   Please press enter to install the printer packages.
+   
+   ---------------------------------------------------------[0m
+   
+   Or close this terminal window to quit the install." ;
+   
+   if : >/dev/tcp/8.8.8.8/53; then
+if sudo apt update && sudo apt install --install-recommends -y \
+avahi-daemon colord cups-browsed cups-client cups-core-drivers \
+cups-filters cups-pk-helper foomatic-db-compressed-ppds ghostscript \
+hplip ipp-usb libnss-mdns sane-airscan sane-utils system-config-printer \
+system-config-printer-udev tk tix xiccd xsane printer-driver-all \
+printer-driver-all-enforce printer-driver-brlaser printer-driver-c2050 \
+printer-driver-c2esp printer-driver-cjet printer-driver-cups-pdf \
+printer-driver-dymo printer-driver-escpr printer-driver-foo2zjs \
+printer-driver-foo2zjs-common printer-driver-fujixerox \
+printer-driver-gutenprint printer-driver-hpcups printer-driver-hpijs \
+printer-driver-indexbraille printer-driver-m2300w \
+printer-driver-min12xxw printer-driver-oki printer-driver-pnm2ppa \
+printer-driver-postscript-hp printer-driver-ptouch printer-driver-pxljr \
+printer-driver-sag-gdi printer-driver-splix; then
+
+MENU="$HOME/.config/labwc/menu.xml"
+if ! grep -q 'system-config-printer' "$MENU"; then
+  if [ -f "$MENU.bak" ]; then
+    cp "$MENU" "$MENU.bak.$(date +%Y%m%d%H%M%S)"
+  else
+    cp "$MENU" "$MENU.bak"
+  fi
+  sed -i '/waypicker<\/execute>/,/<\/item>/ {
+    /<\/item>/ a\
+      <item label="Print Settings" icon="/usr/share/icons/gnome/24x24/devices/printer.png">\
+        <action name="Execute">\
+          <execute>system-config-printer<\/execute>\
+        <\/action>\
+      <\/item>
+  }' "$MENU"
+fi
+labwc -r 2>/dev/null || true
+
+echo ""
+echo "  [0;33m------------------------------------------------------------[0m"
+echo ""
+echo "  [0;33mAll Finished![0m"
+echo ""
+echo "  [0;33mOpen 'Print Settings' from the Menu to connect your printer.[0m"
+echo ""
+echo "  [0;33m------------------------------------------------------------[0m"
+echo $'\n\nPress any key to quit ...'; read -srn1
+else
+echo ""
+echo "   [0;31m---------------------------------------------------[0m"
+echo ""
+echo "   [0;31mInstallation failed. Please check the output above.[0m"
+echo ""
+echo "   [0;31m---------------------------------------------------[0m"
+echo $'\n\nPress any key to quit ...'; read -srn1
+fi
+else
+echo ""
+echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+echo ""
+echo "   [0;31m-----------------------------------------------------[0m"
+echo $'\n\nPress any key to quit ...'; read -srn1
+fi
