@@ -3,14 +3,16 @@ echo ""
 read -p "   [0;33mHw-Probe[0m
 
    The most comprehensive program to check your computer for issues.
-   https://linux-hardware.org/ - Note that this will upload details
-   of your system anonymously to the web.
+   [0;34mhttps://linux-hardware.org/[0m - Note that this will upload details
+   of your system anonymously to the internet.
    
-   Hw-probe is a project to anonymously collect hardware details of 
+   Hw-Probe is a project to anonymously collect hardware details of 
    Linux-powered computers all over the world for helping people to 
    collaboratively debug hardware related issues, find drivers, and
    check for Linux-compatibility.
-
+   
+   Github Link: [0;34mhttps://github.com/linuxhw/hw-probe[0m
+   
    If Hw-Probe is already installed, this script will simply run it 
    again. A link to the report will be available upon completion.
    
@@ -31,8 +33,7 @@ sudo -E hw-probe -all -upload
 echo ""
 echo "[0;33m-------------------------------------------------------------------[0m"
 echo ""
-echo "  [0;33mAll Done.  Right-click on the link above to access your report.[0m"
-echo "  [0;33mHope the information found is useful.[0m"
+echo "  [0;33mProbe completed. Right-click on the link above for your report.[0m"
 echo ""
 echo "[0;33m-------------------------------------------------------------------[0m"
 echo ""
