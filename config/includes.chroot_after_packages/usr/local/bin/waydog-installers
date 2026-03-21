@@ -11,7 +11,7 @@ installers=(
   "Custom Conky|Conky Installer|conky-installer"
   "Deb Optimizer|Debian Sources.list Optimizer|deb-source-location"
   "Dropbox|Dropbox Installer|dropbox-installer"
-  "Extra Themes|Extra Themes|extra-themes-installer"
+  "  Extra Themes  |Extra Themes|extra-themes-installer"
   "Firmware|Firmware Checker|firmware-checker"
   "Hblock|Hblock Installer|hblock-installer"
   "HW-Probe|HWProbe Installer|hw-probe-installer"
