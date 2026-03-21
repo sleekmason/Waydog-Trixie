@@ -135,14 +135,14 @@
           <execute>hotcorners-toggle</execute>
         </action>
       </item>
-      <item label="Random BG Daemon" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
-        <action name="Execute">
-          <execute>toggle-random</execute>
-        </action>
-      </item>
       <item label="OSProber" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
         <action name="Execute">
           <execute>osprober-toggle</execute>
+        </action>
+      </item>
+      <item label="Random BG Daemon" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
+        <action name="Execute">
+          <execute>toggle-random</execute>
         </action>
       </item>
       <item label="Sexy Bash Prompt" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
@@ -152,34 +152,31 @@
       </item>
     </menu>
     <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-system.png" id="root-menu-4985" label="Utilities">
-      <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
+      <menu icon="/usr/share/icons/gnome/24x24/status/info.png" id="root-menu-88811" label="System Info">
+        <item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
+          </action>
+        </item>
+        <item label="Htop" icon="/usr/share/icons/hicolor/scalable/apps/htop.svg">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Htop' -e bash -c "htop; echo $'\n\nPress any key to close'; read -srn1"</execute>
+          </action>
+        </item>
+        <item label="Inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
+          </action>
+        </item>
+        <item label="Ps_mem" icon="/usr/share/icons/gnome/24x24/devices/drive-harddisk.png">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Ps_mem - Memory Profiling Tool' -e bash -c "sudo ps_mem; echo $'\n\nPress any key to close'; read -srn1"</execute>
+          </action>
+        </item>
+      </menu>
+      <item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png">
         <action name="Execute">
-          <execute>grimshot save area</execute>
-        </action>
-      </item>
-      <item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
-        <action name="Execute">
-          <execute>nwg-look</execute>
-        </action>
-      </item>
-      <item label="Waybar Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-personal.png">
-        <action name="Execute">
-          <execute>bash -c "waybar-icon-toggle dialog"</execute>
-        </action>
-      </item>
-      <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">
-        <action name="Execute">
-          <execute>labwc-tweaks-gtk</execute>
-        </action>
-      </item>
-      <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
-        <action name="Execute">
-          <execute>waypaper-update-wrapper</execute>
-        </action>
-      </item>
-      <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
-        <action name="Execute">
-          <execute>waypaper-sddm</execute>
+          <execute>waypicker</execute>
         </action>
       </item>
       <item label="Displays" icon="/usr/share/icons/hicolor/scalable/apps/network.cycles.wdisplays.svg">
@@ -187,39 +184,19 @@
           <execute>wdisplays</execute>
         </action>
       </item>
-      <item label="Inxi Info" icon="/usr/share/icons/gnome/24x24/actions/document-properties.png">
-        <action name="Execute">
-          <execute>x-terminal-emulator -T 'Inxi Info' -e bash -c "inxi -Fxrzm; echo $'\n\nPress any key to close'; read -srn1"</execute>
-        </action>
-      </item>
       <item label="Gparted" icon="/usr/share/icons/hicolor/24x24/apps/gparted.png">
         <action name="Execute">
           <execute>gksudo gparted</execute>
         </action>
       </item>
-      <item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg">
+      <item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
         <action name="Execute">
-          <execute>gksudo synaptic</execute>
+          <execute>nwg-look</execute>
         </action>
       </item>
-      <item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
+      <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
         <action name="Execute">
-          <execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
-        </action>
-      </item>
-      <item label="Usbimager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
-        <action name="Execute">
-          <execute>/usr/local/bin/usbimager</execute>
-        </action>
-      </item>
-      <item label="Color Picker" icon="/usr/share/icons/gnome/24x24/categories/applications-graphics.png">
-        <action name="Execute">
-          <execute>waypicker</execute>
-        </action>
-      </item>
-      <item label="Update Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
-        <action name="Execute">
-          <execute>update-options</execute>
+          <execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
         </action>
       </item>
       <item label="Labwc Keybinds" icon="/usr/share/icons/gnome/24x24/apps/accessories-character-map.png">
@@ -227,9 +204,44 @@
           <execute>labwc-keys.sh</execute>
         </action>
       </item>
-      <item label="Kernel Remover" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">
+      <item label="Labwc Tweaks" icon="/usr/share/icons/ld-icons/pixmaps/labwc-tweaks-gtk.svg">
         <action name="Execute">
-          <execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
+          <execute>labwc-tweaks-gtk</execute>
+        </action>
+      </item>
+      <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-sddm</execute>
+        </action>
+      </item>
+      <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
+        <action name="Execute">
+          <execute>grimshot save area</execute>
+        </action>
+      </item>
+      <item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg">
+        <action name="Execute">
+          <execute>gksudo synaptic</execute>
+        </action>
+      </item>
+      <item label="Upgrade Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
+        <action name="Execute">
+          <execute>update-options</execute>
+        </action>
+      </item>
+      <item label="UsbImager" icon="/usr/share/icons/hicolor/32x32/apps/usbimager.png">
+        <action name="Execute">
+          <execute>/usr/local/bin/usbimager</execute>
+        </action>
+      </item>
+      <item label="Wallpapers" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-update-wrapper</execute>
+        </action>
+      </item>
+      <item label="Waybar Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop-personal.png">
+        <action name="Execute">
+          <execute>bash -c "waybar-icon-toggle dialog"</execute>
         </action>
       </item>
       <item label="Waydog Installers" icon="/usr/share/icons/gnome/24x24/categories/applications-other.png">
