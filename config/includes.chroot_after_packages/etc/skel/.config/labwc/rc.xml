@@ -207,7 +207,7 @@
     </keybind>
     <keybind key="W-F9">
       <action name="Execute">
-        <command>wl-find-cursor</command>
+        <command>wl-find-cursor -d 2400 -s 150 -c 0xFFFFE65656</command>
       </action>
     </keybind>
     <!-- ### Application keybinds ### -->
