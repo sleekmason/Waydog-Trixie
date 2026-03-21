@@ -12,6 +12,7 @@ installers=(
   "Deb Optimizer|Debian Sources.list Optimizer|deb-source-location"
   "Dropbox|Dropbox Installer|dropbox-installer"
   "Extra Themes|Extra Themes|extra-themes-installer"
+  "Firmware|Firmware Checker|firmware-checker"
   "Hblock|Hblock Installer|hblock-installer"
   "HW-Probe|HWProbe Installer|hw-probe-installer"
   "Kernel Apps|Kernel Apps Installer|kernel-apps-installer"
@@ -26,7 +27,7 @@ installers=(
   "Sddm Login|SDDM Display Manager Installer|sddm-installer"
   "Snap Store|Snap Installer|snap-installer"
   "Virtualbox|Virtualbox Installer|virtualbox-installer-oracle"
-  "VSCodium Editor|VSCodium Installer|vscodium-installer"
+  "VSCodium|VSCodium Installer|vscodium-installer"
   "Wayfire WM|Wayfire Compositor Installer|wayfire-installer"
   "Wine|Wine Installer|wine-installer"
   "Xanmod Kernel|Xanmod Kernel Installer|xanmod-kernel-installer"
@@ -45,9 +46,9 @@ done
 yad --title="Waydog Installers" \
     --escape-ok \
     --form \
-    --width=560 --height=436 --center \
+    --width=560 --height=352 --center \
     --borders=10 \
-    --columns=3 \
+    --columns=4 \
     --buttons-layout=spread \
     --window-icon=applications-utilities \
     --text-align=center \
