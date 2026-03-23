@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "   [0;32mNano Installer[0m
+read -p "   [0;33mNano Installer[0m
 
    Nano comes pre-installed, but the configuration file is not located
    where it can be easily adjusted, and there is no right-click action

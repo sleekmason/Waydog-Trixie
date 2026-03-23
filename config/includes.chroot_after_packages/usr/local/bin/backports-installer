@@ -1,11 +1,11 @@
 #!/bin/bash
 read -p "   
-                          [0;32mADD ADDITIONAL SOURCES[0m
+                          [0;33mADD ADDITIONAL SOURCES[0m
    
    
    This script adds the Trixie Backports repository to your sources.
    
-   [0;31mhttps://backports.debian.org/Instructions/[0m
+   [0;34mhttps://backports.debian.org/Instructions/[0m
    
    
    [0;33m-----------------------------------------------------------------

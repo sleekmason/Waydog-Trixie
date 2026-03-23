@@ -2,7 +2,7 @@
 echo "   [0;33mOracle Virtualbox Installer[0m"
 echo ""
 read -p "   This script installs the latest Oracle version for VirtualBox. 
-   [0;32mhttps://www.virtualbox.org/wiki/Linux_Downloads[0m
+   [0;34mhttps://www.virtualbox.org/wiki/Linux_Downloads[0m
 
    [0;31mNote*[0m [0;33mFor Virtualbox to function,[0m [0;31mKVM may need to be disabled.[0m
 

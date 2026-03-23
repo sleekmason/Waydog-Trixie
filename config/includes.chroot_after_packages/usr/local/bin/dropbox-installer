@@ -1,6 +1,6 @@
 #!/bin/bash
 echo ""
-read -p "   [0;32mDropbox Installer[0m
+read -p "   [0;33mDropbox Installer[0m
 
    This script will download and install Dropbox. Securely store, 
    organize, and share all of your files.
@@ -8,7 +8,7 @@ read -p "   [0;32mDropbox Installer[0m
    Note* A web browser is required for dropbox initialization and
    firefox-esr will be installed if not already present.
    
-   [0;33mhttps://www.dropbox.com/[0m
+   [0;34mhttps://www.dropbox.com/[0m
    
   [0;32m---------------------------------------------------------------
    
