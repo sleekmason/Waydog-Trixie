@@ -77,16 +77,16 @@ case "$1" in
                 --field="Backlight":FBTN         "bash '$SELF' backlight" \
                 --field="CPU":FBTN               "bash '$SELF' cpu" \
                 --field="Idle Inhibitor":FBTN    "bash '$SELF' idle_inhibitor" \
-                --field="Memory":FBTN            "bash '$SELF' memory" \
-                --field="Files Icon":FBTN        "bash '$SELF' launcher2" \
-                --field="Desktop Icon":FBTN      "bash '$SELF' launcher4" \
+                --field="Network":FBTN           "bash '$SELF' network" \
+                --field="Desktop":FBTN      "bash '$SELF' launcher4" \
+                --field="Menu":FBTN         "bash '$SELF' launcher1" \
                 --field="Battery":FBTN           "bash '$SELF' battery" \
                 --field="Clock":FBTN             "bash '$SELF' clock" \
                 --field="Language":FBTN          "bash '$SELF' language" \
-                --field="Network":FBTN           "bash '$SELF' network" \
+                --field="Memory":FBTN            "bash '$SELF' memory" \
                 --field="Temperature":FBTN       "bash '$SELF' temperature" \
-                --field="Menu Icon":FBTN         "bash '$SELF' launcher1" \
-                --field="Terminal Icon":FBTN     "bash '$SELF' launcher3" \
+                --field="Files":FBTN        "bash '$SELF' launcher2" \
+                --field="Terminal":FBTN     "bash '$SELF' launcher3" \
                 || break
         done
         ;;
