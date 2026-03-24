@@ -18,3 +18,8 @@ rm -f "$HOME"/.face.icon
 mkdir -p "$HOME/bin" "$HOME/.local/bin"
 # Add ~/Pictures and ~/Pictures/wallpapers
 mkdir -p Pictures/wallpapers
+# Keyboard settings for labwc
+LAYOUT=${XKB_DEFAULT_LAYOUT:-us}
+ENV_FILE="$HOME/.config/labwc/environment"
+sed -i "s|^#\?XKB_DEFAULT_LAYOUT=.*|XKB_DEFAULT_LAYOUT=$LAYOUT|" "$ENV_FILE"
+labwc --reconfigure
