@@ -19,7 +19,8 @@ mkdir -p "$HOME/bin" "$HOME/.local/bin"
 # Add ~/Pictures and ~/Pictures/wallpapers
 mkdir -p Pictures/wallpapers
 # Keyboard settings for labwc and sway
-LAYOUT=${XKB_DEFAULT_LAYOUT:-us}
+LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
+[[ -z "$LAYOUT" ]] && LAYOUT="us"
 sed -i "s|xkb_layout \".*\"|xkb_layout \"$LAYOUT\"|" "$HOME/.config/sway/config"
 sed -i "s|^#\?XKB_DEFAULT_LAYOUT=.*|XKB_DEFAULT_LAYOUT=$LAYOUT|" "$HOME/.config/labwc/environment"
 labwc --reconfigure
