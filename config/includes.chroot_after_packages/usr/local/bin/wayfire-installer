@@ -62,6 +62,9 @@ cp -f "/tmp/wayfire/wayfire.ini" "$HOME/.config"
 cp -fr "/tmp/wayfire/wf-shell" "$HOME/.config"
 sudo cp -f "/tmp/wayfire/wfpanel-toggle" "/usr/local/bin"
 sudo cp -f "/tmp/wayfire/wayfire-keys.sh" "/usr/local/bin"
+LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
+[[ -z "$LAYOUT" ]] && LAYOUT="us"
+sed -i "s|^# *xkb_layout = .*|xkb_layout = $LAYOUT|" "$HOME/.config/wayfire.ini"
 
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"

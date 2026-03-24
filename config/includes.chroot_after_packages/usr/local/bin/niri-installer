@@ -46,6 +46,9 @@ cp -f "/tmp/niri/config.kdl" "$HOME/.config/niri"
 sudo cp -f "/tmp/niri/xwayland-satellite" "/usr/local/bin"
 sudo cp -f "/tmp/niri/waybar-toggle" "/usr/local/bin"
 cp -f "/tmp/niri/config.jsonc" "$HOME/.config/waybar/niri"
+LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
+[[ -z "$LAYOUT" ]] && LAYOUT="us"
+perl -i -0pe 's|(xkb \{[^}]*)layout "[^"]*"|\1layout "'$LAYOUT'"|s' "$HOME/.config/niri/config.kdl"
 
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"
