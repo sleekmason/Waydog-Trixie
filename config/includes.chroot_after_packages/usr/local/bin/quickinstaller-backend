@@ -69,6 +69,8 @@ if : >/dev/tcp/8.8.8.8/53; then
 
     REAL_USER=${SUDO_USER:-$(logname 2>/dev/null || true)}
     [ -z "$REAL_USER" ] && REAL_USER=$(getent passwd 1000 | cut -d: -f1)
+    [ -z "$REAL_USER" ] && REAL_UID=$(ls /run/user/ | head -1) && REAL_USER=$(getent passwd "$REAL_UID" | cut -d: -f1)
+    REAL_UID=$(id -u "$REAL_USER")
 
     yad_opts=(
         --form
@@ -100,8 +102,10 @@ if : >/dev/tcp/8.8.8.8/53; then
 
     IFS='|' read -ra ans < <(
     sudo -u "$REAL_USER" \
-        XDG_RUNTIME_DIR="/run/user/$(id -u "$REAL_USER")" \
-        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u "$REAL_USER")/bus" \
+        XDG_RUNTIME_DIR="/run/user/$REAL_UID" \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$REAL_UID/bus" \
+        WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+        DISPLAY="$DISPLAY" \
         yad "${yad_opts[@]}"
 )
 
