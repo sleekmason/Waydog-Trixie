@@ -25,7 +25,7 @@ AUTOSTART="$HOME/.config/labwc/autostart"
 if ! grep -q "blueman-applet" "$AUTOSTART" 2>/dev/null; then
     echo "" >> "$AUTOSTART"
     echo "## Uncomment the line below to enable the blueman tray applet at login" >> "$AUTOSTART"
-    echo "# blueman-applet" >> "$AUTOSTART"
+    echo "# blueman-applet &" >> "$AUTOSTART"
 fi
 echo ""
 echo " [0;33m--------------------------------------------------------------------[0m"
