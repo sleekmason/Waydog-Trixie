@@ -10,5 +10,5 @@ Keywords=wayland;snapshot;annotation;editing;
 Icon=satty
 Categories=Utility;Graphics;
 StartupNotify=true
-MimeType=image/png;image/jpeg;
+MimeType=image/png;image/jpeg;image/jpg;
 StartupWMClass=com.gabm.satty
