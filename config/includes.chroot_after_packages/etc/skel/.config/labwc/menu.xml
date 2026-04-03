@@ -130,6 +130,11 @@
     <!--<separator/> -->
     <!-- <menu id="/Debian"/> -->
     <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png" id="toggles-314" label="Toggles">
+      <item label="Gamma Control" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-display.png">
+        <action name="Execute">
+          <execute>wlr-gamma-gui</execute>
+        </action>
+      </item>
       <item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-accessibility.png">
         <action name="Execute">
           <execute>hotcorners-toggle</execute>

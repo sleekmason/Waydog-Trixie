@@ -281,6 +281,16 @@
         <execute>geany</execute>
       </action>
     </keybind>
+    <keybind key="W-g">
+    <action name="Execute">
+        <execute>wlr-gamma-tool -r -a</execute>
+    </action>
+    </keybind>
+    <keybind key="W-S-g">
+    <action name="Execute">
+        <execute>wlr-gamma-gui</execute>
+    </action>
+    </keybind>            
     <keybind key="Print">
       <action name="Execute">
         <execute>grimshot save area</execute>
