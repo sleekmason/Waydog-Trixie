@@ -7,6 +7,7 @@
 declare -A FRIENDLY_NAMES=(
   ["wl-find-cursor"]="Highlight Cursor"
   ["labwc-keys.sh"]="Keybinds Labwc"
+  ["~/.config/conky/scripts/conky-chooser"]="Conky Chooser (if installed)"
   ["hotcorners-toggle"]="Hotcorners On/Off"
   ["waybar-toggle"]="Waybar On/Off"
   ["waybar-icon-toggle dialog"]="Waybar Options"
@@ -15,6 +16,8 @@ declare -A FRIENDLY_NAMES=(
   ["toggle-random"]="Random Wallpaper - Daemon"
   ["random-wallpaper once"]="Random Wallpaper - Once"
   ["waypaper-update-wrapper"]="Wallpapers"
+  ["wlr-gamma-tool -r -a"]="Gamma - Reset to default"
+  ["wlr-gamma-gui"]="Gamma Control"
 )
 CONFIG="$HOME/.config/labwc/rc.xml"
 TERMINALS=(
