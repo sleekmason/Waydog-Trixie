@@ -5,12 +5,11 @@
 -->
 <labwc_config>
   <placement>
-    <policy>cascade</policy>
-    <cascadeOffset x="360" y="180"/>
+    <policy>automatic</policy>
     <!--
       When <placement><policy> is "cascade", the offset for cascading new
       windows can be overwritten like this:
-      <cascadeOffset x="40" y="30" />
+      <cascadeOffset x="360" y="180"/>
     -->
   </placement>
 
@@ -62,15 +61,13 @@
     Just as for window-rules, 'identifier' relates to app_id for native Wayland
     windows and WM_CLASS for XWayland clients.
   -->
-  <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="no">
-    <fields>
-      <field content="type" width="25%" />
-      <field content="trimmed_identifier" width="25%" />
-      <!-- <field content="identifier" width="25%" /> -->
+  <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="yes">
+    <fields>    
+      <field content="workspace" width="22%" />
+      <field content="trimmed_identifier" width="20%" />
       <field content="title" width="50%" />
     </fields>
   </windowSwitcher>
-
   <!--
     When using all workspaces option of window switcher, there are extra fields
     that can be used, workspace (variable length), state (single space),
@@ -81,9 +78,11 @@
       <fields>
         <field content="workspace" width="5%" />
         <field content="state" width="3%" />
+        <field content="type" width="25%" />
         <field content="type_short" width="3%" />
         <field content="output" width="9%" />
         <field content="identifier" width="30%" />
+        <field content="trimmed_identifier" width="20%" />
         <field content="title" width="50%" />
       </fields>
     </windowSwitcher>
@@ -121,14 +120,12 @@
     <drawContents>yes</drawContents>
     <!-- Borders are effectively 8 pixels wide regardless of visual appearance -->
     <minimumArea>8</minimumArea>
-
     <!--
       Set cornerRange to a positive value to increase the size of corner
       regions for mouse actions and diagonal window resizing. When omitted,
       the default size of the corner region is half of the titlebar height.
-
-      <cornerRange>8</cornerRange>
     -->
+    <cornerRange>8</cornerRange>
   </resize>
 
   <focus>
