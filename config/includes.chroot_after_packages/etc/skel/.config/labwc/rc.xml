@@ -5,8 +5,10 @@
 -->
 <labwc_config>
   <placement>
-    <policy>automatic</policy>
+    <policy>cascade</policy>
+	  <cascadeOffset x="360" y="180"/>
     <!--
+      [center|automatic|cursor|cascade]
       When <placement><policy> is "cascade", the offset for cascading new
       windows can be overwritten like this:
       <cascadeOffset x="360" y="180"/>
