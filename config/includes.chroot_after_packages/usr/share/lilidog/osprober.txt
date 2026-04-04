@@ -3,12 +3,15 @@
                         
     OSprober is a utility that works in conjuntion 
     with grub to provide a list at boot of all the 
-    systems enabled by grub on your computer.   
+    distributions enabled at boot.   
     
     Use the Toggle button to switch osprober on or 
     off. The log is in /var/log/grub-update.log
     
     Please wait for grub to finish updating before 
     rebooting. Look for the progress update dialog
-    to disappear upon completion. 
-
+    to disappear upon completion.
+    
+    Please Note - You must be booted into the main
+    partition controlling grub. Generally, this is
+    the last distribution installed.

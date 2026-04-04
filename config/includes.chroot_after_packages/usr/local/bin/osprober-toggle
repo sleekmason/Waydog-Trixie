@@ -38,7 +38,7 @@ sleep 0.2
 notify-send -t 6000 --urgency low "$STATUS"
 
 yad --title "OSprober Toggle" --window-icon=applications-utilities \
-    --width=435 --height=328 --center \
+    --width=435 --height=388 --center \
     --button="View Log"!/usr/share/icons/gnome/22x22/apps/accessories-text-editor.png!:"geany $LOG" \
     --button="Toggle On/Off:2" \
     --button="gtk-quit:1" --buttons-layout=spread \
