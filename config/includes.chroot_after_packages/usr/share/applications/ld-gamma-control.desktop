@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Gamma Control
+Exec=wlr-gamma-gui
+StartupNotify=false
+Terminal=false
+Icon=video-display
+Categories=ld-misc-tools;
