@@ -219,6 +219,11 @@
           <execute>waypaper-sddm</execute>
         </action>
       </item>
+      <item label="QBittorrent" icon="/usr/share/icons/hicolor/24x24/apps/qbittorrent.png">
+        <action name="Execute">
+          <execute>qbittorrent</execute>
+        </action>
+      </item>
       <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
         <action name="Execute">
           <execute>grimshot save area</execute>

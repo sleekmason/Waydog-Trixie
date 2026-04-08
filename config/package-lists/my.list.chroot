@@ -120,6 +120,7 @@ python3-pycurl
 python3-six
 python3-xdg
 python3-xlib
+qbittorrent
 rename
 rsync
 squashfs-tools
@@ -180,9 +181,9 @@ mako-notifier
 nwg-look
 qml6-module-qtquick
 qtwayland5
+qt5ct
 qt6-wayland
 qt6ct
-qt6-style-kvantum
 sddm
 seatd
 swaybg
