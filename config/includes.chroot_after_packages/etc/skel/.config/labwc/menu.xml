@@ -163,6 +163,11 @@
             <execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
           </action>
         </item>
+        <item label="Firmware" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Firmware Check' -e bash -c "firmware-checker; echo $'\n\nPress any key to close.'; read -srn1"</execute>
+          </action>
+        </item>
         <item label="Htop" icon="/usr/share/icons/hicolor/scalable/apps/htop.svg">
           <action name="Execute">
             <execute>x-terminal-emulator -T 'Htop' -e bash -c "htop; echo $'\n\nPress any key to close'; read -srn1"</execute>

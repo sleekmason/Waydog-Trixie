@@ -1,0 +1,57 @@
+#!/bin/bash
+echo ""
+read -p "   [0;33mRadiotray-NG Installer[0m
+
+   Radiotray-NG: An Internet radio player for Linux.
+   
+   [0;34mhttps://github.com/ebruck/radiotray-ng[0m
+   
+   [0;32m----------------------------------------------------------
+   
+   Please press enter to install Radiotray-NG.
+   
+   ----------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+cd /tmp || exit &&
+rm /tmp/radiotray*
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/radiotray-ng_0.2.10.1~ld_amd64.deb --show-progress &&
+sudo apt update && sudo apt install -y /tmp/radiotray-ng_0.2.10.1~ld_amd64.deb
+
+sudo mkdir -p /usr/share/icons/Obsidian/apps/scalable
+sudo mkdir -p /usr/share/icons/gnome/scalable/apps
+sudo mkdir -p /usr/share/icons/Adwaita/scalable/apps
+
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-on.svg /usr/share/icons/Obsidian/apps/scalable/
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-off.svg /usr/share/icons/Obsidian/apps/scalable/
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-on.svg /usr/share/icons/gnome/scalable/apps/
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-off.svg /usr/share/icons/gnome/scalable/apps/
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-on.svg /usr/share/icons/Adwaita/scalable/apps/
+sudo cp /usr/share/icons/hicolor/scalable/apps/radiotray-ng-off.svg /usr/share/icons/Adwaita/scalable/apps/
+
+sudo gtk-update-icon-cache -f /usr/share/icons/hicolor/
+sudo gtk-update-icon-cache -f /usr/share/icons/Obsidian/ 2>/dev/null || true
+sudo gtk-update-icon-cache -f /usr/share/icons/gnome/ 2>/dev/null || true
+sudo gtk-update-icon-cache -f /usr/share/icons/Adwaita/ 2>/dev/null || true
+
+echo ""
+echo " [0;33m----------------------------------------------------------------------------"
+echo ""
+echo " All Finished!
+
+ You should find a new menu entry for Radiotray-NG in the Multimedia section."
+echo "" 
+echo " ----------------------------------------------------------------------------[0m"
+echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "
