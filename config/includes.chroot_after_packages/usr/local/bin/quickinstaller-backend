@@ -37,6 +37,7 @@ if : >/dev/tcp/8.8.8.8/53; then
         " QMMP Music Player|apt-get install --install-recommends qmmp -y"
         " Totem Music Player|apt-get install --install-recommends totem -y"
         " Audacity Audio Editor|apt-get install --install-recommends audacity -y"
+        " Easyeffects Equalizer|apt-get install easyeffects lsp-plugins-lv2 calf-plugins mda-lv2 zam-plugins -y"
         " GIMP Image Editor|apt-get install gimp gimp-data-extras ghostscript libgts-bin gimp-texturize -y"
         " Inkscape Graphics Editor|apt-get install --install-recommends inkscape -y"
         " Blender Graphics Editor|apt-get install --install-recommends blender -y"
