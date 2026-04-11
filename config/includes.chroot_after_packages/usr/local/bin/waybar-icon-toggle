@@ -350,7 +350,7 @@ toggle_fontsize() {
         *)  new=12 ;;
     esac
     sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\1'"$new"'px;/' "$STYLE"
-    if [[ "$new" -eq 12 ]]; then notify_label="$new px (Default)"; else notify_label="$new px"; fi
+    if [[ "$new" -eq 13 ]]; then notify_label="$new px (Default)"; else notify_label="$new px"; fi
     notify-send -i preferences-desktop "Taskbar Font Size  ▸  $notify_label"
     restart_waybar
 }
