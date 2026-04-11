@@ -287,7 +287,7 @@ toggle_iconscale() {
         echo "/* ICON_SCALE:$new */" >> "$STYLE"
     fi
 
-    tray_size=$(bc <<< "14 + $new")
+    tray_size=$(bc <<< "13 + $new")
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
         sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\1'"$tray_size"'/; b }; ba }' "$cfg"
