@@ -103,7 +103,7 @@ toggle_separator() {
 }
 
 declare -A DEFAULT_SIZES=(
-    ["#workspaces button"]=10
+    ["#workspaces button"]=11
     ["#waybar"]=14
     ["#clock"]=12
     ["#cpu"]=12
@@ -273,7 +273,11 @@ toggle_iconscale() {
         escaped=$(echo "$css_selector" | sed 's/ /\\ /g')
         base=$(read_size_from_css "$css_selector")
         base="${base:-${DEFAULT_SIZES[$css_selector]}}"
-        [[ "$css_selector" == "#waybar" ]] && newsize=$((14 + new)) || newsize=$(bc <<< "scale=1; $base + $delta")
+        case "$css_selector" in
+            "#waybar")            newsize=$((14 + new)) ;;
+            "#workspaces button") newsize=$((11 + new)) ;;
+            *)                    newsize=$(bc <<< "scale=1; $base + $delta") ;;
+        esac
         if grep -q "font-size:" < <(sed -n "/$escaped {/,/}/p" "$STYLE"); then
             sed -i "/$escaped {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${newsize}px;/" "$STYLE"
         else

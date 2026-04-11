@@ -61,7 +61,7 @@ tooltip {
 #workspaces button {
   min-height: 0px;
   font-family: "Dejavu Sans";
-  font-size: 10px;
+  font-size: 11px;
   color: @text;
   border-radius: 6px;
   padding: 0px 2px;
