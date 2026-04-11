@@ -196,10 +196,10 @@ wlr-randr
 wmenu
 xdg-desktop-portal-wlr
 xwayland
-#vlc
-#vlc-plugin-pipewire
-#vlc-plugin-notify
-#vlc-plugin-video-splitter
-#vlc-plugin-visualization
-#vlc-plugin-access-extra
-mpv
+vlc
+vlc-plugin-pipewire
+vlc-plugin-notify
+vlc-plugin-video-splitter
+vlc-plugin-visualization
+vlc-plugin-access-extra
+#mpv
