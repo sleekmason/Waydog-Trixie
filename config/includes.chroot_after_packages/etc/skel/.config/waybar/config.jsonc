@@ -148,7 +148,7 @@
         }
     },
     "tray": {
-        "icon-size": 13,
+        "icon-size": 12,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",

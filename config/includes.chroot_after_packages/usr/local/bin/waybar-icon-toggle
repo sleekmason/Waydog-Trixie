@@ -103,24 +103,24 @@ toggle_separator() {
 }
 
 declare -A DEFAULT_SIZES=(
-    ["#workspaces button"]=11
-    ["#waybar"]=13
-    ["#clock"]=13
-    ["#cpu"]=13
-    ["#memory"]=13
-    ["#temperature"]=13
-    ["#pulseaudio"]=13
-    ["#backlight"]=13
-    ["#network"]=13
-    ["#battery"]=13
-    ["#language"]=13
-    ["#idle_inhibitor"]=14
-    ["#custom-launcher1"]=14
+    ["#workspaces button"]=10
+    ["#waybar"]=12
+    ["#clock"]=12
+    ["#cpu"]=12
+    ["#memory"]=12
+    ["#temperature"]=12
+    ["#pulseaudio"]=12
+    ["#backlight"]=12
+    ["#network"]=12
+    ["#battery"]=12
+    ["#language"]=12
+    ["#idle_inhibitor"]=13
+    ["#custom-launcher1"]=13
     ["#custom-launcher2"]=11
-    ["#custom-launcher3"]=12
-    ["#custom-launcher4"]=9.5
-    ["#scratchpad"]=11
-    ["#mpd"]=12
+    ["#custom-launcher3"]=11
+    ["#custom-launcher4"]=9
+    ["#scratchpad"]=10
+    ["#mpd"]=11
     ["#custom-power"]=12
 )
 
@@ -264,7 +264,7 @@ toggle_iconscale() {
     [[ -z "$scale" ]] && scale=0
 
     new=$((scale + 1))
-    [[ $new -gt 2 ]] && new=-3
+    [[ $new -gt 3 ]] && new=-3
 
     delta=$((new - scale))
 
@@ -287,14 +287,14 @@ toggle_iconscale() {
         echo "/* ICON_SCALE:$new */" >> "$STYLE"
     fi
 
-    tray_size=$(bc <<< "13 + $new")
+    tray_size=$(bc <<< "12 + $new")
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
         sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\1'"$tray_size"'/; b }; ba }' "$cfg"
     done
 
-    SCALE_OPTIONS=(-3 -2 -1 0 1 2)
-    SCALE_LABELS=("Smallest" "Small" "Medium" "Default" "Larger" "Largest")
+    SCALE_OPTIONS=(-3 -2 -1 0 1 2 3)
+    SCALE_LABELS=("Smallest" "Small" "Medium" "Default" "Large" "Larger" "Largest")
     idx=0
     for i in "${!SCALE_OPTIONS[@]}"; do
         [[ "${SCALE_OPTIONS[$i]}" == "$new" ]] && idx=$i
@@ -346,8 +346,9 @@ toggle_fontsize() {
         13) new=14 ;;
         14) new=15 ;;
         15) new=16 ;;
-        16) new=10 ;;
-        *)  new=12 ;;
+        16) new=17 ;;
+        17) new=10 ;;
+        *)  new=13 ;;
     esac
     sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\1'"$new"'px;/' "$STYLE"
     if [[ "$new" -eq 13 ]]; then notify_label="$new px (Default)"; else notify_label="$new px"; fi
@@ -410,7 +411,7 @@ reset_defaults() {
         [[ -f "$cfg" ]] || continue
         sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{icon} {title:.'"$LONG"'}"/' "$cfg"
         sed -i '/"wlr\/taskbar": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
-        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
+        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\112/; b }; ba }' "$cfg"
     done
 
     declare -A RESET_SIZES
@@ -436,7 +437,7 @@ reset_defaults() {
 
     sed -i "s/\/\* ICON_SCALE:.*\*\//\/\* ICON_SCALE:0 \*\//" "$STYLE"
     sed -i "s/@define-color base *rgba([0-9]\+, *[0-9]\+, *[0-9]\+,/@define-color base        rgba(24,37,43,/" "$STYLE"
-    sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\112px;/' "$STYLE"
+    sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\113px;/' "$STYLE"
     sed -i '/#taskbar button {/,/}/ s/\(color:\s*\)[^;]\+;/\1#E0E0E0;/' "$STYLE"
     sed -i "s/\(@define-color base *rgba([^,]*,[^,]*,[^,]*, *\)[0-9.]\+/\10.9/" "$STYLE"
     sed -i '/#custom-separator1 {/,/}/c\
@@ -454,7 +455,7 @@ reset_defaults() {
 sway_reset_defaults() {
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
-        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\114/; b }; ba }' "$cfg"
+        sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\112/; b }; ba }' "$cfg"
     done
 
     declare -A RESET_SIZES
