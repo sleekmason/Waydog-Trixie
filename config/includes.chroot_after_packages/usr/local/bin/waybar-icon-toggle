@@ -104,7 +104,7 @@ toggle_separator() {
 
 declare -A DEFAULT_SIZES=(
     ["#workspaces button"]=11
-    ["#waybar"]=14
+    ["#waybar"]=13
     ["#clock"]=12
     ["#cpu"]=12
     ["#memory"]=12
@@ -274,7 +274,7 @@ toggle_iconscale() {
         base=$(read_size_from_css "$css_selector")
         base="${base:-${DEFAULT_SIZES[$css_selector]}}"
         case "$css_selector" in
-            "#waybar")            newsize=$((14 + new)) ;;
+            "#waybar")            newsize=$((13 + new)) ;;
             "#workspaces button") newsize=$((11 + new)) ;;
             *)                    newsize=$(bc <<< "scale=1; $base + $delta") ;;
         esac
