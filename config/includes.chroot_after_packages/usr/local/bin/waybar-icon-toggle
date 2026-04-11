@@ -104,7 +104,7 @@ toggle_separator() {
 
 declare -A DEFAULT_SIZES=(
     ["#workspaces button"]=10
-    ["#waybar"]=12
+    ["#waybar"]=14
     ["#clock"]=12
     ["#cpu"]=12
     ["#memory"]=12
@@ -273,7 +273,7 @@ toggle_iconscale() {
         escaped=$(echo "$css_selector" | sed 's/ /\\ /g')
         base=$(read_size_from_css "$css_selector")
         base="${base:-${DEFAULT_SIZES[$css_selector]}}"
-        newsize=$(bc <<< "scale=1; $base + $delta")
+        [[ "$css_selector" == "#waybar" ]] && newsize=$((14 + new)) || newsize=$(bc <<< "scale=1; $base + $delta")
         if grep -q "font-size:" < <(sed -n "/$escaped {/,/}/p" "$STYLE"); then
             sed -i "/$escaped {/,/}/ s/font-size: [0-9.]\+px;/font-size: ${newsize}px;/" "$STYLE"
         else
@@ -340,6 +340,7 @@ toggle_taskbar_iconsize() {
 toggle_fontsize() {
     current=$(sed -n '/#taskbar button {/,/}/ {/font-size:/ {s/[^0-9]*\([0-9]\+\)px;/\1/p}}' "$STYLE")
     case "$current" in
+         9) new=10 ;;
         10) new=11 ;;
         11) new=12 ;;
         12) new=13 ;;
@@ -347,7 +348,7 @@ toggle_fontsize() {
         14) new=15 ;;
         15) new=16 ;;
         16) new=17 ;;
-        17) new=10 ;;
+        17) new=9 ;;
         *)  new=13 ;;
     esac
     sed -i '/#taskbar button {/,/}/ s/\(font-size:\s*\)[0-9]\+px;/\1'"$new"'px;/' "$STYLE"
@@ -505,11 +506,11 @@ sway_dialog_mode() {
         --button=" Close!gtk-ok:0" \
         --form --center --width=260 --height=280 --borders=10 \
         --field="":LBL "" \
-        --field="       Waybar Main Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
-        --field="         Waybar Icon Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
-        --field="               Transparency!weather-clear":FBTN           "bash '$SELF' transparency" \
-        --field="                   Separators!view-sort-descending":FBTN  "bash '$SELF' separator" \
-        --field="                       Modules!system-run":FBTN           "bash '$MODULES' &"
+        --field="            Waybar Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
+        --field="              Waybar Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
+        --field="            Transparency!weather-clear":FBTN              "bash '$SELF' transparency" \
+        --field="                Separators!view-sort-descending":FBTN     "bash '$SELF' separator" \
+        --field="                    Modules!system-run":FBTN              "bash '$MODULES' &"
 }
 
 dialog_mode() {
@@ -523,7 +524,7 @@ dialog_mode() {
         --button=" Close!gtk-ok:0" \
         --form --center --width=266 --height=436 --borders=10 \
         --field="":LBL "" \
-        --field="      Cycle Taskbar Mode!view-refresh":FBTN                "bash '$SELF'" \
+        --field="      Cycle Taskbar Mode!view-refresh":FBTN               "bash '$SELF'" \
         --field="       Waybar Main Color!input-dialpad":FBTN              "bash '$SELF' barcolor" \
         --field="         Waybar Main Size!view-fullscreen":FBTN           "bash '$SELF' iconscale" \
         --field="         Taskbar Font Size!format-justify-center":FBTN    "bash '$SELF' fontsize" \
