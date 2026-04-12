@@ -75,6 +75,7 @@ libfile-mimeinfo-perl
 libfm-modules
 libfuse2t64
 libglib2.0-bin
+libgtk-4-1
 libinput-tools
 libidn2-0
 liblockfile-bin
@@ -120,7 +121,6 @@ python3-pycurl
 python3-six
 python3-xdg
 python3-xlib
-qbittorrent
 rename
 rsync
 squashfs-tools
@@ -141,6 +141,7 @@ thunar-media-tags-plugin
 thunar-volman
 tumbler
 traceroute
+transmission-gtk
 udev
 udisks2
 unzip

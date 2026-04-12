@@ -224,11 +224,6 @@
           <execute>waypaper-sddm</execute>
         </action>
       </item>
-      <item label="QBittorrent" icon="/usr/share/icons/hicolor/24x24/apps/qbittorrent.png">
-        <action name="Execute">
-          <execute>qbittorrent</execute>
-        </action>
-      </item>
       <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
         <action name="Execute">
           <execute>grimshot save area</execute>
@@ -237,6 +232,11 @@
       <item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg">
         <action name="Execute">
           <execute>gksudo synaptic</execute>
+        </action>
+      </item>
+      <item label="Transmission" icon="/usr/share/icons/hicolor/scalable/apps/transmission.svg">
+        <action name="Execute">
+          <execute>transmission-gtk</execute>
         </action>
       </item>
       <item label="Upgrade Options" icon="/usr/share/icons/gnome/24x24/categories/preferences-other.png">
