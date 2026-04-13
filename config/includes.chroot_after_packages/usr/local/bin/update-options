@@ -7,5 +7,5 @@ yad --title "Options" --escape-ok \
     --form \
     --field="   Check For Upgrades!system-software-update":FBTN "tint2-apt-update-check" \
     --field="       Synaptic Package!synaptic":FBTN "gksudo synaptic" \
-    --field="         System Updater!applications-system":FBTN "x-terminal-emulator -T 'Apt Update' -e 'sudo xupdate -i'" \
+    --field="         System Updater!applications-system":FBTN "x-terminal-emulator --title='Apt Update' -e 'sudo xupdate -i'" \
     --field="      Waydog Installers!applications-other":FBTN "waydog-installers"

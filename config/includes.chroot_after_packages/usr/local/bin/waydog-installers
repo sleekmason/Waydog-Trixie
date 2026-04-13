@@ -39,7 +39,7 @@ for item in "${installers[@]}"; do
   IFS='|' read -r label title cmd <<< "$item"
   fields+=(
     --field="$label":FBTN \
-    "$term -T \"$title\" -e bash -c \"$cmd\" &"
+    "$term --title=\"$title\" -e bash -c \"$cmd\" &"
   )
 done
 
