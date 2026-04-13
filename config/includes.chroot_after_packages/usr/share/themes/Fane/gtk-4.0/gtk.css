@@ -1000,3 +1000,40 @@ treeview.view:selected {
   treeview.view:selected {
     color: #D3DFE6;
     font-weight: normal; }
+/* Force override libadwaita */
+@define-color accent_bg_color #2a656d;
+@define-color accent_fg_color #ffffff;
+
+button,
+button:active,
+button:checked {
+  background-image: none;
+  background-color: #1D2B33;
+}
+
+button.suggested-action {
+  background-color: #2a656d;
+}
+
+button.destructive-action {
+  background-color: #cc2222;
+}
+
+menubar > item:hover,
+menubar > item:selected {
+  color: #D3DFE6;
+  background-color: transparent;
+  box-shadow: inset 0 -3px rgba(42, 101, 109, 1.0);
+}
+
+menubar > item:checked {
+  color: #D3DFE6;
+  background-color: transparent;
+  box-shadow: inset 0 -3px rgba(42, 101, 109, 1.0);
+}
+
+menubar > item,
+menuitem,
+modelbutton {
+  -gtk-icon-filter: none;
+}
