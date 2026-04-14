@@ -76,6 +76,7 @@ libfm-modules
 libfuse2t64
 libglib2.0-bin
 libgtk-4-1
+libgtk4-layer-shell0
 libinput-tools
 libidn2-0
 liblockfile-bin
