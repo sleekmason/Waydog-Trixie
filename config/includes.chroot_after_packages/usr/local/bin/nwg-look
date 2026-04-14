@@ -1,0 +1,21 @@
+#!/bin/bash
+# Adwaita doesn't contain a gtk4.0 file, so remove after selection.
+
+/usr/bin/nwg-look &
+
+PID=$!
+
+LAST=""
+
+while kill -0 "$PID" 2>/dev/null; do
+    THEME=$(grep gtk-theme-name ~/.config/gtk-3.0/settings.ini | cut -d= -f2)
+
+    if [[ "$THEME" != "$LAST" ]]; then
+        if [[ "$THEME" == "Adwaita" || "$THEME" == "Adwaita-dark" ]]; then
+            rm -rf ~/.config/gtk-4.0/*
+        fi
+        LAST="$THEME"
+    fi
+
+    sleep 0.2
+done
