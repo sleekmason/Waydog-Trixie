@@ -2,6 +2,17 @@
    ----------------
    use responsibly! */
 /* widget text/foreground color */
+:root {
+  --accent-bg-color: #2a656d;
+  --accent-fg-color: #ffffff;
+
+  --window-bg-color: #1F2F38;
+  --window-fg-color: #D3DFE6;
+
+  --view-bg-color: #17262E;
+  --view-fg-color: #D3DFE6;
+}
+
 @define-color theme_fg_color #D3DFE6;
 /* text color for entries, views and content in general */
 @define-color theme_text_color #D3DFE6;
@@ -847,7 +858,7 @@ tooltip {
   box-shadow: none;
   text-shadow: 0 1px black; }
   tooltip.background {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #1F2D36;
     background-clip: padding-box;
     border: 1px solid rgba(255, 255, 255, 0.1); }
   tooltip * {
@@ -921,7 +932,7 @@ window {
     padding-right: 12px; }
   .titlebar:not(headerbar) button,
   headerbar button {
-    color: #D3DFE6;
+    color: #C4CDD1;
     background-color: transparent;
     border-radius: 7px;
     text-shadow: none;
@@ -932,12 +943,12 @@ window {
     margin-bottom: 5px; }
     .titlebar:not(headerbar) button:hover,
     headerbar button:hover {
-      color: #2a656d;
+      color: #EBF1F5;
       background-color: transparent; }
     .titlebar:not(headerbar) button:active, .titlebar:not(headerbar) button:checked,
     headerbar button:active,
     headerbar button:checked {
-      color: #2a656d;
+      color: #BFC8CC;
       background-color: rgba(42, 101, 109, 0.1);
       border-radius: 7px;
       font-weight: bold; }
@@ -1036,4 +1047,27 @@ menubar > item,
 menuitem,
 modelbutton {
   -gtk-icon-filter: none;
+}
+
+window {
+  background-color: var(--window-bg-color);
+  color: var(--window-fg-color);
+}
+
+tabbar {
+  background-color: var(--window-bg-color);
+}
+
+tabbar tab {
+  background-color: var(--view-bg-color);   /* darker */
+  color: var(--window-fg-color);
+}
+
+tabbar tab:selected {
+  background-color: var(--window-bg-color); /* main color */
+  color: var(--window-fg-color);
+}
+
+tabbar tab:hover {
+  background-color: #253A45;
 }
