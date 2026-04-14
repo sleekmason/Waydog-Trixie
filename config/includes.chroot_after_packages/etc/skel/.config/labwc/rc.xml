@@ -59,6 +59,9 @@
     </font>
   </theme>
 
+  <windowRules>
+    <windowRule identifier="com.mitchellh.ghostty" serverDecoration="no" />
+  </windowRules>
  <!--
     Just as for window-rules, 'identifier' relates to app_id for native Wayland
     windows and WM_CLASS for XWayland clients.
