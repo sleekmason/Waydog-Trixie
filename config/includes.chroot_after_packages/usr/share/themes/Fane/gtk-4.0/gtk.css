@@ -1,7 +1,3 @@
-/* GTK NAMED COLORS
-   ----------------
-   use responsibly! */
-/* widget text/foreground color */
 :root {
   --accent-bg-color: #2a656d;
   --accent-fg-color: #ffffff;
@@ -13,6 +9,10 @@
   --view-fg-color: #D3DFE6;
 }
 
+/* GTK NAMED COLORS
+   ----------------
+   use responsibly! */
+/* widget text/foreground color */
 @define-color theme_fg_color #D3DFE6;
 /* text color for entries, views and content in general */
 @define-color theme_text_color #D3DFE6;
@@ -478,7 +478,7 @@ modelbutton.flat,
   min-height: 26px;
   padding-left: 5px;
   padding-right: 5px;
-  border-radius: 7px;
+  border-radius: 3px;
   outline-offset: -2px;
   background-color: transparent;
   background-image: none;
@@ -562,7 +562,7 @@ spinbutton:not(.vertical), spinbutton.vertical > text, entry {
   padding-left: 8px;
   padding-right: 8px;
   border: 1px solid;
-  border-radius: 7px;
+  border-radius: 3px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   color: #D3DFE6;
   border-color: rgba(19, 30, 37, 0.9);
@@ -643,7 +643,7 @@ menubar,
     menubar > item:hover, menubar > item:selected,
     .menubar > item:hover,
     .menubar > item:selected {
-      box-shadow: inset 0 -3px rgba(42, 101, 109, 1.0); }
+      box-shadow: inset 0 -3px rgba(42, 101, 109, 0.5); }
     menubar > item:disabled,
     .menubar > item:disabled {
       color: #637880;
@@ -673,20 +673,28 @@ notebook > header {
   padding: 1px;
   border-color: rgba(19, 30, 37, 0.9);
   border-width: 0px;
-  background-color: #1F2F38; }
+  background-color: #131E26; }
   notebook > header.top {
     border-bottom-style: solid; }
-    notebook > header.top > tabs > tab:checked, notebook > header.top > tabs > tab:hover {
-      background-color: #1D2B33;
-      box-shadow: none; }
+    notebook > header.top > tabs > tab:checked {
+      background-color: #1F2F38;
+      box-shadow: inset 0 2px #2a656d; }
+    notebook > header.top > tabs > tab:hover:not(:checked) {
+      background-color: #1A2A34; }
   notebook > header tab {
     min-height: 30px;
     min-width: 30px;
     padding: 3px 12px;
+    background-color: #131E26;
     color: #637880;
-    font-weight: bold; }
+    font-weight: bold;
+    border-radius: 3px 3px 0 0; }
     notebook > header tab:checked {
+      background-color: #1F2F38;
       color: #D3DFE6; }
+    notebook > header tab:hover:not(:checked) {
+      background-color: #1A2A34;
+      color: #8FA9B5; }
 notebook > stack:not(:only-child) {
   background-color: #1D2B33; }
 
@@ -707,7 +715,7 @@ popover.background {
     background-color: #1B2830;
     background-clip: padding-box;
     border: 1px solid rgba(19, 30, 37, 0.9);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: none;
     color: #D3DFE6; }
   popover.background > contents {
     padding: 8px;
@@ -738,13 +746,13 @@ progressbar {
 progressbar trough, scale trough, scale fill {
   background-color: rgba(140, 143, 171, 0.14);
   border: none;
-  border-radius: 7px;
+  border-radius: 3px;
   margin: 0; }
 
 progressbar progress, scale highlight {
   border: none;
   background-color: rgba(42, 101, 109, 0.5);
-  border-radius: 7px;
+  border-radius: 3px;
   margin: 0; }
 
 scale {
@@ -796,7 +804,7 @@ scrollbar {
     min-width: 12px;
     min-height: 12px;
     border-style: none;
-    border-radius: 7px;
+    border-radius: 0;
     border-color: transparent;
     background-color: transparent;
     background-image: none;
@@ -858,7 +866,7 @@ tooltip {
   box-shadow: none;
   text-shadow: 0 1px black; }
   tooltip.background {
-    background-color: #1F2D36;
+    background-color: #1A262E;
     background-clip: padding-box;
     border: 1px solid rgba(255, 255, 255, 0.1); }
   tooltip * {
@@ -915,7 +923,7 @@ treeview.view > header > button:active {
 window {
   border-width: 0px; }
   window.csd {
-    box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.75);
     margin: 0px;
     border-radius: 4px 4px 0 0; }
 
@@ -931,7 +939,7 @@ window {
     padding-left: 12px;
     padding-right: 12px; }
   .titlebar:not(headerbar) button,
-  headerbar button {
+headerbar button {
     color: #C4CDD1;
     background-color: transparent;
     border-radius: 7px;
@@ -944,7 +952,12 @@ window {
     .titlebar:not(headerbar) button:hover,
     headerbar button:hover {
       color: #EBF1F5;
-      background-color: transparent; }
+      background-color: #324854; }
+headerbar button.image-button:hover,
+headerbar button.text-button:hover {
+  background-color: rgba(42, 101, 109, 0.7);
+  color: #EBF1F5;
+}
     .titlebar:not(headerbar) button:active, .titlebar:not(headerbar) button:checked,
     headerbar button:active,
     headerbar button:checked {
@@ -956,7 +969,7 @@ window {
     headerbar button.suggested-action {
       background-color: #2a656d;
       color: white;
-      border-radius: 7px; }
+      border-radius: 3px; }
 
 .info, .warning, .question, .error,
 infobar {
@@ -1011,6 +1024,8 @@ treeview.view:selected {
   treeview.view:selected {
     color: #D3DFE6;
     font-weight: normal; }
+
+
 /* Force override libadwaita */
 @define-color accent_bg_color #2a656d;
 @define-color accent_fg_color #ffffff;
@@ -1059,12 +1074,13 @@ tabbar {
 }
 
 tabbar tab {
-  background-color: var(--view-bg-color);   /* darker */
+  background-color: var(--view-bg-color);
+  border-radius: 6px;
   color: var(--window-fg-color);
 }
 
 tabbar tab:selected {
-  background-color: var(--window-bg-color); /* main color */
+  background-color: var(--window-bg-color);
   color: var(--window-fg-color);
 }
 
