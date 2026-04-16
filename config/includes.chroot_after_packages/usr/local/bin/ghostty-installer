@@ -32,26 +32,9 @@ wget https://raw.githubusercontent.com/sleekmason/packages/master/ghostty.zip --
 unzip -q "/tmp/ghostty.zip"
 sudo apt update && sudo apt install -y /tmp/ghostty_1.3.1-1_amd64.deb
 
-if ! test -e "$HOME/.config/ghostty/config.ghostty.bak";then
-if test -e "$HOME/.config/ghostty/config.ghostty"; then
-cp "$HOME/.config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty.bak"
-fi
-fi
-
 mkdir -p "$HOME/.config/ghostty"
 cp -f "/tmp/ghostty/config.ghostty" "$HOME/.config/ghostty"
 
-THEME=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")
-if [ -n "$THEME" ] && [ -d "/usr/share/themes/${THEME}/gtk-4.0" ]; then
-    mkdir -p "$HOME/.config/gtk-4.0"
-    ln -sf "/usr/share/themes/${THEME}/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
-    ln -sf "/usr/share/themes/${THEME}/gtk-4.0/assets" "$HOME/.config/gtk-4.0/assets"
-else
-    echo ""
-    echo " [0;32m GTK4 theme or directory not found - skipping theme link.[0m"
-    echo " [0;32m If Ghostty displays the wrong colors, run gtk-settings[0m"
-    echo " [0;32m (nwg-look)and reselect your theme.[0m"
-fi
 echo ""
 echo " [0;32m--------------------------------------------------------------------"
 echo ""
@@ -63,6 +46,11 @@ echo " All Finished!
  echo ""
  echo " [0;33mSwitch ghostty to the default terminal emulator with:[0m"
  echo " [0;34msudo update-alternatives --config x-terminal-emulator[0m"
+ echo ""
+ echo " [0;32mTo add a new right-click action for Ghostty in Thunar:[0m"
+ echo " [0;32mGo to Edit -> Configure custom actions -> 'Plus symbol[0m"
+ echo " [0;34mFor the Command, use: ghostty --working-directory=\"%f\"[0m"
+ echo " [0;34mand check 'Directories**' under Appearance Conditions.[0m"
  echo ""
  echo " [0;32mYou should find a new menu entry for Ghostty in the System section."
 echo "" 
