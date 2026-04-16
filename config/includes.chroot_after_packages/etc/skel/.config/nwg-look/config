@@ -3,5 +3,5 @@
  "export-gtkrc-20": false,
  "export-index-theme": false,
  "export-xsettingsd": false,
- "export-gtk4-symlinks": true
+ "export-gtk4-symlinks": false
 }
