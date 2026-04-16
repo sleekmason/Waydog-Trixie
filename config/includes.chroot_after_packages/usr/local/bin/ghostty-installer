@@ -5,6 +5,7 @@ read -p "   [0;33mGhostty Installer[0m
    fast, feature-rich, and native. While there are many excellent
    terminal emulators available, they all force you to choose between
    speed, features, or native UIs. Ghostty provides all three.
+   [0;34mhttps://github.com/ghostty-org/ghostty[0m
    
    For best overall use, consider switching your default terminal to
    Ghostty after installation.
@@ -12,16 +13,17 @@ read -p "   [0;33mGhostty Installer[0m
    [0;33mSwitch ghostty to the default terminal emulator with:[0m
    [0;34msudo update-alternatives --config x-terminal-emulator[0m
    
-   To add or change options: ~/.config/ghostty/ghostty-config.
+   [0;32mTo add a new right-click action for Ghostty in Thunar:[0m
+   [0;32mGo to Edit -> Configure custom actions -> 'Plus symbol[0m
+   [0;33mFor the Command, use: ghostty --working-directory=\"%f\"[0m
+   [0;33mand check 'Directories**' under Appearance Conditions.[0m
    
-   [0;34mhttps://github.com/ghostty-org/ghostty[0m
-   
+   Ghostty configuration: ~/.config/ghostty/ghostty-config   
    [0;32m------------------------------------------------------------------
    
    Please press enter to install Ghostty.
    
-   ------------------------------------------------------------------[0m
-      
+   ------------------------------------------------------------------[0m       
    Or close this terminal window to quit the install." ;
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
