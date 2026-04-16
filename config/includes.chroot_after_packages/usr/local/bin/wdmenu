@@ -1,8 +1,6 @@
 #!/bin/bash
 # wdmenu  Made for waydog by sleekmason 15 Jan 2026
-
 set -euo pipefail
-
 showhelp() {
     echo "wdmenu - Wrapper for wmenu. Shows only those programs with"
     echo "  .desktop files, and any scripts in ~/bin or ~/.local/bin."
@@ -13,36 +11,27 @@ showhelp() {
     echo "Options:"
     echo "  --all      Show all programs available on the system."
 }
-
 if [ "${1-}" = "--help" ] || [ "${1-}" = "-h" ]; then
     showhelp
     exit 0
 fi
-
 CONFIG="$HOME/.config/wmenu/config"
 [ -f "$CONFIG" ] && source "$CONFIG"
-
 [ "${1-}" = "--all" ] && { shift; exec wmenu-run "${WMENU_OPTS[@]}" "$@"; }
-
 declare -A MENU_MAP
-
 DESKTOP_DIRS=(
     "/usr/share/applications"
     "$HOME/.local/share/applications"
     "/var/lib/snapd/desktop/applications"
 )
-
 for d in "${DESKTOP_DIRS[@]}"; do
     [[ -d "$d" ]] || continue
-
     for f in "$d"/*.desktop; do
         [[ -f "$f" ]] || continue
-
         NAME=""
         EXEC=""
         TERMINAL="false"
         in_desktop_entry=false
-
         while IFS='=' read -r key value; do
             case "$key" in
                 "[Desktop Entry]")
@@ -53,63 +42,50 @@ for d in "${DESKTOP_DIRS[@]}"; do
                     break
                     ;;
             esac
-
             [[ "$in_desktop_entry" == true ]] || continue
-
             case "$key" in
                 Name) NAME="$value" ;;
                 Exec) EXEC="$value" ;;
                 Terminal) TERMINAL="$value" ;;
             esac
         done < "$f"
-
         [[ -z "$NAME" || -z "$EXEC" ]] && continue
-
         EXEC="${EXEC//%[UuFfiCk]/}"
-
         EXEC="${EXEC#"${EXEC%%[![:space:]]*}"}"
         EXEC="${EXEC%"${EXEC##*[![:space:]]}"}"
         EXEC="${EXEC//  / }"
-
+        # Strip absolute path from the executable portion only, leaving
+        # arguments intact. This allows /usr/local/bin to take priority
+        # over hardcoded /usr/bin paths in .desktop files.
+        EXEC=$(echo "$EXEC" | sed 's|^/[^ ]*/\([^ ]*\)|\1|')
         [[ "$TERMINAL" == true ]] && EXEC="x-terminal-emulator -e \"$EXEC\""
-
         MENU_MAP["$NAME"]="$EXEC"
     done
 done
-
 for dir in "$HOME/bin" "$HOME/.local/bin"; do
     [[ -d "$dir" ]] || continue
-
     for exe in "$dir"/*; do
         [[ -x "$exe" ]] || continue
-
         name=$(basename "$exe")
         [[ -n "${MENU_MAP[$name]+x}" ]] && continue
-
         needs_terminal=false
-
         if file --mime-type "$exe" | grep -q 'text/'; then
             first_lines="$(head -n 4 "$exe" 2>/dev/null || true)"
         else
             first_lines=""
         fi
-
         if grep -qE '(read|select)' <<<"$first_lines"; then
             needs_terminal=true
         fi
-
         if [[ "$needs_terminal" == true ]]; then
             EXEC="x-terminal-emulator -e \"$exe\""
         else
             EXEC="$exe"
         fi
-
         MENU_MAP["$name"]="$EXEC"
     done
 done
-
 selected=$(printf '%s\n' "${!MENU_MAP[@]}" | sort -f | wmenu "${WMENU_OPTS[@]}")
-
 if [ -n "$selected" ]; then
     cmd="${MENU_MAP["$selected"]}"
     bash -c "$cmd" &
