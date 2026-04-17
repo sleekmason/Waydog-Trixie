@@ -9,14 +9,15 @@ read -p "   [0;33mGhostty Installer[0m
    
    For best overall use, consider switching your default terminal to
    Ghostty after installation.
+
+   [0;34m'sudo update-alternatives --config x-terminal-emulator'[0m
    
-   [0;33mSwitch ghostty to the default terminal emulator with:[0m
-   [0;34msudo update-alternatives --config x-terminal-emulator[0m
+   [0;32mTo add or replace the 'Open Terminal Here' 'right-click' action in[0m
+   [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or 
+   Edit[0m [0;32m(directly below) if wanting to change the existing entry.[0m
    
-   [0;32mTo add a new right-click action for Ghostty in Thunar:[0m
-   [0;32mGo to Edit -> Configure custom actions -> 'Plus symbol[0m
-   [0;33mFor the Command, use: ghostty --working-directory=\"%f\"[0m
-   [0;33mand check 'Directories**' under Appearance Conditions.[0m
+   [0;32mUse this command:[0m [0;34mghostty --working-directory=\"%f\"[0m
+   [0;32mUnder Appearance Conditions, check the box for[0m [0;34m'Directories**'[0m
    
    Ghostty configuration: ~/.config/ghostty/ghostty-config   
    [0;32m------------------------------------------------------------------
@@ -38,25 +39,28 @@ mkdir -p "$HOME/.config/ghostty"
 cp -f "/tmp/ghostty/config.ghostty" "$HOME/.config/ghostty"
 
 echo ""
-echo " [0;32m--------------------------------------------------------------------"
+echo " [0;32m-------------------------------------------------------------------"
 echo ""
 echo " All Finished!
+
  For best overall use, consider switching your default terminal to
  Ghostty.
 
- To add or change various options: ~/.config/ghostty/ghostty-config.[0m"
+ To add or change various options: [0m[0;34m~/.config/ghostty/ghostty-config.[0m"
  echo ""
- echo " [0;33mSwitch ghostty to the default terminal emulator with:[0m"
+ echo " [0;32mSwitch ghostty to the default terminal emulator:[0m"
  echo " [0;34msudo update-alternatives --config x-terminal-emulator[0m"
  echo ""
- echo " [0;32mTo add a new right-click action for Ghostty in Thunar:[0m"
- echo " [0;32mGo to Edit -> Configure custom actions -> 'Plus symbol[0m"
- echo " [0;34mFor the Command, use: ghostty --working-directory=\"%f\"[0m"
- echo " [0;34mand check 'Directories**' under Appearance Conditions.[0m"
+   echo " [0;32mTo add or replace the 'Open Terminal Here' 'right-click' action in[0m"
+   echo " [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or" 
+   echo " Edit[0m [0;32m(directly below) if wanting to change the existing entry.[0m"
+   echo ""
+   echo " [0;32mUse this command:[0m [0;34mghostty --working-directory=\"%f\"[0m"
+   echo " [0;32mUnder Appearance Conditions, check the box for[0m [0;34m'Directories**'[0m"
  echo ""
- echo " [0;32mYou should find a new menu entry for Ghostty in the System section."
+ echo " [0;32mYou will find a new menu entry for Ghostty in the System section."
 echo "" 
-echo " --------------------------------------------------------------------[0m"
+echo " -------------------------------------------------------------------[0m"
 echo ""
 else
 echo ""
