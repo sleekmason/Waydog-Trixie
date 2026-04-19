@@ -39,7 +39,7 @@ if command -v yad >/dev/null; then
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
       --width=428 --height=406 --center \
       --escape-ok --undecorated --skip-taskbar \
-      --button=" Begin"!/usr/share/icons/gnome/22x22/places/debian-swirl.png!:"x-terminal-emulator --title='Customization' -e 'sudo xentry -i'" \
+      --button=" Begin"!/usr/share/icons/gnome/22x22/places/debian-swirl.png!:"x-terminal-emulator -T 'Customization' -e 'sudo xentry -i'" \
       --button=" Exit!application-exit:0" \
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome.txt \

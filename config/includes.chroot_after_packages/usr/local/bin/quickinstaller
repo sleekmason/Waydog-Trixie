@@ -1,4 +1,4 @@
 #!/bin/bash
 # Frontend for quick installers
 
-x-terminal-emulator --title="Quick Installers" -e bash -c "gksudo bash -c /usr/local/bin/quickinstaller-backend 2>/dev/null; echo $'\n\nPress any key to close.'; read -srn1"
+x-terminal-emulator -T "Quick Installers" -e bash -c "gksudo bash -c /usr/local/bin/quickinstaller-backend 2>/dev/null; echo $'\n\nPress any key to close.'; read -srn1"
