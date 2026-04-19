@@ -17,7 +17,7 @@ read -p "   [0;33mGhostty Installer[0m
    [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or
    Edit[0m [0;32m(directly below) if wanting to change the existing entry.[0m
    
-   [0;32mUse this command:[0m [0;34mghostty --working-directory=\"%f\"[0m
+   [0;32mUse this command:[0m [0;34mghostty --working-directory=%f[0m
    [0;32mUnder Appearance Conditions, check the box for[0m [0;34m'Directories**'[0m
    [0;32m------------------------------------------------------------------
    
@@ -52,7 +52,7 @@ echo " All Finished!
    echo " [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or" 
    echo " Edit[0m [0;32m(directly below) if wanting to change the existing entry.[0m"
    echo ""
-   echo " [0;32mUse this command:[0m [0;34mghostty --working-directory=\"%f\"[0m"
+   echo " [0;32mUse this command:[0m [0;34mghostty --working-directory=%f[0m"
    echo " [0;32mUnder Appearance Conditions, check the box for[0m [0;34m'Directories**'[0m"
  echo ""
  echo " [0;32mYou will find a new menu entry for Ghostty in the System section."
