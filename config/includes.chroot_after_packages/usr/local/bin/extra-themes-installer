@@ -2,11 +2,9 @@
 read -p "   [0;33mExtra Themes Installer.[0m
 
    This script will download and install a selection of themes to
-   include gtk-3.0, Openbox(labwc), and Geany.
+   include GTK, Openbox(labwc), and Geany.
    
-   There are currently 16 themes total. All are very lightweight.
-   Approx. 8.5MB total size installed.  These can and will change
-   over time.
+   13 themes currently, though this may change in the future.
    
       
    [0;33m--------------------------------------------------------------
