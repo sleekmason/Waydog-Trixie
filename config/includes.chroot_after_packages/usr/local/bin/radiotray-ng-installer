@@ -16,7 +16,7 @@ read -p "   [0;33mRadiotray-NG Installer[0m
    if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 cd /tmp || exit &&
-rm /tmp/radiotray*
+rm -f /tmp/radiotray*
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/radiotray-ng_0.2.10.1~ld_amd64.deb --show-progress &&
 sudo apt update && sudo apt install -y /tmp/radiotray-ng_0.2.10.1~ld_amd64.deb
 

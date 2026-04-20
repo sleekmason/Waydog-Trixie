@@ -81,7 +81,8 @@
         },
         {
             "type": "terminalfont",
-            "key": " Terminal Font"
+            "key": " Terminal Font",
+            "format": "{name:13}"
         },
 /* Terminal theme option 1 */         
         {
