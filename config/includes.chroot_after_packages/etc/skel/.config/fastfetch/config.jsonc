@@ -82,7 +82,7 @@
         {
             "type": "terminalfont",
             "key": " Terminal Font",
-            "format": "{name:13}"
+            "format": "{name:14}"
         },
 /* Terminal theme option 1 */         
         {
