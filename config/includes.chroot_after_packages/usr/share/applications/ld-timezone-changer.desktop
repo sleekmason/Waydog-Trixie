@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Timezone Changer
+Exec=x-terminal-emulator -T 'Timezone Changer' -e bash -c "sudo timezone-changer; bash"
+StartupNotify=false
+Terminal=false
+Icon=applications-internet
+Categories=Settings;
