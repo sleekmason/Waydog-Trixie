@@ -2,8 +2,16 @@
 # Updater script for waydog.
 
 # Terminal order preference.
-TERMINALS=("xfce4-terminal" "foot" "wezterm" "alacritty" "gnome-terminal" "kitty" "x-terminal-emulator")
-
+TERMINALS=(
+  "x-terminal-emulator"
+  "ghostty"
+  "xfce4-terminal"
+  "foot"
+  "wezterm"
+  "alacritty"
+  "gnome-terminal"
+  "kitty"
+)
 # Find first available terminal.
 TERM_CMD=""
 for term in "${TERMINALS[@]}"; do
@@ -31,9 +39,15 @@ run_in_terminal() {
         xfce4-terminal)
             "$TERM_CMD" --hold --command "bash '$SCRIPT'"
             ;;
-        gnome-terminal|x-terminal-emulator)
+        x-terminal-emulator)
+            "$TERM_CMD" -T "Apt Upgrade" -e bash "$SCRIPT"
+            ;;
+        gnome-terminal)
             "$TERM_CMD" -- bash "$SCRIPT"
             ;;
+        ghostty)
+            "$TERM_CMD" -e bash "$SCRIPT"
+            ;;   
         kitty)
             "$TERM_CMD" bash "$SCRIPT"
             ;;

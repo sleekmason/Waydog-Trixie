@@ -2,7 +2,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=x-terminal-emulator -T 'Printer Installer' -e bash -c "printer-installer"
+Exec=printer-installer
 Name=Printer Installer
 Icon=printer
 Terminal=true

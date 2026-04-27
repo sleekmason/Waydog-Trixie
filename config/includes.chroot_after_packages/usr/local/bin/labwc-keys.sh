@@ -19,16 +19,19 @@ declare -A FRIENDLY_NAMES=(
   ["wlr-gamma-tool -r -a"]="Gamma - Reset to default"
   ["wlr-gamma-gui"]="Gamma Control"
 )
+
 CONFIG="$HOME/.config/labwc/rc.xml"
 TERMINALS=(
+  "x-terminal-emulator"
+  "ghostty"
   "xfce4-terminal"
   "foot"
   "wezterm"
   "alacritty"
   "gnome-terminal"
   "kitty"
-  "x-terminal-emulator"
 )
+
 TERM_CMD=""
 for term in "${TERMINALS[@]}"; do
   if command -v "$term" >/dev/null 2>&1; then
@@ -40,15 +43,19 @@ if [[ -z "$TERM_CMD" ]]; then
   notify-send "labwc-keys" "No terminal emulator found"
   exit 1
 fi
+
 run_in_terminal() {
   SCRIPT="$1"
   case "$TERM_CMD" in
-    xfce4-terminal)   "$TERM_CMD" -x "$SCRIPT" ;;
-    gnome-terminal|x-terminal-emulator) "$TERM_CMD" -- "$SCRIPT" ;;
+    ghostty) "$TERM_CMD" --title="Labwc Keybinds" -e "$SCRIPT" ;;
+    xfce4-terminal) "$TERM_CMD" -x "$SCRIPT" ;;
+    x-terminal-emulator) "$TERM_CMD" -T "Labwc Keybinds" -e "$SCRIPT" ;;
+    gnome-terminal) "$TERM_CMD" -- "$SCRIPT" ;;
     kitty|alacritty|wezterm|foot) "$TERM_CMD" -e "$SCRIPT" ;;
     *) "$TERM_CMD" -e "$SCRIPT" ;;
   esac
 }
+
 TMP_NAMES=$(mktemp)
 for key in "${!FRIENDLY_NAMES[@]}"; do
   printf '%s\t%s\n' "$key" "${FRIENDLY_NAMES[$key]}"

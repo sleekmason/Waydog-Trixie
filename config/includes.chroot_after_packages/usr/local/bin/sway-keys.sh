@@ -4,8 +4,16 @@
 
 CONFIG="$HOME/.config/sway/config"
 
-# Terminal preference
-TERMINALS=( "xfce4-terminal" "foot" "wezterm" "alacritty" "gnome-terminal" "kitty" "x-terminal-emulator" )
+TERMINALS=(
+  "x-terminal-emulator"
+  "ghostty"
+  "xfce4-terminal"
+  "foot"
+  "wezterm"
+  "alacritty"
+  "gnome-terminal"
+  "kitty"
+)
 
 TERM_CMD=""
 for term in "${TERMINALS[@]}"; do
@@ -23,8 +31,10 @@ fi
 run_in_terminal() {
     SCRIPT="$1"
     case "$TERM_CMD" in
+        ghostty) "$TERM_CMD" --title="Sway Keybinds" -e "$SCRIPT" ;;
         xfce4-terminal) "$TERM_CMD" -x "$SCRIPT" ;;
-        gnome-terminal|x-terminal-emulator) "$TERM_CMD" -- "$SCRIPT" ;;
+        x-terminal-emulator) "$TERM_CMD" -T "Sway Keybinds" -e "$SCRIPT" ;;
+        gnome-terminal) "$TERM_CMD" -- "$SCRIPT" ;;
         kitty|alacritty|wezterm|foot) "$TERM_CMD" -e "$SCRIPT" ;;
     esac
 }
