@@ -1,0 +1,52 @@
+[window]
+title = "Alacritty"
+dimensions = { columns = 80, lines = 26 }
+opacity = 0.98
+padding = { x = 8, y = 8 }
+
+[font]
+normal = { family = "JetBrains Mono", style = "Light" }
+bold   = { family = "JetBrains Mono", style = "Bold" }
+italic = { family = "JetBrains Mono", style = "Light Italic" }
+size = 10.0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 750
+unfocused_hollow = true
+
+[colors.primary]
+background = "#121D23"
+foreground = "#D4E0E6"
+
+[colors.selection]
+text       = "#000000"
+background = "#E05E5E"
+
+[colors.normal]
+black   = "#141414"
+red     = "#d1524d"
+green   = "#00965f"
+yellow  = "#be952d"
+blue    = "#64bbd1"
+magenta = "#b35d9f"
+cyan    = "#369b9e"
+white   = "#9eaab0"
+ 
+[colors.bright]
+black   = "#95a6ad"
+red     = "#ff5f5f"
+green   = "#47cf85"
+yellow  = "#e2d773"
+blue    = "#78d5eb"
+magenta = "#ef73db"
+cyan    = "#54d1d1"
+white   = "#e0e7e9"
+
