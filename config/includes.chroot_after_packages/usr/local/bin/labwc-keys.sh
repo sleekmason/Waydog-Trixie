@@ -1,9 +1,7 @@
 #!/bin/bash
 # Display labwc keybindings
 # Created for Waydog by sleekmason 17 Dec 2025
-
 #Use friendy names to change the desired output.
-
 declare -A FRIENDLY_NAMES=(
   ["wl-find-cursor"]="Highlight Cursor"
   ["labwc-keys.sh"]="Keybinds Labwc"
@@ -19,47 +17,34 @@ declare -A FRIENDLY_NAMES=(
   ["wlr-gamma-tool -r -a"]="Gamma - Reset to default"
   ["wlr-gamma-gui"]="Gamma Control"
 )
-
 CONFIG="$HOME/.config/labwc/rc.xml"
-TERMINALS=(
-  "x-terminal-emulator"
-  "ghostty"
-  "xfce4-terminal"
-  "foot"
-  "wezterm"
-  "alacritty"
-  "gnome-terminal"
-  "kitty"
-)
 
-TERM_CMD=""
-for term in "${TERMINALS[@]}"; do
-  if command -v "$term" >/dev/null 2>&1; then
-    TERM_CMD="$term"
-    break
-  fi
-done
-if [[ -z "$TERM_CMD" ]]; then
-  notify-send "labwc-keys" "No terminal emulator found"
-  exit 1
+if command -v x-terminal-emulator >/dev/null 2>&1; then
+    REAL_TERM=$(basename "$(readlink -f "$(command -v x-terminal-emulator)")")
+else
+    notify-send "labwc-keys" "No terminal emulator found"
+    exit 1
 fi
 
 run_in_terminal() {
-  SCRIPT="$1"
-  case "$TERM_CMD" in
-    ghostty) "$TERM_CMD" --title="Labwc Keybinds" -e "$SCRIPT" ;;
-    xfce4-terminal) "$TERM_CMD" -x "$SCRIPT" ;;
-    x-terminal-emulator) "$TERM_CMD" -T "Labwc Keybinds" -e "$SCRIPT" ;;
-    gnome-terminal) "$TERM_CMD" -- "$SCRIPT" ;;
-    kitty|alacritty|wezterm|foot) "$TERM_CMD" -e "$SCRIPT" ;;
-    *) "$TERM_CMD" -e "$SCRIPT" ;;
-  esac
+    SCRIPT="$1"
+    case "$REAL_TERM" in
+        ghostty)        x-terminal-emulator --title="Labwc Keybinds" -e "$SCRIPT" ;;
+        xfce4-terminal) x-terminal-emulator -T "Labwc Keybinds" -x "$SCRIPT" ;;
+        alacritty)      x-terminal-emulator --title "Labwc Keybinds" -e "$SCRIPT" ;;
+        gnome-terminal) x-terminal-emulator -T "Labwc Keybinds" -- "$SCRIPT" ;;
+        foot)           x-terminal-emulator --title="Labwc Keybinds" -e "$SCRIPT" ;;
+        kitty)          x-terminal-emulator --title="Labwc Keybinds" -e "$SCRIPT" ;;
+        wezterm)        x-terminal-emulator start --title "Labwc Keybinds" "$SCRIPT" ;;
+        *)              x-terminal-emulator -e "$SCRIPT" ;;
+    esac
 }
 
 TMP_NAMES=$(mktemp)
 for key in "${!FRIENDLY_NAMES[@]}"; do
   printf '%s\t%s\n' "$key" "${FRIENDLY_NAMES[$key]}"
 done > "$TMP_NAMES"
+
 TMP_SCRIPT=$(mktemp)
 cat >"$TMP_SCRIPT" <<EOF
 #!/bin/bash
@@ -93,7 +78,7 @@ awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
 /<\/keybind>/ {
   CKEY="\033[33m"; CACT="\033[32m"; CDET="\033[34m"; CR="\033[0m"
   # Extract label from terminal -e calls (POSIX-compatible)
-  if (detail ~ /^(xfce4-terminal|foot|wezterm|alacritty|gnome-terminal|kitty|x-terminal-emulator).*-e /) {
+  if (detail ~ /^x-terminal-emulator.*-e /) {
     tmp=detail; sub(/^[^ ]+ .*-e /,"",tmp); sub(/ .*/,"",tmp)
     detail=tmp
   }

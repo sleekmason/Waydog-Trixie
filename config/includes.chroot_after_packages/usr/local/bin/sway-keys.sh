@@ -4,38 +4,24 @@
 
 CONFIG="$HOME/.config/sway/config"
 
-TERMINALS=(
-  "x-terminal-emulator"
-  "ghostty"
-  "xfce4-terminal"
-  "foot"
-  "wezterm"
-  "alacritty"
-  "gnome-terminal"
-  "kitty"
-)
-
-TERM_CMD=""
-for term in "${TERMINALS[@]}"; do
-    if command -v "$term" >/dev/null 2>&1; then
-        TERM_CMD="$term"
-        break
-    fi
-done
-
-if [[ -z "$TERM_CMD" ]]; then
+if command -v x-terminal-emulator >/dev/null 2>&1; then
+    REAL_TERM=$(basename "$(readlink -f "$(command -v x-terminal-emulator)")")
+else
     notify-send "sway-keys" "No terminal emulator found"
     exit 1
 fi
 
 run_in_terminal() {
     SCRIPT="$1"
-    case "$TERM_CMD" in
-        ghostty) "$TERM_CMD" --title="Sway Keybinds" -e "$SCRIPT" ;;
-        xfce4-terminal) "$TERM_CMD" -x "$SCRIPT" ;;
-        x-terminal-emulator) "$TERM_CMD" -T "Sway Keybinds" -e "$SCRIPT" ;;
-        gnome-terminal) "$TERM_CMD" -- "$SCRIPT" ;;
-        kitty|alacritty|wezterm|foot) "$TERM_CMD" -e "$SCRIPT" ;;
+    case "$REAL_TERM" in
+        ghostty)        x-terminal-emulator --title="Sway Keybinds" -e "$SCRIPT" ;;
+        xfce4-terminal) x-terminal-emulator -T "Sway Keybinds" -x "$SCRIPT" ;;
+        alacritty)      x-terminal-emulator --title "Sway Keybinds" -e "$SCRIPT" ;;
+        gnome-terminal) x-terminal-emulator -T "Sway Keybinds" -- "$SCRIPT" ;;
+        foot)           x-terminal-emulator --title="Sway Keybinds" -e "$SCRIPT" ;;
+        kitty)          x-terminal-emulator --title="Sway Keybinds" -e "$SCRIPT" ;;
+        wezterm)        x-terminal-emulator start --title "Sway Keybinds" "$SCRIPT" ;;
+        *)              x-terminal-emulator -e "$SCRIPT" ;;
     esac
 }
 

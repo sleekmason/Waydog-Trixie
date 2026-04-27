@@ -1,27 +1,9 @@
 #!/bin/bash
 # Updater script for waydog.
 
-# Terminal order preference.
-TERMINALS=(
-  "x-terminal-emulator"
-  "ghostty"
-  "xfce4-terminal"
-  "foot"
-  "wezterm"
-  "alacritty"
-  "gnome-terminal"
-  "kitty"
-)
-# Find first available terminal.
-TERM_CMD=""
-for term in "${TERMINALS[@]}"; do
-    if command -v "$term" >/dev/null 2>&1; then
-        TERM_CMD="$term"
-        break
-    fi
-done
-
-if [[ -z "$TERM_CMD" ]]; then
+if command -v x-terminal-emulator >/dev/null 2>&1; then
+    REAL_TERM=$(basename "$(readlink -f "$(command -v x-terminal-emulator)")")
+else
     echo "No terminal emulator found." >&2
     exit 1
 fi
@@ -35,46 +17,29 @@ fi
 
 run_in_terminal() {
     SCRIPT="$1"
-    case "$TERM_CMD" in
-        xfce4-terminal)
-            "$TERM_CMD" --hold --command "bash '$SCRIPT'"
-            ;;
-        x-terminal-emulator)
-            "$TERM_CMD" -T "Apt Upgrade" -e bash "$SCRIPT"
-            ;;
-        gnome-terminal)
-            "$TERM_CMD" -- bash "$SCRIPT"
-            ;;
-        ghostty)
-            "$TERM_CMD" -e bash "$SCRIPT"
-            ;;   
-        kitty)
-            "$TERM_CMD" bash "$SCRIPT"
-            ;;
-        alacritty|wezterm|foot)
-            "$TERM_CMD" -e bash "$SCRIPT"
-            ;;
-        *)
-            "$TERM_CMD" -e bash "$SCRIPT"
-            ;;
+    case "$REAL_TERM" in
+        ghostty)        x-terminal-emulator --title="Apt Upgrade" -e bash "$SCRIPT" ;;
+        xfce4-terminal) x-terminal-emulator --hold --command "bash '$SCRIPT'" ;;
+        alacritty)      x-terminal-emulator --title "Apt Upgrade" -e bash "$SCRIPT" ;;
+        gnome-terminal) x-terminal-emulator -T "Apt Upgrade" -- bash "$SCRIPT" ;;
+        foot)           x-terminal-emulator --title="Apt Upgrade" -e bash "$SCRIPT" ;;
+        kitty)          x-terminal-emulator --title="Apt Upgrade" -e bash "$SCRIPT" ;;
+        wezterm)        x-terminal-emulator start --title "Apt Upgrade" bash "$SCRIPT" ;;
+        *)              x-terminal-emulator -e bash "$SCRIPT" ;;
     esac
 }
 
 # Count upgrades. (excluding held packages)
 num_upgrades=$(( $(apt list --upgradable 2>/dev/null | wc -l) - $(apt-mark showhold | wc -l) - 1 ))
-
 if (( num_upgrades == 0 )); then
     notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" \
         -t 10000 --urgency low "No upgrades available."
     exit 0
 fi
-
 notify-send -i "/usr/share/icons/gnome/48x48/categories/applications-other.png" \
     -t 10000 --urgency low "$num_upgrades Upgrade(s) currently available."
-
 # Temporary script to run in terminal.
 TMP_SCRIPT=$(mktemp)
-
 {
     echo 'echo ""'
     echo 'echo "[0;33mAvailable upgrades:[0m"'
@@ -96,15 +61,12 @@ TMP_SCRIPT=$(mktemp)
     echo 'echo ""'
     echo 'echo "[0;33mPlease enter your password to upgrade, or exit to quit.[0m"'
     echo 'echo ""'
-
     if [[ "$UPGRADE_CMD" == "nala" ]]; then
         echo 'sudo nala upgrade'
     else
         echo 'sudo apt upgrade'
     fi
-
     echo 'bash'
 } > "$TMP_SCRIPT"
-
 chmod +x "$TMP_SCRIPT"
 run_in_terminal "$TMP_SCRIPT"

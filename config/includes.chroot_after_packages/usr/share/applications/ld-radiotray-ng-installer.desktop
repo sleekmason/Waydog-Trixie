@@ -2,11 +2,11 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=x-terminal-emulator -T 'Radiotray-ng Installer' -e bash -c "radiotray-ng-installer"
-Name=Radiotray-ng Installer
+Exec=x-terminal-emulator -T 'Radiotray-NG Installer' -e bash -c "radiotray-ng-installer"
+Name=Radiotray-NG Installer
 Icon=audio-headphones
 Terminal=true
-GenericName=Radiotray-ng Installer
+GenericName=Radiotray-NG Installer
 Categories=ld-misc-tools;
 Keywords=installer;
-Comment=Radiotray-ng Installer
+Comment=Radiotray-NG Installer
