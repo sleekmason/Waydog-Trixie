@@ -18,6 +18,38 @@ fi
 CONFIG="$HOME/.config/wmenu/config"
 [ -f "$CONFIG" ] && source "$CONFIG"
 [ "${1-}" = "--all" ] && { shift; exec wmenu-run "${WMENU_OPTS[@]}" "$@"; }
+
+TERM_CMD=""
+if command -v x-terminal-emulator >/dev/null 2>&1; then
+    REAL_TERM=$(readlink -f "$(command -v x-terminal-emulator)")
+    TERM_CMD=$(basename "$REAL_TERM")
+else
+    TERMINALS=(
+      "ghostty"
+      "xfce4-terminal"
+      "foot"
+      "wezterm"
+      "alacritty"
+      "gnome-terminal"
+      "kitty"
+    )
+    for term in "${TERMINALS[@]}"; do
+        if command -v "$term" >/dev/null 2>&1; then
+            TERM_CMD="$term"
+            break
+        fi
+    done
+fi
+[[ -z "$TERM_CMD" ]] && TERM_CMD="ghostty"
+
+case "$TERM_CMD" in
+    ghostty)                      TERM_EXEC=("$TERM_CMD" -e) ;;
+    xfce4-terminal)               TERM_EXEC=("$TERM_CMD" -x) ;;
+    gnome-terminal)               TERM_EXEC=("$TERM_CMD" --) ;;
+    kitty|alacritty|wezterm|foot) TERM_EXEC=("$TERM_CMD" -e) ;;
+    *)                            TERM_EXEC=("$TERM_CMD" -e) ;;
+esac
+
 declare -A MENU_MAP
 DESKTOP_DIRS=(
     "/usr/share/applications"
@@ -58,7 +90,12 @@ for d in "${DESKTOP_DIRS[@]}"; do
         # arguments intact. This allows /usr/local/bin to take priority
         # over hardcoded /usr/bin paths in .desktop files.
         EXEC=$(echo "$EXEC" | sed 's|^/[^ ]*/\([^ ]*\)|\1|')
-        [[ "$TERMINAL" == true ]] && EXEC="x-terminal-emulator -e \"$EXEC\""
+        # Only wrap in terminal if not already a terminal call
+        if [[ "$TERMINAL" == true ]]; then
+            if ! echo "$EXEC" | grep -qE '^(ghostty|xfce4-terminal|foot|wezterm|alacritty|gnome-terminal|kitty|x-terminal-emulator)'; then
+                EXEC="${TERM_EXEC[*]} $EXEC"
+            fi
+        fi
         MENU_MAP["$NAME"]="$EXEC"
     done
 done
@@ -78,7 +115,7 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
             needs_terminal=true
         fi
         if [[ "$needs_terminal" == true ]]; then
-            EXEC="x-terminal-emulator -e \"$exe\""
+            EXEC="${TERM_EXEC[*]} $exe"
         else
             EXEC="$exe"
         fi
