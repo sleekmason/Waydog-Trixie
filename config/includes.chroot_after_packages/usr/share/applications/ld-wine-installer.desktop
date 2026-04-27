@@ -2,7 +2,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=wine-installer
+Exec=x-terminal-emulator -T 'Wine Installer' -e bash -c "wine-installer; echo $'Press any key to close'; read -srn1"
 Name=Wine Installer
 Icon=applications-system
 Terminal=true

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Snap Store Installer
-Exec=snap-installer
+Exec=x-terminal-emulator -T 'Snap Store Installer' -e bash -c "snap-installer"
 StartupNotify=false
 Terminal=true
 Icon=system-software-install

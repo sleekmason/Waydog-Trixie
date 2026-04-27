@@ -2,7 +2,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Exec=sddm-installer
+Exec=x-terminal-emulator -T 'SDDM Dispay Manager Installer' -e bash -c "sddm-installer; echo $'Press any key to close'; read -srn1"
 Name=SDDM Login Installer
 Icon=applications-system
 Terminal=true
