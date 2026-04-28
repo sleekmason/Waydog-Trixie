@@ -102,6 +102,7 @@ media-types
 mtools
 nano
 ncdu
+ncurses-term
 net-tools
 network-manager-gnome
 network-manager-l10n
