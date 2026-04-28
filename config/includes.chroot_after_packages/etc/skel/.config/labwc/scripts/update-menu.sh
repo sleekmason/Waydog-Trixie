@@ -38,7 +38,7 @@ printf '%b\n' '<?xml version="1.0" encoding="UTF-8"?>
 # Add static items
 printf '%b\n' '
   <item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
-    <action name="Execute" command="xfce4-terminal" />
+    <action name="Execute" command="x-terminal-emulator" />
   </item>
   <item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png">
     <action name="Execute" command="firefox-esr" />
@@ -55,6 +55,6 @@ printf '%b\n' '
     <action name="Reconfigure" />
   </item>
   <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
-    <action name="Exit" />
+    <action name="Execute" command="ld-logout" />
   </item>
 </openbox_menu>'
