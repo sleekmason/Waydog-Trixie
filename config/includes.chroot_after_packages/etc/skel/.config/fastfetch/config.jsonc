@@ -75,10 +75,10 @@
             "key": " Shell"
         },
         {
-            "type": "terminal",
+            "type": "command",
             "key": " Terminal",
-            "format": "{pretty-name} {version}"
-        },
+            "text": "bash -c 'basename $(readlink -f $(command -v x-terminal-emulator)) | sed s/.wrapper//'"
+},
         {
             "type": "terminalfont",
             "key": " Terminal Font",
