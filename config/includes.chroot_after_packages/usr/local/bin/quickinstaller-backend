@@ -66,6 +66,12 @@ if : >/dev/tcp/8.8.8.8/53; then
         " Gnome Boxes|apt-get install --install-recommends gnome-boxes dnsmasq -y"
         " Qemu VM|apt-get install --install-recommends qemu-system-x86 virt-manager -y"
         " Xscreensaver|apt-get install --install-recommends xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra -y"
+        " Alacritty Terminal|apt-get install alacritty -y"
+        " Foot Terminal|apt-get install foot foot-themes -y"
+        " Guake Terminal|apt-get install guake -y"
+        " Kitty Terminal|apt-get install kitty kitty-doc -y"
+        " Lxterminal|apt-get install lxterminal -y"   
+        " Terminator Terminal|apt-get install terminator  gir1.2-keybinder-3.0  gir1.2-notify-0.7 -y"
     )
 
     REAL_USER=${SUDO_USER:-$(logname 2>/dev/null || true)}
