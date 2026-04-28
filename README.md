@@ -62,15 +62,16 @@ requirements. Ample video memory is a must.
 - Waypicker color picker for Wayland use. Copies selection to clipboard.
 - Kernel remover for those that build their own, or just to clean up.
 - Waypaper wallpaper setter for both wallpaper and SDDM login screen.
-- Random BG changer using 'Super+v'.
 - Ld-hotcorners providing four hotcorners for program use. 'Super + z'
+- Gamma Control with presets for gamma, temperature, brightness, and contrast.
+- Random BG changer using 'Super+v'.
 - Random BG Daemon from the Toggles menu, or using 'Super + Shift + r'.
 - Grimshot screenshot. Adds screenshots directly to ~/Pictures.
 - Fuzzel menu. (dmenu equivalent) (Super + F5)
 - Mako provides the system notifications.
 - Sway has gaps!
-- Optional Waydog installers for a few different items. VirtualBox,
-  kernels, extra themes, Conky, Dropbox, and more.
+- Optional Waydog installers for a few different items. VirtualBox, Ghostty,
+  Radiotray-NG, kernels, extra themes, Conky, Dropbox, and more.
 
 There are only a few more programs to get you started. Firefox, Geany,
 Thunar, and Xfce4-terminal are standard for the main programs.  It is
