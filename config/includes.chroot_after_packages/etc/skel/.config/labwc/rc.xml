@@ -292,7 +292,12 @@
     <action name="Execute">
         <execute>wlr-gamma-gui</execute>
     </action>
-    </keybind>            
+    </keybind>
+    <keybind key="W-c">
+    <action name="Execute">
+        <execute>~/.config/conky/scripts/conky-chooser</execute>
+    </action>
+    </keybind>               
     <keybind key="Print">
       <action name="Execute">
         <execute>grimshot save area</execute>
