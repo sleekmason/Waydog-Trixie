@@ -27,7 +27,7 @@ echo ""
 cd /tmp || exit
 rm -f "wayfire.zip"
 rm -fr "wayfire"
-wget https://raw.githubusercontent.com/sleekmason/packages/master/wayfire.zip --show-progress -q || exit
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/wayfire.zip --show-progress -q || exit
 unzip -q "/tmp/wayfire.zip"
 
 sudo apt update

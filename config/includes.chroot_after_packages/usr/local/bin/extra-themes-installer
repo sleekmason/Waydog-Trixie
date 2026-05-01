@@ -23,7 +23,7 @@ sudo rm -fr "/tmp/themechooser"
 sudo rm -fr "/tmp/themechooser-waydog.zip"
 
 # Grab the theme files
-wget https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-waydog.zip --show-progress -q
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/themechooser-waydog.zip --show-progress -q
 unzip -q "/tmp/themechooser-waydog.zip"
 
 sudo cp -af /tmp/themechooser/themes/* "/usr/share/themes"

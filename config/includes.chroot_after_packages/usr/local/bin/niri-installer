@@ -23,7 +23,7 @@ echo ""
 cd /tmp || exit
 rm -f "niri-trixie.zip"
 rm -fr "niri"
-wget https://raw.githubusercontent.com/sleekmason/packages/master/niri-trixie.zip --show-progress -q || exit
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/niri-trixie.zip --show-progress -q || exit
 unzip -q "/tmp/niri-trixie.zip"
 cd /tmp/niri
 sudo apt update

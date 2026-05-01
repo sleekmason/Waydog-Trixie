@@ -30,7 +30,7 @@ echo ""
 cd /tmp || exit
 rm -rf /tmp/ghostty*
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ghostty_1.3.1-1_amd64.deb --show-progress -q
-wget https://raw.githubusercontent.com/sleekmason/packages/master/ghostty.zip --show-progress -q
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ghostty.zip --show-progress -q
 unzip -q "/tmp/ghostty.zip"
 sudo apt update && sudo apt install -y /tmp/ghostty_1.3.1-1_amd64.deb
 
