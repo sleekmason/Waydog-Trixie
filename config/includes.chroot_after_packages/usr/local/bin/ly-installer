@@ -1,39 +1,36 @@
 #!/bin/bash
-# ly-installer for waydog.
-echo
+set -euo pipefail
 read -p "   [0;33mLy Display Manager Installer[0m
 
-   This script will install Ly, replacing SDDM on your system.
-   
-   [0;34mImportant![0m This script builds Ly directly on your computer.
-   Total download = 85.1MB.
-   
-   If this script doesn't work due to upstream changes, please
-   let me know immediately and I'll adjust it for further use. 
+   This script will install the Ly display manager, A lightweight
+   TUI (ncurses-like) display manager for Linux and BSD.
    
    For more information: 
    
    [0;34mhttps://codeberg.org/fairyglade/ly[0m
    
-   [0;32m-----------------------------------------------------------
+   [0;32m--------------------------------------------------------------
    
    Please press enter to install the Ly display manager.
    
-   -----------------------------------------------------------[0m
+   --------------------------------------------------------------[0m
       
    Or, close this terminal window to quit the install." ;
-## Check for internet connection
    if : >/dev/tcp/8.8.8.8/53; then
-echo ""
-cd /tmp || exit &&
-rm -fr "/tmp/ly.zip"
-rm -fr "/tmp/ly-installer"
 
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/ly.zip --show-progress -q &&
-unzip -q /tmp/ly.zip &&
+DEB="/tmp/ly_1.3.2_amd64.deb"
+
+wget --prefer-family=IPv4 -q --show-progress \
+    https://raw.githubusercontent.com/sleekmason/packages/master/ly_1.3.2_amd64.deb \
+    -O "$DEB"
+
+sudo apt-get update
+sudo apt-get install -y "$DEB" || exit 1
+sudo systemctl enable --force ly@tty1.service
+sudo ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service
 echo ""
-"/tmp/ly-installer"
-echo ""
+echo "[0;33mInstallation complete.[0m"
+echo "[0;32mReboot your system now to use ly.[0m"
 else
 echo ""
  echo "   [0;31m-------------------------------------------------------"
@@ -45,4 +42,3 @@ echo ""
 fi
 echo ""
 read -n1 -p " Press any key to quit this dialog ... "
-
