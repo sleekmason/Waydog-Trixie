@@ -22,7 +22,7 @@ cd /tmp || exit
 rm -fr /tmp/sddm /tmp/sddm.zip
 
 SDDM_INSTALLED=false
-if [ -d "/usr/share/sddm/themes" ]; then
+if command -v sddm &>/dev/null; then
     SDDM_INSTALLED=true
 fi
 
