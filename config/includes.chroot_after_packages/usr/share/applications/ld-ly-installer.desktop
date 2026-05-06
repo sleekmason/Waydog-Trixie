@@ -8,5 +8,5 @@ Icon=applications-system
 Terminal=true
 GenericName=Ly display manager installer
 Categories=ld-misc-tools;
-Keywords=wallpapers;
+Keywords=display;
 Comment=Ly display manager installer

@@ -27,7 +27,7 @@ wget --prefer-family=IPv4 -q --show-progress \
 sudo apt-get update
 sudo apt-get install -y "$DEB" || exit 1
 sudo systemctl enable --force ly@tty1.service
-sudo ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service
+sudo ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service || true 
 echo ""
 echo " [0;32m-----------------------------------------[0m"
 echo ""
