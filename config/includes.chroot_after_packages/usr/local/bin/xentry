@@ -115,6 +115,22 @@ _add_backports() {
         run_it
 }
 
+_add_ly() {
+      _msg="Install, and switch to the Ly Display Manager from SDDM?
+ (Switch between them from the Waydog Installers later)"
+      do_it() {
+                wget --prefer-family=IPv4 -q --show-progress \
+                    https://raw.githubusercontent.com/sleekmason/packages/master/ly_1.3.2-waydog_amd64.deb \
+                    -O /tmp/ly_1.3.2-waydog_amd64.deb
+                apt-get update && apt-get install -y /tmp/ly_1.3.2-waydog_amd64.deb
+                systemctl enable --force ly@tty1.service
+                ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service ;}
+
+        see_it
+        no_see
+        run_it
+}
+
 _osprober() {
       _msg="Enable osprober to find other distro entries in grub?"
       do_it() { sed -i 's/^#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/g' "/etc/default/grub" &&
@@ -133,14 +149,24 @@ _firmware() {
         run_it
 }
 
+_reboot() {
+      _msg="Reboot? (after display manager installation)"
+      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+		  if ! grep hypervisor /proc/cpuinfo ; then
+          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
+          fi
+          reboot ;}
+        see_it
+        no_see
+        run_it
+}
+
 _end_message() {
 	echo " [0;32m--------------------------------------------------------------[0m"
     echo ""
-    echo -e "  \e[0;33mThat's all for now!\e[0m"
+    echo -e "  \e[0;34mThank you for choosing Waydog:)\e[0m"
     echo ""
-    echo -e "  \e[0;33mThank you for choosing Waydog:)\e[0m"
-    echo ""
-    echo -e "  \e[0;33mType 'welcome' in a terminal to run this script at any time.\e[0m"
+    echo -e "  \e[0;34mType 'welcome' in a terminal to run this script at any time.\e[0m"
 }
 
 if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
@@ -148,14 +174,18 @@ if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
     _apt_location
     _remove_packages
     _add_backports
+    _add_ly
     _osprober
     _firmware
+    _reboot
 else
     _update
     _apt_location
     _remove_packages
     _add_backports
+    _add_ly
     _firmware
+    _reboot
 fi
 
 sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
