@@ -6,6 +6,6 @@ Profiles=profile-zero;
 
 [X-Action-Profile profile-zero]
 MimeTypes=image/*;
-Exec=feh --bg-scale %f
+Exec=set-background %f
 Name=Default profile
 SelectionCount==1
