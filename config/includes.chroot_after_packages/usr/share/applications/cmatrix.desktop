@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=2.0
+Name=CMatrix
+Type=Application
+Comment=simulates the display from "The Matrix"
+Comment[zh_CN]=模拟《黑客帝国》的显示
+Terminal=true
+Exec=cmatrix
+Icon=cmatrix
+Categories=ConsoleOnly;Utility;
+Keywords=matrix;screensaver;
+NoDisplay=true
