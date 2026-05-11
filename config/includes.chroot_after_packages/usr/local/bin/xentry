@@ -151,10 +151,10 @@ _firmware() {
 
 _reboot() {
       _msg="Reboot? (after display manager installation)"
-      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
-		  if ! grep hypervisor /proc/cpuinfo ; then
-          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/openbox/autostart
-          fi
+      do_it() { sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
+          if ! grep hypervisor /proc/cpuinfo ; then
+          sed -i '/vmrestore.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
+      fi
           reboot ;}
         see_it
         no_see
