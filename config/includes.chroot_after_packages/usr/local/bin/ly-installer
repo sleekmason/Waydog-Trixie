@@ -4,10 +4,16 @@ read -p "   [0;33mLy Display Manager Installer[0m
 
    This script will install the Ly display manager, A lightweight
    TUI (ncurses-like) display manager for Linux and BSD.
-   
-   For more information: 
-   
    [0;34mhttps://codeberg.org/fairyglade/ly[0m
+   
+   [0;33mNote* Ly should work without issue, but knowing how to recover
+   in case of errors is always a good idea.[0m 
+   
+   If needing to recover from any login issues, switch out of the
+   tty occupied by Ly with: [0;34mCtrl + Alt + F2[0m or other if required.
+   
+   Then log in with your username and password, and type [0;34mLabwc[0m to
+   login. Switch back to SDDM from the Waydog installers. 
    
    [0;32m--------------------------------------------------------------
    
@@ -27,7 +33,7 @@ wget --prefer-family=IPv4 -q --show-progress \
 sudo apt-get update
 sudo apt-get install -y "$DEB" || exit 1
 sudo systemctl enable --force ly@tty1.service
-sudo ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service || true 
+sudo ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service || true
 echo ""
 echo " [0;32m-----------------------------------------[0m"
 echo ""
