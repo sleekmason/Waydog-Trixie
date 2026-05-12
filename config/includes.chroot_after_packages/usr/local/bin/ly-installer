@@ -7,13 +7,15 @@ read -p "   [0;33mLy Display Manager Installer[0m
    [0;34mhttps://codeberg.org/fairyglade/ly[0m
    
    [0;33mNote* Ly should work without issue, but knowing how to recover
-   in case of errors is always a good idea.[0m 
+   in case of errors is always a good idea.[0m
    
    If needing to recover from any login issues, switch out of the
    tty occupied by Ly with: [0;34mCtrl + Alt + F2[0m or other if required.
    
    Then log in with your username and password, and type [0;34mLabwc[0m to
-   login. Switch back to SDDM from the Waydog installers. 
+   login. Switch back to SDDM from the Waydog installers.
+   
+   [0;33mMake sure to switch to Labwc, or your current WM after reboot.[0m
    
    [0;32m--------------------------------------------------------------
    
