@@ -174,18 +174,18 @@ if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
     _apt_location
     _remove_packages
     _add_backports
-    _add_ly
+#    _add_ly
     _osprober
     _firmware
-    _reboot
+#    _reboot
 else
     _update
     _apt_location
     _remove_packages
     _add_backports
-    _add_ly
+#    _add_ly
     _firmware
-    _reboot
+#    _reboot
 fi
 
 sed -i '/welcome-backend.sh.*/d' /home/"${SUDO_USER}"/.config/labwc/autostart
