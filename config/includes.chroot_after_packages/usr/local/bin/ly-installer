@@ -6,7 +6,7 @@ read -p "   [0;33mLy Display Manager Installer[0m
    TUI (ncurses-like) display manager for Linux and BSD.
    [0;34mhttps://codeberg.org/fairyglade/ly[0m
    
-   [0;31mAt Ly login, make sure to switch to Labwc or your current WM.[0m
+   [0;31mFor Ly login, make sure to switch to Labwc or your current WM.[0m
    
    [0;33mNote* Ly should work without issue, but knowing how to recover
    in case of errors is always a good idea.[0m
