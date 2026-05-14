@@ -224,14 +224,14 @@
           <execute>labwc-tweaks-gtk</execute>
         </action>
       </item>
-      <item label="Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
-        <action name="Execute">
-          <execute>waypaper-sddm</execute>
-        </action>
-      </item>
       <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
         <action name="Execute">
           <execute>grimshot save area</execute>
+        </action>
+      </item>
+      <item label="SDDM Login BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-sddm</execute>
         </action>
       </item>
       <item label="Synaptic" icon="/usr/share/icons/hicolor/scalable/apps/synaptic.svg">
