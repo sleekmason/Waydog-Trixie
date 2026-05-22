@@ -66,6 +66,15 @@ LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
 sed -i "s|^# *xkb_layout = .*|xkb_layout = $LAYOUT|" "$HOME/.config/wayfire.ini"
 
+# Set wallpaper
+WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
+WFSHELL_CONFIG="$HOME/.config/wf-shell.ini"
+
+WALLPAPER=$(grep '^wallpaper' "$WAYPAPER_CONFIG" | cut -d '=' -f2 | xargs)
+WALLPAPER="${WALLPAPER:-/usr/share/backgrounds/wallpapers/Fane.jpg}"
+
+sed -i "s|^image = .*|image = $WALLPAPER|" "$WFSHELL_CONFIG"
+
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""

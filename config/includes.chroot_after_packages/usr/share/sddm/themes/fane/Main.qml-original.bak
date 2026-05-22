@@ -75,14 +75,11 @@ Rectangle {
 
         Clock {
             id: clock
-            anchors.topMargin: 15
-            anchors.rightMargin: 25
+            anchors.margins: 5
             anchors.top: parent.top; anchors.right: parent.right
 
             color: "#B7BBBD"
-            timeFont.family: "Cantarell"
-            timeFont.pixelSize: 84
-            dateFont.pixelSize: 28
+            timeFont.family: "Oxygen"
         }
 
         Image {

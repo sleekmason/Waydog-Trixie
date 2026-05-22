@@ -1,23 +1,16 @@
-
-                       WELCOME!
-                        
+              
     Welcome to Waydog Trixie, a version that uses
-    Wayland instead of X11 for the display.
-    
-    Waydog has Labwc for the window manager along
-    with Waybar for the panel as default. Sway WM
-    is a separate option at login. Try 'Super+F1'
-    to see a list of current keybinds.
-    
-    Please visit the forum for more information:
-    https://sourceforge.net/p/lilidog/discussion/
+    Wayland instead of X11. To report any issues:
 
-    The live environment passwords are 'user' for
-    username, and 'live' for root.
+    https://sourceforge.net/p/lilidog/discussion/
     
-    To install Waydog, reboot the iso and select:
-    'Start installer'.
+    See the current keybinds' list with Super+F1.
+
+    For the live environment:
+    username = 'user', and root password = 'live'
+    
+    To install Waydog, reboot the ISO and choose:
+    'Start installer'
 
     After installation, use the welcome script to
-    see other initial setup options. You can also
-    type 'welcome' in a terminal for use later.
+    see other initial setup options.

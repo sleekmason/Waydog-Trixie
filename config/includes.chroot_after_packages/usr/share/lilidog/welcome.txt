@@ -1,16 +1,13 @@
-                   
-                       WELCOME!
-                        
-    Thank you for installing Waydog. Use Super+F1
-    For a list of current keybinds.  For any bugs
-    or other issues, please post here:
+
+    Thank you for installing Waydog. For any bugs
+    or other issues, please post in the forum:
     
     https://sourceforge.net/p/lilidog/discussion/
     
-    There is much to explore in Waydog. check out
-    The Utilities Menu for the programs most used
-    in the build. Also, see the Waydog Installers
-    for more nifty options. 
+    See the current keybinds' list with Super+F1.
+    
+    Look in the Utilities Menu and the installers
+    for the programs most used in the build.
 
     If you would like to customize your system by
     answering some questions now, press the Begin
