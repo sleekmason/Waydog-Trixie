@@ -4,9 +4,9 @@
     
     https://sourceforge.net/p/lilidog/discussion/
     
-    See the current keybinds' list with Super+F1.
+    Show the current keybinds list with Super+F1.
     
-    Look in the Utilities Menu and the installers
+    Look in the Utilities menu and the installers
     for the programs most used in the build.
 
     If you would like to customize your system by
