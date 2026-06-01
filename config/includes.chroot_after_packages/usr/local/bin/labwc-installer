@@ -1,0 +1,61 @@
+#!/bin/bash
+read -p "   [0;33mLabwc Compositor Installer[0m
+
+   Labwc comes pre-installed on Waydog, but if removed, here is the
+   way to reinstall. If it's already installed, ~/.config/labwc.bak
+   will be created, and ~/.config/labwc will be overwritten.
+   
+   Labwc is a wlroots-based window-stacking compositor for Wayland,
+   inspired by Openbox.
+ 
+   [0;34mhttps://labwc.github.io/[0m
+   
+   [0;32m----------------------------------------------------------------
+
+   Please press enter to install the Labwc Compositor.
+
+   ----------------------------------------------------------------[0m
+
+   Or, close this terminal window to quit the install." ;
+## Make sure of internet connection.
+if : >/dev/tcp/8.8.8.8/53; then
+
+echo ""
+cd /tmp || exit
+rm -f "labwc-0.9.7.zip"
+rm -fr "labwc"
+rm -f labwc-*_amd64.deb
+rm -f libwlroots-*_amd64.deb
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/libwlroots-0.19_0.19.3-wd1_amd64.deb --show-progress -q || exit
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/labwc_0.9.7-wd1_amd64.deb --show-progress -q || exit
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/labwc-0.9.7.zip --show-progress -q || exit
+unzip -q "labwc-0.9.7.zip"
+sudo apt update
+sudo apt install -y /tmp/libwlroots-0.19_0.19.3-wd1_amd64.deb || exit
+sudo apt install -y /tmp/labwc_0.9.7-wd1_amd64.deb || exit
+
+if [ -e "$HOME/.config/labwc" ]; then
+   cp -fr "$HOME/.config/labwc" "$HOME/.config/labwc.bak"
+   rm -fr "$HOME/.config/labwc"
+   cp -fr "/tmp/labwc" "$HOME/.config"
+fi
+
+## Explain items.
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+echo "   [0;33mAll Finished![0m"
+echo ""
+echo "   [0;32mYou should find a new login entry for Labwc.[0m"
+echo ""
+echo "   [0;32m--------------------------------------------------------[0m"
+echo ""
+else
+echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+ echo ""
+ echo "   [0;33mNo Internet connection. Please connect and try again.[0m"
+ echo ""
+ echo "   [0;31m-----------------------------------------------------[0m"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "
