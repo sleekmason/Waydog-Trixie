@@ -12,7 +12,7 @@ read -p "   [0;33mLabwc Compositor Installer[0m
    
    [0;32m----------------------------------------------------------------
 
-   Please press enter to install the Labwc Compositor.
+   Please press enter to install the Labwc compositor.
 
    ----------------------------------------------------------------[0m
 
@@ -24,7 +24,7 @@ echo ""
 cd /tmp || exit
 rm -f "labwc-0.9.7.zip"
 rm -fr "labwc"
-rm -f labwc-*_amd64.deb
+rm -f labwc_*_amd64.deb
 rm -f libwlroots-*_amd64.deb
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/libwlroots-0.19_0.19.3-wd1_amd64.deb --show-progress -q || exit
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/labwc_0.9.7-wd1_amd64.deb --show-progress -q || exit
@@ -38,9 +38,10 @@ if [ -e "$HOME/.config/labwc" ]; then
    cp -fr "$HOME/.config/labwc" "$HOME/.config/labwc.bak"
    rm -fr "$HOME/.config/labwc"
    cp -fr "/tmp/labwc" "$HOME/.config"
+else
+   cp -fr "/tmp/labwc" "$HOME/.config"
 fi
 
-## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
 echo "   [0;33mAll Finished![0m"
