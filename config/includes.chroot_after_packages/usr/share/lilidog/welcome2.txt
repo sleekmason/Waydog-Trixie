@@ -1,13 +1,12 @@
               
     Welcome to Waydog Trixie, a version that uses
     Wayland instead of X11. To report any issues:
-
-    https://sourceforge.net/p/lilidog/discussion/
     
-    Show the current keybinds list with Super+F1.
+    https://sourceforge.net/p/lilidog/discussion/
 
-    For the live environment:
-    username = 'user', and root password = 'live'
+    Use 'Super + F1' to see the current keybinds.
+    Live environment passwords: Username = 'user'
+    Root password = 'live'
     
     To install Waydog, reboot the ISO and choose:
     'Start installer'

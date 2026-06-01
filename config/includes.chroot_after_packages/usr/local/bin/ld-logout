@@ -15,6 +15,9 @@ elif [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
 
 elif pgrep -x "sway"; then
     var3="swaymsg exit"
+    
+elif pgrep -x "mango"; then
+    var3="mmsg -q"    
 
 elif pgrep -x "niri"; then
     if pgrep -x "sddm"; then

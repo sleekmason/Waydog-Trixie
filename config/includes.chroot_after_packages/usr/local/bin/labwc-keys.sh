@@ -55,8 +55,8 @@ BLUE="\033[34m"
 GREEN="\033[32m"
 RESET="\033[0m"
 echo -e " \${BLUE}LABWC KEYBINDS   Legend: W=Super  S=Shift  C=Ctrl\${RESET}"
-echo -e " \${GREEN}----------------------------------------------------------\${RESET}"
-printf " \033[33m%-15s\033[0m  \033[32m%-15s\033[0m  \033[34m%s\033[0m\n" "Alt+Tab" "WindowSwitcher" "Switch Windows"
+echo -e " \${GREEN}--------------------------------------------------------------\${RESET}"
+printf " \033[33m%-22s\033[0m  \033[32m%-16s\033[0m  \033[34m%s\033[0m\n" "Alt+Tab" "WindowSwitcher" "Switch Windows"
 awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
 /<keybind key=/ {
   key=\$0; gsub(/.*key="/,"",key); gsub(/".*/,"",key)
@@ -98,11 +98,11 @@ awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
     else if (key ~ /Right$/) detail="Desktop Right"
   }
   if (detail!="")
-    printf " %s%-15s%s  %s%-15s%s  %s%s%s\n", CKEY,key,CR, CACT,action,CR, CDET,detail,CR
+    printf " %s%-22s%s  %s%-16s%s  %s%s%s\n", CKEY,key,CR, CACT,action,CR, CDET,detail,CR
   else
-    printf " %s%-15s%s  %s%-15s%s\n", CKEY,key,CR, CACT,action,CR
+    printf " %s%-22s%s  %s%-16s%s\n", CKEY,key,CR, CACT,action,CR
 }' "\$NAMES_FILE" "\$CONFIG" | sort
-echo -e " \${GREEN}----------------------------------------------------------\${RESET}"
+echo -e " \${GREEN}--------------------------------------------------------------\${RESET}"
 echo
 read -n1 -s -r -p "Press any key to close..."
 echo
