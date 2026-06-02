@@ -274,7 +274,9 @@
     <menu id="DynamicMenu" label="All Programs " icon="/usr/share/icons/gnome/24x24/categories/applications-other.png" execute="$HOME/.config/labwc/scripts/update-menu.sh"/>
     <separator/>
     <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
-      <action name="Reconfigure"/>
+      <action name="Execute">
+        <command>sh -c 'labwc --reconfigure &amp;&amp; notify-send Labwc Reconfigured'</command>
+      </action>
     </item>
     <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
       <action name="Execute">

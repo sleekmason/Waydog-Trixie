@@ -310,7 +310,7 @@
     <!-- Compositor -->
     <keybind key="W-r">
       <action name="Execute">
-        <command>labwc --reconfigure</command>
+        <command>sh -c 'labwc --reconfigure &amp;&amp; notify-send Labwc Reconfigured'</command>
       </action>
     </keybind>
     <keybind key="W-Space">
@@ -456,6 +456,8 @@
         <command>brightnessctl set 10%-</command>
       </action>
     </keybind>
+    
+    <!-- Snap to edge -->
     <keybind key="W-Left">
       <action name="SnapToEdge" direction="left" combine="yes"/>
     </keybind>
