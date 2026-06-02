@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Sway Compositor Installer' -e bash -c "sway-installer"
+Name=Sway WM Installer
+Icon=preferences-desktop-display
+Terminal=true
+GenericName=Sway Compositor Installer
+Categories=ld-misc-tools;
+Keywords=installer;
+Comment=Sway Compositor Installer

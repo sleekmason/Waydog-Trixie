@@ -1,0 +1,15 @@
+#!/bin/bash
+
+yad --title "WM Installers" --escape-ok \
+--form --center --width=240 --height=388 --borders=6 \
+--text="\nWindow Manager Installers\n" --text-align=center \
+--window-icon=applications-utilities \
+    --form \
+    --field="Labwc":FBTN "x-terminal-emulator -T 'Labwc Compositor Installer' -e bash -c "labwc-installer"" \
+    --field="Mango":FBTN "x-terminal-emulator -T 'Mango Compositor Installer' -e bash -c "mango-installer"" \
+    --field="Niri":FBTN "x-terminal-emulator -T 'Niri Compositor Installer' -e bash -c "niri-installer"" \
+    --field="Sway":FBTN "x-terminal-emulator -T 'Sway Compositor Installer' -e bash -c "sway-installer"" \
+    --field="Wayfire":FBTN "x-terminal-emulator -T 'Wayfire Compositor Installer' -e bash -c "wayfire-installer"" \
+    --field="":LBL "" \
+    --field="":LBL "" \
+    --field="   All Installers!/usr/share/icons/gnome/22x22/categories/applications-other.png":FBTN "bash -c 'waydog-installers'"
