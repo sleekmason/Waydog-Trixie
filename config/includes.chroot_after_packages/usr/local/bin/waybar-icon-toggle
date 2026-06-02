@@ -6,6 +6,7 @@ CONFIG=(
     "$HOME/.config/waybar/config.jsonc"
     "$HOME/.config/waybar/sway/config.jsonc"
     "$HOME/.config/waybar/niri/config.jsonc"
+    "$HOME/.config/waybar/mango/config.jsonc"
 )
 
 SIZES_INI="$HOME/.config/waybar/module_defaults.ini"
