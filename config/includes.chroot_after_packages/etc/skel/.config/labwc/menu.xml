@@ -142,7 +142,7 @@
       </item>
       <item label="Menu Icons On/Off" icon="/usr/share/icons/gnome/24x24/actions/insert-object.png">
         <action name="Execute">
-          <execute>sh -c 'menu-icons-toggle &amp;&amp; notify-send "Labwc menu icons updated"'</execute>
+          <execute>menu-icons-toggle</execute>
         </action>
       </item>      
       <item label="OSProber" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">

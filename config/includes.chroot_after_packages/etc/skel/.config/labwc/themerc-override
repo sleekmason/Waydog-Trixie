@@ -49,7 +49,7 @@ menu.width.max: 240
 menu.border.width: 1
 menu.border.color: #0F3A45
 menu.items.bg.color: #1E2F38DE
-menu.items.text.color: #CED6D9
+menu.items.text.color: #CAD1D4
 menu.items.active.bg.color: #2a656d
 menu.items.active.text.color: #E6ECF0
 menu.items.padding.x: 10
