@@ -28,7 +28,7 @@ installers=(
   "Snap Store|Snap Installer|snap-installer"
   "Virtualbox|Virtualbox Installer|virtualbox-installer-oracle"
   "VSCodium|VSCodium Installer|vscodium-installer"
-  "Waydog WMs|Window Manager Installers|window-manager-installers"
+  "Waydog WMs|Window Manager Installers|window-manager-installers|direct"
   "Wine|Wine Installer|wine-installer"
   "Xanmod Kernel|Xanmod Kernel Installer|xanmod-kernel-installer"
 )
@@ -36,11 +36,18 @@ installers=(
 fields=()
 
 for item in "${installers[@]}"; do
-  IFS='|' read -r label title cmd <<< "$item"
-  fields+=(
-    --field="$label":FBTN \
-    "$term -T \"$title\" -e bash -c \"$cmd\" &"
-  )
+  IFS='|' read -r label title cmd direct <<< "$item"
+  if [[ "$direct" == "direct" ]]; then
+    fields+=(
+      --field="$label":FBTN \
+      "$cmd &"
+    )
+  else
+    fields+=(
+      --field="$label":FBTN \
+      "$term -T \"$title\" -e bash -c \"$cmd\" &"
+    )
+  fi
 done
 
 yad --title="Waydog Installers" \
