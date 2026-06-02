@@ -36,6 +36,7 @@ else
 fi
 mkdir -p "$HOME/.config/waybar/mango"
 cp -f "/tmp/mango/config.jsonc" "$HOME/.config/waybar/mango"
+sudo cp -f "/tmp/mango/mango-keys.sh" "/usr/local/bin"
 
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
