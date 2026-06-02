@@ -97,9 +97,9 @@
   <windowSwitcher preview="yes" outlines="yes" unshade="yes">
     <osd show="yes" style="classic" output="all" thumbnailLabelFormat="%T"/>
     <fields>
-      <field content="workspace" width="22%"/>
-      <field content="trimmed_identifier" width="20%"/>
-      <field content="title" width="50%"/>
+      <field content="icon" width="5%"/>
+      <field content="desktop_entry_name" width="30%"/>
+      <field content="title" width="65%"/>
     </fields>
   </windowSwitcher>
   <!--
@@ -456,6 +456,18 @@
         <command>brightnessctl set 10%-</command>
       </action>
     </keybind>
+    <keybind key="W-Left">
+      <action name="SnapToEdge" direction="left" combine="yes"/>
+    </keybind>
+    <keybind key="W-Right">
+      <action name="SnapToEdge" direction="right" combine="yes"/>
+    </keybind>
+    <keybind key="W-Up">
+      <action name="SnapToEdge" direction="up" combine="yes"/>
+    </keybind>
+    <keybind key="W-Down">
+      <action name="SnapToEdge" direction="down" combine="yes"/>
+    </keybind>
 
     <!-- SnapToRegion via W-Numpad -->
     <!--
@@ -505,18 +517,18 @@
     <doubleClickTime>500</doubleClickTime>
 
     <context name="Frame">
-      <mousebind button="A-Left" action="Press">
+      <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="A-Left" action="Drag">
+      <mousebind button="W-Left" action="Drag">
         <action name="Move"/>
       </mousebind>
-      <mousebind button="A-Right" action="Press">
+      <mousebind button="W-Right" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
       </mousebind>
-      <mousebind button="A-Right" action="Drag">
+      <mousebind button="W-Right" action="Drag">
         <action name="Resize"/>
       </mousebind>
     </context>
@@ -789,6 +801,7 @@
       <!-- <tapButtonMap>lrm</tapButtonMap> -->
       <!-- <tapAndDrag>yes</tapAndDrag> -->
       <!-- <dragLock>yes</dragLock> -->
+      <!-- <threeFingerDrag>yes</threeFingerDrag> -->
       <!-- <middleEmulation>no</middleEmulation> -->
       <!-- <disableWhileTyping>yes</disableWhileTyping> -->
       <!-- <clickMethod>buttonAreas</clickMethod> -->
