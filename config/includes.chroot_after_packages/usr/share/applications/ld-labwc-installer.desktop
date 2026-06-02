@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Labwc Compositor Installer' -e bash -c "labwc-installer"
+Name=Labwc WM Installer
+Icon=preferences-desktop-display
+Terminal=true
+GenericName=Labwc Compositor Installer
+Categories=ld-misc-tools;
+Keywords=installer;
+Comment=Labwc Compositor Installer
