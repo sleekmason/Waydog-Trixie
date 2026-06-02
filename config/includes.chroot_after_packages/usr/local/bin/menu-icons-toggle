@@ -1,0 +1,10 @@
+#!/bin/bash
+CONFIG="$HOME/.config/labwc/rc.xml"
+
+if grep -q '<showIcons>yes</showIcons>' "$CONFIG"; then
+    sed -i 's|<showIcons>yes</showIcons>|<showIcons>no</showIcons>|' "$CONFIG"
+else
+    sed -i 's|<showIcons>no</showIcons>|<showIcons>yes</showIcons>|' "$CONFIG"
+fi
+
+labwc --reconfigure
