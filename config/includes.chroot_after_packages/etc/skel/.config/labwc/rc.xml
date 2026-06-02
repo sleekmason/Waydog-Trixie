@@ -357,7 +357,7 @@
     </keybind>
     <keybind key="W-F5">
       <action name="Execute">
-        <command>fuzzel</command>
+        <command>fuzzel --config ~/.config/fuzzel/labwc/fuzzel.ini</command>
       </action>
     </keybind>
 

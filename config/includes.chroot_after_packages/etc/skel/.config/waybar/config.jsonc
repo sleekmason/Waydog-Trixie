@@ -76,7 +76,7 @@
         "format": "",
         "tooltip": true,
         "tooltip-format": "Fuzzel Menu",
-        "on-click": "fuzzel"
+        "on-click": "fuzzel --config ~/.config/fuzzel/labwc/fuzzel.ini"
     },
     
     "custom/launcher2": {
