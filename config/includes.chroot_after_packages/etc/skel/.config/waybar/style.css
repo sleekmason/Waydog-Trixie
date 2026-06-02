@@ -213,6 +213,20 @@ tooltip {
 }
 
 /* --------------------------------------------
+   Tag adjustments for mango if installed
+   -------------------------------------------- */
+#tags {
+    padding: 0;
+    margin: 0;
+}
+
+#tags button {
+    padding: 0 3px;
+    min-height: 0;
+    font-size: 11px;
+}
+
+/* --------------------------------------------
    Launcher 1
    -------------------------------------------- */
 #custom-launcher1 {

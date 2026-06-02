@@ -105,6 +105,7 @@ toggle_separator() {
 declare -A DEFAULT_SIZES=(
     ["#workspaces button"]=11
     ["#waybar"]=13
+    ["#tags button"]=12
     ["#clock"]=12
     ["#cpu"]=12
     ["#memory"]=12
@@ -127,6 +128,7 @@ declare -A DEFAULT_SIZES=(
 INI_ENTRIES=(
     "waybar|#waybar|Main bar fontsize"
     "workspaces button|#workspaces button|Workspaces"
+    "tags button|#tags button|Tags"
     "clock|#clock|Clock"
     "cpu|#cpu|CPU"
     "memory|#memory|Memory"
