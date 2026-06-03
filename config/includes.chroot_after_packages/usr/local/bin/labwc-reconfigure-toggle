@@ -1,0 +1,3 @@
+#!/bin/bash
+labwc --reconfigure
+notify-send "Labwc" "Reconfigured"

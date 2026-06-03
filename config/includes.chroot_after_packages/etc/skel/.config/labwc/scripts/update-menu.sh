@@ -52,7 +52,7 @@ labwc-menu-generator -b -I -i "${ignore_files}"
 printf '%b\n' '
   <separator />
   <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
-    <action name="Reconfigure" />
+    <action name="Execute" command="labwc-reconfigure-toggle" />
   </item>
   <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
     <action name="Execute" command="ld-logout" />
