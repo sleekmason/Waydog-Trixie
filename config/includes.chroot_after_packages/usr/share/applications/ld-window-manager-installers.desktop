@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Window Manager Installers
+Name=WM Installers
 Exec=/usr/local/bin/window-manager-installers
 StartupNotify=false
 Terminal=false

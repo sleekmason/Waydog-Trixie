@@ -28,8 +28,8 @@ installers=(
   "Snap Store|Snap Installer|snap-installer"
   "Virtualbox|Virtualbox Installer|virtualbox-installer-oracle"
   "VSCodium|VSCodium Installer|vscodium-installer"
-  "Waydog WMs|Window Manager Installers|window-manager-installers|direct"
   "Wine|Wine Installer|wine-installer"
+  "WM Installers|Window Manager Installers|window-manager-installers|direct"
   "Xanmod Kernel|Xanmod Kernel Installer|xanmod-kernel-installer"
 )
 
