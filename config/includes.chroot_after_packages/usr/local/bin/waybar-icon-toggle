@@ -28,6 +28,8 @@ restart_waybar() {
         waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
     elif pgrep -x niri >/dev/null; then
         waybar -c "$HOME/.config/waybar/niri/config.jsonc" &
+    elif pgrep -x mango >/dev/null; then
+        waybar -c "$HOME/.config/waybar/mango/config.jsonc" &
     else
         waybar &
     fi
