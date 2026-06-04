@@ -40,7 +40,7 @@ sudo cp -f "/tmp/mango/mango-keys.sh" "/usr/local/bin"
 
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
-sed -i "s|^#\?xkb_rules_layout=.*|xkb_rules_layout=$LAYOUT|" "$HOME/.config/mango/config.conf"
+sed -i "s|^xkb_rules_layout=.*|xkb_rules_layout=$LAYOUT|" "$HOME/.config/mango/config.conf"
 
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
