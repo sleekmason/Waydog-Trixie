@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=x-terminal-emulator -T 'Terminal Choice' -e "sudo update-alternatives --config x-terminal-emulator"
+Name=Terminal Choice
+Icon=terminal
+Terminal=true
+GenericName=Update Alternativs
+Categories=Settings;DesktopSettings;
+Keywords=terminal;
+Comment=Terminal Choice
