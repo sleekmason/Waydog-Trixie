@@ -25,7 +25,7 @@ sudo apt update
 sudo apt install -y \
   /tmp/mango/libscenefx-0.4_0.4.1-wd1_amd64.deb \
   /tmp/mango/libwlroots-0.19_0.19.3-wd1_amd64.deb \
-  /tmp/mango/mangowm_0.13.0-wd1_amd64.deb || exit
+  /tmp/mango/mango_0.13.0-wd1_amd64.deb || exit
 
 if [ -e "$HOME/.config/mango" ]; then
    cp -fr "$HOME/.config/mango" "$HOME/.config/mango.bak"
