@@ -2,16 +2,20 @@
 uses the new Wayland protocol for its display server.
 
 Labwc and Sway are installed by default, with separate installation
-options for Niri and Wayfire compositors in the Waydog installers.
+options for Mango, Niri, and Wayfire compositors in the installers.
 
-Both Niri and Wayfire are also customized for Waydog use. These can be
-installed from the Waydog installers. 
+All compositors are fully customized for Waydog use. We use separate
+installers to keep the footprint down.
 
 On live login, either Labwc or Sway can be selected initially, though
-both Niri and Wayfire can be installed to test during a live 
+Mango, Niri, and Wayfire can be installed to test during a live 
 session.  Just log out and back in to change WMs.
 
-https://sourceforge.net/projects/lilidog/files/Releases/
+### Links
+- [DistroWatch](https://distrowatch.com/table.php?distribution=lilidog)
+- [Waydog Github](https://github.com/sleekmason/Waydog-Trixie)
+- [SourceForge Main Page](https://sourceforge.net/projects/lilidog/)
+- [Downloads](https://sourceforge.net/projects/lilidog/files/Releases/)
 
 ### Current Release:
 The version number shown is the date of the release beginning with the
@@ -51,27 +55,27 @@ requirements. Ample video memory is a must.
 ### Features:
 - Keybinds. All window managers use 'Super + F1' to show the list.
 - Labwc and Sway window managers installed by default. Choose at login.
-- Niri and Wayfire WMs also install options. Try in a live session.
+- Mango, Niri and Wayfire available through the installers.
 - SDDM display manager for initial login.
 - Ly login manager is included as a separate install option.
 - Waybar provides the panel top bar.
 - Waybar Options provides a dialog to adjust waybar settings on the fly.
 - NWG Look provides the interface for GTK settings.
 - Labwc Tweaks provides for common Labwc adjustments.
+- Gamma Control provides gamma and contrast control, with custom presets.
 - Usbimager to create USB images.
 - Waypicker color picker for Wayland use. Copies selection to clipboard.
 - Kernel remover for those that build their own, or just to clean up.
 - Waypaper wallpaper setter for both wallpaper and SDDM login screen.
-- Ld-hotcorners providing four hotcorners for program use. 'Super + z'
-- Gamma Control with presets for gamma, temperature, brightness, and contrast.
 - Random BG changer using 'Super+v'.
+- Ld-hotcorners providing four hotcorners for program use. 'Super + z'
 - Random BG Daemon from the Toggles menu, or using 'Super + Shift + r'.
 - Grimshot screenshot. Adds screenshots directly to ~/Pictures.
 - Fuzzel menu. (dmenu equivalent) (Super + F5)
 - Mako provides the system notifications.
 - Sway has gaps!
-- Optional Waydog installers for a few different items. VirtualBox, Ghostty,
-  Radiotray-NG, kernels, extra themes, Conky, Dropbox, and more.
+- Optional Waydog installers for a few different items. VirtualBox,
+  kernels, extra themes, Conky, Dropbox, and more.
 
 There are only a few more programs to get you started. Firefox, Geany,
 Thunar, and Xfce4-terminal are standard for the main programs.  It is
@@ -113,6 +117,3 @@ Waydog-Trixie/config/includes.chroot_after_packages/ (main files)
 
 Of course there are other files that can also be changed in the build,
 but maybe keep it simple for a run or two.
-
-To follow the current development of Waydog:  
-[Github Site](https://github.com/sleekmason)
