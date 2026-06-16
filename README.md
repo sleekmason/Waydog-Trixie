@@ -11,13 +11,13 @@ On live login, either Labwc or Sway can be selected initially, though
 Mango, Niri, and Wayfire can be installed to test during a live 
 session.  Just log out and back in to change WMs.
 
-### Links
+### Resources:
 - [DistroWatch](https://distrowatch.com/table.php?distribution=lilidog)
 - [Waydog Github](https://github.com/sleekmason/Waydog-Trixie)
 - [SourceForge Main Page](https://sourceforge.net/projects/lilidog/)
 - [Downloads](https://sourceforge.net/projects/lilidog/files/Releases/)
 
-### Current Release:
+### Current Release Format:
 The version number shown is the date of the release beginning with the
 year, followed by the month, and then the day. So as an example,
 release 26.03.14 stands for the 14th of Mar, 2026.

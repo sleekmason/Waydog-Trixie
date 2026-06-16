@@ -1,17 +1,17 @@
                        
                    OSprober Toggle
                         
-    OSprober is a utility to add GRUB boot entries
-    for every operating system currently installed
-    on your computer.   
+    OSprober is a tiny utility to add menu entries
+    to GRUB on boot for any operating system found 
+    installed on your computer.  
     
     Use the toggle button to switch OSprober on or 
     off. The log is in /var/log/grub-update.log
     
-    Please wait for grub to finish updating before 
+    Please wait for GRUB to finish updating before 
     rebooting. Look for the progress update dialog
     to disappear upon completion.
     
     Please Note - You must be booted into the main
-    partition controlling grub. Generally, this is
+    partition controlling GRUB. Generally, this is
     the last distribution installed.
