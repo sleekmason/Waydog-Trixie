@@ -6,6 +6,7 @@
 @define-color base        rgba(24,37,43, 0.9); /* Allows for transparency. Change the fourth value.  Currently set to 10% */
 /* @define-color base        #18252B; */
 @define-color base-light  #203138;
+@define-color tag-light   #22353D;
 @define-color tan         #ADB099;
 @define-color hitan       #D1D6B0;
 @define-color border      #2E3E46;
@@ -32,6 +33,7 @@
 @define-color coolblue    #7EB6D6;
 @define-color white       #ffffff;
 @define-color light       #E0E0E0;
+@define-color hilight     #EBEBEB;
 
 /* --------------------------------------------
    General Bar Styling
@@ -224,6 +226,21 @@ tooltip {
     padding: 0 3px;
     min-height: 0;
     font-size: 11px;
+}
+
+#tags button.focused {
+    background: @tag-light;
+    color: @hilight;
+}
+
+#tags button.focused:hover {
+    background: @border2;
+    color: @hiindigo;
+}
+
+#tags button.urgent {
+    background: @maroon;
+    color: @white;
 }
 
 /* --------------------------------------------
