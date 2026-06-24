@@ -29,7 +29,7 @@
         "backlight",
         // "keyboard-state",
         "battery",
-        // "battery#bat2",        
+        // "battery#bat2",
         "clock",
         "tray",
         "custom/separator1",
