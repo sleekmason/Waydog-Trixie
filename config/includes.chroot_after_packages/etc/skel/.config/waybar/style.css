@@ -35,7 +35,7 @@
 @define-color light       #E0E0E0;
 @define-color hilight     #EBEBEB;
 @define-color teal        #2D777D;
-@define-color darkteal    #274652;
+@define-color darkteal    #2C4752;
 @define-color hiteal      #4DA1A8;
 
 /* --------------------------------------------
@@ -233,7 +233,7 @@ tooltip {
 }
 
 #tags button:hover {
-    background: @hiteal;
+    background: @border;
     color: @white;
 }
 
@@ -243,7 +243,7 @@ tooltip {
 }
 
 #tags button.occupied:hover {
-    background: @hiteal;
+    background: @border;
     color: @white;
 }
 
