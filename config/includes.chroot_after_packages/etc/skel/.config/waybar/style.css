@@ -34,7 +34,7 @@
 @define-color white       #ffffff;
 @define-color light       #E0E0E0;
 @define-color hilight     #EBEBEB;
-@define-color teal        #2D777D;
+@define-color teal        #216F75;
 @define-color darkteal    #2C4752;
 @define-color hiteal      #4DA1A8;
 
@@ -235,31 +235,43 @@ tooltip {
 #tags button:hover {
     background: @border;
     color: @white;
+    padding: 0 3px;
 }
 
 #tags button.occupied {
     background: @darkteal;
     color: @hiviolet;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 0 2px;
 }
 
 #tags button.occupied:hover {
     background: @border;
     color: @white;
+    padding: 0 2px;
 }
 
 #tags button.focused {
     background: @teal;
     color: @white;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 0 2px;
 }
 
 #tags button.focused:hover {
     background: @border;
     color: @white;
+    padding: 0 2px;
 }
 
 #tags button.urgent {
     background: @maroon;
     color: @white;
+    padding: 0 3px;
 }
 
 /* --------------------------------------------
