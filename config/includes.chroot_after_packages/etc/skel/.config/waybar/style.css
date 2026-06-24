@@ -34,6 +34,9 @@
 @define-color white       #ffffff;
 @define-color light       #E0E0E0;
 @define-color hilight     #EBEBEB;
+@define-color teal        #2D777D;
+@define-color darkteal    #274652;
+@define-color hiteal      #4DA1A8;
 
 /* --------------------------------------------
    General Bar Styling
@@ -223,19 +226,35 @@ tooltip {
 }
 
 #tags button {
+    color: @hiindigo;
     padding: 0 3px;
     min-height: 0;
     font-size: 11px;
 }
 
+#tags button:hover {
+    background: @hiteal;
+    color: @white;
+}
+
+#tags button.occupied {
+    background: @darkteal;
+    color: @hiviolet;
+}
+
+#tags button.occupied:hover {
+    background: @hiteal;
+    color: @white;
+}
+
 #tags button.focused {
-    background: @tag-light;
-    color: @hilight;
+    background: @teal;
+    color: @white;
 }
 
 #tags button.focused:hover {
-    background: @border2;
-    color: @hiindigo;
+    background: @border;
+    color: @white;
 }
 
 #tags button.urgent {
