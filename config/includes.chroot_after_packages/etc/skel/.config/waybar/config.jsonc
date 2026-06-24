@@ -7,35 +7,29 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "niri/workspaces",
-        "sway/mode",
         "custom/launcher1",
         "custom/launcher2",
         "custom/launcher3",
         "custom/launcher4",
-        "sway/scratchpad",
         "custom/separator1",
-        "wlr/taskbar",
-        "custom/media"
+        "wlr/taskbar"
+        // "custom/media"
     ],
-    "modules-center": [
-        "sway/window"
-    ],
+    "modules-center": [],
     "modules-right": [
         "mpd",
         "idle_inhibitor",
         "custom/separator1",
         "pulseaudio",
         "network",
-        "power-profiles-daemon",
+        // "power-profiles-daemon",
         "cpu",
         "memory",
         "temperature",
         "backlight",
         // "keyboard-state",
-        "niri/language",
         "battery",
-        "battery#bat2",
+        // "battery#bat2",        
         "clock",
         "tray",
         "custom/separator1",

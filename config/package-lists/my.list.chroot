@@ -160,6 +160,7 @@ wpasupplicant
 wireless-regdb
 xarchiver
 xdg-dbus-proxy
+xdg-desktop-portal-gtk
 xdg-user-dirs
 xdg-utils
 xfce4-terminal
