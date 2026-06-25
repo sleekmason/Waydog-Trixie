@@ -795,7 +795,7 @@
   -->
   <libinput>
     <device category="default">
-      <!-- <naturalScroll>no</naturalScroll> -->
+      <naturalScroll>no</naturalScroll>
       <!-- <leftHanded>no</leftHanded> -->
       <!-- <pointerSpeed>0.0</pointerSpeed> -->
       <!-- <accelProfile>adaptive</accelProfile> -->
