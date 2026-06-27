@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=waypaper-grub.sh
+Name=GRUB BG Changer
+Icon=waypaper
+Terminal=false
+GenericName=GRUB background Changer
+Categories=ld-misc-tools;
+Keywords=wallpapers;
+Comment=Change GRUB background image

@@ -216,6 +216,11 @@
           <execute>gksudo gparted</execute>
         </action>
       </item>
+      <item label="GRUB BG" icon="/usr/share/icons/hicolor/scalable/apps/waypaper.svg">
+        <action name="Execute">
+          <execute>waypaper-grub.sh</execute>
+        </action>
+      </item>
       <item label="GTK Settings" icon="/usr/share/pixmaps/nwg-look.svg">
         <action name="Execute">
           <execute>nwg-look</execute>
