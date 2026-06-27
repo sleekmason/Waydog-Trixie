@@ -84,7 +84,7 @@
         "format": "",
         "tooltip": true,
         "tooltip-format": "Terminal",
-        "on-click": "xfce4-terminal"
+        "on-click": "x-terminal-emulator"
     },
     "custom/separator1": {
         "format": "|",
