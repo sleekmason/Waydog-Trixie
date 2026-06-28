@@ -10,8 +10,8 @@ read -p "   [0;33mGhostty Installer[0m
    Ghostty requires re-opening when changing system themes. Alter the
    background and other settings in: [0;34m~/.config/ghostty/ghostty-config[0m
 
-   To set Ghostty as your default terminal emulator:
-   [0;34msudo update-alternatives --config x-terminal-emulator[0m
+   To set Ghostty as the default terminal, search for Terminal Choice
+   in the Toggles menu, or type [0;34mterminal-choice[0m in a terminal.
 
    [0;32mTo add or replace the 'Open Terminal Here' 'right-click' action in[0m
    [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or
@@ -45,8 +45,8 @@ echo " All Finished!
  Ghostty requires re-opening when changing system themes. Alter the
  background and other settings in: [0;34m~/.config/ghostty/ghostty-config[0m"
  echo ""
- echo " [0;32mSwitch ghostty to the default terminal emulator:[0m"
- echo " [0;34msudo update-alternatives --config x-terminal-emulator[0m"
+ echo " To set Ghostty as the default terminal, search for Terminal Choice"
+ echo " in the Toggles menu, or type [0;34mterminal-choice[0m in a terminal."
  echo ""
    echo " [0;32mTo add or replace the 'Open Terminal Here' 'right-click' action in[0m"
    echo " [0;32mThunar, go to: [0;33mEdit -> Configure custom actions -> Plus symbol, or"
