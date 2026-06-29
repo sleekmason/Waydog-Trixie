@@ -30,16 +30,16 @@ window.button.hover.bg.corner-radius: 4
 window.active.button.unpressed.image.color: #CBD6DB
 window.inactive.button.unpressed.image.color: #90A1AB
 
+# Note that "menu", "iconify", "max", "close" buttons colors can be defined
+# individually by inserting the type after the button node, for example:
+#
+#     window.active.button.iconify.unpressed.image.color: #333333
+
 # window drop-shadows
 window.active.shadow.size: 60
 window.inactive.shadow.size: 40
 window.active.shadow.color: #00000060
 window.inactive.shadow.color: #00000040
-
-# Note that "menu", "iconify", "max", "close" buttons colors can be defined
-# individually by inserting the type after the button node, for example:
-#
-#     window.active.button.iconify.unpressed.image.color: #333333
 
 # menu
 menu.overlap.x: 0
