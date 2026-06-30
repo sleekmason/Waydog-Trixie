@@ -46,7 +46,7 @@ printf '%b\n' '
   <separator />'
 
 # Generate the application menu
-labwc-menu-generator -b -I -i "${ignore_files}"
+labwc-menu-generator -b -I -i "${ignore_files}" -t "x-terminal-emulator -e"
 
 # Add footer items
 printf '%b\n' '
