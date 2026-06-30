@@ -170,6 +170,11 @@
     </menu>
     <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-system.png" id="root-menu-4985" label="Utilities">
       <menu icon="/usr/share/icons/gnome/24x24/status/info.png" id="root-menu-88811" label="System Info">
+        <item label="Btop" icon="/usr/share/icons/hicolor/scalable/apps/btop.svg">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Btop' -e bash -c "btop; echo $'\n\nPress any key to close'; read -srn1"</execute>
+          </action>
+        </item>
         <item label="Fastfetch" icon="/usr/share/icons/gnome/24x24/apps/utilities-system-monitor.png">
           <action name="Execute">
             <execute>x-terminal-emulator -T 'Fastfetch' -e bash -c "fastfetch; bash"</execute>
@@ -178,11 +183,6 @@
         <item label="Firmware" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
           <action name="Execute">
             <execute>x-terminal-emulator -T 'Firmware Check' -e bash -c "firmware-checker; echo $'\n\nPress any key to close.'; read -srn1"</execute>
-          </action>
-        </item>
-        <item label="Htop" icon="/usr/share/icons/hicolor/scalable/apps/htop.svg">
-          <action name="Execute">
-            <execute>x-terminal-emulator -T 'Htop' -e bash -c "htop; echo $'\n\nPress any key to close'; read -srn1"</execute>
           </action>
         </item>
         <item label="HW-Probe" icon="/usr/share/icons/gnome/24x24/categories/applications-engineering.png">

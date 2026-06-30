@@ -13,6 +13,7 @@ bind9-dnsutils
 brightnessctl
 bsdmainutils
 brightness-udev
+btop
 btrfs-progs
 bzip2
 7zip
@@ -61,7 +62,6 @@ gtk2-engines-pixbuf
 gvfs
 gvfs-backends
 gvfs-fuse
-htop
 intel-microcode
 inxi
 iproute2
