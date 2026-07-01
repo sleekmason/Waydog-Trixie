@@ -28,10 +28,9 @@ else
 	cp -r /tmp/conky ~/.config
 fi
 
-# Copy .desktop file to /usr/share/applications and icon to hicolor
+# Copy .desktop file to /usr/share/applications
 sudo cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
 sudo cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
-sudo cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
 sudo cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
 
 # Copy icon to /usr/share/icons/hicolor/48x48/apps and update the cache
