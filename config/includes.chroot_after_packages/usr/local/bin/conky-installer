@@ -28,24 +28,32 @@ else
 	cp -r /tmp/conky ~/.config
 fi
 
-# Copy .desktop file to /usr/share/applications
+# Copy .desktop file to /usr/share/applications and icon to hicolor
 sudo cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
 sudo cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
 sudo cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
+sudo cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
+
+# Copy icon to /usr/share/icons/hicolor/48x48/apps and update the cache
+sudo cp -f "/usr/share/lilidog/extras/conky/conky-logomark-violet.png" "/usr/share/icons/hicolor/48x48/apps"
+sudo gtk-update-icon-cache "/usr/share/icons/hicolor"
 
 # Copy conkyrestart script to /usr/local/bin
 sudo cp -f "$HOME/.config/conky/scripts/conkyrestart" "/usr/local/bin"
 
 # Place autostart entry
-if test -e "$HOME/.config/conky"; then
-if ! grep -wq "conky-restart-list" "$HOME/.config/labwc/autostart"; then
-{
-echo ""
-echo '## Start conkys on login if present'	
-echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
-echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
-echo 'fi';} | tee -a "$HOME/.config/labwc/autostart" > /dev/null
-  fi
+AUTOSTART="$HOME/.config/labwc/autostart"
+
+if [ -e "$HOME/.config/conky" ]; then
+    if ! grep -q "conky-restart-list" "$AUTOSTART"; then
+   {
+     echo ""
+     echo '## Start conkys on login if present'
+     echo 'if test -f "$HOME/.config/conky/scripts/conky-restart-list"; then'
+     echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
+     echo 'fi'
+   } >> "$AUTOSTART"
+   fi
 fi
 sleep .50
 conkyrestart >/dev/null 2>&1

@@ -4,5 +4,5 @@ Name=Conky Chooser
 Exec=sh -c ~/.config/conky/scripts/conky-chooser
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/icons/hicolor/scalable/apps/conky-logomark-violet.svg
+Icon=/usr/share/icons/hicolor/48x48/apps/conky-logomark-violet.png
 Categories=ld-misc-tools;
