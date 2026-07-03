@@ -1,13 +1,16 @@
 #!/bin/bash
-read -p "   [0;33mExtra Themes Installer.[0m
+read -p "   [0;33mExtra Themes Installer[0m
 
    This script will download and install a selection of themes to
-   include GTK, Openbox(labwc), and Geany.
-   
-   13 themes currently, though this may change in the future.
-   
+   include GTK, Openbox(labwc), and Geany. Labwc menu theming can
+   be changed in ~/.config/labwc/themerc-override.
+    
+   The matching menu colors for any of the themes can be found in
+   their respective *box folders located in /usr/share/themes.
       
-   [0;33m--------------------------------------------------------------
+   There are currently 14 themes for this installer.
+      
+   [0;32m--------------------------------------------------------------
    
    Please press enter to install the extra themes.
    
