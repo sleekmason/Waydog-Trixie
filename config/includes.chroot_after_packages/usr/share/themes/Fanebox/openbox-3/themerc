@@ -5,7 +5,7 @@
 menu.items.bg: flat gradient vertical
 menu.items.bg.color: #21323B
 menu.items.bg.colorTo: #21323B
-menu.separator.color: #38515E
+menu.separator.color: #576673
 
 !! Menu text
 menu.items.text.color: #D3DCE0

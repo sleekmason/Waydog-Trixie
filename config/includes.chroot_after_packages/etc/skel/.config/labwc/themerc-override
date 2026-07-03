@@ -57,7 +57,7 @@ menu.items.padding.y: 2
 menu.separator.width: 1
 menu.separator.padding.width: 6
 menu.separator.padding.height: 2
-menu.separator.color: #38515E
+menu.separator.color: #576673
 #menu.title.bg.color: #589bda
 #menu.title.text.color: #ffffff
 menu.title.text.justify: Center
