@@ -3,12 +3,12 @@
 
 !! Menu background
 menu.items.bg: flat gradient vertical
-menu.items.bg.color: #1E2F38
-menu.items.bg.colorTo: #1E2F38
-menu.separator.color: #32545E
+menu.items.bg.color: #21323B
+menu.items.bg.colorTo: #21323B
+menu.separator.color: #38515E
 
 !! Menu text
-menu.items.text.color: #D0DCE3
+menu.items.text.color: #D3DCE0
 menu.items.justify: left
 menu.items.disabled.text.color: #4C6E70
 
