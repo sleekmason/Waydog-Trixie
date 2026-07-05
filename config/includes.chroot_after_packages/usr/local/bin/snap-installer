@@ -34,15 +34,15 @@ if [ -e /run/live/medium ] || [ -e /lib/live/mount ] || \
 fi
 sudo apt-get update
 sudo apt-get install -y snapd
-echo "  [0;32mEnabling snapd service...[0m"
+echo " [0;32mEnabling snapd service...[0m"
 sudo systemctl enable --now snapd.socket
 sudo systemctl enable --now snapd.service
 sudo systemctl restart snapd
-echo -n "  [0;32mWaiting for snapd to become ready...[0m"
+echo -n " [0;32mWaiting for snapd to become ready...[0m"
 echo ""
 for i in {1..60}; do
     if snap version >/dev/null 2>&1; then
-        echo "  [0;34mdone![0m"
+        echo " [0;32mdone.[0m"
         echo ""
         break
     fi
@@ -51,7 +51,7 @@ done
 
 if ! snap version >/dev/null 2>&1; then
     echo ""
-    echo "  [0;31mSnapd failed to start after waiting.[0m"
+    echo " [0;31mSnapd failed to start after waiting.[0m"
     read -n1 -p " Press any key to quit this dialog... "
     exit 1
 fi
@@ -59,16 +59,16 @@ sudo snap install snapd >/dev/null
 sudo snap install core >/dev/null
 sudo snap refresh core >/dev/null
 echo ""
-echo "  [0;32mInstalling the Snap Store... This can take a while.[0m"
+echo " [0;32mInstalling the Snap Store...[0m"
 echo ""
 if ! sudo snap install snap-store; then
-    echo "  [0;33msnap-store requires the user-daemons feature — enabling it...[0m"
+    echo " [0;33msnap-store requires the user-daemons feature — enabling it...[0m"
     sudo snap set system experimental.user-daemons=true
-    echo "  [0;33mRetrying Snap Store install...[0m"
+    echo " [0;33mRetrying Snap Store install...[0m"
     if ! sudo snap install snap-store; then
         echo ""
-        echo "  [0;31mSnap installation failed even after enabling user-daemons.[0m"
-        echo "  [0;31mPlease check network/DNS and try again.[0m"
+        echo " [0;31mSnap installation failed even after enabling user-daemons.[0m"
+        echo " [0;31mPlease check network/DNS and try again.[0m"
         read -n1 -p " Press any key to quit this dialog ... "
         exit 1
     fi
