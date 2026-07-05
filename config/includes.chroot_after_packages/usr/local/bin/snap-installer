@@ -1,5 +1,4 @@
 #!/bin/bash
-echo ""
 read -p "   [0;33mSnap Installer[0m
 
    This will install Snapd and the Snap App Store, the app store 
@@ -8,18 +7,17 @@ read -p "   [0;33mSnap Installer[0m
    Please note that the installation can take a while for a slow
    connection as snap searches for resources. About 7 minutes on
    a fairly decent connection here.
-
+   
    [0;34mhttps://snapcraft.io/[0m
    
    [0;32m-------------------------------------------------------------
    
    Please press enter to install Snap.
    
-   -------------------------------------------------------------[0m
-   
+   -------------------------------------------------------------[0m  
    
    Or, close this terminal window to quit the install." ;
-
+   
 if [ -e /run/live/medium ] || [ -e /lib/live/mount ] || \
    findmnt -n -o FSTYPE / | grep -Eq 'overlay|squashfs'; then
     echo ""
@@ -34,20 +32,18 @@ if [ -e /run/live/medium ] || [ -e /lib/live/mount ] || \
     read -n1 -p " Press any key to quit this dialog ... "
     exit 0
 fi
-
 sudo apt-get update
 sudo apt-get install -y snapd
-
 echo "  [0;32mEnabling snapd service...[0m"
 sudo systemctl enable --now snapd.socket
 sudo systemctl enable --now snapd.service
-
 sudo systemctl restart snapd
-
-echo -n "  Waiting for snapd to become ready..."
+echo -n "  [0;32mWaiting for snapd to become ready...[0m"
+echo ""
 for i in {1..60}; do
     if snap version >/dev/null 2>&1; then
-        echo " done!"
+        echo "  [0;34mdone![0m"
+        echo ""
         break
     fi
     sleep 2
@@ -59,26 +55,24 @@ if ! snap version >/dev/null 2>&1; then
     read -n1 -p " Press any key to quit this dialog... "
     exit 1
 fi
-
+sudo snap install snapd >/dev/null
+sudo snap install core >/dev/null
+sudo snap refresh core >/dev/null
+echo ""
 echo "  [0;32mInstalling the Snap Store... This can take a while.[0m"
+echo ""
 if ! sudo snap install snap-store; then
-    echo "  [0;31mSnap failed — temporarily disabling IPv6 for snapd...[0m"
-
-    sudo systemctl set-property snapd.service \
-        Environment=SNAPD_DISABLE_IPV6=1 --runtime
-
-    sudo systemctl restart snapd
-
+    echo "  [0;33msnap-store requires the user-daemons feature — enabling it...[0m"
+    sudo snap set system experimental.user-daemons=true
     echo "  [0;33mRetrying Snap Store install...[0m"
     if ! sudo snap install snap-store; then
         echo ""
-        echo "  [0;31mSnap installation failed even after workaround.[0m"
+        echo "  [0;31mSnap installation failed even after enabling user-daemons.[0m"
         echo "  [0;31mPlease check network/DNS and try again.[0m"
         read -n1 -p " Press any key to quit this dialog ... "
         exit 1
     fi
 fi
-
 echo ""
 echo "  [0;32m--------------------------------------------------------------"
 echo ""
