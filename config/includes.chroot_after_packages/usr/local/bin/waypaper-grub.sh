@@ -5,17 +5,12 @@
 
 full_fs=$(df ~ | tail -1 | awk '{print $1}')
 fs=$(basename "$full_fs")
-
 if ! grep -q "$fs" /proc/partitions; then
     notify-send -i preferences-system -u low "Not for use in a live environment."
     exit 0
 fi
 
-if command -v gm >/dev/null 2>&1; then
-    IMG_CONVERT="gm convert"
-elif command -v convert >/dev/null 2>&1; then
-    IMG_CONVERT="convert"
-else
+if ! command -v gm >/dev/null 2>&1 && ! command -v convert >/dev/null 2>&1; then
     notify-send -i dialog-error "Please install GraphicsMagick or ImageMagick to continue."
     exit 0
 fi
@@ -23,10 +18,10 @@ fi
 STATE_FILE="$HOME/.config/waypaper/grub-bg/config.ini"
 CONFIG_FILE="$HOME/.config/waypaper/config.ini"
 GRUB_DIR="/boot/grub"
+
 mkdir -p "$(dirname "$STATE_FILE")"
 CURRENT_FOLDER=$(grep -E '^folder *= *' "$CONFIG_FILE" | cut -d= -f2- | xargs)
 CURRENT_FOLDER="${CURRENT_FOLDER/#\~/$HOME}"
-
 if [[ -f "$STATE_FILE" ]]; then
     sed -i "s|^folder *=.*|folder = $CURRENT_FOLDER|" "$STATE_FILE"
 else
@@ -45,6 +40,7 @@ real_wallpaper="${real_wallpaper/#\~/$HOME}"
 if [[ -f "$real_wallpaper" ]]; then
     swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 & disown
 fi
+
 if [[ "$AFTER" -le "$BEFORE" ]]; then
     exit 0
 fi
@@ -56,7 +52,12 @@ if [[ -f "$selected_wallpaper" ]]; then
     BASENAME=$(basename "$selected_wallpaper")
     PNG_NAME="${BASENAME%.*}.png"
     TMP_PNG=$(mktemp /tmp/grub-bg-XXXXXX.png)
-    if ! $IMG_CONVERT "$selected_wallpaper" "$TMP_PNG" 2>/dev/null; then
+    if command -v gm >/dev/null 2>&1; then
+        gm convert "$selected_wallpaper" -type TrueColor "$TMP_PNG" 2>/dev/null
+    elif command -v convert >/dev/null 2>&1; then
+        convert "$selected_wallpaper" -type TrueColor -depth 8 PNG24:"$TMP_PNG" 2>/dev/null
+    fi
+    if [[ ! -f "$TMP_PNG" || ! -s "$TMP_PNG" ]]; then
         notify-send -i dialog-error "waypaper-grub: Image conversion failed."
         rm -f "$TMP_PNG"
         exit 1
