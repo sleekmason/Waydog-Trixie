@@ -241,6 +241,11 @@
           <execute>labwc-tweaks-gtk</execute>
         </action>
       </item>
+      <item label="Logout Options" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">
+        <action name="Execute">
+          <execute>logout-theme-chooser</execute>
+        </action>
+      </item>
       <item label="Screenshot" icon="/usr/share/icons/gnome/24x24/categories/applications-accessories.png">
         <action name="Execute">
           <execute>grimshot save area</execute>
