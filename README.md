@@ -67,6 +67,8 @@ requirements. Ample video memory is a must.
 - Waypicker color picker for Wayland use. Copies selection to clipboard.
 - Kernel remover for those that build their own, or just to clean up.
 - Waypaper wallpaper setter for both wallpaper and SDDM login screen.
+- GRUB background changer. Select any .jpg or .png for your boot image.
+- Logout theme changer for choosing icons and layout.
 - Random BG changer using 'Super+v'.
 - Ld-hotcorners providing four hotcorners for program use. 'Super + z'
 - Random BG Daemon from the Toggles menu, or using 'Super + Shift + r'.
