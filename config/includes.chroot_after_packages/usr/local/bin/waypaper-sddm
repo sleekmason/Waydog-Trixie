@@ -14,20 +14,27 @@ SDDM_BG="/usr/share/sddm/themes/fane/background.jpg"
 
 # Make sure the folder exists
 mkdir -p "$(dirname "$STATE_FILE")"
+BEFORE=$(stat -c %Y "$STATE_FILE" 2>/dev/null || echo 0)
 
 # sddm waypaper start
 waypaper --state-file "$STATE_FILE" >/dev/null 2>&1
+AFTER=$(stat -c %Y "$STATE_FILE" 2>/dev/null || echo 0)
+if [[ "$AFTER" -le "$BEFORE" ]]; then
+    exit 0
+fi
 
 # copy selected image to sddm
 selected_wallpaper=$(grep -E '^wallpaper *= *' "$STATE_FILE" | cut -d= -f2- | xargs)
 selected_wallpaper="${selected_wallpaper/#\~/$HOME}"
-
 if [[ -f "$selected_wallpaper" ]]; then
     # Only notify upon changes
     if ! cmp -s "$selected_wallpaper" "$SDDM_BG"; then
         pkexec cp -f "$selected_wallpaper" "$SDDM_BG"
-        NOTIFY_NAME=$(basename "$selected_wallpaper")
-        notify-send --urgency low "SDDM Login Background changed to: $NOTIFY_NAME"
+        PKEXIT=$?
+        if [[ $PKEXIT -eq 0 ]]; then
+            NOTIFY_NAME=$(basename "$selected_wallpaper")
+            notify-send --urgency low "SDDM Login Background changed to: $NOTIFY_NAME"
+        fi
     fi
 fi
 
