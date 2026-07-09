@@ -137,7 +137,7 @@
           <execute>wlr-gamma-gui</execute>
         </action>
       </item>
-      <item label="Hotcorners" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-accessibility.png">
+      <item label="Hotcorners  On/Off" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-accessibility.png">
         <action name="Execute">
           <execute>hotcorners-toggle</execute>
         </action>
@@ -147,7 +147,7 @@
           <execute>menu-icons-toggle</execute>
         </action>
       </item>      
-      <item label="OSProber" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
+      <item label="OSProber On/Off" icon="/usr/share/icons/gnome/24x24/categories/applications-system.png">
         <action name="Execute">
           <execute>osprober-toggle</execute>
         </action>
