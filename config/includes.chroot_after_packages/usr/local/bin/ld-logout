@@ -61,11 +61,11 @@ elif grep -Fxq "varstyle=vertical-icons" "$HOME/.local/bin/ld-logout" >/dev/null
 yad --title "Logout" --center --fixed --width=180 --height=140 --borders=12 --no-buttons \
 --buttons-layout=center --window-icon="/usr/share/icons/ld-icons/pixmaps/exit4.png" \
   --form --columns=1 \
-    --field="       Lockscreen!/usr/share/icons/ld-icons/pixmaps/$var1/logout_password.$var2":FBTN "slock" \
-    --field="              Logout!/usr/share/icons/ld-icons/pixmaps/$var1/logout_exit.$var2":FBTN "$var3" \
-    --field="            Suspend!/usr/share/icons/ld-icons/pixmaps/$var1/logout_suspend.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors suspend" \
-    --field="              Reboot!/usr/share/icons/ld-icons/pixmaps/$var1/logout_reboot.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors reboot" \
-    --field="         Shutdown!/usr/share/icons/ld-icons/pixmaps/$var1/logout_shutdown.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors poweroff"
+    --field="         Lockscreen!/usr/share/icons/ld-icons/pixmaps/$var1/logout_password.$var2":FBTN "slock" \
+    --field="               Logout!/usr/share/icons/ld-icons/pixmaps/$var1/logout_exit.$var2":FBTN "$var3" \
+    --field="             Suspend!/usr/share/icons/ld-icons/pixmaps/$var1/logout_suspend.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors suspend" \
+    --field="               Reboot!/usr/share/icons/ld-icons/pixmaps/$var1/logout_reboot.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors reboot" \
+    --field="           Shutdown!/usr/share/icons/ld-icons/pixmaps/$var1/logout_shutdown.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors poweroff"
 
 elif grep -Fxq "varstyle=vertical-no-icons" "$HOME/.local/bin/ld-logout" >/dev/null 2>&1; then
 yad --title "Logout" --center --fixed --width=160 --height=140 --borders=12 --no-buttons \
@@ -99,11 +99,11 @@ elif grep -Fxq "varstyle=vertical-icons-plain" "$HOME/.local/bin/ld-logout" >/de
 yad --title "Logout" --center --fixed --undecorated --close-on-unfocus --width=180 --height=140 --borders=14 --no-buttons \
 --buttons-layout=center --window-icon="/usr/share/icons/ld-icons/pixmaps/exit4.png" \
   --form --columns=1 \
-    --field="      Lockscreen!/usr/share/icons/ld-icons/pixmaps/$var1/logout_password.$var2":FBTN "slock" \
-    --field="             Logout!/usr/share/icons/ld-icons/pixmaps/$var1/logout_exit.$var2":FBTN "$var3" \
-    --field="           Suspend!/usr/share/icons/ld-icons/pixmaps/$var1/logout_suspend.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors suspend" \
-    --field="             Reboot!/usr/share/icons/ld-icons/pixmaps/$var1/logout_reboot.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors reboot" \
-    --field="        Shutdown!/usr/share/icons/ld-icons/pixmaps/$var1/logout_shutdown.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors poweroff"
+    --field="        Lockscreen!/usr/share/icons/ld-icons/pixmaps/$var1/logout_password.$var2":FBTN "slock" \
+    --field="              Logout!/usr/share/icons/ld-icons/pixmaps/$var1/logout_exit.$var2":FBTN "$var3" \
+    --field="            Suspend!/usr/share/icons/ld-icons/pixmaps/$var1/logout_suspend.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors suspend" \
+    --field="              Reboot!/usr/share/icons/ld-icons/pixmaps/$var1/logout_reboot.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors reboot" \
+    --field="          Shutdown!/usr/share/icons/ld-icons/pixmaps/$var1/logout_shutdown.$var2":FBTN "systemctl --no-ask-password --ignore-inhibitors poweroff"
 
 elif grep -Fxq "varstyle=vertical-no-icons-plain" "$HOME/.local/bin/ld-logout" >/dev/null 2>&1; then
 yad --title "Logout" --center --fixed --undecorated --close-on-unfocus --width=160 --height=140 --borders=14 --no-buttons \

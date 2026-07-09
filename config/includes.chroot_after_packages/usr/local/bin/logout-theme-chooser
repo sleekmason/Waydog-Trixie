@@ -13,7 +13,7 @@ fi
 fi
 }
 
-notify-send -u low "Yad currently has issues with Wayland" "No preset geometry or titlebar exclusion"
+notify-send "Yad still has a few issues in Wayland" "(dialog placement - titlebar exclusion)"
 
 # Logout style and icons on/off.
 _horzicons(){
