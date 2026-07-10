@@ -103,7 +103,8 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     height: text.implicitHeight
                     width: parent.width
-                    text: textConstants.welcomeText.arg(sddm.hostName)
+                    // text: textConstants.welcomeText.arg(sddm.hostName)
+                    text: textConstants.welcomeText.arg(sddm.hostName.charAt(0).toUpperCase() + sddm.hostName.slice(1))
                     wrapMode: Text.WordWrap
                     font.pixelSize: 24
                     elide: Text.ElideRight
