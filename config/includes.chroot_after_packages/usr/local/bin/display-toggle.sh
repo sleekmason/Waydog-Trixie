@@ -11,8 +11,13 @@ fi
 
 if wlopm | grep -q ' on$'; then
     wlopm --off '*'
-    swayidle -w timeout 1 'true' resume "wlopm --on '*'; rm -f $PIDFILE; kill \$PPID" &
+    while wlopm | grep -q ' on$'; do
+        sleep .03
+    done
+
+    swayidle -w timeout 1 true resume "wlopm --on '*'; rm -f \"$PIDFILE\"; kill \$PPID" &
     echo $! > "$PIDFILE"
+
 else
     wlopm --on '*'
 fi
