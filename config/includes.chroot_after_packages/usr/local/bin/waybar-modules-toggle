@@ -59,33 +59,38 @@ case "$1" in
     language)                   toggle_module language ;;
     network)                    toggle_module network ;;
     battery)                    toggle_module battery ;;
+    custom-power)               toggle_module custom-power ;;
+    power-profiles-daemon)      toggle_module power-profiles-daemon ;;
     launcher1)                  toggle_module "custom-launcher1" ;;
     launcher2)                  toggle_module "custom-launcher2" ;;
     launcher3)                  toggle_module "custom-launcher3" ;;
     launcher4)                  toggle_module "custom-launcher4" ;;
+    launcher5)                  toggle_module "custom-launcher5" ;;
     reset)                      reset_modules ;;
     *)
-        SELF="$(realpath "$BASH_SOURCE")"
+SELF="$(realpath "$BASH_SOURCE")"
         while true; do
             yad --title "Modules" \
-                --width=180 --height=352 --borders=10 --center \
+                --width=240 --height=385 --borders=10 --center \
                 --columns=2 \
                 --buttons-layout=spread --form \
                 --button="Reset!edit-clear":"bash '$SELF' reset" \
                 --button="Close!gtk-close:1" \
                 --field="Audio":FBTN             "bash '$SELF' pulseaudio" \
                 --field="Backlight":FBTN         "bash '$SELF' backlight" \
-                --field="CPU":FBTN               "bash '$SELF' cpu" \
-                --field="Idle Inhibitor":FBTN    "bash '$SELF' idle_inhibitor" \
-                --field="Network":FBTN           "bash '$SELF' network" \
-                --field="Desktop":FBTN           "bash '$SELF' launcher4" \
-                --field="Menu":FBTN              "bash '$SELF' launcher1" \
                 --field="Battery":FBTN           "bash '$SELF' battery" \
                 --field="Clock":FBTN             "bash '$SELF' clock" \
+                --field="CPU":FBTN               "bash '$SELF' cpu" \
+                --field="Desktop":FBTN           "bash '$SELF' launcher5" \
+                --field="Files":FBTN             "bash '$SELF' launcher2" \
+                --field="  Idle Inhibitor  ":FBTN    "bash '$SELF' idle_inhibitor" \
+                --field="Internet":FBTN          "bash '$SELF' launcher4" \
                 --field="Language":FBTN          "bash '$SELF' language" \
                 --field="Memory":FBTN            "bash '$SELF' memory" \
-                --field="Temperature":FBTN       "bash '$SELF' temperature" \
-                --field="Files":FBTN             "bash '$SELF' launcher2" \
+                --field="Menu":FBTN              "bash '$SELF' launcher1" \
+                --field="Network":FBTN           "bash '$SELF' network" \
+                --field=" Power Profiles ":FBTN    "bash '$SELF' power-profiles-daemon" \
+                --field="Temperature":FBTN    "bash '$SELF' temperature" \
                 --field="Terminal":FBTN          "bash '$SELF' launcher3" \
                 || break
         done

@@ -133,6 +133,12 @@ tooltip {
   font-size: 12px;
 }
 
+#power-profiles-daemon {
+  color: @blue;
+  padding: 0 5px;
+  font-size: 12px;
+}
+
 #temperature {
   color: @purple;
   padding: 0 8px;
@@ -280,7 +286,7 @@ tooltip {
 #custom-launcher1 {
   background: @base-light;
   color: @indigo;
-  padding: 0 8px;
+  padding: 0px 8px 1px 8px;
   border-radius: 8px;
   font-size: 13px;
   margin-right: 2px;
@@ -296,7 +302,7 @@ tooltip {
 #custom-launcher2 {
   background: @base-light;
   color: @brightblue;
-  padding: 0 8px;
+  padding: 0px 8px 0px 8px;
   border-radius: 8px;
   font-size: 11px;
   margin-right: 2px;
@@ -312,10 +318,10 @@ tooltip {
 #custom-launcher3 {
   background: @base-light;
   color: @brightgreen;
-  padding: 0 8px;
+  padding: 0px 8px 1px 8px;
   border-radius: 8px;
   font-size: 11px;
-  margin-right: 14px;
+  margin-right: 2px;
 }
 #custom-launcher3:hover {
   background: @border2;
@@ -327,13 +333,29 @@ tooltip {
    -------------------------------------------- */
 #custom-launcher4 {
   background: @base-light;
+  color: @coolblue;
+  padding: 0px 8px 0px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-right: 14px;
+}
+#custom-launcher4:hover {
+  background: @border2;
+  color: @hiblue;
+}
+
+/* --------------------------------------------
+   Launcher 5
+   -------------------------------------------- */
+#custom-launcher5 {
+  background: @base-light;
   color: @tan;
-  padding: 0 8px;
+  padding: 1px 8px 0px 8px;
   border-radius: 8px;
   font-size: 9px;
   margin-right: 6px;
 }
-#custom-launcher4:hover {
+#custom-launcher5:hover {
   background: @border2;
   color: @hitan;
 }

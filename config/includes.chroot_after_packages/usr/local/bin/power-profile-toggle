@@ -1,0 +1,79 @@
+#!/bin/bash
+# Power Profile Toggle
+# Made by sleekmason for Waydog 14 Jul 2026
+# Masks/unmasks power-profiles-daemon and syncs the Waybar icon.
+
+REAL_USER="${SUDO_USER:-${PKEXEC_UID:+$(id -nu "$PKEXEC_UID")}}"
+REAL_USER="${REAL_USER:-$(logname 2>/dev/null)}"
+REAL_HOME="$(getent passwd "$REAL_USER" | cut -d: -f6)"
+USER_UID="$(id -u "$REAL_USER")"
+
+STYLE="$REAL_HOME/.config/waybar/style.css"
+SERVICE="power-profiles-daemon"
+MODULE="power-profiles-daemon"
+HIDE="min-width: 0; min-height: 0; padding: 0; margin: 0; font-size: 0; border: none; background: transparent;"
+
+run_as_user() {
+    runuser -u "$REAL_USER" -- env \
+        XDG_RUNTIME_DIR="/run/user/$USER_UID" \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$USER_UID/bus" \
+        WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+        DISPLAY="$DISPLAY" \
+        sh -c "$1"
+}
+
+restart_waybar() {
+    run_as_user '
+        if pgrep -x waybar >/dev/null; then
+            pkill -USR2 waybar
+            exit 0
+        fi
+
+        if pgrep -x sway >/dev/null; then
+            waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
+        elif pgrep -x niri >/dev/null; then
+            waybar -c "$HOME/.config/waybar/niri/config.jsonc" &
+        elif pgrep -x mango >/dev/null; then
+            waybar -c "$HOME/.config/waybar/mango/config.jsonc" &
+        else
+            waybar &
+        fi
+    '
+}
+
+is_masked() {
+    [[ "$(systemctl is-enabled "$SERVICE" 2>/dev/null)" == "masked" ]]
+}
+
+hide_module() {
+    [[ -f "$STYLE" ]] || return
+    grep -q "^#${MODULE} .*min-width: 0" "$STYLE" || \
+        echo "#${MODULE} { ${HIDE} }" >> "$STYLE"
+}
+
+show_module() {
+    [[ -f "$STYLE" ]] || return
+    sed -i "/^#${MODULE} .*min-width: 0.*$/d" "$STYLE"
+}
+
+if is_masked; then
+    if systemctl unmask "$SERVICE" && systemctl enable --now "$SERVICE"; then
+        show_module
+        restart_waybar
+        sleep 0.5
+        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles Activated" "Waybar icon added"'
+    else
+        run_as_user 'notify-send -i preferences-desktop "Power Profiles" "Failed to activate"'
+    fi
+else
+    systemctl disable --now "$SERVICE" 2>/dev/null
+    if systemctl mask "$SERVICE"; then
+        hide_module
+        restart_waybar
+        sleep 0.5
+        run_as_user 'notify-send -i preferences-desktop -u low "Reboot to restore the system default if desired"'
+        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles Deactivated" "Waybar icon removed"'
+    else
+        run_as_user 'notify-send -i preferences-desktop "Power Profiles" "Failed to deactivate"'
+    fi
+fi

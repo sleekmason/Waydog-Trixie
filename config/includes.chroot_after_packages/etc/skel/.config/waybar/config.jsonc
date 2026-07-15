@@ -11,6 +11,7 @@
         "custom/launcher2",
         "custom/launcher3",
         "custom/launcher4",
+        "custom/launcher5",
         "custom/separator1",
         "wlr/taskbar"
         // "custom/media"
@@ -22,7 +23,6 @@
         "custom/separator1",
         "pulseaudio",
         "network",
-        // "power-profiles-daemon",
         "cpu",
         "memory",
         "temperature",
@@ -30,6 +30,7 @@
         // "keyboard-state",
         "battery",
         // "battery#bat2",
+        "power-profiles-daemon",
         "clock",
         "tray",
         "custom/separator1",
@@ -88,6 +89,13 @@
     },
     
     "custom/launcher4": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "www-browser",
+        "on-click": "x-www-browser"
+    },
+
+    "custom/launcher5": {
         "format": "",
         "tooltip": true,
         "tooltip-format": "Show Desktop",

@@ -1,7 +1,16 @@
 #!/bin/bash
-# A simple script to set the environmental variables in advance in order to use root.
-if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
-pkexec env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR $@
-else
-pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY $@
+# Wrapper for adding environmental variables for pkexec usage.
+
+if [[ "$1" != */* ]]; then
+    CMD="$(command -v "$1")"
+    if [[ -n "$CMD" ]]; then
+        shift
+        set -- "$CMD" "$@"
+    fi
 fi
+
+pkexec env \
+    XDG_SESSION_TYPE="$XDG_SESSION_TYPE" \
+    WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+    XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
+    "$@"

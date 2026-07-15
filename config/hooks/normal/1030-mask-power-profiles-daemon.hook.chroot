@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+
+# Mask power-profiles-daemon until user enables it with toggle script.
+
+ln -sf /dev/null /etc/systemd/system/power-profiles-daemon.service

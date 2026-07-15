@@ -152,6 +152,11 @@
           <execute>osprober-toggle</execute>
         </action>
       </item>
+      <item label="Power Profiles On/Off" icon="/usr/share/icons/gnome/24x24/categories/preferences-desktop.png">
+        <action name="Execute">
+          <command>gksudo power-profile-toggle</command>
+        </action>
+      </item>
       <item label="Random BG Daemon" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png">
         <action name="Execute">
           <execute>toggle-random</execute>

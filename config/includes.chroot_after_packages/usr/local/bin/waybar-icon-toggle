@@ -119,10 +119,12 @@ declare -A DEFAULT_SIZES=(
     ["#battery"]=12
     ["#language"]=12
     ["#idle_inhibitor"]=13
+    ["#power-profiles-daemon"]=12
     ["#custom-launcher1"]=13
     ["#custom-launcher2"]=11
     ["#custom-launcher3"]=11
-    ["#custom-launcher4"]=9
+    ["#custom-launcher4"]=12
+    ["#custom-launcher5"]=9
     ["#scratchpad"]=10
     ["#mpd"]=11
     ["#custom-power"]=12
@@ -144,11 +146,13 @@ INI_ENTRIES=(
     "idle_inhibitor|#idle_inhibitor|Idle Inhibitor"
     "mpd|#mpd|Music Player"
     "language|#language|Language"
+    "power-profiles-daemon|#power-profiles-daemon|Power Profiles-Daemon"
     "custom-power|#custom-power|Power Button"
     "custom-launcher1|#custom-launcher1|Menu Icon"
     "custom-launcher2|#custom-launcher2|Files Icon"
     "custom-launcher3|#custom-launcher3|Terminal Icon"
-    "custom-launcher4|#custom-launcher4|Showdesktop Icon"
+    "custom-launcher4|#custom-launcher4|www-browser Icon"
+    "custom-launcher5|#custom-launcher5|Showdesktop Icon"
 )
 
 read_size_from_css() {

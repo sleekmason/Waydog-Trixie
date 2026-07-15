@@ -170,7 +170,7 @@ xz-utils
 yad
 zstd
 
-# Wayland specific
+# Wayland
 autotiling
 fuzzel
 gir1.2-gtklayershell-0.1
@@ -183,6 +183,7 @@ libpam-systemd
 libqt6waylandclient6
 mako-notifier
 nwg-look
+power-profiles-daemon
 qml6-module-qtquick
 qtwayland5
 qt5ct
@@ -195,6 +196,7 @@ swayidle
 swaylock
 waybar
 wdisplays
+wlopm
 wlrctl
 wlr-randr
 wmenu

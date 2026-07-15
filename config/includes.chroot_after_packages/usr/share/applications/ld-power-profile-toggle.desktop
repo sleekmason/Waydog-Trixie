@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Power Profile On/Off
+Comment=power-profiles-daemon on-off
+Exec=gksudo power-profile-toggle
+Icon=preferences-desktop
+Terminal=false
+Type=Application
+Categories=System;Settings;
+NoDisplay=false
