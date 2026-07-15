@@ -11,6 +11,7 @@ declare -A FRIENDLY_NAMES=(
   ["waybar-toggle"]="Waybar On/Off"
   ["waybar-icon-toggle dialog"]="Waybar Options"
   ["labwc-reconfigure-toggle"]="Reload labwc"
+  ["display-toggle.sh"]="Toggle Display On/Off"
   ["toggleShowDesktop"]="Show Desktop"
   ["toggle-random"]="Random Wallpaper - Daemon"
   ["random-wallpaper once"]="Random Wallpaper - Once"
@@ -64,7 +65,15 @@ awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
   action=""; detail=""
 }
 /<action name=/ {
-  action=\$0; gsub(/.*name="/,"",action); gsub(/".*/,"",action)
+  action=\$0
+  gsub(/.*name="/,"",action)
+  gsub(/".*/,"",action)
+
+  if (\$0 ~ /command="/) {
+    detail=\$0
+    gsub(/.*command="/,"",detail)
+    gsub(/".*/,"",detail)
+  }
 }
 /<execute>/ {
   detail=\$0; gsub(/.*<execute>/,"",detail); gsub(/<\/execute>.*/,"",detail)
