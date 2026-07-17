@@ -32,6 +32,7 @@
         "backlight",
         "battery",
         // "battery#bat2",
+        // "power-profiles-daemon",
         "clock",
         "sway/language",
         "tray",
