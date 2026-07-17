@@ -34,7 +34,6 @@ restart_waybar() {
             pkill -USR2 waybar
             exit 0
         fi
-
         if pgrep -x sway >/dev/null; then
             waybar -c "$HOME/.config/waybar/sway/config.jsonc" &
         elif pgrep -x niri >/dev/null; then
@@ -44,6 +43,7 @@ restart_waybar() {
         else
             waybar &
         fi
+        pgrep -x nm-applet >/dev/null || nm-applet &
     '
 }
 
@@ -71,6 +71,7 @@ disable_ppd_module() {
             "$cfg"
     done
 }
+
 enable_ppd_module() {
     local cfg
     for cfg in "${CONFIGS[@]}"; do
