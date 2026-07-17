@@ -94,7 +94,7 @@
         "tooltip-format": "www-browser",
         "on-click": "x-www-browser"
     },
-
+    
     "custom/launcher5": {
         "format": "",
         "tooltip": true,

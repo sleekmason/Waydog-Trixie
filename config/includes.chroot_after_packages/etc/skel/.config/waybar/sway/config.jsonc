@@ -12,6 +12,7 @@
         "custom/launcher1",
         "custom/launcher2",
         "custom/launcher3",
+        "custom/launcher4",
         "custom/shadow-scratchpad",
         "sway/scratchpad",
         "custom/separator1"
@@ -87,6 +88,12 @@
         "tooltip-format": "Terminal",
         "on-click": "x-terminal-emulator"
     },
+    "custom/launcher4": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "www-browser",
+        "on-click": "x-www-browser"
+    },    
     "custom/separator1": {
         "format": "|",
         "tooltip": false
