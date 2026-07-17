@@ -2,6 +2,11 @@
 # display-toggle.sh - Kill and restart the display from a keybind.
 # requires wlopm, swayidle, wlr-randr
 
+: "${XDG_RUNTIME_DIR:=/run/user/$(id -u)}"
+: "${WAYLAND_DISPLAY:=$(basename "$(ls "$XDG_RUNTIME_DIR"/wayland-[0-9]* 2>/dev/null | head -n1)")}"
+: "${DBUS_SESSION_BUS_ADDRESS:=unix:path=$XDG_RUNTIME_DIR/bus}"
+export XDG_RUNTIME_DIR WAYLAND_DISPLAY DBUS_SESSION_BUS_ADDRESS
+
 PIDFILE="/tmp/display-toggle-$USER.pid"
 SNAPSHOT="/tmp/display-toggle-snapshot-$USER.txt"
 RESUME_SCRIPT="/tmp/display-toggle-resume-$USER.sh"
