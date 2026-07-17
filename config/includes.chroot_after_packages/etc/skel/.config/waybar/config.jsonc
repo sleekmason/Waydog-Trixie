@@ -30,7 +30,7 @@
         // "keyboard-state",
         "battery",
         // "battery#bat2",
-        "power-profiles-daemon",
+        // "power-profiles-daemon",
         "clock",
         "tray",
         "custom/separator1",
