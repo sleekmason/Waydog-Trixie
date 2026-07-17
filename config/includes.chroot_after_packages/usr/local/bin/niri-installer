@@ -41,13 +41,24 @@ fi
 
 ## Copy files from /tmp.
 mkdir -p "$HOME/.config/niri"
-mkdir -p "$HOME/.config/waybar/niri"
 cp -f "/tmp/niri/config.kdl" "$HOME/.config/niri"
 sudo cp -f "/tmp/niri/xwayland-satellite" "/usr/local/bin"
-cp -f "/tmp/niri/config.jsonc" "$HOME/.config/waybar/niri"
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
 perl -i -0pe 's|(xkb \{[^}]*)layout "[^"]*"|\1layout "'$LAYOUT'"|s' "$HOME/.config/niri/config.kdl"
+
+## Change power profile state to match the rest.
+mkdir -p "$HOME/.config/waybar/niri"
+cp -f "/tmp/niri/config.jsonc" "$HOME/.config/waybar/niri"
+if [[ "$(systemctl is-enabled power-profiles-daemon 2>/dev/null)" == "masked" ]]; then
+    sed -Ei \
+        's/^([[:space:]]*)"power-profiles-daemon"(,?)[[:space:]]*$/\1\/\/ "power-profiles-daemon"\2/' \
+        "$HOME/.config/waybar/niri/config.jsonc"
+else
+    sed -Ei \
+        's/^([[:space:]]*)\/\/[[:space:]]*"power-profiles-daemon"(,?)[[:space:]]*$/\1"power-profiles-daemon"\2/' \
+        "$HOME/.config/waybar/niri/config.jsonc"
+fi
 
 ## Explain items.
 echo "   [0;32m--------------------------------------------------------[0m"

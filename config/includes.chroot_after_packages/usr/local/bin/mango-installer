@@ -34,13 +34,25 @@ if [ -e "$HOME/.config/mango" ]; then
 else
    cp -fr "/tmp/mango/mango" "$HOME/.config"
 fi
-mkdir -p "$HOME/.config/waybar/mango"
-cp -f "/tmp/mango/config.jsonc" "$HOME/.config/waybar/mango"
+
 sudo cp -f "/tmp/mango/mango-keys.sh" "/usr/local/bin"
 
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
 sed -i "s|^xkb_rules_layout=.*|xkb_rules_layout=$LAYOUT|" "$HOME/.config/mango/config.conf"
+
+## Change power profile state to match the rest.
+mkdir -p "$HOME/.config/waybar/mango"
+cp -f "/tmp/mango/config.jsonc" "$HOME/.config/waybar/mango"
+if [[ "$(systemctl is-enabled power-profiles-daemon 2>/dev/null)" == "masked" ]]; then
+    sed -Ei \
+        's/^([[:space:]]*)"power-profiles-daemon"(,?)[[:space:]]*$/\1\/\/ "power-profiles-daemon"\2/' \
+        "$HOME/.config/waybar/mango/config.jsonc"
+else
+    sed -Ei \
+        's/^([[:space:]]*)\/\/[[:space:]]*"power-profiles-daemon"(,?)[[:space:]]*$/\1"power-profiles-daemon"\2/' \
+        "$HOME/.config/waybar/mango/config.jsonc"
+fi
 
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
