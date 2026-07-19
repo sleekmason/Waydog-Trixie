@@ -20,22 +20,33 @@ read -p "   [0;33mSDDM Display Manager Installer[0m
 echo ""
 cd /tmp || exit
 rm -fr /tmp/sddm /tmp/sddm.zip
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/sddm.zip --show-progress -q || exit 1
+
+SDDM_INSTALLED=false
+if command -v sddm &>/dev/null; then
+    SDDM_INSTALLED=true
+fi
+
+if [ "$SDDM_INSTALLED" = false ]; then
+    wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/sddm.zip --show-progress -q || exit 1
+fi
+
 sudo apt-get update
 sudo apt-get install -y sddm || exit 1
 sudo systemctl disable ly@tty1.service 2>/dev/null || true
 sudo systemctl enable --force sddm.service
 
+if [ "$SDDM_INSTALLED" = false ]; then
 unzip -q "/tmp/sddm.zip" || exit 1
 sudo cp -fr "/tmp/sddm/themes" "/usr/share/sddm"
 sudo cp -fr "/tmp/sddm/sddm.conf.d" "/etc"
 sudo cp -fr "/tmp/sddm/sddm" "/etc"
+fi
 
 SDDM_BG="/usr/share/sddm/themes/fane/background.jpg"
 SDDM_WAYPAPER_CONFIG="$HOME/.config/waypaper/sddm-bg/config.ini"
 DEFAULT_WALLPAPER="/usr/share/backgrounds/wallpapers/default.jpg"
-
 needs_reset=true
+
 if [[ -f "$SDDM_WAYPAPER_CONFIG" ]]; then
     existing_wallpaper=$(awk '/^\[State\]/{found=1} found && /^wallpaper[[:space:]]*=/{
         sub(/^wallpaper[[:space:]]*=[[:space:]]*/, ""); print; exit}' "$SDDM_WAYPAPER_CONFIG")
