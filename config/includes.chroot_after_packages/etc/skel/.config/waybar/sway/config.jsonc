@@ -91,7 +91,7 @@
     "custom/launcher4": {
         "format": "",
         "tooltip": true,
-        "tooltip-format": "www-browser",
+        "tooltip-format": "Web Browser",
         "on-click": "x-www-browser"
     },    
     "custom/separator1": {

@@ -23,6 +23,7 @@ HIDE="min-width: 0; min-height: 0; padding: 0; margin: 0; font-size: 0; border: 
 
 toggle_module() {
     local mod="$1"
+    local label="${2:-$mod}"
 
 if [[ "$mod" == "power-profiles-daemon" ]] &&
    [[ "$(systemctl is-enabled power-profiles-daemon 2>/dev/null)" == "masked" ]]; then
@@ -37,10 +38,10 @@ fi
 
     if grep -q "^#${mod} .*min-width: 0" "$STYLE"; then
         sed -i "/^#${mod} .*min-width: 0.*$/d" "$STYLE"
-        notify-send -i preferences-desktop "${mod} Module  ▸  ON"
+        notify-send -i preferences-desktop "${label} Module  ▸  ON"
     else
         echo "#${mod} { ${HIDE} }" >> "$STYLE"
-        notify-send -i preferences-desktop "${mod} Module  ▸  OFF"
+        notify-send -i preferences-desktop "${label} Module  ▸  OFF"
     fi
 
     restart_waybar
@@ -54,23 +55,22 @@ reset_modules() {
 }
 
 case "$1" in
-    cpu)                        toggle_module cpu ;;
-    clock)                      toggle_module clock ;;
-    idle_inhibitor)             toggle_module idle_inhibitor ;;
-    memory)                     toggle_module memory ;;
-    temperature)                toggle_module temperature ;;
-    pulseaudio)                 toggle_module pulseaudio ;;
-    backlight)                  toggle_module backlight ;;
-    language)                   toggle_module language ;;
-    network)                    toggle_module network ;;
-    battery)                    toggle_module battery ;;
-    custom-power)               toggle_module custom-power ;;
-    power-profiles-daemon)      toggle_module power-profiles-daemon ;;
-    launcher1)                  toggle_module "custom-launcher1" ;;
-    launcher2)                  toggle_module "custom-launcher2" ;;
-    launcher3)                  toggle_module "custom-launcher3" ;;
-    launcher4)                  toggle_module "custom-launcher4" ;;
-    launcher5)                  toggle_module "custom-launcher5" ;;
+    cpu)                        toggle_module cpu "CPU" ;;
+    clock)                      toggle_module clock "Clock" ;;
+    idle_inhibitor)             toggle_module idle_inhibitor "Idle Inhibitor" ;;
+    memory)                     toggle_module memory "Memory" ;;
+    temperature)                toggle_module temperature "Temperature" ;;
+    pulseaudio)                 toggle_module pulseaudio "Audio" ;;
+    backlight)                  toggle_module backlight "Backlight" ;;
+    language)                   toggle_module language "Language" ;;
+    network)                    toggle_module network "Network" ;;
+    battery)                    toggle_module battery "Battery" ;;
+    power-profiles-daemon)      toggle_module power-profiles-daemon "Power Profiles" ;;
+    launcher1)                  toggle_module "custom-launcher1" "Menu" ;;
+    launcher2)                  toggle_module "custom-launcher2" "Files" ;;
+    launcher3)                  toggle_module "custom-launcher3" "Terminal" ;;
+    launcher4)                  toggle_module "custom-launcher4" "Web Browser" ;;
+    launcher5)                  toggle_module "custom-launcher5" "Desktop" ;;
     reset)                      reset_modules ;;
     *)
 SELF="$(realpath "$BASH_SOURCE")"
@@ -81,22 +81,22 @@ SELF="$(realpath "$BASH_SOURCE")"
                 --buttons-layout=spread --form \
                 --button="Reset!edit-clear":"bash '$SELF' reset" \
                 --button="Close!gtk-close:1" \
-                --field="Audio":FBTN             "bash '$SELF' pulseaudio" \
-                --field="Backlight":FBTN         "bash '$SELF' backlight" \
-                --field="Battery":FBTN           "bash '$SELF' battery" \
-                --field="Clock":FBTN             "bash '$SELF' clock" \
-                --field="CPU":FBTN               "bash '$SELF' cpu" \
-                --field="Desktop":FBTN           "bash '$SELF' launcher5" \
-                --field="Files":FBTN             "bash '$SELF' launcher2" \
-                --field="  Idle Inhibitor  ":FBTN    "bash '$SELF' idle_inhibitor" \
-                --field="Internet":FBTN          "bash '$SELF' launcher4" \
-                --field="Language":FBTN          "bash '$SELF' language" \
-                --field="Memory":FBTN            "bash '$SELF' memory" \
-                --field="Menu":FBTN              "bash '$SELF' launcher1" \
-                --field="Network":FBTN           "bash '$SELF' network" \
+                --field="Audio":FBTN               "bash '$SELF' pulseaudio" \
+                --field="Backlight":FBTN           "bash '$SELF' backlight" \
+                --field="Battery":FBTN             "bash '$SELF' battery" \
+                --field="Clock":FBTN               "bash '$SELF' clock" \
+                --field="CPU":FBTN                 "bash '$SELF' cpu" \
+                --field="Desktop":FBTN             "bash '$SELF' launcher5" \
+                --field="Files":FBTN               "bash '$SELF' launcher2" \
+                --field="  Idle Inhibitor  ":FBTN  "bash '$SELF' idle_inhibitor" \
+                --field="Language":FBTN            "bash '$SELF' language" \
+                --field="Memory":FBTN              "bash '$SELF' memory" \
+                --field="Menu":FBTN                "bash '$SELF' launcher1" \
+                --field="Network":FBTN             "bash '$SELF' network" \
                 --field=" Power Profiles ":FBTN    "bash '$SELF' power-profiles-daemon" \
-                --field="Temperature":FBTN    "bash '$SELF' temperature" \
-                --field="Terminal":FBTN          "bash '$SELF' launcher3" \
+                --field="Temperature":FBTN         "bash '$SELF' temperature" \
+                --field="Terminal":FBTN            "bash '$SELF' launcher3" \
+                --field="Web Browser":FBTN         "bash '$SELF' launcher4" \
                 || break
         done
         ;;

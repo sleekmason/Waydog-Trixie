@@ -17,11 +17,11 @@
 @define-color hiviolet    #D0CCFF;
 @define-color green       #A3BE8C;
 @define-color medgreen    #72B862;
-@define-color brightgreen #86D19C;
+@define-color brightgreen #80D99A;
 @define-color higreen     #ADFFC2;
 @define-color red         #FF7D7D;
 @define-color maroon      #A65151;
-@define-color indigo      #9892D1;
+@define-color indigo      #928ADE;
 @define-color hiindigo    #CDC7FF;
 @define-color orange      #D08770;
 @define-color yellow      #EBCB8B;
@@ -29,6 +29,7 @@
 @define-color purple      #B48EAD;
 @define-color blue        #97B6C7;
 @define-color brightblue  #7BAEC7;
+@define-color browserblue #50B1BF;
 @define-color hiblue      #9CD2F0;
 @define-color coolblue    #7EB6D6;
 @define-color white       #ffffff;
@@ -37,6 +38,8 @@
 @define-color teal        #256E75;
 @define-color darkteal    #2C4752;
 @define-color hiteal      #4DA1A8;
+@define-color peach       #D18679;
+@define-color hipeach     #E0A79D;
 
 /* --------------------------------------------
    General Bar Styling
@@ -301,7 +304,7 @@ tooltip {
    -------------------------------------------- */
 #custom-launcher2 {
   background: @base-light;
-  color: @brightblue;
+  color: @peach;
   padding: 0px 8px 0px 8px;
   border-radius: 8px;
   font-size: 11px;
@@ -309,7 +312,7 @@ tooltip {
 }
 #custom-launcher2:hover {
   background: @border2;
-  color: @hiblue;
+  color: @hipeach;
 }
 
 /* --------------------------------------------
@@ -333,7 +336,7 @@ tooltip {
    -------------------------------------------- */
 #custom-launcher4 {
   background: @base-light;
-  color: @coolblue;
+  color: @browserblue;
   padding: 0px 8px 0px 8px;
   border-radius: 8px;
   font-size: 12px;

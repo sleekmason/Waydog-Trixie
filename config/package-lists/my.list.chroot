@@ -32,6 +32,7 @@ dconf-gsettings-backend
 dconf-editor
 desktop-base
 dialog
+dmz-cursor-theme
 dnsmasq-base
 dns-root-data
 dosfstools
