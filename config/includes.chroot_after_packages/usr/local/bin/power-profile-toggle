@@ -102,6 +102,7 @@ if is_masked; then
         run_as_user 'notify-send -i preferences-desktop "Power Profiles" "Failed to activate"'
     fi
 else
+    run_as_user 'powerprofilesctl set balanced' 2>/dev/null
     systemctl disable --now "$SERVICE" 2>/dev/null
     if systemctl mask "$SERVICE"; then
         sync_ppd_config
