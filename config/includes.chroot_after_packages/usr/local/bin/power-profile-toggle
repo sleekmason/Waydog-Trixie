@@ -97,7 +97,7 @@ if is_masked; then
         sync_ppd_config
         restart_waybar
         sleep 0.5
-        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles Activated" "Waybar icon added"'
+        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles On" "Waybar icon added"'
     else
         run_as_user 'notify-send -i preferences-desktop "Power Profiles" "Failed to activate"'
     fi
@@ -107,8 +107,7 @@ else
         sync_ppd_config
         restart_waybar
         sleep 0.5
-        run_as_user 'notify-send -u low "       Reboot to reset to system default"'
-        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles Deactivated" "Waybar icon removed"'
+        run_as_user 'notify-send -i preferences-desktop -u low "Power Profiles Off"'
     else
         run_as_user 'notify-send -i preferences-desktop "Power Profiles" "Failed to deactivate"'
     fi
