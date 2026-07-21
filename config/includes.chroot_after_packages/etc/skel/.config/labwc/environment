@@ -38,8 +38,8 @@ QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 ## `find /usr/share/icons/ -type d -name "cursors"`
 ##
 
-# XCURSOR_THEME=breeze_cursors
-# XCURSOR_THEME=capitaine-cursors
+XCURSOR_THEME=Adwaita
+XCURSOR_SIZE=24
 
 ##
 ## Disable hardware cursors. Most users would not want to do this, but if you
