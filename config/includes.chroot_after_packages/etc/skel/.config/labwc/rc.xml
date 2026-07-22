@@ -301,9 +301,6 @@
     <keybind key="W-f">
       <action name="ToggleFullscreen"/>
     </keybind>
-    <keybind key="W-S-p">
-      <action name="Execute" command="display-toggle.sh"/>
-    </keybind>
     <keybind key="A-r">
       <action name="Resize"/>
     </keybind>
@@ -312,6 +309,11 @@
         <command>toggleShowDesktop</command>
       </action>
     </keybind>
+    <!-- 
+    <keybind key="W-S-p">
+      <action name="Execute" command="display-toggle.sh"/>
+    </keybind>
+    -->
 
     <!-- Compositor -->
     <keybind key="W-r">
