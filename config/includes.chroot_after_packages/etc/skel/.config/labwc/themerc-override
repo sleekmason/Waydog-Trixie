@@ -27,8 +27,8 @@ window.button.spacing: 0
 window.button.hover.bg.corner-radius: 4
 
 # window buttons
-window.active.button.unpressed.image.color: #CBD6DB
-window.inactive.button.unpressed.image.color: #90A1AB
+# window.active.button.unpressed.image.color: #CBD6DB
+# window.inactive.button.unpressed.image.color: #90A1AB
 
 # Note that "menu", "iconify", "max", "close" buttons colors can be defined
 # individually by inserting the type after the button node, for example:
