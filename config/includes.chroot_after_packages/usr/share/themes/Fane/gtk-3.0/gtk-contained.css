@@ -3654,7 +3654,7 @@ row {
   row:backdrop {
     transition: 200ms ease-out; }
   row.activatable.has-open-popup, row.activatable:hover {
-    background-color: rgba(60, 60, 60, 0.05); }
+    background-color: shade(#2a656d, 0.80); }
   row.activatable:active {
     box-shadow: inset 0 2px 2px -2px rgba(0, 0, 0, 0.2); }
   row.activatable:backdrop:hover {
@@ -3662,7 +3662,7 @@ row {
   row.activatable:selected:active {
     box-shadow: inset 0 2px 3px -1px rgba(0, 0, 0, 0.5); }
   row.activatable:selected.has-open-popup, row.activatable:selected:hover {
-    background-color: #3986d6; }
+    background-color: shade(#2a656d, 1.18); }
   row.activatable:selected:backdrop {
     background-color: #2a656d; }
 

@@ -1,0 +1,122 @@
+#!/bin/bash
+# Basic terminal color toggle for some of the GTK theme matches.
+# Made by sleekason for Waydog - 30 July 2026
+
+fane(){
+    xfconf-query -c xfce4-terminal -p /color-background -s "#1d1d2b2b3333"
+    xfconf-query -c xfce4-terminal -p /color-foreground -s "#c5c5d4d4dbdb"
+    xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(0,0,0);rgb(209,82,77);rgb(0,150,95);rgb(190,149,45);rgb(100,187,209);rgb(179,93,159);rgb(54,155,158);rgb(158,170,176);rgb(149,166,173);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(120,213,235);rgb(239,115,219);rgb(84,209,209);rgb(224,231,233)"
+    sed -i 's/^background =.*/background = #1D2B33/g' "$HOME/.config/ghostty/config.ghostty"
+  if command -v "alacritty" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+          cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+      fi
+      sed -i '0,/^background =.*/s//background = "#1D2B33"/' "$HOME/.config/alacritty/alacritty.toml"
+  fi
+  
+  if command -v "foot" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+          cp -fr "/etc/xdg/foot" "$HOME/.config"
+      fi
+      sed -i 's/^background=.*/background=#1D2B33/g' "$HOME/.config/foot/foot.ini"
+  fi
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Blue"
+}
+
+ink(){
+    xfconf-query -c xfce4-terminal -p /color-background -s "#131316161717"
+    xfconf-query -c xfce4-terminal -p /color-foreground -s "#c9c9d6d6d6d6"
+    xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(0,0,0);rgb(196,62,47);rgb(0,136,87);rgb(190,149,45);rgb(56,152,183);rgb(150,52,128);rgb(0,142,142);rgb(158,170,176);rgb(153,163,172);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(110,195,215);rgb(239,115,219);rgb(99,208,200);rgb(224,231,233)"
+    sed -i 's/^background =.*/background = #131617/g' "$HOME/.config/ghostty/config.ghostty"
+  if command -v "alacritty" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+          cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+      fi
+      sed -i '0,/^background =.*/s//background = "#131617"/' "$HOME/.config/alacritty/alacritty.toml"
+  fi     
+  if command -v "foot" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+          cp -fr "/etc/xdg/foot" "$HOME/.config"
+      fi
+      sed -i 's/^background=.*/background=#131617/g' "$HOME/.config/foot/foot.ini"
+  fi
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Black"
+}
+    
+drow(){
+    xfconf-query -c xfce4-terminal -p /color-background -s "#212121212121"
+    xfconf-query -c xfce4-terminal -p /color-foreground -s "#d9d9d9d9d7d7"
+    xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(0,0,0);rgb(196,62,47);rgb(0,136,87);rgb(190,149,45);rgb(56,152,183);rgb(150,52,128);rgb(0,142,142);rgb(158,170,176);rgb(153,163,172);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(110,195,215);rgb(239,115,219);rgb(99,208,200);rgb(224,231,233)"
+    sed -i 's/^background =.*/background = #212121/g' "$HOME/.config/ghostty/config.ghostty"
+  if command -v "alacritty" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+          cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+      fi
+      sed -i '0,/^background =.*/s//background = "#212121"/' "$HOME/.config/alacritty/alacritty.toml"
+  fi
+  if command -v "foot" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+          cp -fr "/etc/xdg/foot" "$HOME/.config"
+      fi
+      sed -i 's/^background=.*/background=#212121/g' "$HOME/.config/foot/foot.ini"
+  fi
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Brown"
+}
+
+raz(){
+    xfconf-query -c xfce4-terminal -p /color-background -s "#1c1c21212929"
+    xfconf-query -c xfce4-terminal -p /color-foreground -s "#bcbcdadae6e6"
+    xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(0,0,0);rgb(196,62,47);rgb(0,136,87);rgb(190,149,45);rgb(56,152,183);rgb(150,52,128);rgb(0,142,142);rgb(158,170,176);rgb(153,163,172);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(110,195,215);rgb(239,115,219);rgb(99,208,200);rgb(224,231,233)"
+    sed -i 's/^background =.*/background = #1C2129/g' "$HOME/.config/ghostty/config.ghostty"
+  if command -v "alacritty" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+          cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+      fi
+      sed -i '0,/^background =.*/s//background = "#1C2129"/' "$HOME/.config/alacritty/alacritty.toml"
+  fi
+  
+  if command -v "foot" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+          cp -fr "/etc/xdg/foot" "$HOME/.config"
+      fi
+      sed -i 's/^background=.*/background=#1C2129/g' "$HOME/.config/foot/foot.ini"
+  fi
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Purple"
+}
+
+ozark(){
+    xfconf-query -c xfce4-terminal -p /color-background -s "#28282d2c3333"
+    xfconf-query -c xfce4-terminal -p /color-foreground -s "#dbdbdbdbd9d9"
+    xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(24,27,31);rgb(242,77,77);rgb(40,173,111);rgb(235,216,174);rgb(136,202,235);rgb(239,139,192);rgb(50,187,178);rgb(166,172,174);rgb(137,146,153);rgb(231,91,91);rgb(71,207,133);rgb(245,230,196);rgb(132,207,245);rgb(255,156,212);rgb(65,232,204);rgb(209,212,215)"
+    sed -i 's/^background =.*/background = #282D33/g' "$HOME/.config/ghostty/config.ghostty"
+  if command -v "alacritty" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+          cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+      fi
+      sed -i '0,/^background =.*/s//background = "#282D33"/' "$HOME/.config/alacritty/alacritty.toml"
+  fi
+  
+  if command -v "foot" >/dev/null 2>&1; then
+      if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+          cp -fr "/etc/xdg/foot" "$HOME/.config"
+      fi
+      sed -i 's/^background=.*/background=#282D33/g' "$HOME/.config/foot/foot.ini"
+  fi
+  notify-send -i utilities-system-monitor "Terminal color ▸ Gray"
+}
+
+export -f fane
+export -f ink
+export -f drow
+export -f raz
+export -f ozark
+
+yad --title "Term Color" --escape-ok --borders=14 \
+--width=220 --height=280 \
+--button="gtk-ok:0" \
+    --form --columns=1 \
+    --field="Blue":FBTN "bash -c fane" \
+    --field="Black":FBTN "bash -c ink" \
+    --field="Brown":FBTN "bash -c drow" \
+    --field="Purple":FBTN "bash -c raz" \
+    --field="Gray":FBTN "bash -c ozark"

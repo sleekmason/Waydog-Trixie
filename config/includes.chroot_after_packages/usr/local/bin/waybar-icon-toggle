@@ -221,22 +221,210 @@ ini_key_to_selector() {
     done
 }
 
+BASELINE_MAP=(
+    "tooltip|@base-light"
+    "#workspaces button.active|@base-light"
+    "#workspaces button:hover|@border2"
+    "#clock|@base-light"
+    "#clock:hover|@border2"
+    "#pulseaudio:hover|@base-light"
+    "#backlight:hover|@base-light"
+    "#idle_inhibitor:hover|@base-light"
+    "#tags button.occupied|@darkteal"
+    "#tags button.occupied:hover|@border"
+    "#tags button.focused|@teal"
+    "#custom-launcher1|@base-light"
+    "#custom-launcher1:hover|@border2"
+    "#custom-launcher2|@base-light"
+    "#custom-launcher2:hover|@border2"
+    "#custom-launcher3|@base-light"
+    "#custom-launcher3:hover|@border2"
+    "#custom-launcher4|@base-light"
+    "#custom-launcher4:hover|@border2"
+    "#custom-launcher5|@base-light"
+    "#custom-launcher5:hover|@border2"
+    "#mpd|@base-light"
+    "#mpd:hover|@border2"
+    "#custom-power|@base-light"
+    "#custom-power:hover|@border2"
+)
+
+SCHEME_blue=(
+    "tooltip|@base-light"
+    "#workspaces button.active|@base-light"
+    "#workspaces button:hover|@border2"
+    "#clock|@base-light"
+    "#clock:hover|@border2"
+    "#pulseaudio:hover|@base-light"
+    "#backlight:hover|@base-light"
+    "#idle_inhibitor:hover|@base-light"
+    "#tags button.occupied|@darkteal"
+    "#tags button.occupied:hover|@border"
+    "#tags button.focused|@teal"
+    "#custom-launcher1|@base-light"
+    "#custom-launcher1:hover|@border2"
+    "#custom-launcher2|@base-light"
+    "#custom-launcher2:hover|@border2"
+    "#custom-launcher3|@base-light"
+    "#custom-launcher3:hover|@border2"
+    "#custom-launcher4|@base-light"
+    "#custom-launcher4:hover|@border2"
+    "#custom-launcher5|@base-light"
+    "#custom-launcher5:hover|@border2"
+    "#mpd|@base-light"
+    "#mpd:hover|@border2"
+    "#custom-power|@base-light"
+    "#custom-power:hover|@border2"
+)
+
+SCHEME_black=(
+    "tooltip|@ink"
+    "#workspaces button.active|@hiink"
+    "#workspaces button:hover|@hiink"
+    "#clock|@ink"
+    "#clock:hover|@hiink"
+    "#pulseaudio:hover|@hiink"
+    "#backlight:hover|@hiink"
+    "#idle_inhibitor:hover|@hiink"
+    "#tags button.occupied|@ink"
+    "#tags button.occupied:hover|@hiink"
+    "#tags button.focused|@hiink"
+    "#custom-launcher1|@ink"
+    "#custom-launcher1:hover|@hiink"
+    "#custom-launcher2|@ink"
+    "#custom-launcher2:hover|@hiink"
+    "#custom-launcher3|@ink"
+    "#custom-launcher3:hover|@hiink"
+    "#custom-launcher4|@ink"
+    "#custom-launcher4:hover|@hiink"
+    "#custom-launcher5|@ink"
+    "#custom-launcher5:hover|@hiink"
+    "#mpd|@ink"
+    "#mpd:hover|@hiink"
+    "#custom-power|@ink"
+    "#custom-power:hover|@hiink"
+)
+
+SCHEME_brown=(
+    "tooltip|@brown"
+    "#workspaces button.active|@hibrown"
+    "#workspaces button:hover|@hibrown"
+    "#clock|@brown"
+    "#clock:hover|@hibrown"
+    "#pulseaudio:hover|@hibrown"
+    "#backlight:hover|@hibrown"
+    "#idle_inhibitor:hover|@hibrown"
+    "#tags button.occupied|@brown"
+    "#tags button.occupied:hover|@hibrown"
+    "#tags button.focused|@hibrown"
+    "#custom-launcher1|@brown"
+    "#custom-launcher1:hover|@hibrown"
+    "#custom-launcher2|@brown"
+    "#custom-launcher2:hover|@hibrown"
+    "#custom-launcher3|@brown"
+    "#custom-launcher3:hover|@hibrown"
+    "#custom-launcher4|@brown"
+    "#custom-launcher4:hover|@hibrown"
+    "#custom-launcher5|@brown"
+    "#custom-launcher5:hover|@hibrown"
+    "#mpd|@brown"
+    "#mpd:hover|@hibrown"
+    "#custom-power|@brown"
+    "#custom-power:hover|@hibrown"
+)
+
+SCHEME_purple=(
+    "tooltip|@raz"
+    "#workspaces button.active|@hiraz"
+    "#workspaces button:hover|@hiraz"
+    "#clock|@raz"
+    "#clock:hover|@hiraz"
+    "#pulseaudio:hover|@hiraz"
+    "#backlight:hover|@hiraz"
+    "#idle_inhibitor:hover|@hiraz"
+    "#tags button.occupied|@raz"
+    "#tags button.occupied:hover|@hiraz"
+    "#tags button.focused|@hiraz"
+    "#custom-launcher1|@raz"
+    "#custom-launcher1:hover|@hiraz"
+    "#custom-launcher2|@raz"
+    "#custom-launcher2:hover|@hiraz"
+    "#custom-launcher3|@raz"
+    "#custom-launcher3:hover|@hiraz"
+    "#custom-launcher4|@raz"
+    "#custom-launcher4:hover|@hiraz"
+    "#custom-launcher5|@raz"
+    "#custom-launcher5:hover|@hiraz"
+    "#mpd|@raz"
+    "#mpd:hover|@hiraz"
+    "#custom-power|@raz"
+    "#custom-power:hover|@hiraz"
+)
+
+SCHEME_gray=(
+    "tooltip|@grey"
+    "#workspaces button.active|@higrey"
+    "#workspaces button:hover|@higrey"
+    "#clock|@grey"
+    "#clock:hover|@higrey"
+    "#pulseaudio:hover|@higrey"
+    "#backlight:hover|@higrey"
+    "#idle_inhibitor:hover|@higrey"
+    "#tags button.occupied|@grey"
+    "#tags button.occupied:hover|@higrey"
+    "#tags button.focused|@higrey"
+    "#custom-launcher1|@grey"
+    "#custom-launcher1:hover|@higrey"
+    "#custom-launcher2|@grey"
+    "#custom-launcher2:hover|@higrey"
+    "#custom-launcher3|@grey"
+    "#custom-launcher3:hover|@higrey"
+    "#custom-launcher4|@grey"
+    "#custom-launcher4:hover|@higrey"
+    "#custom-launcher5|@grey"
+    "#custom-launcher5:hover|@higrey"
+    "#mpd|@grey"
+    "#mpd:hover|@higrey"
+    "#custom-power|@grey"
+    "#custom-power:hover|@higrey"
+)
+
+apply_color_scheme() {
+    local scheme_id="$1"
+    local -n _overrides_array="SCHEME_${scheme_id}"
+    local -A overrides=()
+    local entry selector value name
+    for entry in "${_overrides_array[@]}"; do
+        IFS='|' read -r selector value <<< "$entry"
+        name="${value#@}"
+        if grep -q "@define-color[[:space:]]\+${name}[[:space:]]" "$STYLE"; then
+            overrides["$selector"]="$value"
+        fi
+    done
+
+    local escaped
+    for entry in "${BASELINE_MAP[@]}"; do
+        IFS='|' read -r selector value <<< "$entry"
+        [[ -n "${overrides[$selector]:-}" ]] && value="${overrides[$selector]}"
+        escaped=$(echo "$selector" | sed 's/ /\\ /g')
+        sed -i "/$escaped {/,/}/ s/\(background:\s*\)@[A-Za-z0-9_-]\+;/\1${value};/" "$STYLE"
+    done
+}
+
 toggle_barcolor() {
     declare -A COLORS=(
-        ["24,37,43"]="Blue"
-        ["0,0,0"]="Black"
+        ["24,37,43"]="Blue"    
+        ["14,17,18"]="Black"
         ["26,26,26"]="Brown"
         ["25,31,41"]="Purple"
-        ["54,59,61"]="Gray"
-        ["16,36,26"]="Green"
+        ["41,48,56"]="Gray"
     )
     COLOR_CYCLE=(
-        "24,37,43"
-        "0,0,0"
+        "24,37,43"   
+        "14,17,18"
         "26,26,26"
         "25,31,41"
-        "54,59,61"
-        "16,36,26"
+        "41,48,56"
     )
 
     current=$(sed -n 's/@define-color base *rgba(\([0-9]\+, *[0-9]\+, *[0-9]\+\),.*/\1/p' "$STYLE" | tr -d ' ')
@@ -250,9 +438,11 @@ toggle_barcolor() {
     new="${COLOR_CYCLE[$next_idx]}"
     label="${COLORS[$new]}"
 
+    apply_color_scheme "$(echo "$label" | tr '[:upper:]' '[:lower:]')"
+
     sed -i "s/@define-color base *rgba([0-9]\+, *[0-9]\+, *[0-9]\+,/@define-color base        rgba(${new},/" "$STYLE"
 
-    notify-send -i preferences-desktop "Waybar Bar Color  ▸  $label"
+    notify-send -i preferences-desktop "Waybar Color  ▸  $label"
     restart_waybar
 }
 
@@ -421,6 +611,8 @@ toggle_transparency() {
 }
 
 reset_defaults() {
+    apply_color_scheme "blue"
+
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
         sed -i '/"wlr\/taskbar": {/,/}/ s/^\(\s*"format":\s*\)".*"/\1"{icon} {title:.'"$LONG"'}"/' "$cfg"
@@ -467,6 +659,8 @@ reset_defaults() {
 }
 
 sway_reset_defaults() {
+    apply_color_scheme "blue"
+
     for cfg in "${CONFIG[@]}"; do
         [[ -f "$cfg" ]] || continue
         sed -i '/"tray": {/{:a; n; /"icon-size":/ { s/\("icon-size": \)[0-9]\+/\112/; b }; ba }' "$cfg"

@@ -1,16 +1,52 @@
 /* ============================================
    Custom Waybar Theme For Waydog 11 Nov 2025
-   Base color: #18252B
    ============================================ */
 
-@define-color base        rgba(24,37,43, 0.9); /* Allows for transparency. Change the fourth value.  Currently set to 10% */
-/* @define-color base        #18252B; */
-@define-color base-light  #203138;
+/* -----------------------------------------------------------
+   Change the fourth value in any of the listed rgba colors to
+   change the opacity level. 
+   
+   The "base" color below is changed by the script to control 
+   the main bar color and should not be edited. To change the
+   main bar colors, look in /usr/local/bin/waybar-icon-toggle
+   lines 414 through 428 (currently). 
+   
+   ALL of the other colors can be changed at will, and will
+   remain the color as set.
+   ----------------------------------------------------------- */
+@define-color base        rgba(24,37,43, 0.9); /* #18252B */
+
+/* -----------------------------------------------------------
+   Bar icon background colors applied with the colorschemes.
+   Change these to adjust the matching icon color highlights.
+   ----------------------------------------------------------- */
+ /* Blue (Fane) #243840 */   
+@define-color base-light  rgba(36,56,64, 0.9);
+@define-color border2     #31434D;
+
+ /* Black (Ink) #0E1112 */
+@define-color ink         rgba(37,43,48, 0.9);
+@define-color hiink       #2F3840;
+
+ /* Brown (Drow/Adwaita) #2E3030 */
+@define-color brown       rgba(46,48,48, 0.9);
+@define-color hibrown     #3D4040;
+
+/* Purple (Nightshade/raz) #262F3D */
+@define-color raz         rgba(41,51,66, 0.9);
+@define-color hiraz       #303B4D;
+
+ /* Gray (Ozark) #434D59 */
+@define-color grey        rgba(58,66,77, 0.9);
+@define-color higrey      #434D59;
+
+/* -----------------------------------------------------------
+   Various other icon colors in use. Change as desired.
+   ----------------------------------------------------------- */
 @define-color tag-light   #22353D;
 @define-color tan         #ADB099;
 @define-color hitan       #D1D6B0;
 @define-color border      #2E3E46;
-@define-color border2     #31434D;
 @define-color text        #B6C8E0;
 @define-color text-dim    #9CA8B4;
 @define-color violet      #9E9BC2;

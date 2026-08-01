@@ -266,6 +266,11 @@
           <execute>gksudo synaptic</execute>
         </action>
       </item>
+      <item label="Terminal Colors" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+        <action name="Execute">
+          <execute>toggle-terminal-color</execute>
+        </action>
+      </item>            
       <item label="Transmission" icon="/usr/share/icons/hicolor/scalable/apps/transmission.svg">
         <action name="Execute">
           <execute>transmission-gtk</execute>

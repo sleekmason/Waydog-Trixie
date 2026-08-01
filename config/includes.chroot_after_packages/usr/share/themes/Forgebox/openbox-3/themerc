@@ -1,0 +1,97 @@
+!! Forgebox by sleekmason 07 Jul 2024
+!! Based on Onyx-Citrus by Dana Jansens
+
+!! Menu background
+menu.items.bg: flat gradient vertical
+menu.items.bg.color: #23272B
+menu.items.bg.colorTo: #23272B
+menu.separator.color: #424A54
+
+!! Menu text
+menu.items.text.color: #D0D5DB
+menu.items.justify: left
+menu.items.disabled.text.color: #707070
+
+!! Menu title
+menu.title.bg: raised splitvertical gradient
+menu.title.bg.color: #25292E
+menu.title.bg.colorTo: #25292E
+menu.title.text.color: #D0D5DB
+menu.title.text.justify: center
+
+!! Selected menu item
+menu.items.active.bg: raised splitvertical gradient
+menu.items.active.bg.color: #2e5c61
+menu.items.active.bg.colorTo: #2e5c61
+menu.items.active.text.color: #FCFCFC
+
+!! Titlebar
+window.active.title.bg: raised vertical gradient
+window.active.title.bg.color: #323942
+window.active.title.bg.colorTo: #343D47
+window.inactive.title.bg: flat vertical gradient
+window.inactive.title.bg.color: #23282E
+window.inactive.title.bg.colorTo: #23282E
+
+!! Titlebar text
+window.label.text.justify: center
+window.active.label.bg: parentrelative
+window.active.label.text.color: #D8DDE0
+window.inactive.label.bg: parentrelative
+window.inactive.label.text.color: #91989E
+window.active.label.text.font: shadow=y:shadowtint=30:shadowoffset=1
+window.inactive.label.text.font: shadow=y:shadowtint=10:shadowoffset=1
+
+!! Window buttons
+window.*.button.*.bg: parentrelative
+window.active.button.*.hover.bg: flat vertical gradient border
+window.inactive.button.*.hover.bg: parentrelative
+window.*.button.*.pressed.bg: flat vertical gradient border
+
+window.active.button.*.hover.bg.color: #2e5c61
+window.active.button.*.hover.bg.colorTo: #2e5c61
+window.active.button.*.hover.bg.border.color: #000000
+
+window.active.button.*.pressed.bg.color: #768394
+window.active.button.*.pressed.bg.colorTo: #768394
+window.active.button.*.pressed.image.color: #000000
+window.active.button.*.pressed.bg.border.color: #000000
+window.inactive.button.*.pressed.bg.color: #262626
+window.inactive.button.*.pressed.bg.colorTo: #262626
+window.inactive.button.*.pressed.image.color: #404040
+window.inactive.button.*.pressed.bg.border.color: #23272B
+
+window.active.button.*.image.color: #C3C7CC
+window.active.button.disabled.image.color: #636363
+window.inactive.button.*.image.color: #747B85
+window.inactive.button.disabled.image.color: #636363
+
+!! Borders
+window.active.border.color: #1F2226
+window.inactive.border.color: #26292E
+window.inactive.title.separator.color: #202326
+border.width: 1
+padding.width: 1
+window.handle.width: 3
+window.active.client.color:  #303740
+window.inactive.client.color:  #22262A
+window.client.padding.width: 1
+window.client.padding.height: 1
+menu.border.color: #191C1F
+menu.overlap: 0
+
+!! Handles
+window.active.handle.bg: raised
+window.active.handle.bg.color: #343C45
+window.active.grip.bg: parentrelative
+window.inactive.handle.bg: raised
+window.inactive.handle.bg.color: #22252A
+window.inactive.grip.bg: parentrelative
+
+!! Font shadows
+!! menu.items.font:shadow=y:shadowtint=30
+
+!! On-screen displays
+osd.bg: gradient vertical flat
+osd.bg.color: #2E343B
+osd.bg.colorTo: #262B30

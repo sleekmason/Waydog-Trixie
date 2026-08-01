@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Terminal Color
+Comment=Change terminal color
+Exec=toggle-terminal-color
+StartupNotify=false
+Terminal=false
+Icon=utilities-terminal
+Categories=ld-misc-tools;
