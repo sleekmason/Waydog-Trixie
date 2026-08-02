@@ -1,0 +1,50 @@
+#!/bin/bash
+# Sync Mako notification colors to the current terminal background color.
+# Made by sleekmason for Waydog - 2 Aug 2026
+
+MAKO_CONFIG="$HOME/.config/mako/config"
+
+get_color() {
+    local raw hex=""
+
+    if command -v xfconf-query >/dev/null 2>&1; then
+        raw=$(xfconf-query -c xfce4-terminal -p /color-background 2>/dev/null)
+        raw="${raw#\#}"
+        if [[ "$raw" =~ ^([0-9A-Fa-f]{2})[0-9A-Fa-f]{2}([0-9A-Fa-f]{2})[0-9A-Fa-f]{2}([0-9A-Fa-f]{2})[0-9A-Fa-f]{2} ]]; then
+            hex="${BASH_REMATCH[1]}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+        fi
+    fi
+
+    if [[ -z "$hex" && -f "$HOME/.config/ghostty/config.ghostty" ]]; then
+        raw=$(sed -n 's/^background = *#\?\([0-9A-Fa-f]\{6\}\).*/\1/p' "$HOME/.config/ghostty/config.ghostty" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+
+    if [[ -z "$hex" && -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+        raw=$(sed -n 's/^background = *"#\?\([0-9A-Fa-f]\{6\}\)".*/\1/p' "$HOME/.config/alacritty/alacritty.toml" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+
+    if [[ -z "$hex" && -f "$HOME/.config/foot/foot.ini" ]]; then
+        raw=$(sed -n 's/^background=#\?\([0-9A-Fa-f]\{6\}\).*/\1/p' "$HOME/.config/foot/foot.ini" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+
+    echo "$hex"
+}
+
+COLOR=$(get_color)
+
+[[ -z "$COLOR" ]] && exit 0
+
+[[ -f "$MAKO_CONFIG" ]] || exit 0
+
+# Main background change. [urgency=normal]
+sed -i "0,/^\[/{s/^background-color=#[0-9A-Fa-f]\{6\}/background-color=#${COLOR}/}" "$MAKO_CONFIG"
+
+# Urgency low change. Comment if unwanted. [urgency=low]
+sed -i "/^\[urgency=low\]/,/^\[/{s/^background-color=#[0-9A-Fa-f]\{6\}/background-color=#${COLOR}/}" "$MAKO_CONFIG"
+
+command -v makoctl >/dev/null 2>&1 && makoctl reload
+
+notify-send -i preferences-desktop-theme "Mako background ▸ Synced"

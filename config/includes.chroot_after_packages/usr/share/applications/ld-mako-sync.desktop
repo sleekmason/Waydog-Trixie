@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Mako BG Sync
+Exec=toggle-mako-background.sh
+StartupNotify=false
+Terminal=false
+Icon=system-run
+Categories=ld-misc-tools;

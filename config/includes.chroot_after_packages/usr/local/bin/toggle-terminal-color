@@ -111,8 +111,9 @@ export -f drow
 export -f raz
 export -f ozark
 
-yad --title "Term Color" --escape-ok --borders=14 \
+yad --title "Terminal Color" --escape-ok --borders=14 \
 --width=220 --height=280 \
+--button="Mako Sync:mako-colorsync" \
 --button="gtk-ok:0" \
     --form --columns=1 \
     --field="Blue":FBTN "bash -c fane" \
