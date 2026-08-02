@@ -21,23 +21,23 @@
    Change these to adjust the matching icon color highlights.
    ----------------------------------------------------------- */
  /* Blue (Fane) #243840 */   
-@define-color base-light  rgba(36,56,64, 0.9);
+@define-color base-light  rgba(36,56,64, 0.8);
 @define-color border2     #31434D;
 
  /* Black (Ink) #0E1112 */
-@define-color ink         rgba(37,43,48, 0.9);
+@define-color ink         rgba(37,43,48, 0.8);
 @define-color hiink       #2F3840;
 
  /* Brown (Drow/Adwaita) #2E3030 */
-@define-color brown       rgba(46,48,48, 0.9);
+@define-color brown       rgba(46,48,48, 0.8);
 @define-color hibrown     #3D4040;
 
 /* Purple (Nightshade/raz) #262F3D */
-@define-color raz         rgba(41,51,66, 0.9);
+@define-color raz         rgba(41,51,66, 0.8);
 @define-color hiraz       #303B4D;
 
  /* Gray (Ozark) #434D59 */
-@define-color grey        rgba(58,66,77, 0.9);
+@define-color grey        rgba(58,66,77, 0.8);
 @define-color higrey      #434D59;
 
 /* -----------------------------------------------------------
