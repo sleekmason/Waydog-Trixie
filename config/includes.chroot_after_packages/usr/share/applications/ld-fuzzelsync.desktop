@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Fuzzel BG Sync
+Exec=toggle-fuzzel-background.sh
+StartupNotify=false
+Terminal=false
+Icon=system-run
+Categories=ld-misc-tools;

@@ -1,0 +1,112 @@
+#!/bin/bash
+# Sync Fuzzel menu background and selection colors to the current terminal background color.
+# Made by sleekmason for Waydog - 05 Aug 2026
+
+FUZZEL_CONFIGS=(
+    "$HOME/.config/fuzzel/fuzzel.ini"
+    "$HOME/.config/fuzzel/labwc/fuzzel.ini"
+)
+
+# Pre select backgrounds with some tolerance
+KNOWN_BACKGROUNDS=(
+    "1D2B33:27717A"   # Blue
+    "131617:384249"   # Black
+    "212121:3D4040"   # Brown
+    "1C2129:303B4D"   # Purple
+    "282D33:434D59"   # Gray
+)
+TOLERANCE=10
+
+# User select with color range offset
+FALLBACK_OFFSET=38
+
+hex_to_dec() { printf '%d' "0x$1"; }
+
+channel_diff() {
+    local a b
+    a=$(hex_to_dec "$1"); b=$(hex_to_dec "$2")
+    echo $(( a > b ? a - b : b - a ))
+}
+
+# Tolerance match
+hex_within_tolerance() {
+    local hex1=$1 hex2=$2
+    local dr dg db
+    dr=$(channel_diff "${hex1:0:2}" "${hex2:0:2}")
+    dg=$(channel_diff "${hex1:2:2}" "${hex2:2:2}")
+    db=$(channel_diff "${hex1:4:2}" "${hex2:4:2}")
+    [[ "$dr" -le "$TOLERANCE" && "$dg" -le "$TOLERANCE" && "$db" -le "$TOLERANCE" ]]
+}
+
+clamp() {
+    local v=$1
+    (( v < 0 )) && v=0
+    (( v > 255 )) && v=255
+    echo "$v"
+}
+
+# Offset, and reverse on lightest match
+shift_hex() {
+    local hex=$1 offset=$2
+    local r g b max direction
+    r=$(hex_to_dec "${hex:0:2}"); g=$(hex_to_dec "${hex:2:2}"); b=$(hex_to_dec "${hex:4:2}")
+    max=$r; (( g > max )) && max=$g; (( b > max )) && max=$b
+    if (( max + offset > 255 )); then
+        direction=-1
+    else
+        direction=1
+    fi
+    r=$(clamp $(( r + direction * offset )))
+    g=$(clamp $(( g + direction * offset )))
+    b=$(clamp $(( b + direction * offset )))
+    printf '%02X%02X%02X' "$r" "$g" "$b"
+}
+
+get_color() {
+    local raw hex=""
+    if command -v xfce4-terminal >/dev/null 2>&1 && command -v xfconf-query >/dev/null 2>&1; then
+        raw=$(xfconf-query -c xfce4-terminal -p /color-background 2>/dev/null)
+        raw="${raw#\#}"
+        if [[ "$raw" =~ ^([0-9A-Fa-f]{2})[0-9A-Fa-f]{2}([0-9A-Fa-f]{2})[0-9A-Fa-f]{2}([0-9A-Fa-f]{2})[0-9A-Fa-f]{2} ]]; then
+            hex="${BASH_REMATCH[1]}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+        fi
+    fi
+    if [[ -z "$hex" ]] && command -v ghostty >/dev/null 2>&1 && [[ -f "$HOME/.config/ghostty/config.ghostty" ]]; then
+        raw=$(sed -n 's/^background = *#\?\([0-9A-Fa-f]\{6\}\).*/\1/p' "$HOME/.config/ghostty/config.ghostty" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+    if [[ -z "$hex" ]] && command -v alacritty >/dev/null 2>&1 && [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+        raw=$(sed -n 's/^background = *"#\?\([0-9A-Fa-f]\{6\}\)".*/\1/p' "$HOME/.config/alacritty/alacritty.toml" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+    if [[ -z "$hex" ]] && command -v foot >/dev/null 2>&1 && [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+        raw=$(sed -n 's/^background=#\?\([0-9A-Fa-f]\{6\}\).*/\1/p' "$HOME/.config/foot/foot.ini" | head -n1)
+        [[ -n "$raw" ]] && hex="$raw"
+    fi
+    echo "$hex"
+}
+
+BG_COLOR=$(get_color)
+[[ -z "$BG_COLOR" ]] && exit 0
+BG_COLOR="${BG_COLOR^^}"
+
+SELECTION_COLOR=""
+for ENTRY in "${KNOWN_BACKGROUNDS[@]}"; do
+    KNOWN_BG="${ENTRY%%:*}"
+    KNOWN_SEL="${ENTRY##*:}"
+    if hex_within_tolerance "$BG_COLOR" "$KNOWN_BG"; then
+        SELECTION_COLOR="$KNOWN_SEL"
+        break
+    fi
+done
+[[ -z "$SELECTION_COLOR" ]] && SELECTION_COLOR=$(shift_hex "$BG_COLOR" "$FALLBACK_OFFSET")
+
+SYNCED=0
+for CFG in "${FUZZEL_CONFIGS[@]}"; do
+    [[ -f "$CFG" ]] || continue
+    sed -i -E "s/^background=[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})/background=${BG_COLOR}\1/" "$CFG"
+    sed -i -E "s/^selection=[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})/selection=${SELECTION_COLOR}\1/" "$CFG"
+    SYNCED=1
+done
+
+[[ "$SYNCED" -eq 1 ]] && notify-send -i preferences-desktop-theme "Fuzzel background ▸ Synced"

@@ -112,12 +112,14 @@ export -f raz
 export -f ozark
 
 yad --title "Terminal Color" --escape-ok --borders=14 \
---width=220 --height=280 \
---button="Mako Sync:mako-colorsync" \
+--width=240 --height=360 \
 --button="gtk-ok:0" \
     --form --columns=1 \
     --field="Blue":FBTN "bash -c fane" \
     --field="Black":FBTN "bash -c ink" \
     --field="Brown":FBTN "bash -c drow" \
     --field="Purple":FBTN "bash -c raz" \
-    --field="Gray":FBTN "bash -c ozark"
+    --field="Gray":FBTN "bash -c ozark" \
+    --field="":LBL "" \
+    --field="   Mako Sync!notification-symbolic":FBTN "bash -c mako-colorsync" \
+    --field="  Fuzzel Sync!open-menu-symbolic":FBTN "bash -c fuzzel-colorsync"
