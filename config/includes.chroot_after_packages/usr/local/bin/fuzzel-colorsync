@@ -15,7 +15,7 @@ KNOWN_BACKGROUNDS=(
     "1C2129:303B4D"   # Purple
     "282D33:434D59"   # Gray
 )
-TOLERANCE=10
+TOLERANCE=5
 
 # User select with color range offset
 FALLBACK_OFFSET=38
