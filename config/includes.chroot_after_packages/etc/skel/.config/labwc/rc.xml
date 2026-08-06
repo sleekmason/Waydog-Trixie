@@ -363,7 +363,7 @@
         <command>wdmenu</command>
       </action>
     </keybind>
-    <keybind key="W-F5">
+    <keybind key="W-F2">
       <action name="Execute">
         <command>fuzzel --config ~/.config/fuzzel/labwc/fuzzel.ini</command>
       </action>

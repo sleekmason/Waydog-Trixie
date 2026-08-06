@@ -116,7 +116,7 @@ for_window [app_id="waypaper"] floating enable, move position center
     # User added programs
 bindsym $mod+F1 exec --no-startup-id "sway-keys.sh"
 bindsym $mod+F3 exec --no-startup-id "wdmenu"
-bindsym $mod+F5 exec --no-startup-id "fuzzel"
+bindsym $mod+F2 exec --no-startup-id "fuzzel"
 bindsym alt+w exec --no-startup-id "waybar-toggle"
 bindsym $mod+shift+w exec --no-startup-id "waybar-icon-toggle sway_dialog"
 bindsym $mod+shift+t exec --no-startup-id "thunar"
