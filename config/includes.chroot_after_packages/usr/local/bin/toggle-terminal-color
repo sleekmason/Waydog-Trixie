@@ -105,14 +105,83 @@ ozark(){
   notify-send -i utilities-system-monitor "Terminal color ▸ Gray"
 }
 
+double_hex() {
+    local hex=$1
+    printf '%s%s%s%s%s%s' "${hex:0:2}" "${hex:0:2}" "${hex:2:2}" "${hex:2:2}" "${hex:4:2}" "${hex:4:2}"
+}
+
+custom(){
+    local init_color="#1D2B33" yad_output ret position color hex
+
+    while true; do
+        yad_output=$(yad --color --gtk-palette --palette=/usr/share/X11/rgb.txt \
+            --title="Select Your Terminal Background Color" \
+            --init-color="$init_color" \
+            --button=" PICK!color-select-symbolic":10 \
+            --button=" Cancel!gtk-delete":1 \
+            --button=" Apply!gtk-ok":0
+        )
+        ret=$?
+        case $ret in
+            10)
+                position=$(slurp -b 00000000 -p)
+                [ -z "$position" ] && continue
+                sleep 0.50
+                if command -v /usr/bin/gm &> /dev/null; then
+                    color=$(grim -g "$position" -t png - \
+                        | /usr/bin/gm convert - -format '%[pixel:p{0,0}]' txt:- \
+                        | tail -n 1 | rev | cut -d ' ' -f 1 | rev)
+                else
+                    color=$(grim -g "$position" -t png - \
+                        | convert - -format '%[pixel:p{0,0}]' txt:- \
+                        | tail -n 1 | cut -d ' ' -f 4)
+                fi
+                [ -n "$color" ] && init_color="$color"
+                continue
+                ;;
+            0)
+                [ -z "$yad_output" ] && return
+                hex="${yad_output#\#}"
+                hex="${hex:0:6}"
+                hex="${hex^^}"
+
+                xfconf-query -c xfce4-terminal -p /color-background -s "#$(double_hex "$hex")"
+                sed -i "s/^background =.*/background = #${hex}/g" "$HOME/.config/ghostty/config.ghostty"
+
+              if command -v "alacritty" >/dev/null 2>&1; then
+                  if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
+                      cp -fr "/etc/xdg/alacritty" "$HOME/.config"
+                  fi
+                  sed -i "0,/^background =.*/s//background = \"#${hex}\"/" "$HOME/.config/alacritty/alacritty.toml"
+              fi
+
+              if command -v "foot" >/dev/null 2>&1; then
+                  if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
+                      cp -fr "/etc/xdg/foot" "$HOME/.config"
+                  fi
+                  sed -i "s/^background=.*/background=#${hex}/g" "$HOME/.config/foot/foot.ini"
+              fi
+              notify-send -i utilities-system-monitor "Terminal color  ▸ Custom Color"
+              return
+                ;;
+            *)
+                return
+                ;;
+        esac
+    done
+}
+
 export -f fane
 export -f ink
 export -f drow
 export -f raz
 export -f ozark
+export -f double_hex
+export -f custom
 
 yad --title "Terminal Color" --escape-ok --borders=14 \
---width=240 --height=360 \
+--width=240 --height=407 --buttons-layout=center \
+--button=" Cancel!gtk-delete":1 \
 --button="gtk-ok:0" \
     --form --columns=1 \
     --field="Blue":FBTN "bash -c fane" \
@@ -120,6 +189,8 @@ yad --title "Terminal Color" --escape-ok --borders=14 \
     --field="Brown":FBTN "bash -c drow" \
     --field="Purple":FBTN "bash -c raz" \
     --field="Gray":FBTN "bash -c ozark" \
+    --field="Custom BG":FBTN "bash -c custom" \
+    --field="":LBL "" \
     --field="":LBL "" \
     --field="   Mako Sync!notification-symbolic":FBTN "bash -c mako-colorsync" \
     --field="  Fuzzel Sync!open-menu-symbolic":FBTN "bash -c fuzzel-colorsync"
