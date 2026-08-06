@@ -1,0 +1,8 @@
+# GWNR71517 (Gateway) laptop - BIOS CC-BI-15.6-N14PBR110-PD60A-243-E
+# Fn-row F1/F2/F3 send raw scancodes df/a0/ae instead of standard F-key
+# codes, so the kernel never sees F1-F3 without this remap.
+# Verify scancodes with: sudo evtest (or `showkey -s`)
+evdev:atkbd:dmi:bvn*:bvrCC-BI-15.6-N14PBR110-PD60A-243-E:*:svn*:pnGWNR71517:*
+ KEYBOARD_KEY_df=f1
+ KEYBOARD_KEY_a0=f2
+ KEYBOARD_KEY_ae=f3

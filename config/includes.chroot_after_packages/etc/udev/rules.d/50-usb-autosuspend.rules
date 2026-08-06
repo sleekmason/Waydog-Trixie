@@ -1,0 +1,5 @@
+# Disable USB autosuspend for devices known to spuriously reset under
+# rtw_8821cu / Realtek autosuspend handling.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="c820", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0edc", ATTR{idProduct}=="5830", TEST=="power/control", ATTR{power/control}="on"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0bda", ATTR{idProduct}=="0129", TEST=="power/control", ATTR{power/control}="on"
