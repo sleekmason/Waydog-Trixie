@@ -171,7 +171,12 @@
         <action name="Execute">
           <execute>x-terminal-emulator -T 'Terminal Choice' -e "sudo update-alternatives --config x-terminal-emulator"</execute>
         </action>
-      </item>      
+      </item>
+      <item label="Zswap On/Off" icon="/usr/share/icons/gnome/24x24/devices/drive-harddisk.png">
+        <action name="Execute">
+          <execute>zswap-toggle</execute>
+        </action>
+      </item>           
     </menu>
     <menu icon="/usr/share/icons/gnome/24x24/categories/preferences-system.png" id="root-menu-4985" label="Utilities">
       <menu icon="/usr/share/icons/gnome/24x24/status/info.png" id="root-menu-88811" label="System Info">
