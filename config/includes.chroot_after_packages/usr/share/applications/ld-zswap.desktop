@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Zswap On/Off
+Exec=zswap-toggle
+StartupNotify=false
+Terminal=false
+Icon=drive-harddisk
+Categories=ld-misc-tools;
