@@ -5,7 +5,6 @@
   for the original default.
 -->
 <labwc_config>
-
   <core>
     <decoration>server</decoration>
     <gap>10</gap>
@@ -20,7 +19,6 @@
       <promptCommand></promptCommand>
     -->
   </core>
-
   <placement>
     <policy>cascade</policy>
     <!--
@@ -30,7 +28,6 @@
     -->
     <cascadeOffset x="360" y="180"/>
   </placement>
-
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
     <name>Fanebox</name>
@@ -76,7 +73,6 @@
       <weight>normal</weight>
     </font>
   </theme>
-
   <!--
     # Window Rules
     #   - Criteria can consist of 'identifier', 'title', 'sandboxEngine' or
@@ -93,7 +89,6 @@
   <windowRules>
     <windowRule identifier="com.mitchellh.ghostty" serverDecoration="no"/>
   </windowRules>
-
   <windowSwitcher preview="yes" outlines="yes" unshade="yes">
     <osd show="yes" style="classic" output="all" thumbnailLabelFormat="%T"/>
     <fields>
@@ -135,7 +130,6 @@
       </fields>
     </windowSwitcher>
   -->
-
   <!-- edge strength is in pixels -->
   <resistance>
     <screenEdgeStrength>20</screenEdgeStrength>
@@ -145,7 +139,6 @@
     <!-- resistance for vertically/horizontally maximized windows -->
     <unMaximizeThreshold>150</unMaximizeThreshold>
   </resistance>
-
   <resize>
     <!-- Show a simple resize and move indicator -->
     <popupShow>Never</popupShow>
@@ -160,13 +153,11 @@
     -->
     <cornerRange>8</cornerRange>
   </resize>
-
   <focus>
     <followMouse>no</followMouse>
     <followMouseRequiresMovement>yes</followMouseRequiresMovement>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
-
   <snapping>
     <!-- Set inner and outer range to 0 to disable window snapping completely -->
     <range inner="1" outer="1"/>
@@ -177,7 +168,6 @@
     <topMaximize>yes</topMaximize>
     <notifyClient>always</notifyClient>
   </snapping>
-
   <!--
     Workspaces can be configured like this:
     <desktops>
@@ -204,7 +194,6 @@
       <name>Desktop 4</name>
     </names>
   </desktops>
-
   <!--
     <margin> can be used to reserve space where new/maximized/tiled
     windows will not be placed. Clients using layer-shell protocol reserve
@@ -215,7 +204,6 @@
 
     <margin top="10" bottom="10" left="10" right="10" output="HDMI-A-1" />
   -->
-
   <!-- Percent based regions based on output usable area, % char is required -->
   <!--
     <regions>
@@ -230,7 +218,6 @@
       <region name="bottom-right" x="50%" y="50%" height="50%"  width="50%"  />
     </regions>
   -->
-
   <!--
     Keybind actions are specified in labwc-actions(5)
     The following keybind modifiers are supported:
@@ -254,7 +241,6 @@
     <layoutScope>global</layoutScope>
     <repeatRate>25</repeatRate>
     <repeatDelay>600</repeatDelay>
-
     <!-- Desktop switching -->
     <keybind key="W-1">
       <action name="GoToDesktop" to="1"/>
@@ -274,7 +260,6 @@
     <keybind key="W-C-Right">
       <action name="GoToDesktop" to="right"/>
     </keybind>
-
     <!-- Send to desktop -->
     <keybind key="W-S-1">
       <action name="SendToDesktop">
@@ -296,7 +281,6 @@
         <to>4</to>
       </action>
     </keybind>
-
     <!-- Window management -->
     <keybind key="W-f">
       <action name="ToggleFullscreen"/>
@@ -314,7 +298,6 @@
       <action name="Execute" command="display-toggle.sh"/>
     </keybind>
     -->
-
     <!-- Compositor -->
     <keybind key="W-r">
       <action name="Execute">
@@ -324,12 +307,11 @@
     <keybind key="W-Space">
       <action name="ShowMenu" menu="some-custom-menu"/>
     </keybind>
-    <keybind key="W-F9">
+    <keybind key="C-A-p">
       <action name="Execute">
         <command>wl-find-cursor -d 2400 -s 150 -c 0xFFFFE65656</command>
       </action>
     </keybind>
-
     <!-- Applications -->
     <keybind key="W-Return">
       <action name="Execute">
@@ -356,9 +338,13 @@
         <command>ld-logout</command>
       </action>
     </keybind>
-
     <!-- Launchers -->
     <keybind key="W-F3">
+      <action name="Execute">
+        <command>wdmenu</command>
+      </action>
+    </keybind>
+    <keybind key="C-A-d">
       <action name="Execute">
         <command>wdmenu</command>
       </action>
@@ -368,7 +354,11 @@
         <command>fuzzel --config ~/.config/fuzzel/labwc/fuzzel.ini</command>
       </action>
     </keybind>
-
+    <keybind key="C-A-l">
+      <action name="Execute">
+        <command>fuzzel --config ~/.config/fuzzel/labwc/fuzzel.ini</command>
+      </action>
+    </keybind>
     <!-- Waybar -->
     <keybind key="W-w">
       <action name="Execute">
@@ -380,7 +370,6 @@
         <command>waybar-icon-toggle dialog</command>
       </action>
     </keybind>
-
     <!-- Wallpaper -->
     <keybind key="W-v">
       <action name="Execute">
@@ -397,7 +386,6 @@
         <command>waypaper-update-wrapper</command>
       </action>
     </keybind>
-
     <!-- Gamma -->
     <keybind key="W-g">
       <action name="Execute">
@@ -409,35 +397,35 @@
         <command>wlr-gamma-gui</command>
       </action>
     </keybind>
-
     <!-- Conky -->
     <keybind key="W-c">
       <action name="Execute">
         <command>~/.config/conky/scripts/conky-chooser</command>
       </action>
     </keybind>
-
     <!-- Hotcorners -->
     <keybind key="W-z">
       <action name="Execute">
         <command>hotcorners-toggle</command>
       </action>
     </keybind>
-
     <!-- Help -->
     <keybind key="W-F1">
       <action name="Execute">
         <command>labwc-keys.sh</command>
       </action>
     </keybind>
-
+    <keybind key="C-A-k">
+      <action name="Execute">
+        <command>labwc-keys.sh</command>
+      </action>
+    </keybind>
     <!-- Screenshot -->
     <keybind key="Print">
       <action name="Execute">
         <command>grimshot save area</command>
       </action>
     </keybind>
-
     <!-- Media keys -->
     <keybind key="XF86_AudioLowerVolume">
       <action name="Execute">
@@ -464,7 +452,6 @@
         <command>brightnessctl set 10%-</command>
       </action>
     </keybind>
-    
     <!-- Snap to edge -->
     <keybind key="W-Left">
       <action name="SnapToEdge" direction="left" combine="yes"/>
@@ -478,7 +465,6 @@
     <keybind key="W-Down">
       <action name="SnapToEdge" direction="down" combine="yes"/>
     </keybind>
-
     <!-- SnapToRegion via W-Numpad -->
     <!--
       <keybind key="W-KP_7">
@@ -510,7 +496,6 @@
       </keybind>
     -->
   </keyboard>
-
   <!--
     Multiple <mousebind> can exist within one <context>
     Multiple <actions> can exist within one <mousebind>
@@ -525,7 +510,6 @@
   <mouse>
     <!-- time is in ms -->
     <doubleClickTime>500</doubleClickTime>
-
     <context name="Frame">
       <mousebind button="W-Left" action="Press">
         <action name="Focus"/>
@@ -542,7 +526,6 @@
         <action name="Resize"/>
       </mousebind>
     </context>
-
     <context name="Border">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -552,7 +535,6 @@
         <action name="Resize"/>
       </mousebind>
     </context>
-
     <context name="Top">
       <mousebind button="Left" action="Drag">
         <action name="Resize"/>
@@ -593,7 +575,6 @@
         <action name="Resize"/>
       </mousebind>
     </context>
-
     <context name="TitleBar">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -612,7 +593,6 @@
         <action name="Shade"/>
       </mousebind>
     </context>
-
     <context name="Title">
       <mousebind button="Left" action="Drag">
         <action name="Move"/>
@@ -624,7 +604,6 @@
         <action name="ShowMenu" menu="client-menu"/>
       </mousebind>
     </context>
-
     <context name="Maximize">
       <mousebind button="Left" action="Click">
         <action name="ToggleMaximize"/>
@@ -636,7 +615,6 @@
         <action name="ToggleMaximize" direction="vertical"/>
       </mousebind>
     </context>
-
     <context name="WindowMenu">
       <mousebind button="Left" action="Click">
         <action name="ShowMenu" menu="client-menu" atCursor="no"/>
@@ -645,7 +623,6 @@
         <action name="ShowMenu" menu="client-menu" atCursor="no"/>
       </mousebind>
     </context>
-
     <context name="Icon">
       <mousebind button="Left" action="Click">
         <action name="ShowMenu" menu="client-menu" atCursor="no"/>
@@ -654,31 +631,26 @@
         <action name="ShowMenu" menu="client-menu" atCursor="no"/>
       </mousebind>
     </context>
-
     <context name="Shade">
       <mousebind button="Left" action="Click">
         <action name="ToggleShade"/>
       </mousebind>
     </context>
-
     <context name="AllDesktops">
       <mousebind button="Left" action="Click">
         <action name="ToggleOmnipresent"/>
       </mousebind>
     </context>
-
     <context name="Iconify">
       <mousebind button="Left" action="Click">
         <action name="Iconify"/>
       </mousebind>
     </context>
-
     <context name="Close">
       <mousebind button="Left" action="Click">
         <action name="Close"/>
       </mousebind>
     </context>
-
     <context name="Client">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -693,7 +665,6 @@
         <action name="Raise"/>
       </mousebind>
     </context>
-
     <context name="Root">
       <mousebind button="Left" action="Press">
         <action name="ShowMenu" menu="root-menu"/>
@@ -713,9 +684,7 @@
         <action name="GoToDesktop" to="right" wrap="yes"/>
       </mousebind>
     </context>
-
   </mouse>
-
   <!--
     A touch configuration can be bound to a specific device. If device
     name is left empty, the touch configuration applies to all touch
@@ -734,7 +703,6 @@
     <!-- <mapToOutput>HDMI-A-1</mapToOutput> -->
     <mouseEmulation>no</mouseEmulation>
   </touch>
-
   <!--
     The tablet cursor movement can be restricted to a single output.
     If output is left empty or the output does not exists, the tablet
@@ -763,12 +731,11 @@
   <tablet rotate="0" mouseEmulation="no">
     <!-- <mapToOutput>HDMI-A-1</mapToOutput> -->
     <!-- Active area dimensions are in mm -->
-    <area top="0.0" left="0.0" width="0.0" height="0.0" />
-    <map button="Tip" to="Left" />
-    <map button="Stylus" to="Right" />
-    <map button="Stylus2" to="Middle" />
+    <area top="0.0" left="0.0" width="0.0" height="0.0"/>
+    <map button="Tip" to="Left"/>
+    <map button="Stylus" to="Right"/>
+    <map button="Stylus2" to="Middle"/>
   </tablet>
-
   <!--
     All tablet tools, except of type mouse and lens, use absolute
     positioning by default. The *motion* attribute allows to set tools
@@ -778,7 +745,6 @@
     1.0 increases the speed of the cursor.
   -->
   <tabletTool motion="absolute" relativeMotionSensitivity="1.0"/>
-
   <!--
     The *category* attribute is optional and can be set to touch, touchpad,
     non-touch, default or the name of a device. You can obtain device names by
@@ -821,12 +787,10 @@
       <scrollFactor>1.0</scrollFactor>
     </device>
   </libinput>
-
   <menu>
     <ignoreButtonReleasePeriod>250</ignoreButtonReleasePeriod>
     <showIcons>yes</showIcons>
   </menu>
-
   <!--
     Magnifier settings
     'width' sets the width in pixels of the magnifier window.
@@ -844,5 +808,4 @@
     <increment>0.2</increment>
     <useFilter>yes</useFilter>
   </magnifier>
-
 </labwc_config>

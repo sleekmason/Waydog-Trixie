@@ -115,10 +115,13 @@ for_window [app_id="waypaper"] floating enable, move position center
     
     # User added programs
 bindsym $mod+F1 exec --no-startup-id "sway-keys.sh"
+bindsym Ctrl+Alt+k exec --no-startup-id "sway-keys.sh"
 bindsym $mod+F3 exec --no-startup-id "wdmenu"
+bindsym Ctrl+Alt+d exec --no-startup-id "wdmenu"
 bindsym $mod+F2 exec --no-startup-id "fuzzel"
+bindsym Ctrl+Alt+l exec --no-startup-id "fuzzel"
 bindsym alt+w exec --no-startup-id "waybar-toggle"
-bindsym $mod+shift+w exec --no-startup-id "waybar-icon-toggle sway_dialog"
+bindsym $mod+shift+w exec --no-startup-id "waybar-icon-toggle"
 bindsym $mod+shift+t exec --no-startup-id "thunar"
 bindsym $mod+g exec --no-startup-id "wlr-gamma-tool -r -a"
 bindsym $mod+shift+g exec --no-startup-id "wlr-gamma-gui"
@@ -128,6 +131,7 @@ bindsym alt+v exec --no-startup-id "random-wallpaper once"
 bindsym $mod+shift+a exec --no-startup-id "waypaper-update-wrapper"
 bindsym $mod+shift+x exec --no-startup-id "ld-logout"
 bindsym $mod+shift+z exec --no-startup-id "hotcorners-toggle"
+bindsym Ctrl+Alt+p exec --no-startup-id "wl-find-cursor -d 2400 -s 150 -c 0xFFFFE65656"
 # bindsym $mod+shift+p exec --no-startup-id "display-toggle.sh"
 
     # Drag floating windows by holding down $mod and left mouse button.
