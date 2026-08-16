@@ -10,7 +10,7 @@ lb config noauto \
      --debian-installer 'live' \
      --debian-installer-distribution 'trixie' \
      --distribution 'trixie' \
-     --bootappend-live 'boot=live components hostname=waydog quiet splash' \
+     --bootappend-live 'boot=live components hostname=waydog user-default-groups=audio,cdrom,dip,floppy,video,input,plugdev,netdev,powerdev,scanner,bluetooth,fuse,systemd-journal quiet splash' \
      --mirror-binary 'https://deb.debian.org/debian' \
      --mirror-binary-security 'https://security.debian.org/debian-security' \
      --mirror-bootstrap 'https://deb.debian.org/debian' \

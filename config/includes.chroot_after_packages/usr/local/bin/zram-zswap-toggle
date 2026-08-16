@@ -1,0 +1,302 @@
+#!/bin/bash
+# zram/zswap toggle
+# Made by sleekmason 15 Aug 2026
+
+GKSUDO="/usr/local/bin/gksudo"
+ZSWAP_SCRIPT_DST="/usr/local/bin/zswap-systemd"
+ZSWAP_SERVICE_DST="/etc/systemd/system/zswap-systemd.service"
+ZRAM_SCRIPT_DST="/usr/local/bin/zram-systemd"
+ZRAM_SERVICE_DST="/etc/systemd/system/zram-systemd.service"
+ZRAM_SYSCTL_DST="/etc/sysctl.d/99-zram-toggle.conf"
+
+while true; do
+zswap_installed=false
+[ -f "$ZSWAP_SERVICE_DST" ] && zswap_installed=true
+zram_installed=false
+[ -f "$ZRAM_SERVICE_DST" ] && zram_installed=true
+
+RESULT=$(
+yad \
+    --title="Zram/Zswap Options" \
+    --window-icon=drive-harddisk \
+    --width=600 --height=200 --borders=12 --center \
+    --image=preferences-desktop \
+    --text="                            <b>Zram And Zswap Options</b>  (survives reboot)" \
+    --list \
+    --radiolist \
+    --separator="|" \
+    --column="Select:RD" \
+    --column="Function" \
+    --column="Description" \
+    "$zram_installed" \
+        "Zram (zstd, zram0)" \
+        "Compressed zram device" \
+    "$zswap_installed" \
+        "Zswap (zstd/zsmalloc)" \
+        "zswap with zstd compression" \
+    --button=" Info!dialog-information-symbolic:4" \
+    --button=" Enable!gtk-ok:0" \
+    --button=" Flush!view-refresh-symbolic:3" \
+    --button=" Disable!gtk-cancel:2" \
+    --button=" Close!gtk-close:1"
+)
+RET=$?
+
+zswap_checked=false
+zram_checked=false
+while IFS='|' read -r chk name desc; do
+    case "$name" in
+        "Zswap (zstd/zsmalloc)")
+            [ "$chk" = "TRUE" ] && zswap_checked=true
+            ;;
+        "Zram (zstd, zram0)")
+            [ "$chk" = "TRUE" ] && zram_checked=true
+            ;;
+    esac
+done <<< "$RESULT"
+
+write_zswap_script() {
+    cat > "$1" << 'EOF'
+#!/bin/bash
+
+enable_zswap() {
+    echo 1 > /sys/module/zswap/parameters/enabled
+    echo zstd > /sys/module/zswap/parameters/compressor
+    if [ -e /sys/module/zswap/parameters/zpool ]; then
+        echo zsmalloc > /sys/module/zswap/parameters/zpool
+    fi
+    echo 20 > /sys/module/zswap/parameters/max_pool_percent
+    echo "zswap enabled with zstd compressor and zsmalloc zpool"
+}
+
+case "$1" in
+    start)
+        enable_zswap
+        ;;
+    stop)
+        echo 0 > /sys/module/zswap/parameters/enabled
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
+EOF
+}
+
+write_zswap_service() {
+    cat > "$1" << EOF
+[Unit]
+Description=Zswap Management Service
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=$ZSWAP_SCRIPT_DST start
+ExecStop=$ZSWAP_SCRIPT_DST stop
+
+[Install]
+WantedBy=multi-user.target
+EOF
+}
+
+write_zram_script() {
+    cat > "$1" << 'EOF'
+#!/bin/bash
+
+start_zram() {
+    MEM_TOTAL_KB=$(grep -Po 'MemTotal:\s*\K\d+' /proc/meminfo)
+    SIZE_KB=$(( MEM_TOTAL_KB / 2 ))
+    CAP_KB=$((4096 * 1024))
+    if [ "$SIZE_KB" -gt "$CAP_KB" ]; then
+        SIZE_KB=$CAP_KB
+    fi
+
+    modprobe zram
+    zramctl /dev/zram0 --algorithm zstd --size "${SIZE_KB}KiB"
+    mkswap -U clear /dev/zram0
+    swapon --discard --priority 100 /dev/zram0
+    echo "zram swap enabled: zstd, $(( SIZE_KB / 1024 ))MiB on /dev/zram0"
+}
+
+stop_zram() {
+    swapoff /dev/zram0 2>/dev/null || true
+    for i in $(seq 1 20); do
+        modprobe -r zram 2>/dev/null && break
+        sleep 0.25
+    done
+}
+
+case "$1" in
+    start)
+        start_zram
+        ;;
+    stop)
+        stop_zram
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
+EOF
+}
+
+write_zram_service() {
+    cat > "$1" << EOF
+[Unit]
+Description=Zram Swap Management Service
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=$ZRAM_SCRIPT_DST start
+ExecStop=$ZRAM_SCRIPT_DST stop
+
+[Install]
+WantedBy=multi-user.target
+EOF
+}
+
+write_zram_sysctl() {
+    cat > "$1" << 'EOF'
+vm.swappiness = 160
+vm.watermark_boost_factor = 0
+vm.watermark_scale_factor = 100
+vm.page-cluster = 0
+EOF
+}
+
+case "$RET" in
+0)
+    if $zswap_checked && $zram_checked; then
+            notify-send -i info -u high "Select only one."
+    elif $zswap_checked; then
+        if $zswap_installed; then
+            notify-send -i info -u low "Zswap already enabled"
+        else
+            TMPDIR=$(mktemp -d)
+            write_zswap_script "$TMPDIR/zswap-systemd"
+            write_zswap_service "$TMPDIR/zswap-systemd.service"
+
+            CMDS="set -e; "
+            if $zram_installed; then
+                CMDS+="systemctl stop zram-systemd.service || true; systemctl disable zram-systemd.service || true; rm -f '$ZRAM_SERVICE_DST'; "
+                CMDS+="rm -f '$ZRAM_SYSCTL_DST'; "
+                CMDS+="sysctl -w vm.swappiness=60 vm.watermark_boost_factor=15000 vm.watermark_scale_factor=10 vm.page-cluster=3 > /dev/null; "
+            fi
+            CMDS+="[ -f '$ZSWAP_SCRIPT_DST' ] || install -m 755 '$TMPDIR/zswap-systemd' '$ZSWAP_SCRIPT_DST'; "
+            CMDS+="install -m 644 '$TMPDIR/zswap-systemd.service' '$ZSWAP_SERVICE_DST'; "
+            CMDS+="systemctl daemon-reload; systemctl enable zswap-systemd.service; systemctl start zswap-systemd.service"
+
+            if $GKSUDO /bin/bash -c "$CMDS"; then
+                if $zram_installed; then
+                    notify-send -i info -u low "Zram disabled ▸ Zswap enabled"
+                else
+                    notify-send -i info -u low "Zswap enabled!"
+                fi
+            else
+                notify-send -i info "Unable to apply zswap"
+            fi
+            rm -rf "$TMPDIR"
+        fi
+    elif $zram_checked; then
+        if $zram_installed; then
+            notify-send -i info -u low "Zram already enabled"
+        else
+            TMPDIR=$(mktemp -d)
+            write_zram_script "$TMPDIR/zram-systemd"
+            write_zram_service "$TMPDIR/zram-systemd.service"
+            write_zram_sysctl "$TMPDIR/99-zram-toggle.conf"
+
+            CMDS="set -e; "
+            if $zswap_installed; then
+                CMDS+="systemctl stop zswap-systemd.service || true; systemctl disable zswap-systemd.service || true; rm -f '$ZSWAP_SERVICE_DST'; "
+            fi
+            CMDS+="[ -f '$ZRAM_SCRIPT_DST' ] || install -m 755 '$TMPDIR/zram-systemd' '$ZRAM_SCRIPT_DST'; "
+            CMDS+="install -m 644 '$TMPDIR/zram-systemd.service' '$ZRAM_SERVICE_DST'; "
+            CMDS+="install -m 644 '$TMPDIR/99-zram-toggle.conf' '$ZRAM_SYSCTL_DST'; "
+            CMDS+="sysctl --system > /dev/null; "
+            CMDS+="systemctl daemon-reload; systemctl enable zram-systemd.service; systemctl start zram-systemd.service"
+
+            if $GKSUDO /bin/bash -c "$CMDS"; then
+                if $zswap_installed; then
+                    notify-send -i info -u low "Zswap disabled ▸ Zram enabled"
+                else
+                    notify-send -i info -u low "Zram enabled!"
+                fi
+            else
+                notify-send -i info "Unable to apply zram"
+            fi
+            rm -rf "$TMPDIR"
+        fi
+    fi
+    ;;
+2)
+    CMDS="set -e; "
+    service_run=false
+    if $zswap_checked; then
+        CMDS+="systemctl stop zswap-systemd.service || true; systemctl disable zswap-systemd.service || true; rm -f '$ZSWAP_SERVICE_DST'; "
+        service_run=true
+    fi
+    if $zram_checked; then
+        CMDS+="systemctl stop zram-systemd.service || true; systemctl disable zram-systemd.service || true; rm -f '$ZRAM_SERVICE_DST'; "
+        CMDS+="rm -f '$ZRAM_SYSCTL_DST'; "
+        CMDS+="sysctl -w vm.swappiness=60 vm.watermark_boost_factor=15000 vm.watermark_scale_factor=10 vm.page-cluster=3 > /dev/null; "
+        service_run=true
+    fi
+    if $service_run; then
+        CMDS+="systemctl daemon-reload"
+        if $GKSUDO /bin/bash -c "$CMDS"; then
+            if $zswap_checked && $zram_checked; then
+                notify-send -i info -u low "Zswap and Zram disabled"
+            elif $zswap_checked; then
+                notify-send -i info -u low "Zswap disabled"
+            elif $zram_checked; then
+                notify-send -i info -u low "Zram disabled"
+            fi
+        else
+            notify-send -i info "Unable to disable selected option"
+        fi
+    fi
+    ;;
+3)
+    if yad --title="Flush Swap Cache" --width=400 --center --borders=10 \
+    --text="This will force all swapped pages back into RAM.\n\n<b>Continue?</b>" \
+    --button="gtk-cancel:1" --button="gtk-yes:0"; then
+        CMDS="set -e; swapoff -a; swapon -a"
+        if $zram_installed; then
+            CMDS+="; swapon --discard --priority 100 /dev/zram0"
+        fi
+        if $GKSUDO /bin/bash -c "$CMDS"; then
+            notify-send -i info -u low "Swap cache flushed"
+        else
+            notify-send -i info "Unable to flush cache"
+        fi
+    fi
+    continue
+    ;;
+4)
+    OPTIONS_FILE="$HOME/.local/share/zram-zswap/z-options.txt"
+    if [ -f "$OPTIONS_FILE" ]; then
+        yad --title="$OPTIONS_FILE" --width=620 --height=550 --center --borders=12 \
+            --text-info --filename="$OPTIONS_FILE" --fontname="JetBrains Mono Regular 10" \
+            --button="gtk-close:0"
+    else
+        notify-send -i info "Info file not found: $OPTIONS_FILE"
+    fi
+    continue
+    ;;
+*)
+    exit 0
+    ;;
+esac
+break
+done
+exit 0
