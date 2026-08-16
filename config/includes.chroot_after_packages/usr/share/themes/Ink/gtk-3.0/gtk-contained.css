@@ -226,8 +226,8 @@ entry {
   spinbutton:backdrop:not(.vertical),
   entry:backdrop {
     color: #B9C9C6;
-    border-color: #262D30;
-    background-color: #181D1F;
+    border-color: #20262B;
+    background-color: #14171A;
     box-shadow: none;
     transition: 200ms ease-out; }
   spinbutton:backdrop:disabled:not(.vertical),
@@ -3796,7 +3796,7 @@ filechooserbutton:drop(active) {
     .sidebar row:selected, .sidebar row:selected:focus,
     .sidebar treeview:selected,
     .sidebar treeview:selected:focus {
-      background-image: linear-gradient(to bottom, shade(#293036, 1.0), shade(#293036, 1.0) 10%, shade(#293036, 1.0) 92%, shade(#293036, 1.0));
+      background-image: linear-gradient(to bottom, shade(#2B333B, 1.0), shade(#2B343B, 1.0) 10%, shade(#2B343B, 1.0) 92%, shade(#2B343B, 1.0));
       border-top: 1px solid shade(#0E1112, 0.85);
       border-bottom: 1px solid shade(#0E1112, 1.12); }
       .sidebar row:selected label, .sidebar row:selected:focus label,
@@ -3811,7 +3811,7 @@ filechooserbutton:drop(active) {
       .sidebar treeview:selected:backdrop,
       .sidebar treeview:selected:focus:backdrop {
         background-image: none;
-        background-color: #1A1F21;
+        background-color: #272F36;
         color: #C3D4D4;
         border-top: 1px solid shade(#101314, 0.9);
         border-bottom: 1px solid shade(#101314, 0.9); }
