@@ -116,9 +116,18 @@ start_zram() {
     fi
 
     modprobe zram
-    zramctl /dev/zram0 --algorithm zstd --size "${SIZE_KB}KiB"
-    mkswap -U clear /dev/zram0
-    swapon --discard --priority 100 /dev/zram0
+    for i in $(seq 1 50); do
+        [ -e /dev/zram0 ] && break
+        sleep 0.1
+    done
+    if [ ! -e /dev/zram0 ]; then
+        echo "ERROR: /dev/zram0 never appeared after modprobe zram" >&2
+        exit 1
+    fi
+
+    zramctl /dev/zram0 --algorithm zstd --size "${SIZE_KB}KiB" || { echo "ERROR: zramctl failed" >&2; exit 1; }
+    mkswap -U clear /dev/zram0 || { echo "ERROR: mkswap failed" >&2; exit 1; }
+    swapon --discard --priority 100 /dev/zram0 || { echo "ERROR: swapon failed" >&2; exit 1; }
     echo "zram swap enabled: zstd, $(( SIZE_KB / 1024 ))MiB on /dev/zram0"
 }
 
