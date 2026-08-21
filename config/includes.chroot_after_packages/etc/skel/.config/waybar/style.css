@@ -20,17 +20,21 @@
    Bar icon background colors applied with the colorschemes.
    Change these to adjust the matching icon color highlights.
    ----------------------------------------------------------- */
- /* Blue (Fane) #243840 */   
-@define-color base-light  rgba(36,56,64, 0.8);
-@define-color border2     #31434D;
-
  /* Black (Ink) #0E1112 */
 @define-color ink         rgba(37,43,48, 0.8);
 @define-color hiink       #2F3840;
 
- /* Brown (Drow/Adwaita) #2E3030 */
-@define-color brown       rgba(46,48,48, 0.8);
-@define-color hibrown     #3D4040;
+ /* Dark Brown (Dragon) #2D3133  */
+@define-color dkbrown     rgba(45,49,51, 0.8);
+@define-color hidkbrown   #404547;
+
+ /* Brown (Drow/Adwaita) #3b3b3b */
+@define-color brown       rgba(60,60,60, 0.8);
+@define-color hibrown     #474747;
+
+ /* Blue (Fane) #243840 */   
+@define-color base-light  rgba(36,56,64, 0.8);
+@define-color border2     #31434D;
 
 /* Purple (Nightshade/raz) #262F3D */
 @define-color raz         rgba(41,51,66, 0.8);

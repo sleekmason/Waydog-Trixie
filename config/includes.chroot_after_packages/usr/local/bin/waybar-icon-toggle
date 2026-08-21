@@ -333,6 +333,34 @@ SCHEME_brown=(
     "#custom-power:hover|@hibrown"
 )
 
+SCHEME_darkbrown=(
+    "tooltip|@dkbrown"
+    "#workspaces button.active|@hidkbrown"
+    "#workspaces button:hover|@hidkbrown"
+    "#clock|@dkbrown"
+    "#clock:hover|@hidkbrown"
+    "#pulseaudio:hover|@hidkbrown"
+    "#backlight:hover|@hidkbrown"
+    "#idle_inhibitor:hover|@hidkbrown"
+    "#tags button.occupied|@dkbrown"
+    "#tags button.occupied:hover|@hidkbrown"
+    "#tags button.focused|@hidkbrown"
+    "#custom-launcher1|@dkbrown"
+    "#custom-launcher1:hover|@hidkbrown"
+    "#custom-launcher2|@dkbrown"
+    "#custom-launcher2:hover|@hidkbrown"
+    "#custom-launcher3|@dkbrown"
+    "#custom-launcher3:hover|@hidkbrown"
+    "#custom-launcher4|@dkbrown"
+    "#custom-launcher4:hover|@hidkbrown"
+    "#custom-launcher5|@dkbrown"
+    "#custom-launcher5:hover|@hidkbrown"
+    "#mpd|@dkbrown"
+    "#mpd:hover|@hidkbrown"
+    "#custom-power|@dkbrown"
+    "#custom-power:hover|@hidkbrown"
+)
+
 SCHEME_purple=(
     "tooltip|@raz"
     "#workspaces button.active|@hiraz"
@@ -415,14 +443,16 @@ toggle_barcolor() {
     declare -A COLORS=(
         ["24,37,43"]="Blue"    
         ["14,17,18"]="Black"
-        ["26,26,26"]="Brown"
+        ["24,25,26"]="DarkBrown"
+        ["43,43,43"]="Brown"
         ["25,31,41"]="Purple"
         ["41,48,56"]="Gray"
     )
     COLOR_CYCLE=(
         "24,37,43"   
         "14,17,18"
-        "26,26,26"
+        "24,25,26"
+        "43,43,43"
         "25,31,41"
         "41,48,56"
     )
