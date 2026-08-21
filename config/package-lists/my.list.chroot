@@ -36,7 +36,6 @@ dnsmasq-base
 dns-root-data
 dosfstools
 e2fsprogs
-earlyoom
 efibootmgr
 eject
 exfat-fuse
