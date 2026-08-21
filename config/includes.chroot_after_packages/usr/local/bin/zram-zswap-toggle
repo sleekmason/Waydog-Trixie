@@ -175,9 +175,9 @@ EOF
 
 write_zram_sysctl() {
     cat > "$1" << 'EOF'
-vm.swappiness = 160
+vm.swappiness = 120
 vm.watermark_boost_factor = 0
-vm.watermark_scale_factor = 100
+vm.watermark_scale_factor = 80
 vm.page-cluster = 0
 EOF
 }

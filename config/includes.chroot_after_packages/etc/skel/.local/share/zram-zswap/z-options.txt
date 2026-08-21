@@ -23,12 +23,19 @@
   Zram and Zswap shouldn't be used together. This dialog won't allow it
   as a choice anyway, so no worries there.
 
+  REQUIREMENTS:
   For Zswap, you need to have a swap partition or file available. The
-  dialog will still allow enabling of zswap whether you have one or not.
-  If you add a swap partition later, zswap will already be enabled.
+  dialog will still allow enabling of Zswap whether you have one or not.
+  If you add a swap partition later, Zswap will already be enabled.
 
   Check to see if you have a swap partition with:
   swapon --show
+  
+  For Zram, you may want to install an OOM killer. Currently, earlyoom
+  might be your best bet. Just install it and forget it unless wanting 
+  to configure it further. Systemd-oom is also an option. OOM killers 
+  are particularly useful on systems without a dedicated swap file or
+  partition, keeping your system from stalling if the memory runs out.
 
   AFTER SELECTION:
   # Zswap confirmation:
@@ -47,9 +54,9 @@
   sysctl vm.swappiness vm.watermark_boost_factor vm.watermark_scale_factor vm.page-cluster
 
   Active:
-  vm.swappiness = 160
+  vm.swappiness = 120
   vm.watermark_boost_factor = 0
-  vm.watermark_scale_factor = 100
+  vm.watermark_scale_factor = 80
   vm.page-cluster = 0
 
   Disabled (standard kernel defaults restored):
@@ -59,8 +66,9 @@
   vm.page-cluster = 3
 
   These values can be changed within the script if desired. See:
-  /usr/local/bin/zram-zswap-toggle - lines 169 and 192.
+  /usr/local/bin/zram-zswap-toggle - lines 178 and 201.
 
+  FLUSH BUTTON:
   The cache flush button forces the swapped pages back into RAM and then
   reloads swap. There is a small chance this could hang or fail if there
   isn't enough RAM to hold everything currently in swap. The system will
