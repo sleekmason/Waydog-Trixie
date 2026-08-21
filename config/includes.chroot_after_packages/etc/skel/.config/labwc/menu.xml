@@ -271,7 +271,7 @@
           <execute>gksudo synaptic</execute>
         </action>
       </item>
-      <item label="Terminal Color" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+      <item label="Terminal Sync" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
         <action name="Execute">
           <execute>toggle-terminal-color</execute>
         </action>

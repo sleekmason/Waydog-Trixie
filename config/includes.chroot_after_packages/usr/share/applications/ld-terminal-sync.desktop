@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Terminal Color
-Comment=Change terminal color
+Name=Terminal Sync
+Comment=Terminal color sync
 Exec=toggle-terminal-color
 StartupNotify=false
 Terminal=false
