@@ -11,11 +11,12 @@ FUZZEL_CONFIGS=(
 KNOWN_BACKGROUNDS=(
     "1D2B33:27717A"   # Blue
     "131617:384249"   # Black
+    "18191a:3E4547"   # DarkBrown
     "212121:3D4040"   # Brown
     "1C2129:303B4D"   # Purple
     "282D33:434D59"   # Gray
 )
-TOLERANCE=5
+TOLERANCE=4
 
 # User select with color range offset
 FALLBACK_OFFSET=38

@@ -24,8 +24,8 @@
 @define-color ink         rgba(37,43,48, 0.8);
 @define-color hiink       #2F3840;
 
- /* Dark Brown (Dragon) #2D3133  */
-@define-color dkbrown     rgba(45,49,51, 0.8);
+ /* Dark Brown (Dragon) #2B2F30  */
+@define-color dkbrown     rgba(43,47,48, 0.8);
 @define-color hidkbrown   #404547;
 
  /* Brown (Drow/Adwaita) #3b3b3b */
