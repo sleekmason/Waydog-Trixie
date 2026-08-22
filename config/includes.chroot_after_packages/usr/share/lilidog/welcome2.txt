@@ -4,7 +4,7 @@
     
     https://sourceforge.net/p/lilidog/discussion/
 
-    Use 'Super + F1' to see the current keybinds.
+    Use 'Ctrl+Alt+k' to see the current keybinds.
     Live environment passwords: Username = 'user'
     Root password = 'live'
     

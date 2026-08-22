@@ -4,7 +4,7 @@
     
     https://sourceforge.net/p/lilidog/discussion/
     
-    Show the current keybinds list with Super+F1.
+    Use 'Ctrl+Alt+k' to see the current keybinds.
     
     Look in the Utilities menu and the installers
     for the programs most used in the build.
