@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Terminal Sync
-Comment=Terminal color sync
-Exec=toggle-terminal-color
+Name=GTK Theme Sync
+Comment=GTK theme matcher
+Exec=gtk-theme-sync
 StartupNotify=false
 Terminal=false
 Icon=utilities-terminal

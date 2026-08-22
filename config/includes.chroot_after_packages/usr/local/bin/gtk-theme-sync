@@ -200,9 +200,9 @@ export -f ozark
 export -f double_hex
 export -f custom
 
-yad --title "Terminal Sync" --escape-ok --borders=14 \
---width=242 --height=470 --buttons-layout=center \
---text="Terminal Sync" --text-align=center \
+yad --title "Theme Sync" --escape-ok --borders=14 \
+--width=242 --height=510 --buttons-layout=center \
+--text="Terminal BG Color" --text-align=center \
 --button=" Cancel!gtk-delete":1 \
 --button="gtk-ok:0" \
     --form --columns=1 \
@@ -215,5 +215,6 @@ yad --title "Terminal Sync" --escape-ok --borders=14 \
     --field="Custom BG":FBTN "bash -c custom" \
     --field="":LBL "" \
     --field="":LBL "" \
-    --field="   Mako Sync!notification-symbolic":FBTN "bash -c mako-colorsync" \
-    --field="  Fuzzel Sync!open-menu-symbolic":FBTN "bash -c fuzzel-colorsync"
+    --field="    Mako Sync!notification-symbolic":FBTN "bash -c mako-colorsync" \
+    --field="   Fuzzel Sync!open-menu-symbolic":FBTN "bash -c fuzzel-colorsync" \
+    --field="  Waybar Sync!preferences-desktop-personal.png":FBTN "bash -c 'waybar-icon-toggle dialog'"
