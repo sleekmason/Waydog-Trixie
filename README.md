@@ -61,6 +61,7 @@ requirements. Ample video memory is a must.
 - Waybar provides the panel top bar.
 - Waybar Options provides a dialog to adjust waybar settings on the fly.
 - NWG Look provides the interface for GTK settings.
+- GTK Theme Sync dialog to match your terminal, fuzzel, and Mako.
 - Labwc Tweaks provides for common Labwc adjustments.
 - Gamma Control provides gamma and contrast control, with custom presets.
 - Usbimager to create USB images.
@@ -68,6 +69,7 @@ requirements. Ample video memory is a must.
 - Kernel remover for those that build their own, or just to clean up.
 - Waypaper wallpaper setter for both wallpaper and SDDM login screen.
 - GRUB background changer. Select any .jpg or .png for your boot image.
+- Zram and Zswap choices can be changed on the fly, and survive reboot.
 - Logout theme changer for choosing icons and layout.
 - Random BG changer using 'Super+v'.
 - Ld-hotcorners providing four hotcorners for program use. 'Super + z'
