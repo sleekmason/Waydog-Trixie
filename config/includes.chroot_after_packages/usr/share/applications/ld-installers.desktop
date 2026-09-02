@@ -4,5 +4,5 @@ Name=Waydog Installers
 Exec=waydog-installers
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/icons/gnome/24x24/apps/system-software-install.png
+Icon=system-software-install
 Categories=ld-misc-tools;

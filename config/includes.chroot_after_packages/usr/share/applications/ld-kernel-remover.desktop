@@ -4,5 +4,5 @@ Name=Kernel Remover
 Exec=x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'Press any key to close'; read -srn1"
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/icons/gnome/24x24/categories/applications-engineering.png
+Icon=applications-engineering
 Categories=ld-misc-tools;

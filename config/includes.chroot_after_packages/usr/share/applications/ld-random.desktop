@@ -4,5 +4,5 @@ Name=Random BG Daemon
 Exec=toggle-random
 StartupNotify=false
 Terminal=false
-Icon=/usr/share/icons/gnome/24x24/apps/preferences-desktop-wallpaper.png
+Icon=preferences-desktop-wallpaper
 Categories=ld-misc-tools;
