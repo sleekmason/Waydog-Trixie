@@ -242,7 +242,7 @@
         <action name="Execute">
           <execute>gtk-theme-sync</execute>
         </action>
-      </item>      
+      </item>
       <item label="Kernel Remover" icon="applications-engineering">
         <action name="Execute">
           <execute>x-terminal-emulator -T 'Kernel Remover' -e bash -c "sudo kernel-remover; echo $'\n\nPress any key to close'; read -srn1"</execute>
