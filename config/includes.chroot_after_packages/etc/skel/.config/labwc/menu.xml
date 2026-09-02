@@ -236,7 +236,7 @@
           <execute>nwg-look</execute>
         </action>
       </item>
-      <item label="GTK Theme Sync" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+      <item label="GTK Theme Sync" icon="/usr/share/icons/gnome/24x24/apps/preferences-desktop-theme.png">
         <action name="Execute">
           <execute>gtk-theme-sync</execute>
         </action>

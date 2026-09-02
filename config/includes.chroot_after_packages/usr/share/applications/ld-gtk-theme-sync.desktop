@@ -5,5 +5,5 @@ Comment=GTK theme matcher
 Exec=setsid -f gtk-theme-sync
 StartupNotify=false
 Terminal=false
-Icon=utilities-terminal
+Icon=preferences-desktop-theme
 Categories=ld-misc-tools;
