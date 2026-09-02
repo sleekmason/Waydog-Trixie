@@ -2,7 +2,7 @@
 Type=Application
 Name=GTK Theme Sync
 Comment=GTK theme matcher
-Exec=gtk-theme-sync
+Exec=setsid -f gtk-theme-sync
 StartupNotify=false
 Terminal=false
 Icon=utilities-terminal
