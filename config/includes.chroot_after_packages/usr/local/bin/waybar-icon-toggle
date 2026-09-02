@@ -752,8 +752,7 @@ sway_dialog_mode() {
 
 dialog_mode() {
     if pgrep -x sway >/dev/null; then
-        notify-send -i applications-engineering "Waybar Options" \
-            "Try 'Super + Shift + W' for a dialog"
+        sway_dialog_mode
         exit 0
     fi
     yad --title "Waybar Options" \

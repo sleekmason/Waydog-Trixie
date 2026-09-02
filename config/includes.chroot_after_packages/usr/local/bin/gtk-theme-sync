@@ -201,20 +201,20 @@ export -f double_hex
 export -f custom
 
 yad --title "Theme Sync" --escape-ok --borders=14 \
---width=242 --height=510 --buttons-layout=center \
+--width=242 --height=518 --buttons-layout=edge \
 --text="Terminal BG Color" --text-align=center \
 --button=" Cancel!gtk-delete":1 \
 --button="gtk-ok:0" \
     --form --columns=1 \
-    --field="Black":FBTN "bash -c ink" \
-    --field="Dark Brown":FBTN "bash -c dragon" \
-    --field="Brown":FBTN "bash -c drow" \
-    --field="Blue":FBTN "bash -c fane" \
-    --field="Purple":FBTN "bash -c raz" \
-    --field="Gray":FBTN "bash -c ozark" \
-    --field="Custom BG":FBTN "bash -c custom" \
+    --field="Black!!Ink":FBTN "bash -c ink" \
+    --field="Dark Brown!!Dragon":FBTN "bash -c dragon" \
+    --field="Brown!!Drow/Adwaita":FBTN "bash -c drow" \
+    --field="Blue!!Fane":FBTN "bash -c fane" \
+    --field="Purple!!Nightshade":FBTN "bash -c raz" \
+    --field="Gray!!Ozark":FBTN "bash -c ozark" \
+    --field="Custom BG!!Choose your own":FBTN "bash -c custom" \
     --field="":LBL "" \
     --field="":LBL "" \
-    --field="    Mako Sync!notification-symbolic":FBTN "bash -c mako-colorsync" \
-    --field="   Fuzzel Sync!open-menu-symbolic":FBTN "bash -c fuzzel-colorsync" \
-    --field="  Waybar Sync!preferences-desktop-personal.png":FBTN "bash -c 'waybar-icon-toggle dialog'"
+    --field="    Mako Sync!notification-symbolic!Sync Mako background":FBTN "bash -c mako-colorsync" \
+    --field="   Fuzzel Sync!open-menu-symbolic!Sync Fuzzel background":FBTN "bash -c fuzzel-colorsync" \
+    --field="  Waybar Sync!preferences-desktop-personal.png!Sync Waybar main color":FBTN "bash -c 'waybar-icon-toggle dialog'"
