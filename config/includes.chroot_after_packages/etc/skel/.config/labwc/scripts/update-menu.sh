@@ -54,7 +54,7 @@ printf '%b\n' '
   <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
     <action name="Execute" command="labwc-reconfigure-toggle" />
   </item>
-  <item label="Exit" icon="/usr/share/icons/gnome/24x24/actions/application-exit.png">
+  <item label="Exit" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">
     <action name="Execute" command="ld-logout" />
   </item>
 </openbox_menu>'

@@ -4,5 +4,5 @@ Name=Fuzzel BG Sync
 Exec=toggle-fuzzel-background.sh
 StartupNotify=false
 Terminal=false
-Icon=system-run
+Icon=applications-graphics
 Categories=ld-misc-tools;

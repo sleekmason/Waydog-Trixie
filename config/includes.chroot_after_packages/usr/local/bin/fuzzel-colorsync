@@ -9,7 +9,7 @@ FUZZEL_CONFIGS=(
 
 # Pre select backgrounds with some tolerance
 KNOWN_BACKGROUNDS=(
-    "1D2B33:27717A"   # Blue
+    "1A2830:27717A"   # Blue
     "131617:384249"   # Black
     "18191a:3E4547"   # DarkBrown
     "212121:3D4040"   # Brown

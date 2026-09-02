@@ -4,5 +4,5 @@ Name=Mako BG Sync
 Exec=toggle-mako-background.sh
 StartupNotify=false
 Terminal=false
-Icon=system-run
+Icon=applications-graphics
 Categories=ld-misc-tools;

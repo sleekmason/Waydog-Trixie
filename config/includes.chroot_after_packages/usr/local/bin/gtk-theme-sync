@@ -63,22 +63,22 @@ drow(){
 }
 
 fane(){
-    xfconf-query -c xfce4-terminal -p /color-background -s "#1d1d2b2b3333"
+    xfconf-query -c xfce4-terminal -p /color-background -s "#1a1a28273030"
     xfconf-query -c xfce4-terminal -p /color-foreground -s "#c5c5d4d4dbdb"
     xfconf-query -c xfce4-terminal -p /color-palette -s "rgb(0,0,0);rgb(209,82,77);rgb(0,150,95);rgb(190,149,45);rgb(100,187,209);rgb(179,93,159);rgb(54,155,158);rgb(158,170,176);rgb(149,166,173);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(120,213,235);rgb(239,115,219);rgb(84,209,209);rgb(224,231,233)"
-    sed -i 's/^background =.*/background = #1D2B33/g' "$HOME/.config/ghostty/config.ghostty"
+    sed -i 's/^background =.*/background = #1A2830/g' "$HOME/.config/ghostty/config.ghostty"
   if command -v "alacritty" >/dev/null 2>&1; then
       if ! [[ -f "$HOME/.config/alacritty/alacritty.toml" ]]; then
           cp -fr "/etc/xdg/alacritty" "$HOME/.config"
       fi
-      sed -i '0,/^background =.*/s//background = "#1D2B33"/' "$HOME/.config/alacritty/alacritty.toml"
+      sed -i '0,/^background =.*/s//background = "#1A2830"/' "$HOME/.config/alacritty/alacritty.toml"
   fi
   
   if command -v "foot" >/dev/null 2>&1; then
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#1D2B33/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=#1A2830/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Blue" "(Fane theme)"
 }
