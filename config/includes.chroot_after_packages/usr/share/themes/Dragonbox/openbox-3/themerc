@@ -5,7 +5,7 @@
 menu.items.bg: flat gradient vertical
 menu.items.bg.color: #18191A
 menu.items.bg.colorTo: #18191A
-menu.separator.color: #2B3030
+menu.separator.color: #2F3233
 
 !! Menu text
 menu.items.text.color: #D1D1D1
@@ -21,8 +21,8 @@ menu.title.text.justify: center
 
 !! Selected menu item
 menu.items.active.bg: raised splitvertical gradient
-menu.items.active.bg.color: #3e4547
-menu.items.active.bg.colorTo: #3e4547
+menu.items.active.bg.color: #234f78
+menu.items.active.bg.colorTo: #234f78
 menu.items.active.text.color: #F0F0F0
 
 !! Titlebar
@@ -46,8 +46,8 @@ window.active.button.*.hover.bg: flat splitvertical gradient border
 window.inactive.button.*.hover.bg: parentrelative
 window.*.button.*.pressed.bg: flat splitvertical gradient border
 
-window.active.button.*.hover.bg.color: #3e4547
-window.active.button.*.hover.bg.colorTo: #3e4547
+window.active.button.*.hover.bg.color: #234f78
+window.active.button.*.hover.bg.colorTo: #234f78
 window.active.button.*.hover.bg.border.color: #202D2E
 
 window.active.button.*.pressed.bg.color: #626E70
@@ -75,7 +75,7 @@ window.active.client.color:  #272929
 window.inactive.client.color:  #18191A
 window.client.padding.width: 1
 window.client.padding.height: 1
-menu.border.color: #262626
+menu.border.color: #2F3233
 menu.overlap: 0
 
 !! Handles

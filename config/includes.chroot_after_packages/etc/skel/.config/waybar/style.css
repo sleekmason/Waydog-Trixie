@@ -14,7 +14,7 @@
    ALL of the other colors can be changed at will, and will
    remain the color as set.
    ----------------------------------------------------------- */
-@define-color base        rgba(24,37,43, 0.9); /* #18252B */
+@define-color base        rgba(21,22,23, 0.8);
 
 /* -----------------------------------------------------------
    Bar icon background colors applied with the colorschemes.
@@ -24,9 +24,9 @@
 @define-color ink         rgba(37,43,48, 0.8);
 @define-color hiink       #2F3840;
 
- /* Dark Brown (Dragon) #2B2F30  */
-@define-color dkbrown     rgba(43,47,48, 0.8);
-@define-color hidkbrown   #404547;
+ /* Dark Brown (Dragon) #303538  */
+@define-color dkbrown     rgba(48,53,56, 0.8);
+@define-color hidkbrown   #454B4D;
 
  /* Brown (Drow/Adwaita) #3b3b3b */
 @define-color brown       rgba(60,60,60, 0.8);
@@ -51,7 +51,7 @@
 @define-color tan         #ADB099;
 @define-color hitan       #D1D6B0;
 @define-color border      #2E3E46;
-@define-color text        #B6C8E0;
+@define-color text        #E0E0E0;
 @define-color text-dim    #9CA8B4;
 @define-color violet      #9E9BC2;
 @define-color hiviolet    #D0CCFF;
@@ -96,9 +96,9 @@
 }
 
 tooltip {
-  background: @base-light;
+  background: @dkbrown;
   color: @text;
-  border: 1px solid @border;
+  border: 1px solid @hidkbrown;
   border-radius: 8px;
   padding: 0px 8px;
 }
@@ -118,12 +118,12 @@ tooltip {
 }
 
 #workspaces button.active {
-  background: @base-light;
+  background: @hidkbrown;
   color: @violet;
 }
 
 #workspaces button:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @white;
 }
 
@@ -132,7 +132,7 @@ tooltip {
    -------------------------------------------- */
 #clock {
   color: @text;
-  background: @base-light;
+  background: @dkbrown;
   padding: 0 8px;
   border-radius: 8px;
   margin-left: 4px;
@@ -141,7 +141,7 @@ tooltip {
 }
 
 #clock:hover {
-    background: @border2;
+    background: @hidkbrown;
     color: @white;
 }
 
@@ -195,7 +195,7 @@ tooltip {
 }
 
 #pulseaudio:hover {
-  background: @base-light;
+  background: @hidkbrown;
   color: @hiviolet;
   border-radius: 8px;
 }
@@ -207,7 +207,7 @@ tooltip {
 }
 
 #backlight:hover {
-  background: @base-light;
+  background: @hidkbrown;
   color: @hiyellow;
   border-radius: 8px;
 }
@@ -262,7 +262,7 @@ tooltip {
 
 /* Hover */
 #idle_inhibitor:hover {
-    background: @base-light;
+    background: @hidkbrown;
     color: @green;
 }
 
@@ -282,13 +282,13 @@ tooltip {
 }
 
 #tags button:hover {
-    background: @border;
+    background: @hidkbrown;
     color: @white;
     padding: 0 3px;
 }
 
 #tags button.occupied {
-    background: @darkteal;
+    background: @dkbrown;
     color: @hiviolet;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -298,13 +298,13 @@ tooltip {
 }
 
 #tags button.occupied:hover {
-    background: @border;
+    background: @hidkbrown;
     color: @white;
     padding: 0 2px;
 }
 
 #tags button.focused {
-    background: @teal;
+    background: @hidkbrown;
     color: @white;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -312,7 +312,7 @@ tooltip {
 }
 
 #tags button.focused:hover {
-    background: @border;
+    background: @hidkbrown;
     color: @white;
     padding: 0 2px;
 }
@@ -327,7 +327,7 @@ tooltip {
    Launcher 1
    -------------------------------------------- */
 #custom-launcher1 {
-  background: @base-light;
+  background: @dkbrown;
   color: @indigo;
   padding: 0px 8px 1px 8px;
   border-radius: 8px;
@@ -335,7 +335,7 @@ tooltip {
   margin-right: 2px;
 }
 #custom-launcher1:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @hiindigo;
 }
 
@@ -343,7 +343,7 @@ tooltip {
    Launcher 2
    -------------------------------------------- */
 #custom-launcher2 {
-  background: @base-light;
+  background: @dkbrown;
   color: @peach;
   padding: 0px 8px 0px 8px;
   border-radius: 8px;
@@ -351,7 +351,7 @@ tooltip {
   margin-right: 2px;
 }
 #custom-launcher2:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @hipeach;
 }
 
@@ -359,7 +359,7 @@ tooltip {
    Launcher 3
    -------------------------------------------- */
 #custom-launcher3 {
-  background: @base-light;
+  background: @dkbrown;
   color: @brightgreen;
   padding: 0px 8px 1px 8px;
   border-radius: 8px;
@@ -367,7 +367,7 @@ tooltip {
   margin-right: 2px;
 }
 #custom-launcher3:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @higreen;
 }
 
@@ -375,7 +375,7 @@ tooltip {
    Launcher 4
    -------------------------------------------- */
 #custom-launcher4 {
-  background: @base-light;
+  background: @dkbrown;
   color: @browserblue;
   padding: 0px 8px 0px 8px;
   border-radius: 8px;
@@ -383,7 +383,7 @@ tooltip {
   margin-right: 14px;
 }
 #custom-launcher4:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @hiblue;
 }
 
@@ -391,7 +391,7 @@ tooltip {
    Launcher 5
    -------------------------------------------- */
 #custom-launcher5 {
-  background: @base-light;
+  background: @dkbrown;
   color: @tan;
   padding: 1px 8px 0px 8px;
   border-radius: 8px;
@@ -399,7 +399,7 @@ tooltip {
   margin-right: 6px;
 }
 #custom-launcher5:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @hitan;
 }
 
@@ -424,7 +424,7 @@ tooltip {
    MPD
    -------------------------------------------- */
 #mpd {
-  background: @base-light;
+  background: @dkbrown;
   color: @purple;
   padding: 0 8px;
   border-radius: 6px;
@@ -432,14 +432,14 @@ tooltip {
   margin-right: 6px;
 }
 #mpd:hover {
-  background: @border2;
+  background: @hidkbrown;
 }
 
 /* --------------------------------------------
    Power Button
    -------------------------------------------- */
 #custom-power {
-  background: @base-light;
+  background: @dkbrown;
   color: @coolblue;
   padding: 0 10px;
   border-radius: 8px;
@@ -447,7 +447,7 @@ tooltip {
   margin-left: 2px;
 }
 #custom-power:hover {
-  background: @border2;
+  background: @hidkbrown;
   color: @hiblue;
 }
 
@@ -465,7 +465,7 @@ tooltip {
 #taskbar button {
   font-family: "Dejavu";
   font-size: 13px;
-  color: #E0E0E0;
+  color: @text;
   min-height: 0;
   background: transparent;
   box-shadow: none;

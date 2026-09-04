@@ -27,21 +27,21 @@ style "clearlooks-default"
 
 	fg[NORMAL]		    = "#FAFAFA" # CHANGED COULD BE SOME TEXT
 	fg[PRELIGHT]		= "#E7EDF0" # TEXT COLOR IN YES/NO BOX
-	fg[SELECTED]		= "#839FAD" # Highlight
+	fg[SELECTED]		= "#7F898C" # Highlight
 	fg[ACTIVE]		    = "#ECF2F5" # TEXT COLOR IN YES AND NO BOXES
-	fg[INSENSITIVE]		= "#3D4D57" # 
+	fg[INSENSITIVE]		= "#4E5557" # 
 
-	bg[NORMAL]		    = "#1D2A33" # BACKGROUND
-	bg[PRELIGHT]		= "#546975" # 
-	bg[SELECTED]		= "#2A656D" # 
-	bg[INSENSITIVE]		= "#333A42" #
-	bg[ACTIVE]		    = "#2A656D" #
+	bg[NORMAL]	    	= "#18191A" # BACKGROUND
+	bg[PRELIGHT]		= "#697275" # 
+	bg[SELECTED]		= "#596163" # 
+	bg[INSENSITIVE]		= "#2F3133" #
+	bg[ACTIVE]		    = "#596163" #
 
-	base[NORMAL]		= "#1D2B33" # WHOLE BACKGROUND IN INSET AREA
-	base[PRELIGHT]		= "#243640" # 
-	base[ACTIVE]		= "#506875" # UNSELECTED HIGHLIGHTED BAR
-	base[SELECTED]		= "#839FAD" # Configure network hostname
-	base[INSENSITIVE]	= "#546975" #
+	base[NORMAL]		= "#18191A" # WHOLE BACKGROUND IN INSET AREA
+	base[PRELIGHT]		= "#282A2B" # 
+	base[ACTIVE]		= "#4E5557" # UNSELECTED HIGHLIGHTED BAR
+	base[SELECTED]		= "#8A9599" # Configure network hostname
+	base[INSENSITIVE]	= "#404547" #
 
 	text[NORMAL]		= "#E9EEF0" # PRIMARY TEXT COLOR
 	text[PRELIGHT]		= "#F2F7FA" # BRIGHTER TEXT DURING SELECTION HOPEFULLY
@@ -74,9 +74,9 @@ style "clearlooks-wider" = "clearlooks-default"
 
 style "clearlooks-button" = "clearlooks-wider"
 {
-	bg[NORMAL]	    = "#2A656D"  ## BUTTONS(3)
-	bg[INSENSITIVE]	= "#2A656D"
-	bg[PRELIGHT]	= "#37848F"  #Hover
+	bg[NORMAL]	    = "#404547"  ## BUTTONS(3)
+	bg[INSENSITIVE]	= "#404547"
+	bg[PRELIGHT]	= "#626A6D"  #Hover
 }
 
 style "clearlooks-notebook" = "clearlooks-wide"

@@ -30,8 +30,8 @@
   </placement>
   <!-- <font><theme> can be defined without an attribute to set all places -->
   <theme>
-    <name>Fanebox</name>
-    <icon>Obsidian-Teal</icon>
+    <name>Dragonbox</name>
+    <icon>Obsidian</icon>
     <fallbackAppIcon>labwc</fallbackAppIcon>
     <titlebar>
       <layout>icon,shade:iconify,max,close</layout>

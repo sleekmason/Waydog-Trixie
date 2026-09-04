@@ -23,8 +23,8 @@ blink_interval = 750
 unfocused_hollow = true
 
 [colors.primary]
-background = "#121D23"
-foreground = "#D4E0E6"
+background = "#18191a"
+foreground = "#E6E6E6"
 
 [colors.selection]
 text       = "#000000"

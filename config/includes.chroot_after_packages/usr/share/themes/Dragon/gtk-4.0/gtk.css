@@ -1,5 +1,5 @@
 :root {
-  --accent-bg-color: #3e4547;
+  --accent-bg-color: #234f78;
   --accent-fg-color: #ffffff;
 
   --window-bg-color: #151617;
@@ -49,7 +49,7 @@
 /* these are pretty self explicative */
 @define-color warning_color #f57900;
 @define-color error_color #cc3333;
-@define-color success_color #3e4547;
+@define-color success_color #234f78;
 @define-color fg_color #D4D4D4;
 @define-color text_color #D4D4D4;
 @define-color bg_color #151617;
@@ -415,16 +415,16 @@ button.suggested-action {
   font-weight: normal;
   color: white;
   outline-color: rgba(255, 255, 255, 0.3);
-  background-color: #3e4547;
+  background-color: #234f78;
   text-shadow: none;
   box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1); }
   button.suggested-action:hover {
-    background-color: #3e4547;
+    background-color: #234f78;
     opacity: 0.85; }
   button.suggested-action:active, button.suggested-action:checked {
-    background-color: #3e4547; }
+    background-color: #234f78; }
   button.suggested-action:disabled {
-    background-color: #3e4547;
+    background-color: #234f78;
     opacity: 0.75; }
 
 button.destructive-action {
@@ -488,7 +488,7 @@ modelbutton.flat,
   -gtk-icon-shadow: none; }
   modelbutton.flat:hover,
   .menuitem.button.flat:hover {
-    background-color: shade(#3e4547, 0.90); }
+    background-color: shade(#234f78, 0.90); }
 
 calendar {
   color: #D4D4D4;
@@ -678,7 +678,7 @@ notebook > header {
     border-bottom-style: solid; }
     notebook > header.top > tabs > tab:checked {
       background-color: #151617;
-      box-shadow: inset 0 2px #3e4547; }
+      box-shadow: inset 0 2px #234f78; }
     notebook > header.top > tabs > tab:hover:not(:checked) {
       background-color: #16181A; }
   notebook > header tab {
@@ -737,7 +737,7 @@ popover.menu {
     border-radius: 5px; }
     popover.menu modelbutton:selected {
       color: #D4D4D4;
-      background-color: shade(#3e4547, 0.90); }
+      background-color: shade(#234f78, 0.90); }
 
 progressbar {
   font-size: smaller;
@@ -768,7 +768,7 @@ scale {
     border-radius: 12px;
     transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     scale slider:active {
-      background-color: #3e4547; }
+      background-color: #234f78; }
 
 scrollbar {
   background-color: #131314;
@@ -823,7 +823,7 @@ scrollbar {
     padding: 8px 12px; }
     .sidebar row:selected, placessidebar row:selected {
       background: rgba(61, 67, 69, 0.1);
-      color: #3e4547; }
+      color: #234f78; }
 
 spinbutton {
   font-feature-settings: "tnum"; }
@@ -967,7 +967,7 @@ headerbar button.text-button:hover {
       font-weight: bold; }
     .titlebar:not(headerbar) button.suggested-action,
     headerbar button.suggested-action {
-      background-color: #3e4547;
+      background-color: #234f78;
       color: white;
       border-radius: 3px; }
 
@@ -985,8 +985,8 @@ levelbar > trough > block.high, levelbar > trough > block:not(.empty) {
   border-color: #26a269;
   background-color: #26a269; }
 levelbar > trough > block.full {
-  border-color: #3e4547;
-  background-color: #3e4547; }
+  border-color: #234f78;
+  background-color: #234f78; }
 levelbar > trough > block.empty {
   background-color: #1E2021;
   border-color: #1E2021; }
@@ -1027,7 +1027,7 @@ treeview.view:selected {
 
 
 /* Force override libadwaita */
-@define-color accent_bg_color #3e4547;
+@define-color accent_bg_color #234f78;
 @define-color accent_fg_color #ffffff;
 
 button,
@@ -1038,7 +1038,7 @@ button:checked {
 }
 
 button.suggested-action {
-  background-color: #3e4547;
+  background-color: #234f78;
 }
 
 button.destructive-action {

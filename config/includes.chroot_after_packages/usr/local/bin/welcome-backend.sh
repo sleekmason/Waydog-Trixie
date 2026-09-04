@@ -44,7 +44,7 @@ if command -v yad >/dev/null; then
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome.txt \
       --fontname="JetBrains Mono Regular 10" \
-      --fore="#C9D6DB"
+      --fore="#DEE0E0"
   else
     yad --title "Welcome to Waydog!" \
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
@@ -54,7 +54,7 @@ if command -v yad >/dev/null; then
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome2.txt \
       --fontname="JetBrains Mono Regular 10" \
-      --fore="#C9D6DB"
+      --fore="#DEE0E0"
   fi
 fi
 

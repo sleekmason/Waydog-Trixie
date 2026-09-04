@@ -17,7 +17,7 @@ ink(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#131617/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=131617/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Black" "(Ink theme)"
 }
@@ -37,7 +37,7 @@ dragon(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#18191a/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=18191a/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Dark Brown" "(Dragon theme)"
 }
@@ -57,7 +57,7 @@ drow(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#292929/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=292929/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Brown" "(Adwaita/Drow theme)"
 }
@@ -78,7 +78,7 @@ fane(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#1A2830/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=1A2830/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Blue" "(Fane theme)"
 }
@@ -99,7 +99,7 @@ raz(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#1C2129/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=1C2129/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color  ▸ Purple" "(Nightshade theme)"
 }
@@ -120,7 +120,7 @@ ozark(){
       if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
           cp -fr "/etc/xdg/foot" "$HOME/.config"
       fi
-      sed -i 's/^background=.*/background=#282D33/g' "$HOME/.config/foot/foot.ini"
+      sed -i 's/^background=.*/background=282D33/g' "$HOME/.config/foot/foot.ini"
   fi
   notify-send -i utilities-system-monitor "Terminal color ▸ Gray" "(Ozark theme)"
 }
@@ -179,7 +179,7 @@ custom(){
                   if ! [[ -f "$HOME/.config/foot/foot.ini" ]]; then
                       cp -fr "/etc/xdg/foot" "$HOME/.config"
                   fi
-                  sed -i "s/^background=.*/background=#${hex}/g" "$HOME/.config/foot/foot.ini"
+                  sed -i "s/^background=.*/background=${hex}/g" "$HOME/.config/foot/foot.ini"
               fi
               notify-send -i utilities-system-monitor "Terminal color  ▸ Custom Color"
               return
@@ -201,7 +201,7 @@ export -f double_hex
 export -f custom
 
 yad --title "Theme Sync" --escape-ok --borders=14 \
---width=242 --height=518 --buttons-layout=edge \
+--width=242 --height=508 --buttons-layout=edge \
 --text="Terminal BG Color" --text-align=center \
 --button=" Cancel!gtk-delete":1 \
 --button="gtk-ok:0" \

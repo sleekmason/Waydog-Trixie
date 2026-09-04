@@ -3,8 +3,8 @@
 # This script is for one time installed session use and can be removed if installed.
 
 # gsettings lines.
-gsettings set org.gnome.desktop.interface gtk-theme "Fane"
-gsettings set org.gnome.desktop.interface icon-theme "Obsidian-Teal"
+gsettings set org.gnome.desktop.interface gtk-theme "Dragon"
+gsettings set org.gnome.desktop.interface icon-theme "Obsidian"
 gsettings set org.gnome.desktop.interface font-name "Sans 11"
 gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
