@@ -195,7 +195,7 @@ toast {
   toast button.circular.flat.image-button {
     padding: 2px; }
     toast button.circular.flat.image-button:hover {
-      color: #D4D4D4;
+      color: #EDEDED;
       outline-color: rgba(195, 212, 212, 0.3);
       background-color: #cc3333;
       text-shadow: none;
@@ -216,7 +216,7 @@ toast {
   color: #D4D4D4;
   background-color: #151617; }
   .gtkstyle-fallback:hover {
-    color: #D4D4D4;
+    color: #EDEDED;
     background-color: #1D1E1F; }
   .gtkstyle-fallback:active {
     color: #D4D4D4;
@@ -369,7 +369,7 @@ button {
       transition-duration: 500ms; }
   notebook > header > tabs > arrow:hover,
   button:hover {
-    color: #D4D4D4;
+    color: #EDEDED;
     outline-color: rgba(195, 212, 212, 0.3);
     background-color: rgba(61, 67, 69, 0.5);
     text-shadow: none;
@@ -661,7 +661,7 @@ menu, .menu, .context-menu {
     padding: 4px 6px;
     text-shadow: none; }
     menu menuitem:hover, .menu menuitem:hover, .context-menu menuitem:hover {
-      color: #D4D4D4;
+      color: #EDEDED;
       background-color: rgba(61, 67, 69, 0.5); }
     menu menuitem:disabled, .menu menuitem:disabled, .context-menu menuitem:disabled {
       color: #5B6263; }
@@ -736,7 +736,7 @@ popover.menu {
     padding: 0 12px;
     border-radius: 5px; }
     popover.menu modelbutton:selected {
-      color: #D4D4D4;
+      color: #EDEDED;
       background-color: shade(#234f78, 0.90); }
 
 progressbar {
