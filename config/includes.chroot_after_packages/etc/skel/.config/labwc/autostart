@@ -18,7 +18,6 @@ waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 &
 nm-applet &
 mako &
-# kanshi &
 
 ### Start the Thunar Daemon. Uncomment all three lines below to enable.
 # if type 'thunar' &> /dev/null; then
