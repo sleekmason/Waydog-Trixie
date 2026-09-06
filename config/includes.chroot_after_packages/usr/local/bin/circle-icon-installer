@@ -1,0 +1,42 @@
+#!/bin/bash
+echo ""
+read -r -p "   [0;32mCircle Icon Set Installer[0m
+
+   This will install the Circle Dark, Circle Ash, and Circle Raya 
+   icon sets.
+    
+   To uninstall: sudo apt remove circle-icons
+   
+   [0;32m-----------------------------------------------
+   
+   Please press enter to install the circle icons.
+   
+   -----------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+echo ""
+cd /tmp || exit
+if [ ! -f "circle-icons_12.0-2_all.deb" ]; then
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/circle-icons_12.0-2_all.deb --show-progress -q
+fi 
+sudo apt install -y ./circle-icons_12.0-2_all.deb
+sudo update-icon-caches /usr/share/icons/Circle*
+echo ""
+echo "[0;32m-------------------------------------------------------------"
+echo ""
+echo "   All Finished! You should now be able to select any of the 
+   circle icon sets through your system settings."
+echo "" 
+echo "-------------------------------------------------------------[0m"
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

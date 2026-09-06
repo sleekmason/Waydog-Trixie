@@ -1,0 +1,9 @@
+#!/bin/bash
+
+yad --title "Extra Icons" --escape-ok \
+--center --width=240 --height=196 --borders=12 --buttons-layout=edge \
+--window-icon=applications-graphics \
+    --form \
+    --field="Buuf":FBTN "x-terminal-emulator -T 'Labwc Compositor Installer' -e bash -c "buuf-icon-installer"" \
+    --field="Circle":FBTN "x-terminal-emulator -T 'Mango Compositor Installer' -e bash -c "circle-icon-installer"" \
+    --field="Papirus":FBTN "x-terminal-emulator -T 'Niri Compositor Installer' -e bash -c "papirus-installer""

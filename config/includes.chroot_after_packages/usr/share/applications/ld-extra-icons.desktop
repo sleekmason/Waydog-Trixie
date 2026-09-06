@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Extra Icons
+Exec=icon-installers
+StartupNotify=false
+Terminal=false
+Icon=applications-graphics
+Categories=ld-misc-tools;
