@@ -4788,8 +4788,8 @@ XfdesktopIconView.view {
       .lightdm-gtk-greeter #shutdown_dialog button#restart_button,
       .lightdm-gtk-greeter #restart_dialog button#login_button,
       .lightdm-gtk-greeter #restart_dialog button#restart_button {
-        border-color: shade(#234f78, 0.8);
-        background-image: linear-gradient(to bottom, shade(#234f78, 1.02), shade(#234f78, 0.95) 90%, shade(#234f78, 0.9));
+        border-color: shade(#252729, 0.8);
+        background-image: linear-gradient(to bottom, shade(#4A4F52, 0.88), shade(#4A4F52, 0.95) 90%, shade(#4A4F52, 0.9));
         color: #E0E0E0; }
         .lightdm-gtk-greeter #login_window button#login_button:hover, .lightdm-gtk-greeter #login_window button#login_button:active, .lightdm-gtk-greeter #login_window button#restart_button:hover, .lightdm-gtk-greeter #login_window button#restart_button:active,
         .lightdm-gtk-greeter #shutdown_dialog button#login_button:hover,
@@ -4800,8 +4800,8 @@ XfdesktopIconView.view {
         .lightdm-gtk-greeter #restart_dialog button#login_button:active,
         .lightdm-gtk-greeter #restart_dialog button#restart_button:hover,
         .lightdm-gtk-greeter #restart_dialog button#restart_button:active {
-          border-color: shade(#234f78, 0.7);
-          background-image: linear-gradient(to bottom, shade(#234f78, 1.12), shade(#234f78, 1.05) 90%, shade(#234f78, 1)); }
+          border-color: shade(#252729, 0.7);
+          background-image: linear-gradient(to bottom, shade(#234f78, 0.88), shade(#234f78, 0.97) 90%, shade(#234f78, 1)); }
       .lightdm-gtk-greeter #login_window button#shutdown_button,
       .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button,
       .lightdm-gtk-greeter #restart_dialog button#shutdown_button {
