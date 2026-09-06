@@ -43,8 +43,7 @@ if command -v yad >/dev/null; then
       --button=" Exit!application-exit:0" \
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome.txt \
-      --fontname="JetBrains Mono Regular 10" \
-      --fore="#DBDBDB"
+      --fontname="JetBrains Mono Regular 10"
   else
     yad --title "Welcome to Waydog!" \
       --window-icon=/usr/share/icons/ld-icons/paw-color.png \
@@ -53,8 +52,7 @@ if command -v yad >/dev/null; then
       --button="gtk-ok:0" \
       --text-info --justify=left --wrap \
       < /usr/share/lilidog/welcome2.txt \
-      --fontname="JetBrains Mono Regular 10" \
-      --fore="#DBDBDB"
+      --fontname="JetBrains Mono Regular 10"
   fi
 fi
 
