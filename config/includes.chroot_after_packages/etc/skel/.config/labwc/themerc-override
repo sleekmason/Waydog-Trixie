@@ -46,15 +46,15 @@ menu.overlap.x: 0
 menu.overlap.y: 0
 menu.width.min: 180
 menu.width.max: 240
-menu.border.width: 1
-#menu.border.color: #0F3A45
-#menu.items.bg.color: #21323BEE
-#menu.items.text.color: #D1DADE
-#menu.items.active.bg.color: #2a656d
-#menu.items.active.text.color: #F2F7FA
-#menu.separator.color: #576673
-#menu.title.bg.color: #589bda
-#menu.title.text.color: #ffffff
+menu.border.width: 0
+#menu.border.color: #2F3233
+#menu.items.bg.color: #18191ABEE
+#menu.items.text.color: #D1D1D1
+#menu.items.active.bg.color: #234f78
+#menu.items.active.text.color: #E6E6E6
+#menu.separator.color: #2F3233
+#menu.title.bg.color: #18191A
+#menu.title.text.color: #dbdbdb
 menu.items.padding.x: 10
 menu.items.padding.y: 2
 menu.separator.width: 1
@@ -63,10 +63,10 @@ menu.separator.padding.height: 2
 menu.title.text.justify: Center
 
 # on screen display (window-cycle dialog)
-#osd.bg.color: #212F38
+#osd.bg.color: #18191A
 #osd.border.color: #000000
 osd.border.width: 1
-#osd.label.text.color: #D0D4D6
+#osd.label.text.color: #D6D6D6
 
 # width can be set as percent (of screen width)
 # example 50% or 75% instead of 600, max 100%
