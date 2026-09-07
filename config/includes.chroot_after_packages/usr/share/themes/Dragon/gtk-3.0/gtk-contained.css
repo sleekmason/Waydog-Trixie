@@ -277,7 +277,7 @@ entry {
     box-shadow: inset 0 0 0 1px #4e9a06; }
   .osd spinbutton:not(.vertical), .osd
   entry {
-    color: #C5D4D3;
+    color: #D1D1D1;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(0, 0, 0, 0.5);
     background-clip: padding-box;
@@ -286,7 +286,7 @@ entry {
     -gtk-icon-shadow: 0 1px black; }
     .osd spinbutton:focus:not(.vertical), .osd
     entry:focus {
-      color: #C5D4D3;
+      color: #EBEBEB;
       border-color: #234f78;
       background-color: rgba(0, 0, 0, 0.5);
       background-clip: padding-box;
@@ -295,7 +295,7 @@ entry {
       -gtk-icon-shadow: 0 1px black; }
     .osd spinbutton:backdrop:not(.vertical), .osd
     entry:backdrop {
-      color: #C5D4D3;
+      color: #D1D1D1;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(0, 0, 0, 0.5);
       background-clip: padding-box;
@@ -623,7 +623,7 @@ button.osd {
     min-width: 32px; }
   
   button.osd:hover {
-    color: #C5D4D3;
+    color: #EBEBEB;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(65, 65, 65, 0.8);
     background-clip: padding-box;
@@ -636,7 +636,7 @@ button.osd {
   
   button.osd:active,
   button.osd:checked {
-    color: #C5D4D3;
+    color: #D1D1D1;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(0, 0, 0, 0.7);
     background-clip: padding-box;
@@ -683,7 +683,7 @@ button {
   popover.background.touch-selection button:hover, popover.background.magnifier button:hover, .app-notification button:hover,
   .osd
   button:hover {
-    color: #C5D4D3;
+    color: #EBEBEB;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(65, 65, 65, 0.8);
     background-clip: padding-box;
@@ -700,7 +700,7 @@ button {
   button:checked:backdrop,
   .osd
   button:checked {
-    color: #C5D4D3;
+    color: #D1D1D1;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(0, 0, 0, 0.7);
     background-clip: padding-box;
@@ -745,7 +745,7 @@ button {
     popover.background.touch-selection button.flat:hover, popover.background.magnifier button.flat:hover, .app-notification button.flat:hover,
     .osd
     button.flat:hover {
-      color: #C5D4D3;
+      color: #EBEBEB;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(65, 65, 65, 0.8);
       background-clip: padding-box;
@@ -780,7 +780,7 @@ button {
     button.flat:active,
     .osd
     button.flat:checked {
-      color: #C5D4D3;
+      color: #D1D1D1;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(0, 0, 0, 0.7);
       background-clip: padding-box;
@@ -791,13 +791,13 @@ button {
 
 
 button.suggested-action {
-  color: #C5D4D3;
+  color: #DBDBDB;
   outline-color: rgba(255, 255, 255, 0.3);
   border-top-color: shade(#151617, 0.8);
   border-right-color: shade(#151617, 0.72);
   border-left-color: shade(#151617, 0.72);
   border-bottom-color: shade(#151617, 0.7);
-  background-image: linear-gradient(to bottom, shade(shade(#234f78, 1.02), 1.05), shade(shade(#234f78, 1.02), 0.97));
+  background-image: linear-gradient(to bottom, shade(shade(#234f78, 0.98), 1.0), shade(shade(#234f78, 1.02), 1.0));
   box-shadow: inset 0 1px #234f78; }
   .selection-mode button.titlebutton,
   button.suggested-action.flat {
@@ -810,15 +810,15 @@ button.suggested-action {
     color: #234f78; }
   
   button.suggested-action:hover {
-    color: #C5D4D3;
+    color: #EBEBEB;
     outline-color: rgba(255, 255, 255, 0.3);
     border-color: #151617;
-    background-image: linear-gradient(to bottom, shade(#41484A, 1.15), shade(#41484A, 1.07));
+    background-image: linear-gradient(to bottom, shade(#234f78, 1.15), shade(#234f78, 1.17));
     box-shadow: inset 0 1px #234f78; }
   
   button.suggested-action:active,
   button.suggested-action:checked {
-    color: #C5D4D3;
+    color: #D1D1D1;
     outline-color: rgba(255, 255, 255, 0.3);
     border-color: #595959;
     background-image: linear-gradient(to bottom, shade(shade(#234f78, 0.85), 1.05), shade(shade(#234f78, 0.85), 0.97));
@@ -929,7 +929,7 @@ button.suggested-action {
     outline-color: rgba(238, 238, 238, 0.3); }
     .osd
     button.suggested-action:hover {
-      color: #C5D4D3;
+      color: #EBEBEB;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(57, 142, 231, 0.7);
       background-clip: padding-box;
@@ -942,7 +942,7 @@ button.suggested-action {
     button.suggested-action:active, .osd
     button.suggested-action:checked:backdrop, .osd
     button.suggested-action:checked {
-      color: #C5D4D3;
+      color: #D1D1D1;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: #234f78;
       background-clip: padding-box;
@@ -972,7 +972,7 @@ button.suggested-action {
 
 
 button.destructive-action {
-  color: #C5D4D3;
+  color: #D1D1D1;
   outline-color: rgba(255, 255, 255, 0.3);
   border-top-color: shade(#151617, 0.8);
   border-right-color: shade(#151617, 0.72);
@@ -991,7 +991,7 @@ button.destructive-action {
     color: #ef2929; }
   
   button.destructive-action:hover {
-    color: #C5D4D3;
+    color: #EBEBEB;
     outline-color: rgba(255, 255, 255, 0.3);
     border-color: #8e0b0b;
     background-image: linear-gradient(to bottom, shade(#ef2929, 1.15), shade(#ef2929, 1.07));
@@ -999,7 +999,7 @@ button.destructive-action {
   
   button.destructive-action:active,
   button.destructive-action:checked {
-    color: #C5D4D3;
+    color: #D1D1D1;
     outline-color: rgba(255, 255, 255, 0.3);
     border-color: #8e0b0b;
     background-image: linear-gradient(to bottom, shade(shade(#ef2929, 0.85), 1.05), shade(shade(#ef2929, 0.85), 0.97));
@@ -1110,7 +1110,7 @@ button.destructive-action {
     outline-color: rgba(238, 238, 238, 0.3); }
     .osd
     button.destructive-action:hover {
-      color: #C5D4D3;
+      color: #EBEBEB;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(239, 41, 41, 0.7);
       background-clip: padding-box;
@@ -1123,7 +1123,7 @@ button.destructive-action {
     button.destructive-action:active, .osd
     button.destructive-action:checked:backdrop, .osd
     button.destructive-action:checked {
-      color: #C5D4D3;
+      color: #D1D1D1;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: #ef2929;
       background-clip: padding-box;
@@ -1577,7 +1577,7 @@ spinbutton.vertical button.down {
   -gtk-icon-shadow: 0 1px black;
   outline-color: rgba(238, 238, 238, 0.3); }
   .osd spinbutton.vertical button:first-child:hover {
-    color: #C5D4D3;
+    color: #EBEBEB;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(65, 65, 65, 0.8);
     background-clip: padding-box;
@@ -1586,7 +1586,7 @@ spinbutton.vertical button.down {
     -gtk-icon-shadow: 0 1px black;
     outline-color: rgba(238, 238, 238, 0.3); }
   .osd spinbutton.vertical button:first-child:active {
-    color: #C5D4D3;
+    color: #D1D1D1;
     border-color: rgba(0, 0, 0, 0.7);
     background-color: rgba(0, 0, 0, 0.7);
     background-clip: padding-box;
@@ -2473,7 +2473,7 @@ notebook > header {
     border-color: shade(#151617, 0.9);
     border-style: solid; }
     notebook > header tab:hover {
-      color: #EDEDED; }
+      color: #E8E8E8; }
       notebook > header tab:hover.reorderable-page {
         border-color: #0C0D0D;
         background-color: shade(#234f78, 1.16); }
@@ -2483,7 +2483,7 @@ notebook > header {
         border-color: transparent;
         background-color: transparent; }
     notebook > header tab:checked {
-      color: #D4D4D4;
+      color: #D9D9D9;
       background-color: shade(#234f78, 1.05);
       border-width: 1px 1px 0 1px; }
       notebook > header tab:checked:backdrop {
@@ -2492,7 +2492,7 @@ notebook > header {
         border-color: #0F0F0F;
         background-image: linear-gradient(to bottom, shade(#234f78, 0.92), shade(#234f78, 0.98)); }
     notebook > header tab:backdrop:checked {
-      color: #A8B5B4; }
+      color: #B8B8B8; }
       notebook > header tab:backdrop:checked.reorderable-page {
         border-color: #0F0F0F;
         background-color: #151617; }
@@ -2687,7 +2687,7 @@ scrollbar {
       box-shadow: inset 0 1px rgba(255, 255, 255, 0);
       text-shadow: none;
       -gtk-icon-shadow: none;
-      color: #C5D4D3; }
+      color: #D1D1D1; }
       scrollbar button:backdrop:disabled {
         border-color: transparent;
         background-color: transparent;
@@ -2879,8 +2879,8 @@ radio {
     color: #D4D4D4;
     outline-color: rgba(60, 60, 60, 0.3);
     border-color: #2F3233;
-    background-image: linear-gradient(to bottom, #234f78 10%, #234f78 90%);
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), inset 0 -2px #424F4F, inset 0 -1px#151617, 0 1px rgba(0, 0, 0, 0.1); }
+    background-image: linear-gradient(to bottom, shade(#234f78, 1.17) 10%, shade(#234f78, 1.1) 90%);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), inset 0 -2px #234f78, inset 0 -1px #234f78, 0 1px rgba(0, 0, 0, 0.1); }
   check:active,
   radio:active {
     color: #D4D4D4;
@@ -2947,7 +2947,7 @@ radio {
       outline-color: rgba(238, 238, 238, 0.3); }
     .osd check:active, .osd
     radio:active {
-      color: #C5D4D3;
+      color: #D1D1D1;
       border-color: rgba(0, 0, 0, 0.7);
       background-color: rgba(0, 0, 0, 0.7);
       background-clip: padding-box;
@@ -3214,7 +3214,7 @@ scale {
       border-color: rgba(0, 0, 0, 0.7);
       background-color: #222222; }
       .osd scale slider:hover {
-        color: #C5D4D3;
+        color: #EBEBEB;
         border-color: rgba(0, 0, 0, 0.7);
         background-color: rgba(65, 65, 65, 0.8);
         background-clip: padding-box;
@@ -3223,7 +3223,7 @@ scale {
         -gtk-icon-shadow: 0 1px black;
         outline-color: rgba(238, 238, 238, 0.3); }
       .osd scale slider:active {
-        color: #C5D4D3;
+        color: #D1D1D1;
         border-color: rgba(0, 0, 0, 0.7);
         background-color: rgba(0, 0, 0, 0.7);
         background-clip: padding-box;
@@ -3468,7 +3468,7 @@ levelbar block {
 printdialog paper {
   color: #D4D4D4;
   border: 1px solid #2F3233;
-  background: #C5D4D3;
+  background: #D1D1D1;
   padding: 0; }
   printdialog paper:backdrop {
     color: #BFBFBF;
@@ -4578,7 +4578,7 @@ read if you used those and something break with a version upgrade you're on your
       border-color: shade(#234f78, 0.6);
       background-image: linear-gradient(to bottom, shade(#234f78, 0.88), shade(#234f78, 0.85));
       color: #18191A;
-      box-shadow: inset 0 -1px alpha(#C5D4D3,0), inset 1px 0 alpha(#C5D4D3,0.15), inset -1px 0 alpha(#C5D4D3,0.15), inset 0 1px alpha(#C5D4D3,0.15);
+      box-shadow: inset 0 -1px alpha(#D1D1D1,0), inset 1px 0 alpha(#D1D1D1,0.15), inset -1px 0 alpha(#D1D1D1,0.15), inset 0 1px alpha(#D1D1D1,0.15);
       transition: none; }
   .xfce4-panel.background entry {
     caret-color: #CFCFCF; }
@@ -4593,7 +4593,7 @@ read if you used those and something break with a version upgrade you're on your
       border-left-color: shade(#151617, 0.72);
       border-bottom-color: shade(#151617, 0.7);
       background-image: linear-gradient(to bottom, shade(shade(#18191A, 1.02), 1.05), shade(shade(#18191A, 1.02), 0.97));
-      box-shadow: inset 0 1px #C5D4D3; }
+      box-shadow: inset 0 1px #D1D1D1; }
       .xfce4-panel.background menu .linked button:disabled {
         border-color: #2F3233;
         background-color: #2C2F30;
