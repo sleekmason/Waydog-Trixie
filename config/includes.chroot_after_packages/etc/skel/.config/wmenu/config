@@ -12,11 +12,11 @@ WMENU_OPTS=(
 
 # Colors background
   -M 11191f               # prompt bg
-  -N 11191fBB             # main bg
-  -S 2e707a               # selection bg
+  -N 121314ff             # main bg
+  -S 2D5170               # selection bg
 
 # Colors foreground
-  -m C9CFD1               # prompt fg
-  -n C9CFD1               # main fg
+  -m D1D1D1               # prompt fg
+  -n D1D1D1               # main fg
   -s FFFFFF               # selection fg 
 )
