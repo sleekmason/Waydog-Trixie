@@ -110,7 +110,7 @@ tooltip {
   min-height: 0px;
   font-family: "Dejavu Sans";
   font-size: 11px;
-  color: @text;
+  color: @text-dim;
   border-radius: 6px;
   padding: 0px 2px;
   margin-left: 0px;
@@ -123,6 +123,16 @@ tooltip {
 }
 
 #workspaces button:hover {
+  background: @hidkbrown;
+  color: @white;
+}
+
+#workspaces button.focused {
+  background: @dkbrown;
+  color: @white;
+}
+
+#workspaces button.focused:hover {
   background: @hidkbrown;
   color: @white;
 }
