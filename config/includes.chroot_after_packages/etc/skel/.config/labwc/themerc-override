@@ -63,10 +63,10 @@ menu.separator.padding.height: 2
 menu.title.text.justify: Center
 
 # on screen display (window-cycle dialog)
-#osd.bg.color: #18191A
+osd.bg.color: #18191A
 #osd.border.color: #000000
 osd.border.width: 1
-#osd.label.text.color: #D6D6D6
+osd.label.text.color: #D6D6D6
 
 # width can be set as percent (of screen width)
 # example 50% or 75% instead of 600, max 100%
