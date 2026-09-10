@@ -18,7 +18,7 @@ ink(){
       fi
       sed -i 's/^background=.*/background=131617/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color  ▸ Black" "(Ink theme)"
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Black"
 }
     
 dragon(){
@@ -37,7 +37,7 @@ dragon(){
       fi
       sed -i 's/^background=.*/background=18191a/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color  ▸ Dark Brown" "(Dragon theme)"
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Dark Brown"
 }
 
 drow(){
@@ -56,7 +56,7 @@ drow(){
       fi
       sed -i 's/^background=.*/background=292929/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color  ▸ Brown" "(Adwaita/Drow theme)"
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Brown"
 }
 
 fane(){
@@ -76,7 +76,7 @@ fane(){
       fi
       sed -i 's/^background=.*/background=1A2830/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color  ▸ Blue" "(Fane theme)"
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Blue"
 }
 
 raz(){
@@ -96,7 +96,7 @@ raz(){
       fi
       sed -i 's/^background=.*/background=1C2129/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color  ▸ Purple" "(Nightshade theme)"
+  notify-send -i utilities-system-monitor "Terminal color  ▸ Purple"
 }
 
 ozark(){
@@ -116,7 +116,7 @@ ozark(){
       fi
       sed -i 's/^background=.*/background=282D33/g' "$HOME/.config/foot/foot.ini"
   fi
-  notify-send -i utilities-system-monitor "Terminal color ▸ Gray" "(Ozark theme)"
+  notify-send -i utilities-system-monitor "Terminal color ▸ Gray"
 }
 
 double_hex() {
