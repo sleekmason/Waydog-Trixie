@@ -275,7 +275,7 @@ tooltip {
 }
 
 #tags button {
-    color: @hiindigo;
+    color: @text-dim;
     padding: 0 3px;
     min-height: 0;
     font-size: 11px;
@@ -289,7 +289,7 @@ tooltip {
 
 #tags button.occupied {
     background: @dkbrown;
-    color: @hiviolet;
+    color: @text-dim;
     margin-top: 1px;
     margin-bottom: 1px;
     margin-left: 1px;
@@ -448,7 +448,7 @@ tooltip {
 }
 #custom-power:hover {
   background: @hidkbrown;
-  color: @hiblue;
+  color: @text;
 }
 
 /* --------------------------------------------
