@@ -222,31 +222,31 @@ ini_key_to_selector() {
 }
 
 BASELINE_MAP=(
-    "tooltip|@base-light"
-    "#workspaces button.active|@base-light"
-    "#workspaces button:hover|@border2"
-    "#clock|@base-light"
-    "#clock:hover|@border2"
-    "#pulseaudio:hover|@base-light"
-    "#backlight:hover|@base-light"
-    "#idle_inhibitor:hover|@base-light"
-    "#tags button.occupied|@darkteal"
-    "#tags button.occupied:hover|@border"
-    "#tags button.focused|@teal"
-    "#custom-launcher1|@base-light"
-    "#custom-launcher1:hover|@border2"
-    "#custom-launcher2|@base-light"
-    "#custom-launcher2:hover|@border2"
-    "#custom-launcher3|@base-light"
-    "#custom-launcher3:hover|@border2"
-    "#custom-launcher4|@base-light"
-    "#custom-launcher4:hover|@border2"
-    "#custom-launcher5|@base-light"
-    "#custom-launcher5:hover|@border2"
-    "#mpd|@base-light"
-    "#mpd:hover|@border2"
-    "#custom-power|@base-light"
-    "#custom-power:hover|@border2"
+    "tooltip|@dkbrown"
+    "#workspaces button.active|@dkbrown"
+    "#workspaces button:hover|@hidkbrown"
+    "#clock|@dkbrown"
+    "#clock:hover|@hidkbrown"
+    "#pulseaudio:hover|@hidkbrown"
+    "#backlight:hover|@hidkbrown"
+    "#idle_inhibitor:hover|@hidkbrown"
+    "#tags button.occupied|@dkbrown"
+    "#tags button.occupied:hover|@hidkbrown"
+    "#tags button.focused|@hidkbrown"
+    "#custom-launcher1|@dkbrown"
+    "#custom-launcher1:hover|@hidkbrown"
+    "#custom-launcher2|@dkbrown"
+    "#custom-launcher2:hover|@hidkbrown"
+    "#custom-launcher3|@dkbrown"
+    "#custom-launcher3:hover|@hidkbrown"
+    "#custom-launcher4|@dkbrown"
+    "#custom-launcher4:hover|@hidkbrown"
+    "#custom-launcher5|@dkbrown"
+    "#custom-launcher5:hover|@hidkbrown"
+    "#mpd|@dkbrown"
+    "#mpd:hover|@hidkbrown"
+    "#custom-power|@dkbrown"
+    "#custom-power:hover|@hidkbrown"
 )
 
 SCHEME_blue=(
@@ -279,7 +279,7 @@ SCHEME_blue=(
 
 SCHEME_black=(
     "tooltip|@ink"
-    "#workspaces button.active|@hiink"
+    "#workspaces button.active|@ink"
     "#workspaces button:hover|@hiink"
     "#clock|@ink"
     "#clock:hover|@hiink"
@@ -307,7 +307,7 @@ SCHEME_black=(
 
 SCHEME_brown=(
     "tooltip|@brown"
-    "#workspaces button.active|@hibrown"
+    "#workspaces button.active|@brown"
     "#workspaces button:hover|@hibrown"
     "#clock|@brown"
     "#clock:hover|@hibrown"
@@ -335,7 +335,7 @@ SCHEME_brown=(
 
 SCHEME_darkbrown=(
     "tooltip|@dkbrown"
-    "#workspaces button.active|@hidkbrown"
+    "#workspaces button.active|@dkbrown"
     "#workspaces button:hover|@hidkbrown"
     "#clock|@dkbrown"
     "#clock:hover|@hidkbrown"
@@ -363,7 +363,7 @@ SCHEME_darkbrown=(
 
 SCHEME_purple=(
     "tooltip|@raz"
-    "#workspaces button.active|@hiraz"
+    "#workspaces button.active|@raz"
     "#workspaces button:hover|@hiraz"
     "#clock|@raz"
     "#clock:hover|@hiraz"
@@ -391,7 +391,7 @@ SCHEME_purple=(
 
 SCHEME_gray=(
     "tooltip|@grey"
-    "#workspaces button.active|@higrey"
+    "#workspaces button.active|@grey"
     "#workspaces button:hover|@higrey"
     "#clock|@grey"
     "#clock:hover|@higrey"

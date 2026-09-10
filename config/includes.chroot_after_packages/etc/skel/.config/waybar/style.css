@@ -118,8 +118,8 @@ tooltip {
 }
 
 #workspaces button.active {
-  background: @hidkbrown;
-  color: @violet;
+  background: @dkbrown;
+  color: @text;
 }
 
 #workspaces button:hover {
