@@ -953,7 +953,7 @@ headerbar button {
     .titlebar:not(headerbar) button:hover,
     headerbar button:hover {
       color: #D8E6E6;
-      background-color: #383838; }
+      background-color: rgba(35, 79, 120, 0.7); }
 headerbar button.image-button:hover,
 headerbar button.text-button:hover {
   background-color: rgba(61, 67, 69, 0.7);
