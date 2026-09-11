@@ -40,8 +40,8 @@ printf '%b\n' '
   <item label="Terminal" icon="utilities-terminal">
     <action name="Execute" command="x-terminal-emulator" />
   </item>
-  <item label="Firefox" icon="firefox-esr">
-    <action name="Execute" command="firefox-esr" />
+  <item label="Web Browser" icon="web-browser">
+    <action name="Execute" command="x-www-browser" />
   </item>
   <separator />'
 
@@ -54,7 +54,7 @@ printf '%b\n' '
   <item label="Reconfigure" icon="emblem-synchronizing">
     <action name="Execute" command="labwc-reconfigure-toggle" />
   </item>
-  <item label="Exit" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">
+  <item label="Exit" icon="application-exit">
     <action name="Execute" command="ld-logout" />
   </item>
 </openbox_menu>'

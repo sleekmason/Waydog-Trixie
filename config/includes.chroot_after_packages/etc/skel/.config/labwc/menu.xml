@@ -62,7 +62,7 @@
         <command>labwc-reconfigure-toggle</command>
       </action>
     </item>
-    <item label="Exit" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">
+    <item label="Exit" icon="application-exit">
       <action name="Execute">
         <execute>ld-logout</execute>
       </action>
@@ -79,9 +79,9 @@
         <execute>thunar</execute>
       </action>
     </item>
-    <item label="Firefox" icon="firefox-esr">
+    <item label="Web Browser" icon="web-browser">
       <action name="Execute">
-        <execute>firefox-esr</execute>
+        <execute>x-www-browser</execute>
       </action>
     </item>
     <!-- This requires the presence of the 'openbox-menu' package to work -->
@@ -317,7 +317,7 @@
         <command>labwc-reconfigure-toggle</command>
       </action>
     </item>
-    <item label="Exit" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">
+    <item label="Exit" icon="application-exit">
       <action name="Execute">
         <execute>ld-logout</execute>
       </action>
