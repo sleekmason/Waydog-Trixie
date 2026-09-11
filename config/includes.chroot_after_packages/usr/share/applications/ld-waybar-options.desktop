@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Waybar Options
-Exec=waybar-icon-toggle dialog
+Exec=setsid -f waybar-icon-toggle dialog
 StartupNotify=false
 Terminal=false
 Icon=applications-other
