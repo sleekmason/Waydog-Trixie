@@ -37,10 +37,10 @@ printf '%b\n' '<?xml version="1.0" encoding="UTF-8"?>
 
 # Add static items
 printf '%b\n' '
-  <item label="Terminal" icon="/usr/share/icons/gnome/24x24/apps/utilities-terminal.png">
+  <item label="Terminal" icon="utilities-terminal">
     <action name="Execute" command="x-terminal-emulator" />
   </item>
-  <item label="Web Browser" icon="/usr/share/icons/gnome/24x24/apps/web-browser.png">
+  <item label="Firefox" icon="firefox-esr">
     <action name="Execute" command="firefox-esr" />
   </item>
   <separator />'
@@ -51,7 +51,7 @@ labwc-menu-generator -b -I -i "${ignore_files}" -t "x-terminal-emulator -e"
 # Add footer items
 printf '%b\n' '
   <separator />
-  <item label="Reconfigure" icon="/usr/share/icons/gnome/24x24/emblems/emblem-synchronizing.png">
+  <item label="Reconfigure" icon="emblem-synchronizing">
     <action name="Execute" command="labwc-reconfigure-toggle" />
   </item>
   <item label="Exit" icon="/usr/share/icons/ld-icons/pixmaps/exit4.png">

@@ -79,7 +79,7 @@
         <execute>thunar</execute>
       </action>
     </item>
-    <item label="Web Browser" icon="web-browser">
+    <item label="Firefox" icon="firefox-esr">
       <action name="Execute">
         <execute>firefox-esr</execute>
       </action>
@@ -181,7 +181,7 @@
       </item>
     </menu>
     <menu icon="preferences-system" id="root-menu-4985" label="Utilities">
-      <menu icon="info" id="root-menu-88811" label="System Info">
+      <menu icon="applications-other" id="root-menu-88811" label="System Info">
         <item label="Btop" icon="btop">
           <action name="Execute">
             <execute>x-terminal-emulator -T 'Btop' -e bash -c "btop; echo $'\n\nPress any key to close'; read -srn1"</execute>
@@ -283,7 +283,7 @@
           <execute>transmission-gtk</execute>
         </action>
       </item>
-      <item label="Upgrade Options" icon="preferences-other">
+      <item label="Upgrade Options" icon="system-software-update">
         <action name="Execute">
           <execute>update-options</execute>
         </action>
@@ -303,7 +303,7 @@
           <execute>bash -c "waybar-icon-toggle dialog"</execute>
         </action>
       </item>
-      <item label="Waydog Installers" icon="applications-other">
+      <item label="Waydog Installers" icon="system-software-update">
         <action name="Execute">
           <execute>waydog-installers</execute>
         </action>
