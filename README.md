@@ -17,7 +17,7 @@ session.  Just log out and back in to change WMs.
 - [SourceForge Main Page](https://sourceforge.net/projects/lilidog/)
 - [Downloads](https://sourceforge.net/projects/lilidog/files/Releases/)
 
-####Waydog Trixie
+#### Waydog Trixie
 [![Waydog-12-Sep-2026.png](https://i.postimg.cc/X701br1x/Waydog-12-Sep-2026.png)](https://postimg.cc/2327dSDB)
 
 ### Current Release Format:
