@@ -791,9 +791,9 @@ scrollbar {
     background-clip: padding-box;
     background-color: #3B3B3B; }
     scrollbar slider:hover {
-      background-color: #4F4F4F; }
+      background-color: rgba(124, 130, 132, 0.5); }
     scrollbar slider:hover:active {
-      background-color: rgba(100, 125, 132, 0.5); }
+      background-color: shade(#234f78, 0.92); }
     scrollbar slider:backdrop {
       background-color: #232424; }
     scrollbar slider:disabled {
