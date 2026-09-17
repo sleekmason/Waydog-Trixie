@@ -1,7 +1,7 @@
 * {
   padding: 0;
   -GtkToolButton-icon-spacing: 4;
-  -GtkTextView-error-underline-color: #800069;
+  -GtkTextView-error-underline-color: #B84444;
   -GtkScrolledWindow-scrollbar-spacing: 0;
   -GtkToolItemGroup-expander-size: 11;
   -GtkWidget-text-handle-width: 20;
@@ -238,15 +238,15 @@ entry {
     box-shadow: none; }
   spinbutton.error:not(.vertical),
   entry.error {
-    background-color: rgba(204, 0, 0, 0.1);
-    color: #800069;
-    border-color: #800069; }
+    background-color: shade(#B84444, 0.21);
+    color: shade(#B84444, 1.10);
+    border-color: #B84444; }
     spinbutton.error:focus:not(.vertical),
     entry.error:focus {
-      border-color: #800069; }
+      border-color: #B84444; }
     spinbutton.error:not(.vertical) selection,
     entry.error selection {
-      background-color: #800069; }
+      background-color: #B84444; }
   spinbutton.warning:not(.vertical),
   entry.warning {
     background-color: rgba(245, 121, 0, 0.1);
@@ -4527,7 +4527,7 @@ widgets main borders color on backdrop windows */
 /*
 these are pretty self explicative */
 @define-color warning_color #f57900;
-@define-color error_color #800069;
+@define-color error_color #B84444;
 @define-color success_color #4e9a06;
 /*
 these colors are exported for the window manager and shouldn't be used in applications,
@@ -4805,16 +4805,16 @@ XfdesktopIconView.view {
       .lightdm-gtk-greeter #login_window button#shutdown_button,
       .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button,
       .lightdm-gtk-greeter #restart_dialog button#shutdown_button {
-        border-color: shade(#800069, 0.8);
-        background-image: linear-gradient(to bottom, shade(#800069, 1.02), shade(#800069, 0.95) 90%, shade(#800069, 0.9));
+        border-color: shade(#B84444, 0.8);
+        background-image: linear-gradient(to bottom, shade(#B84444, 1.02), shade(#B84444, 0.95) 90%, shade(#B84444, 0.9));
         color: #E0E0E0; }
         .lightdm-gtk-greeter #login_window button#shutdown_button:hover, .lightdm-gtk-greeter #login_window button#shutdown_button:active,
         .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button:hover,
         .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button:active,
         .lightdm-gtk-greeter #restart_dialog button#shutdown_button:hover,
         .lightdm-gtk-greeter #restart_dialog button#shutdown_button:active {
-          border-color: shade(#800069, 0.7);
-          background-image: linear-gradient(to bottom, shade(#800069, 1.12), shade(#800069, 1.05) 90%, shade(#800069, 1)); }
+          border-color: shade(#B84444, 0.7);
+          background-image: linear-gradient(to bottom, shade(#B84444, 1.12), shade(#B84444, 1.05) 90%, shade(#B84444, 1)); }
   .lightdm-gtk-greeter #content_frame {
     padding-bottom: 14px; }
   .lightdm-gtk-greeter #login_window menu {
