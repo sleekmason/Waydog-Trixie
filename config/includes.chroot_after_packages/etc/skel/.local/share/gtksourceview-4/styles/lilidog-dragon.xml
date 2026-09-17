@@ -21,12 +21,12 @@
   <color name="purple"     value="#994AF0"/>
 
   <!-- Global Settings -->
-  <style name="text"                        foreground="#E6E6E6" background="#151617"/>
-  <style name="selection"                   foreground="#F0F0F0" background="434A4D"/>
+  <style name="text"                        foreground="#E0E0E0" background="#151617"/>
+  <style name="selection"                   foreground="#FAFAFA" background="434A4D"/>
   <style name="current-line"                background="#2C3133"/>
   <style name="current-line-number"         background="#2C3133"/>
   <style name="draw-spaces"                 foreground="#babdb6"/>
-  <style name="line-numbers"                foreground="#A5B1B8" background="#151617"/>
+  <style name="line-numbers"                foreground="#ADADAD" background="#151617"/>
   <style name="background-pattern"          background="#7D4A82"/>
   <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="white" background="gray"/>
