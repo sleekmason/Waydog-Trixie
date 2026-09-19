@@ -16,7 +16,7 @@ KNOWN_BACKGROUNDS=(
     "1C2129:303B4D"   # Purple
     "282D33:434D59"   # Gray
 )
-TOLERANCE=4
+TOLERANCE=0
 
 # User select with color range offset
 FALLBACK_OFFSET=38
@@ -101,6 +101,9 @@ for ENTRY in "${KNOWN_BACKGROUNDS[@]}"; do
     fi
 done
 [[ -z "$SELECTION_COLOR" ]] && SELECTION_COLOR=$(shift_hex "$BG_COLOR" "$FALLBACK_OFFSET")
+if [[ "$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null)" == "'Dragon'" && "$BG_COLOR" == "18191A" ]]; then
+    SELECTION_COLOR="234F78"
+fi
 
 SYNCED=0
 for CFG in "${FUZZEL_CONFIGS[@]}"; do
