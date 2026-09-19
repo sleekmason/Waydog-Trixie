@@ -12,7 +12,7 @@
   <property name="color-selection-use-default" type="bool" value="false"/>
   <property name="color-bold" type="string" value=""/>
   <property name="color-bold-use-default" type="bool" value="true"/>
-  <property name="color-palette" type="string" value="rgb(4,4,4);rgb(214,69,69);rgb(0,173,111);rgb(227,184,86);rgb(53,141,204);rgb(199,80,179);rgb(16,156,156);rgb(212,212,212);rgb(158,165,171);rgb(255,99,99);rgb(94,224,154);rgb(255,224,102);rgb(82,151,199);rgb(245,122,225);rgb(121,224,216);rgb(224,224,224)"/>
+  <property name="color-palette" type="string" value="rgb(4,4,4);rgb(214,69,69);rgb(25,209,118);rgb(232,196,88);rgb(53,154,204);rgb(199,80,179);rgb(0,173,173);rgb(212,212,212);rgb(158,165,171);rgb(255,99,99);rgb(27,224,126);rgb(255,224,102);rgb(84,164,204);rgb(245,122,225);rgb(96,219,210);rgb(224,224,224)"/>
   <property name="color-bold-is-bright" type="bool" value="true"/>
   <property name="color-use-theme" type="bool" value="false"/>
   <property name="tab-activity-color" type="string" value="#e6e656565656"/>
