@@ -7,15 +7,15 @@
   <property name="color-cursor-foreground" type="string" value=""/>
   <property name="color-cursor" type="string" value=""/>
   <property name="color-cursor-use-default" type="bool" value="true"/>
-  <property name="color-selection" type="string" value="#0f0f0f0f0f0f"/>
+  <property name="color-selection" type="string" value="#000000000000"/>
   <property name="color-selection-background" type="string" value="#e6e656565656"/>
   <property name="color-selection-use-default" type="bool" value="false"/>
   <property name="color-bold" type="string" value=""/>
   <property name="color-bold-use-default" type="bool" value="true"/>
-  <property name="color-palette" type="string" value="rgb(0,0,0);rgb(196,62,47);rgb(0,136,87);rgb(190,149,45);rgb(56,152,183);rgb(150,52,128);rgb(0,142,142);rgb(158,170,176);rgb(153,163,172);rgb(255,95,95);rgb(71,207,133);rgb(226,215,115);rgb(110,195,215);rgb(239,115,219);rgb(99,208,200);rgb(224,231,233)"/>
+  <property name="color-palette" type="string" value="rgb(4,4,4);rgb(214,69,69);rgb(0,173,111);rgb(227,184,86);rgb(53,141,204);rgb(199,80,179);rgb(16,156,156);rgb(212,212,212);rgb(158,165,171);rgb(255,99,99);rgb(94,224,154);rgb(255,224,102);rgb(82,151,199);rgb(245,122,225);rgb(121,224,216);rgb(224,224,224)"/>
   <property name="color-bold-is-bright" type="bool" value="true"/>
   <property name="color-use-theme" type="bool" value="false"/>
-  <property name="tab-activity-color" type="string" value="#aa0000"/>
+  <property name="tab-activity-color" type="string" value="#e6e656565656"/>
   <property name="scrolling-bar" type="string" value="TERMINAL_SCROLLBAR_NONE"/>
   <property name="scrolling-lines" type="uint" value="10000"/>
   <property name="font-name" type="string" value="JetBrains Mono Light 10"/>
