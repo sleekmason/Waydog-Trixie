@@ -174,7 +174,7 @@ entry {
   border-radius: 3px;
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   color: #D1D1D1;
-  border-color: #2E3133;
+  border-color: #343738;
   background-color: shade(#1A1B1C, 0.99);
   box-shadow: inset 0 0 0 1px rgba(57, 142, 231, 0); }
   spinbutton:not(.vertical) image.left,
@@ -433,10 +433,10 @@ button {
   transition: all 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   color: #D6D6D6;
   outline-color: #4A5254;
-  border-top-color: shade(#333738, 0.8);
-  border-right-color: shade(#333738, 0.72);
-  border-left-color: shade(#333738, 0.72);
-  border-bottom-color: shade(#333738, 0.7);
+  border-top-color: shade(#343738, 0.8);
+  border-right-color: shade(#343738, 0.72);
+  border-left-color: shade(#343738, 0.72);
+  border-bottom-color: shade(#343738, 0.7);
   background-image: linear-gradient(to bottom, shade(shade(#1D1E1F, 0.98), 1.05), shade(shade(#1D1E1F, 1.0), 0.97));
   box-shadow: inset 0 1px #1A1B1C; }
   notebook > header > tabs > arrow, button.sidebar-button, button.titlebutton,
@@ -1455,7 +1455,7 @@ spinbutton:not(.vertical) {
     margin: 0;
     padding-bottom: 0;
     padding-top: 0;
-    color: #636A6A;
+    color: #6C6E70;
     background-image: none;
     border-style: none none none solid;
     border-color: #40474A;
@@ -2245,7 +2245,7 @@ menu,
     menu menuitem:hover,
     .menu menuitem:hover,
     .context-menu menuitem:hover {
-      color: #E6E6E6;
+      color: #EBEBEB;
       background-image: linear-gradient(to bottom, shade(#234f78, 1.0), shade(#234f78, 1.0));
       box-shadow: inset 1px 1px shade(#0F0F0F, 0.8), inset -1px -1px shade(#0F0F0F, 0.8); }
     menu menuitem:disabled,
@@ -2473,7 +2473,7 @@ notebook > header {
     border-color: shade(#151617, 0.9);
     border-style: solid; }
     notebook > header tab:hover {
-      color: #E8E8E8; }
+      color: #EBEBEB; }
       notebook > header tab:hover.reorderable-page {
         border-color: #0C0D0D;
         background-color: shade(#234f78, 1.16); }
@@ -2492,7 +2492,7 @@ notebook > header {
         border-color: #0F0F0F;
         background-image: linear-gradient(to bottom, shade(#234f78, 0.92), shade(#234f78, 0.98)); }
     notebook > header tab:backdrop:checked {
-      color: #B8B8B8; }
+      color: #BDBDBD; }
       notebook > header tab:backdrop:checked.reorderable-page {
         border-color: #0F0F0F;
         background-color: #151617; }
@@ -2870,7 +2870,7 @@ radio {
   outline-color: rgba(60, 60, 60, 0.3);
   border-color: #9b9b9b;
   background-image: linear-gradient(to bottom, #1A1F1F 20%, #1A1F1F 90%);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.8), inset 0 -2px #2C2F30, inset 0 -1px #151617, 0 1px rgba(0, 0, 0, 0.1); }
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.7), inset 0 -2px #2C2F30, inset 0 -1px #151617, 0 1px rgba(0, 0, 0, 0.1); }
   check:only-child,
   radio:only-child {
     margin: 0; }
@@ -2878,14 +2878,14 @@ radio {
   radio:hover {
     color: #D4D4D4;
     outline-color: rgba(60, 60, 60, 0.3);
-    border-color: #2F3233;
+    border-color: #151617;
     background-image: linear-gradient(to bottom, shade(#234f78, 1.17) 10%, shade(#234f78, 1.1) 90%);
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.6), inset 0 -2px #234f78, inset 0 -1px #234f78, 0 1px rgba(0, 0, 0, 0.1); }
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), inset 0 -2px #234f78, inset 0 -1px #234f78, 0 1px rgba(0, 0, 0, 0.1); }
   check:active,
   radio:active {
     color: #D4D4D4;
     outline-color: rgba(60, 60, 60, 0.3);
-    border-color: #2F3233;
+    border-color: #151617;
     background-image: linear-gradient(to bottom, shade(shade(#151617, 0.85), 1.05), shade(shade(#151617, 0.85), 0.97));
     box-shadow: inset 0 2px 1px -2px rgba(0, 0, 0, 0.6); }
   check:disabled,
@@ -3065,9 +3065,9 @@ treeview.view radio:backdrop {
  * GtkScale *
  ************/
 scale trough, scale fill, progressbar trough {
-  border: 1px solid #2F3233;
+  border: 1px solid #151617;
   border-radius: 3px;
-  background-color: #666D70;
+  background-color: #5F6466;
   box-shadow: inset 1px 1px rgba(0, 0, 0, 0.1); }
   scale trough:disabled, scale fill:disabled, progressbar trough:disabled {
     background-color: #2C2F30;
@@ -3092,9 +3092,9 @@ scale trough, scale fill, progressbar trough {
       background-color: rgba(34, 34, 34, 0.8); }
 
 scale highlight, progressbar progress {
-  border: 1px solid shade(#234f78, 0.7);
+  border: 1px solid shade(#234f78, 1.0);
   border-radius: 3px;
-  background-image: linear-gradient(to bottom, shade(#234f78, 1.1), shade(#234f78, 0.9)); }
+  background-image: linear-gradient(to bottom, shade(#234f78, 1.2), shade(#234f78, 0.9)); }
   scale highlight:disabled, progressbar progress:disabled {
     background-color: transparent;
     border-color: transparent; }
@@ -4132,7 +4132,7 @@ tooltip {
   tooltip.background {
     background-color: #18191A;
     background-clip: padding-box;
-    border: 1px solid #2F3233; }
+    border: 1px solid #45484A; }
   tooltip decoration {
     background-color: transparent; }
   tooltip * {
