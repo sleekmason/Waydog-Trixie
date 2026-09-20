@@ -5,7 +5,7 @@
 menu.items.bg: flat gradient vertical
 menu.items.bg.color: #18191A
 menu.items.bg.colorTo: #18191A
-menu.separator.color: #363A3B
+menu.separator.color: #3E4040
 
 !! Menu text
 menu.items.text.color: #D1D1D1
@@ -65,14 +65,14 @@ window.inactive.button.*.image.color: #858585
 window.inactive.button.disabled.image.color: #436363
 
 !! Borders
-window.active.border.color: #1F2021
-window.inactive.border.color: #1A1B1C
-window.inactive.title.separator.color: #18181A
+window.active.border.color: #252829
+window.inactive.border.color: #18191A
+window.inactive.title.separator.color: #151617
 border.width: 1
 padding.width: 1
 window.handle.width: 3
-window.active.client.color:  #272929
-window.inactive.client.color:  #18191A
+window.active.client.color:  #151617
+window.inactive.client.color:  #151617
 window.client.padding.width: 1
 window.client.padding.height: 1
 menu.border.color: #2F3233
