@@ -2,6 +2,7 @@
 
 yad --title "WM Installers" --escape-ok \
 --form --center --width=240 --height=388 --borders=6 \
+--button=" Exit!gtk-delete":1 \
 --text="\nWindow Manager Installers\n" --text-align=center \
 --window-icon=applications-utilities \
     --form \

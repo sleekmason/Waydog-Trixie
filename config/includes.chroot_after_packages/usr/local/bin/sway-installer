@@ -1,9 +1,9 @@
 #!/bin/bash
 read -p "   [0;33mSway Compositor Installer[0m
 
-   Sway comes pre-installed on Waydog, but if needing to reinstall
-   or refresh the Sway config, this is the installer to use. A new
-   ~/.config/sway.bak will be created if the config is present, or
+   Sway comes pre-installed on Waydog.  If wanting to try Sway, or
+   to refresh the Sway config, this is the installer to use. A new
+   ~/.config/sway.bak will be created if the config is present and
    a new Sway configuration will be added to ~/.config if needed.
    
    If Sway currently shows at login and you want to hide the login
@@ -64,6 +64,7 @@ else
 fi
 fi
 
+echo ""
 echo "   [0;32m--------------------------------------------------------[0m"
 echo ""
 echo "   [0;33mAll Finished![0m"
