@@ -22,8 +22,8 @@ if tput setaf 1 &> /dev/null; then
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ "$(tput colors)" -ge 256 ]] &> /dev/null; then
-    sexy_bash_prompt_user_color="$sexy_bash_prompt_bold$(tput setaf 42)" # BLUE-GREEN 42
-    sexy_bash_prompt_preposition_color="$sexy_bash_prompt_bold$(tput setaf 149)" # BOLD YELLOW 149
+    sexy_bash_prompt_user_color="$sexy_bash_prompt_bold$(tput setaf 41)" # BLUE-GREEN 42
+    sexy_bash_prompt_preposition_color="$sexy_bash_prompt_bold$(tput setaf 185)" # BOLD YELLOW 149
     sexy_bash_prompt_device_color="$sexy_bash_prompt_bold$(tput setaf 44)" # BOLD CYAN 44
     sexy_bash_prompt_dir_color="$sexy_bash_prompt$(tput setaf 75)" # GREEN 75
     sexy_bash_prompt_git_status_color="$sexy_bash_prompt_bold$(tput setaf 51)" # BOLD CYAN 51
