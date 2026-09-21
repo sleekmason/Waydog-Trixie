@@ -7,9 +7,9 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "custom/launcher1",
         "sway/workspaces",
         "sway/mode",
-        "custom/launcher1",
         "custom/launcher2",
         "custom/launcher3",
         "custom/launcher4",
