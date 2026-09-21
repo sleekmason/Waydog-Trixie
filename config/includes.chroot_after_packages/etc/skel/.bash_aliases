@@ -5,3 +5,5 @@ alias timezone="sudo dpkg-reconfigure tzdata"
 alias browser-choice="sudo update-alternatives --config www-browser"
 alias cursor-choice="sudo update-alternatives --config x-cursor-theme"
 alias terminal-choice="sudo update-alternatives --config x-terminal-emulator"
+# Move sway config to ~/.config/sway.bak and hide at login.
+alias disable-sway="sway-disable.sh"

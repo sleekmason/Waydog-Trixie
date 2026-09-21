@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+FILE=/usr/share/wayland-sessions/sway.desktop
+
+if [ -f "$FILE" ]; then
+    sed -i '/Type/a NoDisplay=true' "$FILE"
+fi
