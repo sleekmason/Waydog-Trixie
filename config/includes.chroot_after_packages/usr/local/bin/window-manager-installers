@@ -1,9 +1,9 @@
 #!/bin/bash
 
 yad --title "WM Installers" --escape-ok \
---form --center --width=240 --height=388 --borders=6 \
+--form --center --width=240 --height=338 --borders=6 \
 --button=" Exit!gtk-delete":1 \
---text="\nWindow Manager Installers\n" --text-align=center \
+--text="Window Manager Installers\n" --text-align=center \
 --window-icon=applications-utilities \
     --form \
     --field="Labwc":FBTN "x-terminal-emulator -T 'Labwc Compositor Installer' -e bash -c "labwc-installer"" \

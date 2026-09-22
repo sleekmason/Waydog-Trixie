@@ -1,17 +1,19 @@
 #!/bin/bash
 read -p "   [0;33mSway Compositor Installer[0m
 
-   Sway comes pre-installed on Waydog.  If wanting to try Sway, or
-   to refresh the Sway config, this is the installer to use. A new
-   ~/.config/sway.bak will be created if the config is present and
-   a new Sway configuration will be added to ~/.config if needed.
+   Sway comes pre-installed on Waydog for dependency usage, but is
+   currently disabled at login. If you want to try out Sway, or if
+   needing to refresh the config, then use this installer. A fresh
+   configuration will be added to ~/.config/sway. 
    
-   If Sway currently shows at login and you want to hide the login
-   entry and also move the config to sway.bak, in a terminal type:
+   If present, ~/.config/sway will be moved to ~/.config/sway.bak.
+   
+   If Sway currently shows at login and you want to hide the entry
+   and move the folder to ~/.config/sway.bak, in a terminal, type:
    [0;32mdisable-sway[0m
    
-   This will keep Sway(330kb) installed, as it's also a dependency
-   for some of the other packages used in Waydog. Don't uninstall.
+   This will keep Sway (330kb) installed for any dependencies, but
+   will make things a bit cleaner overall if the WM is not in use.
    
    [0;32m----------------------------------------------------------------
 
@@ -65,13 +67,13 @@ fi
 fi
 
 echo ""
-echo "   [0;32m--------------------------------------------------------[0m"
+echo "   [0;32m----------------------------------------------------------[0m"
 echo ""
 echo "   [0;33mAll Finished![0m"
 echo ""
-echo "   [0;32mYou should now see a new login entry for Sway.[0m"
+echo "   [0;32mThere should now be a new Sway entry at login. Enjoy Sway![0m"
 echo ""
-echo "   [0;32m--------------------------------------------------------[0m"
+echo "   [0;32m----------------------------------------------------------[0m"
 echo ""
 else
 echo ""
