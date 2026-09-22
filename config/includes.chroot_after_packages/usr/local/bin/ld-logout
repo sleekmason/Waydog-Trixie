@@ -12,7 +12,7 @@ var2=svg
 
 # Add additional WM's here if needed.
 if pgrep -x "labwc"; then
-    var3="killall -s SIGTERM labwc"
+    var3="labwc --exit"
 elif [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
     var3="pkill -x Hyprland"
 elif pgrep -x "sway"; then
