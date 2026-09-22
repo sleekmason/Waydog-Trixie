@@ -3,10 +3,10 @@ read -p "   [0;33mSway Compositor Installer[0m
 
    Sway comes pre-installed on Waydog for dependency usage, but is
    currently disabled at login. If you want to try out Sway, or if
-   needing to refresh the config, then use this installer. A fresh
-   configuration will be added to ~/.config/sway. 
+   needing to refresh the config, then use this installer. 
    
-   If present, ~/.config/sway will be moved to ~/.config/sway.bak.
+   A new configuration will be added to ~/.config/sway. If already
+   there from prior usage, it will be moved to ~/.config/sway.bak.
    
    If Sway currently shows at login and you want to hide the entry
    and move the folder to ~/.config/sway.bak, in a terminal, type:
