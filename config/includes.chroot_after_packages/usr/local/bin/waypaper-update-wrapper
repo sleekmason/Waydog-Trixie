@@ -5,6 +5,13 @@
 STATE_FILE="$HOME/.config/waypaper/config.ini"
 CONFIG_FILE="$HOME/.config/waypaper/config.ini"
 
+DEFAULT_STATE_FILE="$HOME/.local/state/waypaper/state.ini"
+echo "CONFIG_FILE=$CONFIG_FILE"
+if [[ ! -L "$DEFAULT_STATE_FILE" ]] || [[ ! -e "$DEFAULT_STATE_FILE" ]]; then
+    mkdir -p "$(dirname "$DEFAULT_STATE_FILE")"
+    ln -sf "$CONFIG_FILE" "$DEFAULT_STATE_FILE"
+fi
+
 # Start waypaper
 waypaper --state-file "$STATE_FILE" "$@"
 
