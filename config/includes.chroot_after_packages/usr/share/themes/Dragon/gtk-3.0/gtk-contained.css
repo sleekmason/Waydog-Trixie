@@ -1,7 +1,7 @@
 * {
   padding: 0;
   -GtkToolButton-icon-spacing: 4;
-  -GtkTextView-error-underline-color: #B84444;
+  -GtkTextView-error-underline-color: #A13335;
   -GtkScrolledWindow-scrollbar-spacing: 0;
   -GtkToolItemGroup-expander-size: 11;
   -GtkWidget-text-handle-width: 20;
@@ -238,15 +238,15 @@ entry {
     box-shadow: none; }
   spinbutton.error:not(.vertical),
   entry.error {
-    background-color: shade(#B84444, 0.21);
+    background-color: shade(#A13335, 0.21);
     color: shade(#B84444, 1.10);
-    border-color: #B84444; }
+    border-color: #A13335; }
     spinbutton.error:focus:not(.vertical),
     entry.error:focus {
-      border-color: #B84444; }
+      border-color: #A13335; }
     spinbutton.error:not(.vertical) selection,
     entry.error selection {
-      background-color: #B84444; }
+      background-color: #A13335; }
   spinbutton.warning:not(.vertical),
   entry.warning {
     background-color: rgba(245, 121, 0, 0.1);
@@ -475,7 +475,7 @@ button {
   notebook > header > tabs > arrow:backdrop, button.sidebar-button:backdrop, button.titlebutton:backdrop, notebook > header > tabs > arrow:backdrop, button.titlebutton:backdrop,
   button:backdrop.flat,
   button:backdrop {
-    border-color: #302F2F;
+    border-color: #2B2A2A;
     background-color: #18191A;
     text-shadow: none;
     -gtk-icon-shadow: none;
@@ -487,7 +487,7 @@ button {
     button:backdrop.flat,
     button:backdrop label,
     button:backdrop {
-      color: #BFBFBF; }
+      color: #C9C9C9; }
     notebook > header > tabs > arrow:backdrop:active, button.sidebar-button:backdrop:active, button.titlebutton:backdrop:active, notebook > header > tabs > arrow:backdrop:checked, button.sidebar-button:backdrop:checked, button.titlebutton:backdrop:checked, notebook > header > tabs > arrow:backdrop:active, button.titlebutton:backdrop:active, notebook > header > tabs > arrow:backdrop:checked, button.titlebutton:backdrop:checked,
     button:backdrop.flat:active,
     button:backdrop.flat:checked,
@@ -2879,7 +2879,7 @@ radio {
     color: #D4D4D4;
     outline-color: rgba(60, 60, 60, 0.3);
     border-color: #151617;
-    background-image: linear-gradient(to bottom, shade(#234f78, 1.17) 10%, shade(#234f78, 1.1) 90%);
+    background-image: linear-gradient(to bottom, shade(#234f78, 0.94) 10%, shade(#234f78, 1.04) 90%);
     box-shadow: inset 0 1px rgba(255, 255, 255, 0.4), inset 0 -2px #234f78, inset 0 -1px #234f78, 0 1px rgba(0, 0, 0, 0.1); }
   check:active,
   radio:active {
@@ -3094,7 +3094,7 @@ scale trough, scale fill, progressbar trough {
 scale highlight, progressbar progress {
   border: 1px solid shade(#234f78, 1.0);
   border-radius: 3px;
-  background-image: linear-gradient(to bottom, shade(#234f78, 1.2), shade(#234f78, 0.9)); }
+  background-image: linear-gradient(to bottom, shade(#234f78, 0.94), shade(#234f78, 1.0)); }
   scale highlight:disabled, progressbar progress:disabled {
     background-color: transparent;
     border-color: transparent; }
@@ -3507,7 +3507,7 @@ scrolledwindow viewport.frame {
   border-style: none; }
 
 scrolledwindow overshoot.top {
-  background-image: -gtk-gradient(radial, center top, 0, center top, 0.5, to(#525151), to(rgba(104, 104, 104, 0))), -gtk-gradient(radial, center top, 0, center top, 0.6, from(rgba(60, 60, 60, 0.07)), to(rgba(60, 60, 60, 0)));
+  background-image: -gtk-gradient(radial, center top, 0, center top, 0.5, to(#234f78), to(rgba(104, 104, 104, 0))), -gtk-gradient(radial, center top, 0, center top, 0.6, from(rgba(60, 60, 60, 0.07)), to(rgba(60, 60, 60, 0)));
   background-size: 100% 5%, 100% 100%;
   background-repeat: no-repeat;
   background-position: center top;
@@ -3524,7 +3524,7 @@ scrolledwindow overshoot.top {
     box-shadow: none; }
 
 scrolledwindow overshoot.bottom {
-  background-image: -gtk-gradient(radial, center bottom, 0, center bottom, 0.5, to(#525151), to(rgba(104, 104, 104, 0))), -gtk-gradient(radial, center bottom, 0, center bottom, 0.6, from(rgba(60, 60, 60, 0.07)), to(rgba(60, 60, 60, 0)));
+  background-image: -gtk-gradient(radial, center bottom, 0, center bottom, 0.5, to(#234f78), to(rgba(104, 104, 104, 0))), -gtk-gradient(radial, center bottom, 0, center bottom, 0.6, from(rgba(60, 60, 60, 0.07)), to(rgba(60, 60, 60, 0)));
   background-size: 100% 5%, 100% 100%;
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -4527,7 +4527,7 @@ widgets main borders color on backdrop windows */
 /*
 these are pretty self explicative */
 @define-color warning_color #f57900;
-@define-color error_color #B84444;
+@define-color error_color #A13335;
 @define-color success_color #4e9a06;
 /*
 these colors are exported for the window manager and shouldn't be used in applications,
@@ -4805,16 +4805,16 @@ XfdesktopIconView.view {
       .lightdm-gtk-greeter #login_window button#shutdown_button,
       .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button,
       .lightdm-gtk-greeter #restart_dialog button#shutdown_button {
-        border-color: shade(#B84444, 0.8);
-        background-image: linear-gradient(to bottom, shade(#B84444, 1.02), shade(#B84444, 0.95) 90%, shade(#B84444, 0.9));
+        border-color: shade(#A13335, 0.8);
+        background-image: linear-gradient(to bottom, shade(#A13335, 1.02), shade(#A13335, 0.95) 90%, shade(#A13335, 0.9));
         color: #E0E0E0; }
         .lightdm-gtk-greeter #login_window button#shutdown_button:hover, .lightdm-gtk-greeter #login_window button#shutdown_button:active,
         .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button:hover,
         .lightdm-gtk-greeter #shutdown_dialog button#shutdown_button:active,
         .lightdm-gtk-greeter #restart_dialog button#shutdown_button:hover,
         .lightdm-gtk-greeter #restart_dialog button#shutdown_button:active {
-          border-color: shade(#B84444, 0.7);
-          background-image: linear-gradient(to bottom, shade(#B84444, 1.12), shade(#B84444, 1.05) 90%, shade(#B84444, 1)); }
+          border-color: shade(#A13335, 0.7);
+          background-image: linear-gradient(to bottom, shade(#A13335, 1.12), shade(#A13335, 1.05) 90%, shade(#A13335, 1)); }
   .lightdm-gtk-greeter #content_frame {
     padding-bottom: 14px; }
   .lightdm-gtk-greeter #login_window menu {
