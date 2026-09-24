@@ -5,10 +5,6 @@
 STATE_FILE="$HOME/.config/waypaper/config.ini"
 CONFIG_FILE="$HOME/.config/waypaper/config.ini"
 
-if grep -qE '^post_command[[:space:]]*=.*(waypaper-sddm|waypaper-grub).*--post' "$CONFIG_FILE"; then
-    sed -i 's|^post_command[[:space:]]*=.*|post_command =|' "$CONFIG_FILE"
-fi
-
 # Start waypaper
 waypaper --state-file "$STATE_FILE" "$@"
 

@@ -31,14 +31,28 @@ if ! command -v gm >/dev/null 2>&1 && ! command -v convert >/dev/null 2>&1; then
     exit 0
 fi
 
-STATE_FILE="$HOME/.config/waypaper/grub-bg/config.ini"
 CONFIG_FILE="$HOME/.config/waypaper/config.ini"
+STATE_FILE="$HOME/.config/waypaper/grub/config.ini"
 GRUB_DIR="/boot/grub"
 SCRIPT_PATH="$(readlink -f "$0")"
 
+get_real_wallpaper() {
+    local result=""
+    if command -v jq >/dev/null 2>&1; then
+        result=$(waypaper --list 2>/dev/null | jq -r '(map(select(.monitor=="All")) + .)[0].wallpaper // empty' 2>/dev/null)
+    fi
+    if [[ -z "$result" ]]; then
+        result=$(grep -E '^wallpaper *= *' "$CONFIG_FILE" 2>/dev/null | cut -d= -f2- | xargs)
+    fi
+    printf '%s' "$result"
+}
+
 if [[ "$1" == "--post" ]]; then
     selected_wallpaper="$2"
-    real_wallpaper="${WAYPAPER_GRUB_REAL_WALLPAPER:-}"
+    real_wallpaper=""
+    if [[ -n "$WAYPAPER_GRUB_REAL_WALLPAPER_FILE" && -f "$WAYPAPER_GRUB_REAL_WALLPAPER_FILE" ]]; then
+        real_wallpaper="$(cat "$WAYPAPER_GRUB_REAL_WALLPAPER_FILE" 2>/dev/null)"
+    fi
 
     if [[ -f "$selected_wallpaper" ]]; then
         BASENAME=$(basename "$selected_wallpaper")
@@ -70,10 +84,14 @@ if [[ "$1" == "--post" ]]; then
             done
 
             if [[ -f "$READY_FILE" ]]; then
-                if [[ -n "$real_wallpaper" && -f "$real_wallpaper" ]]; then
-                    swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 & disown
-                    sed -i "s|^wallpaper[[:space:]]*=.*|wallpaper = $real_wallpaper|" "$CONFIG_FILE"
-                fi
+        if [[ -n "$real_wallpaper" && -f "$real_wallpaper" ]]; then
+            (
+                flock -w 5 200 || exit 0
+                pkill -x swaybg 2>/dev/null
+                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 &
+                disown
+            ) 200>/tmp/waypaper-grub-swaybg.lock
+        fi
 
                 WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
                 if [[ -f "$WF_SHELL_CONFIG" && -n "$real_wallpaper" ]]; then
@@ -92,10 +110,14 @@ if [[ "$1" == "--post" ]]; then
             PKEXIT=$?
 
             if [[ ! -f "$READY_FILE" ]]; then
-                if [[ -n "$real_wallpaper" && -f "$real_wallpaper" ]]; then
-                    swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 & disown
-                    sed -i "s|^wallpaper[[:space:]]*=.*|wallpaper = $real_wallpaper|" "$CONFIG_FILE"
-                fi
+        if [[ -n "$real_wallpaper" && -f "$real_wallpaper" ]]; then
+            (
+                flock -w 5 200 || exit 0
+                pkill -x swaybg 2>/dev/null
+                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 &
+                disown
+            ) 200>/tmp/waypaper-grub-swaybg.lock
+        fi
 
                 WF_SHELL_CONFIG="$HOME/.config/wf-shell.ini"
                 if [[ -f "$WF_SHELL_CONFIG" && -n "$real_wallpaper" ]]; then
@@ -121,50 +143,31 @@ if [[ "$1" == "--post" ]]; then
     exit 0
 fi
 
-real_wallpaper=$(grep -E '^wallpaper *= *' "$CONFIG_FILE" 2>/dev/null | cut -d= -f2- | xargs)
-real_wallpaper="${real_wallpaper/#\~/$HOME}"
-
 mkdir -p "$(dirname "$STATE_FILE")"
 
-CURRENT_FOLDER=$(grep -E '^folder *= *' "$CONFIG_FILE" | cut -d= -f2- | xargs)
-CURRENT_FOLDER="${CURRENT_FOLDER/#\~/$HOME}"
+if [[ ! -f "$STATE_FILE" ]]; then
+    cp "$CONFIG_FILE" "$STATE_FILE"
 
-if [[ -f "$STATE_FILE" ]]; then
-    sed -i "s|^folder *=.*|folder = $CURRENT_FOLDER|" "$STATE_FILE"
-else
-    if [[ -n "$CURRENT_FOLDER" ]]; then
-        printf '[Settings]\n[State]\nfolder = %s\n' "$CURRENT_FOLDER" > "$STATE_FILE"
+    sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$STATE_FILE"
+
+    if ! grep -qE '^post_command[[:space:]]*=' "$STATE_FILE"; then
+        sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$STATE_FILE"
     fi
 fi
 
-if grep -qE '^post_command[[:space:]]*=' "$CONFIG_FILE"; then
-    HAD_POST_COMMAND=1
-    original_post_command=$(grep -E '^post_command[[:space:]]*=' "$CONFIG_FILE" | head -n1 | cut -d= -f2- | sed 's/^[[:space:]]*//')
-else
-    HAD_POST_COMMAND=0
-    original_post_command=""
-fi
-
-restore_post_command() {
-    if [[ $HAD_POST_COMMAND -eq 1 ]]; then
-        escaped_post_command=$(printf '%s' "$original_post_command" | sed 's/[\\&|]/\\&/g')
-        sed -i "s|^post_command[[:space:]]*=.*|post_command = $escaped_post_command|" "$CONFIG_FILE"
-    else
-        sed -i '/^post_command[[:space:]]*=/d' "$CONFIG_FILE"
-    fi
-}
-
-trap restore_post_command EXIT
-
-export WAYPAPER_GRUB_REAL_WALLPAPER="$real_wallpaper"
-
-if [[ $HAD_POST_COMMAND -eq 1 ]]; then
-    sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$CONFIG_FILE"
-else
-    sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$CONFIG_FILE"
-fi
+REAL_WALLPAPER_FILE="$(mktemp /tmp/waypaper-grub-real-XXXXXX)"
+export WAYPAPER_GRUB_REAL_WALLPAPER_FILE="$REAL_WALLPAPER_FILE"
+(
+    result="$(get_real_wallpaper)"
+    result="${result/#\~/$HOME}"
+    printf '%s' "$result" > "$REAL_WALLPAPER_FILE"
+) &
+LOOKUP_PID=$!
 
 (sleep 2; notify-send -i dialog-question -u low "Does this system control GRUB?" "(usually the last distro installed)") &
-waypaper --state-file "$STATE_FILE" >/dev/null 2>&1
+waypaper --config-file "$STATE_FILE" --state-file "$STATE_FILE" >/dev/null 2>&1
+
+wait "$LOOKUP_PID" 2>/dev/null
+rm -f "$REAL_WALLPAPER_FILE"
 
 exit 0
