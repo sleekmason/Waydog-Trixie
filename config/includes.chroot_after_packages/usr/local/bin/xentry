@@ -125,7 +125,40 @@ _add_ly() {
                 apt-get update && apt-get install -y /tmp/ly_1.3.2-waydog_amd64.deb
                 systemctl enable --force ly@tty1.service
                 ln -sf /usr/lib/systemd/system/ly@.service /etc/systemd/system/display-manager.service ;}
+        see_it
+        no_see
+        run_it
+}
 
+_add_conky() {
+      _msg="Install Conky with custom configurations?"
+      do_it() { cd /tmp &&
+		  rm -fr /tmp/conky*
+		  wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/conky-waydog-trixie.zip --show-progress -q &&
+		        unzip -q /tmp/conky-waydog-trixie.zip
+                conf="/home/${SUDO_USER}/.config"
+                if [ -d "$conf/conky" ]; then
+                rm -rf "$conf/conky.bak"
+                mv "$conf/conky" "$conf/conky.bak"
+                fi
+                cp -r /tmp/conky "$conf/"
+                chown -R "${SUDO_USER}:${SUDO_USER}" "$conf/conky" "$conf/conky.bak" 2>/dev/null &&
+		        apt-get update && apt-get install -y conky-all fortunes fortune-mod &&
+		        if test -e /home/"${SUDO_USER}"/.config/conky; then
+    if ! grep -wq "conky-restart-list" /home/"${SUDO_USER}"/.config/labwc/autostart; then
+		{
+		echo ""
+		echo '## Start conkys on login if present'	
+		echo 'if test -f  "$HOME/.config/conky/scripts/conky-restart-list"; then'
+		echo '"$HOME/.config/conky/scripts/conky-restart-list" >/dev/null 2>&1'
+		echo '"conkyrestart" >/dev/null 2>&1'
+		echo 'fi';} | tee -a /home/"${SUDO_USER}"/.config/labwc/autostart > /dev/null
+		fi
+	fi
+	    cp -f "/usr/share/lilidog/extras/conky/conky.desktop" "/usr/share/applications"
+        cp -f "/usr/share/lilidog/extras/conky/ld-conky-chooser.desktop" "/usr/share/applications"
+        cp -f "/usr/share/lilidog/extras/conky/fortune.desktop" "/usr/share/applications"
+        cp -f /home/"${SUDO_USER}"/.config/conky/scripts/conkyrestart "/usr/local/bin" ;}
         see_it
         no_see
         run_it
@@ -174,6 +207,7 @@ if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
     _apt_location
     _remove_packages
     _add_backports
+    _add_conky
 #    _add_ly
     _osprober
     _firmware
@@ -183,6 +217,7 @@ else
     _apt_location
     _remove_packages
     _add_backports
+    _add_conky
 #    _add_ly
     _firmware
 #    _reboot
