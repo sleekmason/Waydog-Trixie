@@ -142,7 +142,7 @@ _add_conky() {
                 mv "$conf/conky" "$conf/conky.bak"
                 fi
                 cp -r /tmp/conky "$conf/"
-                chown -R "${SUDO_USER}:${SUDO_USER}" "$conf/conky" "$conf/conky.bak" 2>/dev/null &&
+                chown -R "${SUDO_USER}:${SUDO_USER}" "$conf/conky" "$conf/conky.bak" 2>/dev/null
 		        apt-get update && apt-get install -y conky-all fortunes fortune-mod &&
 		        if test -e /home/"${SUDO_USER}"/.config/conky; then
     if ! grep -wq "conky-restart-list" /home/"${SUDO_USER}"/.config/labwc/autostart; then
