@@ -17,6 +17,7 @@ if [[ "$1" == "--priv" ]]; then
     GRUB_DIR="/boot/grub"
 
     touch "$READY_FILE"
+    chown --reference="$TMP_PNG" "$READY_FILE" 2>/dev/null
 
     rm -f "$GRUB_DIR"/*.png "$GRUB_DIR"/*.jpg "$GRUB_DIR"/*.jpeg &&
     cp -f "$TMP_PNG" "$GRUB_DIR/$PNG_NAME" &&
