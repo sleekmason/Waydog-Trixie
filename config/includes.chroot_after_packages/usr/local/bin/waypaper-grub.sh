@@ -88,7 +88,7 @@ if [[ "$1" == "--post" ]]; then
             (
                 flock -w 5 200 || exit 0
                 pkill -x swaybg 2>/dev/null
-                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 &
+                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 200>&- &
                 disown
             ) 200>/tmp/waypaper-grub-swaybg.lock
         fi
@@ -114,7 +114,7 @@ if [[ "$1" == "--post" ]]; then
             (
                 flock -w 5 200 || exit 0
                 pkill -x swaybg 2>/dev/null
-                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 &
+                swaybg -m fill -i "$real_wallpaper" >/dev/null 2>&1 200>&- &
                 disown
             ) 200>/tmp/waypaper-grub-swaybg.lock
         fi
