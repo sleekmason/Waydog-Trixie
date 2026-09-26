@@ -19,7 +19,6 @@ get_real_wallpaper() {
 }
 
 if [[ "$1" == "--post" ]]; then
-    echo "$(date +%T.%N) --post fired: $2" >> /tmp/waypaper-sddm-debug.log
     selected_wallpaper="$2"
     real_wallpaper=""
     if [[ -n "$WAYPAPER_SDDM_REAL_WALLPAPER_FILE" && -f "$WAYPAPER_SDDM_REAL_WALLPAPER_FILE" ]]; then
@@ -62,12 +61,12 @@ mkdir -p "$(dirname "$STATE_FILE")"
 
 if [[ ! -f "$STATE_FILE" ]]; then
     cp "$CONFIG_FILE" "$STATE_FILE"
+fi
 
-    sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$STATE_FILE"
+sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$STATE_FILE"
 
-    if ! grep -qE '^post_command[[:space:]]*=' "$STATE_FILE"; then
-        sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$STATE_FILE"
-    fi
+if ! grep -qE '^post_command[[:space:]]*=' "$STATE_FILE"; then
+    sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$STATE_FILE"
 fi
 
 REAL_WALLPAPER_FILE="$(mktemp /tmp/waypaper-sddm-real-XXXXXX)"

@@ -60,6 +60,7 @@ if [[ "$1" == "--post" ]]; then
         TMP_PNG=$(mktemp /tmp/grub-bg-XXXXXX.png)
         READY_FILE=$(mktemp /tmp/grub-bg-ready-XXXXXX)
         rm -f "$READY_FILE"
+        trap 'rm -f "$TMP_PNG" "$READY_FILE"' EXIT
 
         if command -v gm >/dev/null 2>&1; then
             gm convert "$selected_wallpaper" -type TrueColor "$TMP_PNG" 2>/dev/null
@@ -147,12 +148,12 @@ mkdir -p "$(dirname "$STATE_FILE")"
 
 if [[ ! -f "$STATE_FILE" ]]; then
     cp "$CONFIG_FILE" "$STATE_FILE"
+fi
 
-    sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$STATE_FILE"
+sed -i "s|^post_command[[:space:]]*=.*|post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"|" "$STATE_FILE"
 
-    if ! grep -qE '^post_command[[:space:]]*=' "$STATE_FILE"; then
-        sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$STATE_FILE"
-    fi
+if ! grep -qE '^post_command[[:space:]]*=' "$STATE_FILE"; then
+    sed -i "/^\[Settings\]/a post_command = \"$SCRIPT_PATH\" --post \"\$wallpaper\"" "$STATE_FILE"
 fi
 
 REAL_WALLPAPER_FILE="$(mktemp /tmp/waypaper-grub-real-XXXXXX)"
