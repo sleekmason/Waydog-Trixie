@@ -1,15 +1,13 @@
 ﻿Waydog is a lightweight Linux distro based on Debian Trixie. Waydog
 uses the new Wayland protocol for its display server.
 
-Labwc and Sway are installed by default, with separate installation
-options for Mango, Niri, and Wayfire compositors in the installers.
+Labwc is installed as default, with separate installation options for
+Mango, Niri, Sway, and Wayfire compositors in the Waydog installers.
 
-All compositors are fully customized for Waydog use. We use separate
-installers to keep the footprint down.
-
-On live login, either Labwc or Sway can be selected initially, though
-Mango, Niri, and Wayfire can be installed to test during a live 
-session.  Just log out and back in to change WMs.
+Mango, Niri, Sway, and Wayfire can all be tested in a live environment
+by installing the compositor of choice, and then logging out and back
+into whichever you prefer. The live password: 'live' will be required
+to log back in.
 
 ### Resources:
 - [DistroWatch](https://distrowatch.com/table.php?distribution=lilidog)
@@ -58,7 +56,7 @@ requirements. Ample video memory is a must.
 ### Features:
 - Keybinds. All window managers use 'Super + F1' to show the list.
 - Labwc and Sway window managers installed by default. Choose at login.
-- Mango, Niri and Wayfire available through the installers.
+- Mango, Niri, Sway, and Wayfire WMs available through the installers.
 - SDDM display manager for initial login.
 - Ly login manager is included as a separate install option.
 - Waybar provides the panel top bar.
@@ -70,8 +68,8 @@ requirements. Ample video memory is a must.
 - Usbimager to create USB images.
 - Waypicker color picker for Wayland use. Copies selection to clipboard.
 - Kernel remover for those that build their own, or just to clean up.
-- Waypaper wallpaper setter for both wallpaper and SDDM login screen.
-- GRUB background changer. Select any .jpg or .png for your boot image.
+- Waypaper wallpaper setter used for wallpapers and background changers.
+- GRUB BG changer allows Selecting any .jpg or .png for your boot image.
 - Zram and Zswap choices can be changed on the fly, and survive reboot.
 - Logout theme changer for choosing icons and layout.
 - Random BG changer using 'Super+v'.
