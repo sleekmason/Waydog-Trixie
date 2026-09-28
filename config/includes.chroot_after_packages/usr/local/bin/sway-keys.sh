@@ -123,11 +123,6 @@ function expand_vars(str,v) {
         else if(action=="Move") print "\n" HEAD "[Move]" RESET
         else if(action=="Command") { 
             print "\n" HEAD "[Commands]" RESET
-            if(!print_keybind_printed++)
-                printf " %s%-*s%s  %s%-*s%s - %s%s%s\n",
-                    CKEY, width_key, "Print", RESET,
-                    CACT, width_act, action, RESET,
-                    CDET, "grimshot save area", RESET
         }
     }
 
@@ -153,9 +148,6 @@ function expand_vars(str,v) {
         if(key=="Return" || key=="Escape") action="Mode"
         if(key != "Return" && key != "Escape") action="Resize"
     }
-
-    # Skip duplicate Print
-    if(key=="Print" && print_keybind_printed && action=="Command") next
     
     # Consolidated cleanup & formatting before printing
     gsub(/@DEFAULT_SINK@/, "", detail)
