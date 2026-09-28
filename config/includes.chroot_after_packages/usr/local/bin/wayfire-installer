@@ -21,17 +21,19 @@ read -p "   [0;33mWayfire Compositor Installer[0m
 
    Or, close this terminal window to quit the install." ;
 ## Make sure of internet connection.
-#if : >/dev/tcp/8.8.8.8/53; then
-if ping -c 1 -W 2 8.8.8.8 &> /dev/null || curl -s --head https://google.com | head -n 1 | grep "HTTP" &> /dev/null; then
+if : >/dev/tcp/8.8.8.8/53; then
 echo ""
 cd /tmp || exit
-rm -f "wayfire.zip"
+rm -f "wayfire-0.10.0.zip"
 rm -fr "wayfire"
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/wayfire.zip --show-progress -q || exit
-unzip -q "/tmp/wayfire.zip"
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/wayfire-0.10.0.zip --show-progress -q || exit
+unzip -q "/tmp/wayfire-0.10.0.zip"
 
 sudo apt update
-sudo apt install -y wayfire wf-shell cbatticon upower
+sudo apt install -y /tmp/wayfire/libwlroots-0.19_0.19.3-wd1_amd64.deb || exit
+sudo apt install -y /tmp/wayfire/wayfire_0.10.0-wd1_amd64.deb || exit
+sudo apt install -y /tmp/wayfire/wf-shell_0.10.0-wd1_amd64.deb || exit
+sudo apt install -y cbatticon upower
 
 # List of items to back up (files or directories)
 backup_items=("wayfire.ini" "wf-shell.ini" "wf-shell")
@@ -62,6 +64,7 @@ cp -f "/tmp/wayfire/wayfire.ini" "$HOME/.config"
 cp -fr "/tmp/wayfire/wf-shell" "$HOME/.config"
 sudo cp -f "/tmp/wayfire/wfpanel-toggle" "/usr/local/bin"
 sudo cp -f "/tmp/wayfire/wayfire-keys.sh" "/usr/local/bin"
+
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
 sed -i "s|^# *xkb_layout = .*|xkb_layout = $LAYOUT|" "$HOME/.config/wayfire.ini"
