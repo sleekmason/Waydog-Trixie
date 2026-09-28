@@ -12,6 +12,9 @@ declare -A FRIENDLY_NAMES=(
   ["waybar-icon-toggle dialog"]="Waybar Options"
   ["labwc-reconfigure-toggle"]="Reload labwc"
   ["display-toggle.sh"]="Toggle Display On/Off"
+  ["grimshot save screen --notify"]="Screenshot All"
+  ["grimshot save area --notify"]="Screenshot Select"
+  ["grimshot save area --wait 10 --notify"]="Screenshot Select Wait 10s"
   ["toggleShowDesktop"]="Show Desktop"
   ["toggle-random"]="Random Wallpaper - Daemon"
   ["random-wallpaper once"]="Random Wallpaper - Once"
@@ -107,11 +110,13 @@ awk -F'\t' 'NR==FNR { names[\$1]=\$2; next }
     else if (key ~ /Left$/) detail="Desktop Left"
     else if (key ~ /Right$/) detail="Desktop Right"
   }
+  sk=key
+  if (key ~ /Print$/) sk="Print " key
   if (detail!="")
-    printf " %s%-22s%s  %s%-16s%s  %s%s%s\n", CKEY,key,CR, CACT,action,CR, CDET,detail,CR
+    printf "%s\t %s%-22s%s  %s%-16s%s  %s%s%s\n", sk, CKEY,key,CR, CACT,action,CR, CDET,detail,CR
   else
-    printf " %s%-22s%s  %s%-16s%s\n", CKEY,key,CR, CACT,action,CR
-}' "\$NAMES_FILE" "\$CONFIG" | sort
+    printf "%s\t %s%-22s%s  %s%-16s%s\n", sk, CKEY,key,CR, CACT,action,CR
+}' "\$NAMES_FILE" "\$CONFIG" | sort -t\$'\t' -k1,1 | cut -f2-
 echo -e " \${GREEN}--------------------------------------------------------------\${RESET}"
 echo
 read -n1 -s -r -p "Press any key to close..."
