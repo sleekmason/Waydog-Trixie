@@ -70,8 +70,9 @@ sed -i "s|^# *xkb_layout = .*|xkb_layout = $LAYOUT|" "$HOME/.config/wayfire.ini"
 WAYPAPER_CONFIG="$HOME/.config/waypaper/config.ini"
 WFSHELL_CONFIG="$HOME/.config/wf-shell.ini"
 
-WALLPAPER=$(grep '^wallpaper' "$WAYPAPER_CONFIG" | cut -d '=' -f2 | xargs)
-WALLPAPER="${WALLPAPER:-/usr/share/backgrounds/wallpapers/Fane.jpg}"
+WALLPAPER=$(awk '/^wallpaper[[:space:]]*=/ { sub(/^[^=]*=[[:space:]]*/, ""); sub(/[[:space:]]+$/, ""); print; exit }' "$WAYPAPER_CONFIG" 2>/dev/null)
+WALLPAPER="${WALLPAPER/#\~/$HOME}"
+WALLPAPER="${WALLPAPER:-/usr/share/backgrounds/wallpapers/Default.jpg}"
 
 sed -i "s|^image = .*|image = $WALLPAPER|" "$WFSHELL_CONFIG"
 
