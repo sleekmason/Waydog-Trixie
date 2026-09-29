@@ -29,10 +29,12 @@ rm -fr "wayfire"
 wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/wayfire-0.10.0.zip --show-progress -q || exit
 unzip -q "/tmp/wayfire-0.10.0.zip"
 
-sudo apt update
-sudo apt install -y /tmp/wayfire/libwlroots-0.19_0.19.3-wd1_amd64.deb || exit
-sudo apt install -y /tmp/wayfire/wayfire_0.10.0-wd1_amd64.deb || exit
-sudo apt install -y /tmp/wayfire/wf-shell_0.10.0-wd1_amd64.deb || exit
+sudo apt update && \
+sudo apt install -y \
+/tmp/wayfire/libwlroots-0.19_0.19.3-wd1_amd64.deb \
+/tmp/wayfire/wayfire_0.10.0-wd1_amd64.deb \
+/tmp/wayfire/wf-shell_0.10.0-wd1_amd64.deb || exit
+
 sudo apt install -y cbatticon upower
 
 # List of items to back up (files or directories)
