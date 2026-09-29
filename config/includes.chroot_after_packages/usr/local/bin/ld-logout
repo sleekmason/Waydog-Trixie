@@ -3,6 +3,10 @@
 # Choose from the available icons in /usr/share/icons/ld-icons/pixmaps.
 # Change items using /usr/local/bin/logout-theme-chooser or manually.
 
+for _pid in $(pgrep -x ld-logout); do
+    [ "$_pid" != "$$" ] && pkill -P "$_pid" 2>/dev/null
+done
+
 # Horizontal and vertical. With or without icons.
 varstyle=horizontal-icons
 
