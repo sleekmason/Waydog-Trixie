@@ -66,6 +66,7 @@ cp -f "/tmp/wayfire/wayfire.ini" "$HOME/.config"
 cp -fr "/tmp/wayfire/wf-shell" "$HOME/.config"
 sudo cp -f "/tmp/wayfire/wfpanel-toggle" "/usr/local/bin"
 sudo cp -f "/tmp/wayfire/wayfire-keys.sh" "/usr/local/bin"
+sudo cp -f "/tmp/wayfire/brightness-panel" "/usr/local/bin"
 
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
