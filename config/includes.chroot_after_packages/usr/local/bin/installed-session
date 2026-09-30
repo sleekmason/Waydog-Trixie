@@ -4,6 +4,7 @@
 
 # gsettings lines.
 gsettings set org.gnome.desktop.interface gtk-theme "Dragon"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Obsidian"
 gsettings set org.gnome.desktop.interface font-name "Sans 11"
 gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
