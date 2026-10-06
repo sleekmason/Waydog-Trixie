@@ -17,15 +17,15 @@ if : >/dev/tcp/8.8.8.8/53; then
 
 echo ""
 cd /tmp || exit
-rm -f "mango-0.13.0.zip"
+rm -f "mango-0.14.4.zip"
 rm -fr "mango"
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/mango-0.13.0.zip --show-progress -q || exit
-unzip -q "mango-0.13.0.zip"
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/mango-0.14.4.zip --show-progress -q || exit
+unzip -q "mango-0.14.4.zip"
 sudo apt update
 sudo apt install -y \
   /tmp/mango/libscenefx-0.4_0.4.1-wd1_amd64.deb \
   /tmp/mango/libwlroots-0.19_0.19.3-wd1_amd64.deb \
-  /tmp/mango/mango_0.13.0-wd1_amd64.deb || exit
+  /tmp/mango/mango_0.14.4-wd1_amd64.deb || exit
 
 if [ -e "$HOME/.config/mango" ]; then
    cp -fr "$HOME/.config/mango" "$HOME/.config/mango.bak"
