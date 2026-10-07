@@ -1,23 +1,19 @@
 #!/bin/bash
 read -p "   [0;33mSway Compositor Installer[0m
 
-   Sway comes pre-installed on Waydog for dependency usage, but is
-   currently disabled at login. If you want to try out Sway, or if
-   needing to refresh the config, then use this installer. 
+    Sway is a tiling Wayland compositor and a drop-in replacement for
+    the i3 window manager for X11. It works with your existing i3
+    configuration and supports most of i3's features, plus a few
+    extras. This script will install Sway, and add a custom
+    configuration for Waydog use.
+    
+   [0;34mhttps://swaywm.org/[0m
    
-   A new configuration will be added to ~/.config/sway. If already
-   there from prior usage, it will be moved to ~/.config/sway.bak.
-   
-   If Sway currently shows at login and you want to hide the entry
-   and move the folder to ~/.config/sway.bak, in a terminal, type:
-   [0;32mdisable-sway[0m
-   
-   This will keep Sway (330kb) installed for any dependencies, but
-   will make things a bit cleaner overall if the WM is not in use.
+    
    
    [0;32m----------------------------------------------------------------
 
-   Please press enter to enable or refresh the Sway Compositor.
+   Please press enter to install the Sway Compositor.
 
    ----------------------------------------------------------------[0m
 
@@ -25,22 +21,22 @@ read -p "   [0;33mSway Compositor Installer[0m
 
 if : >/dev/tcp/8.8.8.8/53; then
 
+echo ""
 cd /tmp || exit
-
-rm -f /tmp/sway-config.zip
-rm -fr /tmp/sway-config
-
-wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/sway-config.zip --show-progress -q || exit
-unzip -q "/tmp/sway-config.zip"
-
+rm -f "sway-1.11.zip"
+rm -fr "sway"
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/sway-1.11.zip --show-progress -q || exit
+unzip -q "sway-1.11.zip"
 sudo apt update
-sudo apt install -y sway
+sudo apt install -y \
+  /tmp/sway/libwlroots-0.19_0.19.3-wd1_amd64.deb \
+  /tmp/sway/sway_1.11-wd1_amd64.deb || exit
 
 if [ -e "$HOME/.config/sway" ]; then
    rm -rf "$HOME/.config/sway.bak"
    mv "$HOME/.config/sway" "$HOME/.config/sway.bak"
 fi
-cp -fr "/tmp/sway-config/sway" "$HOME/.config"
+cp -fr "/tmp/sway/sway" "$HOME/.config"
 
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"
@@ -54,7 +50,7 @@ fi
 FILE_WAYBAR=$HOME/.config/waybar/sway
 if ! [ -f "$FILE_WAYBAR" ]; then
 mkdir -p "$FILE_WAYBAR"
-cp -f "/tmp/sway-config/config.jsonc" "$FILE_WAYBAR"
+cp -f "/tmp/sway/config.jsonc" "$FILE_WAYBAR"
 if [[ "$(systemctl is-enabled power-profiles-daemon 2>/dev/null)" == "masked" ]]; then
     sed -Ei \
         's/^([[:space:]]*)"power-profiles-daemon"(,?)[[:space:]]*$/\1\/\/ "power-profiles-daemon"\2/' \

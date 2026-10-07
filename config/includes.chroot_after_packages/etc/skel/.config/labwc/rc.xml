@@ -423,17 +423,17 @@
     <!-- Screenshot -->
     <keybind key="Print">
       <action name="Execute">
-        <command>grimshot save screen --notify</command>
+        <command>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot full || exec grimshot save screen --notify'</command>
       </action>
     </keybind>
     <keybind key="W-Print">
       <action name="Execute">
-        <command>grimshot save area --notify</command>
+        <command>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot area || exec grimshot save area --notify'</command>
       </action>
     </keybind>
     <keybind key="W-S-Print">
       <action name="Execute">
-        <command>grimshot save area --wait 10 --notify</command>
+        <command>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot area 10 || exec grimshot save area --wait 10 --notify'</command>
       </action>
     </keybind>
     <!-- Media keys -->

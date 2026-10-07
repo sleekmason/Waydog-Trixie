@@ -1,0 +1,70 @@
+#!/bin/sh
+# wd-screenshot
+# Saves to ~/Pictures and copies to the clipboard.
+# Usage: wd-screenshot full|area|output [delay time]
+
+mode="${1:-full}"
+delay="${2:-0}"
+
+notify() {
+    command -v notify-send >/dev/null 2>&1 && notify-send -a wd-screenshot "$@"
+}
+
+usage() {
+    echo "Usage: ${0##*/} [full|area|output] [delay-seconds]" >&2
+    exit 2
+}
+
+case "$delay" in
+    ''|*[!0-9]*) usage ;;
+esac
+
+for dep in grim wl-copy; do
+    if ! command -v "$dep" >/dev/null 2>&1; then
+        notify -u critical "Screenshot Failed" "$dep not installed"
+        exit 1
+    fi
+done
+
+dir=""
+command -v xdg-user-dir >/dev/null 2>&1 && dir="$(xdg-user-dir PICTURES)"
+if [ -z "$dir" ] || [ "$dir" = "$HOME" ]; then
+    dir="$HOME/Pictures"
+fi
+mkdir -p "$dir" || exit 1
+
+geom=""
+case "$mode" in
+    full)
+        ;;
+    area|output)
+        if ! command -v slurp >/dev/null 2>&1; then
+            notify -u critical "Screenshot Failed" "slurp not installed"
+            exit 1
+        fi
+        if [ "$mode" = area ]; then
+            geom="$(slurp -d)" || exit 0
+        else
+            geom="$(slurp -o)" || exit 0
+        fi
+        ;;
+    -h|--help|*)
+        usage
+        ;;
+esac
+
+[ "$delay" -gt 0 ] && sleep "$delay"
+
+file="$dir/$(date +%Y%m%d-%H%M%S).png"
+
+if [ -n "$geom" ]; then
+    grim -g "$geom" "$file"
+else
+    grim "$file"
+fi || {
+    notify -u critical "Screenshot Failed"
+    exit 1
+}
+
+wl-copy -t image/png < "$file"
+notify -i "$file" "Screenshot Saved" "$file"

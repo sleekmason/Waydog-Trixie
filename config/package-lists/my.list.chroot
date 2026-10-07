@@ -176,7 +176,7 @@ autotiling
 fuzzel
 gir1.2-gtklayershell-0.1
 grim
-grimshot
+#grimshot
 imv
 # labwc
 libpam-systemd
@@ -191,10 +191,12 @@ qt6-wayland
 qt6ct
 sddm
 seatd
+slurp
 swaybg
 swayidle
 swaylock
 waybar
+wl-clipboard
 wdisplays
 wlopm
 wlrctl

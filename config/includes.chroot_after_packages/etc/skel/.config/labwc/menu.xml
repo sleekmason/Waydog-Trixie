@@ -182,24 +182,24 @@
     </menu>
     <menu icon="preferences-system" id="root-menu-4985" label="Utilities">
       <menu icon="video-display" id="root-menu-8675309" label="Screenshot Options">
-	      <item label="Select All" icon="video-display">
+	    <item label="Select All" icon="video-display">
           <action name="Execute">
-            <execute>grimshot save screen --notify</execute>
+            <execute>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot full || exec grimshot save screen --notify'</execute>
           </action>
         </item>     
         <item label="Select All - Wait 10s" icon="video-display">
           <action name="Execute">
-            <execute>grimshot save screen --wait 10 --notify </execute>
+            <execute>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot full 10 || exec grimshot save screen --wait 10 --notify' </execute>
           </action>
         </item>
         <item label="Select Area" icon="video-display">
           <action name="Execute">
-            <execute>grimshot save area --notify</execute>
+            <execute>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot area || exec grimshot save area --notify'</execute>
           </action>
         </item>         
         <item label="Select Area - Wait 10s" icon="video-display">
           <action name="Execute">
-            <execute>grimshot save area --wait 10 --notify</execute>
+            <execute>sh -c 'command -v wd-screenshot >/dev/null &amp;&amp; exec wd-screenshot area 10 || exec grimshot save area --wait 10 --notify'</execute>
           </action>
         </item>
       </menu>		
