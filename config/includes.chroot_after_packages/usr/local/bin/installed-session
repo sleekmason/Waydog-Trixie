@@ -19,6 +19,8 @@ rm -f "$HOME"/.face.icon
 mkdir -p "$HOME/bin" "$HOME/.local/bin"
 # Add ~/Pictures and ~/Pictures/wallpapers
 mkdir -p Pictures/wallpapers
+# Remove waypaper line used in the live session from ~/.config/labwc/autostart
+sed -i '/import waypaper\.app/d' "$HOME/.config/labwc/autostart"
 # Keyboard settings for labwc and sway
 LAYOUT=$(grep '^XKBLAYOUT=' /etc/default/keyboard | cut -d'"' -f2)
 [[ -z "$LAYOUT" ]] && LAYOUT="us"

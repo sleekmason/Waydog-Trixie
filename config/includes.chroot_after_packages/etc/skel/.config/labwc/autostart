@@ -24,3 +24,4 @@ mako &
 # thunar --daemon &
 # fi
 welcome-backend.sh &
+[ -d /run/live ] && ( sleep 8; python3 -c 'import waypaper.app' >/dev/null 2>&1; cat ~/.cache/waypaper/*.png >/dev/null 2>&1 ) &
