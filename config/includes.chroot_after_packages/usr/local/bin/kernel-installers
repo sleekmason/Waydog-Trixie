@@ -1,0 +1,14 @@
+#!/bin/bash
+
+yad --title "Kernel Installers" --escape-ok \
+--form --center --width=240 --height=268 --borders=10 \
+--button=" Exit!gtk-delete":1 \
+--text="Kernel Installers" --text-align=center \
+--window-icon=applications-engineering \
+    --form \
+    --field="Liquorix":FBTN "x-terminal-emulator -T 'Liquorix Kernel Installer' -e bash -c "liquorix-kernel-installer"" \
+    --field="Xanmod":FBTN "x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer"" \
+    --field="Kernel Apps":FBTN "x-terminal-emulator -T 'Kernel Apps Installer' -e bash -c "kernel-apps-installer"" \
+    --field="":LBL "" \
+    --field="":LBL "" \
+    --field="   All Installers!/usr/share/icons/gnome/22x22/categories/applications-other.png":FBTN "bash -c 'waydog-installers'"

@@ -5,6 +5,10 @@ read -p "
    
    This script adds the Trixie Backports repository to your sources.
    
+   Most people really do not need this, and adding the backports
+   sources could possibly cause dependency issues. Proceed with
+   caution.
+   
    [0;34mhttps://backports.debian.org/Instructions/[0m
    
    

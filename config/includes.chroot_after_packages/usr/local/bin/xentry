@@ -208,7 +208,7 @@ if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
     _update
     _apt_location
     _remove_packages
-    _add_backports
+#    _add_backports
     _add_conky
 #    _add_ly
     _osprober
@@ -218,7 +218,7 @@ else
     _update
     _apt_location
     _remove_packages
-    _add_backports
+#    _add_backports
     _add_conky
 #    _add_ly
     _firmware
