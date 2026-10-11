@@ -49,13 +49,14 @@ done
 yad --title="Waydog Installers" \
     --escape-ok \
     --form \
-    --width=560 --height=308 --center \
-    --borders=10 \
-    --columns=4 \
-    --buttons-layout=spread \
+    --width=524 --height=382 --center \
+    --borders=8 \
+    --columns=3 \
+    --buttons-layout=edge \
     --window-icon=applications-utilities \
     --text-align=center \
     --button="Quick Installers!/usr/share/icons/gnome/22x22/apps/system-software-install.png:bash -c quickinstaller" \
+    --button="Synaptic!synaptic:bash -c 'gksudo synaptic'" \
     --button="Close!gtk-ok:0" \
     "${fields[@]}" \
     2>/dev/null
