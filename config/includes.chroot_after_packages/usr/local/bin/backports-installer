@@ -1,18 +1,17 @@
 #!/bin/bash
 read -p "   
-                          [0;33mADD ADDITIONAL SOURCES[0m
+                         [0;32mAdd Backports Sources[0m
+  
+   This script adds the Trixie Backports sources to your repository.
    
+   Afterwards, append the package to install through backports with:
+   '/trixie-backports'. For example, to install ncat from backports:
    
-   This script adds the Trixie Backports repository to your sources.
+   [0;34msudo apt install ncat/trixie-backports[0m  
    
-   Most people really do not need this, and adding the backports
-   sources could possibly cause dependency issues. Proceed with
-   caution.
-   
-   [0;34mhttps://backports.debian.org/Instructions/[0m
-   
-   
-   [0;33m-----------------------------------------------------------------
+   [0;31mhttps://backports.debian.org/Instructions/[0m
+      
+   [0;32m-----------------------------------------------------------------
    
    Please press Enter to add Trixie Backports.
    
@@ -27,15 +26,11 @@ echo ""
 sudo cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
    sudo apt update
    echo ""
-   echo ""
-   echo ""
-   echo "[0;33m---------------------------------------------------------------------"
+   echo "[0;32m---------------------------------------"
    echo ""
    echo "Trixie backports enabled and updated."
    echo ""
-   echo "Done!"
-   echo ""
-   echo "---------------------------------------------------------------------[0m"
+   echo "---------------------------------------[0m"
    echo ""
 else
 echo ""

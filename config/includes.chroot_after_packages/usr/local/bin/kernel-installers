@@ -6,6 +6,7 @@ yad --title "Kernel Installers" --escape-ok \
 --text="Kernel Installers" --text-align=center \
 --window-icon=applications-engineering \
     --form \
+    --field="Backports":FBTN "x-terminal-emulator -T 'Debian Backports Kernel Installer' -e bash -c "backports-kernel-installer"" \
     --field="Liquorix":FBTN "x-terminal-emulator -T 'Liquorix Kernel Installer' -e bash -c "liquorix-kernel-installer"" \
     --field="Xanmod":FBTN "x-terminal-emulator -T 'Xanmod Kernel Installer' -e bash -c "xanmod-kernel-installer"" \
     --field="Kernel Apps":FBTN "x-terminal-emulator -T 'Kernel Apps Installer' -e bash -c "kernel-apps-installer"" \
