@@ -1,0 +1,4 @@
+[org/gnome/desktop/interface]
+gtk-theme='Dragon'
+icon-theme='Obsidian'
+color-scheme='prefer-dark'
