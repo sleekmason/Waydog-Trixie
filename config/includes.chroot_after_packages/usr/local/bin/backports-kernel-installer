@@ -31,7 +31,7 @@ echo ""
    echo ""
    echo "  [0;32m------------------------------------------------------------------[0m"
    echo ""
-   sudo apt install -y linux-image-amd64/trixie-backports linux-headers-amd64/trixie-backports firmware-linux || exit
+   sudo apt install -y linux-image-amd64/trixie-backports linux-headers-amd64/trixie-backports libc6-dev firmware-linux || exit
    echo ""
    echo "  [0;33mPlease reboot into your new kernel when able.[0m"
 echo ""
