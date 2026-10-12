@@ -107,9 +107,18 @@ _remove_packages() {
 }
 
 _add_backports() {
-      _msg="Add backports repositories and run Apt to update?"
+      _msg="Add backports sources and run Apt to update?"
       do_it() { cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
                  apt-get update ;}
+        see_it
+        no_see
+        run_it
+}
+
+_upgrade_kernel() {
+      _msg="Install backports kernel? (Also adds backports sources)"
+      do_it() { cp -f "/usr/share/lilidog/extras/backports/trixie-backports.sources" "/etc/apt/sources.list.d" &&  
+                apt-get update && apt-get install -y linux-image-amd64/trixie-backports linux-headers-amd64/trixie-backports libc6-dev firmware-linux ;}
         see_it
         no_see
         run_it
@@ -209,6 +218,7 @@ if grep -q "#GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
     _apt_location
     _remove_packages
     _add_backports
+    _upgrade_kernel   
     _add_conky
 #    _add_ly
     _osprober
@@ -219,6 +229,7 @@ else
     _apt_location
     _remove_packages
     _add_backports
+    _upgrade_kernel    
     _add_conky
 #    _add_ly
     _firmware
