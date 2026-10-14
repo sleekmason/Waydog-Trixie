@@ -1,0 +1,6 @@
+#!/bin/bash
+# Satty wrapper to follow the current theme.
+   
+t=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")
+[ -n "$t" ] && export GTK_THEME="$t"
+exec /usr/bin/satty "$@"
