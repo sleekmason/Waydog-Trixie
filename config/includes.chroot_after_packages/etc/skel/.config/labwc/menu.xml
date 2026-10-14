@@ -219,6 +219,11 @@
             <execute>x-terminal-emulator -T 'Firmware Check' -e bash -c "firmware-checker; echo $'\n\nPress any key to close.'; read -srn1"</execute>
           </action>
         </item>
+        <item label="Htop" icon="htop">
+          <action name="Execute">
+            <execute>x-terminal-emulator -T 'Htop' -e bash -c "htop"</execute>
+          </action>
+        </item>
         <item label="HW-Probe" icon="applications-engineering">
           <action name="Execute">
             <execute>x-terminal-emulator -T 'HW-Probe' -e bash -c "hw-probe-installer; echo $'\n\nPress any key to close.'; read -srn1"</execute>

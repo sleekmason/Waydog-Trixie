@@ -1,0 +1,55 @@
+#!/bin/bash
+echo ""
+read -r -p "  [0;32m Satty Installer[0m
+
+   Satty's a screenshot annotation tool inspired by Swappy and Flameshot.
+   
+   Satty has been created to provide the following improvements over
+   existing screenshot annotation tools:
+
+   very simple and easy to understand toolset.
+   fullscreen annotation mode and post shot cropping.
+   extremely smooth rendering thanks to HW acceleration.
+   working on wlroots based compositors.
+   minimal, modern looking UI, thanks to GTK and Adwaita.
+   playground for new annotation features.
+
+    
+   [0;33mhttps://github.com/Satty-org/Satty[0m
+   
+   [0;32m----------------------------------------------------------------------
+   
+   Please press enter to install Satty.
+   
+   ----------------------------------------------------------------------[0m
+      
+   Or close this terminal window to quit the install." ;
+   if : >/dev/tcp/8.8.8.8/53; then
+echo ""
+echo ""
+cd /tmp || exit &&
+rm -f /tmp/satty*
+wget --prefer-family=IPv4 https://raw.githubusercontent.com/sleekmason/packages/master/satty_0.22.0_amd64.deb --show-progress -q
+echo ""
+echo ""
+sudo apt update && sudo apt install -y /tmp/./satty_0.22.0_amd64.deb
+echo ""
+echo "[0;33m-------------------------------------------------------------------"
+echo ""
+echo "   All Finished!"
+echo ""
+echo "   Right-click on any image to open with Satty."
+echo ""
+echo "-------------------------------------------------------------------[0m"
+echo ""
+echo ""
+else
+echo ""
+ echo "   -------------------------------------------------------"
+ echo ""
+ echo "   No Internet connection. Please connect and try again."
+ echo ""
+ echo "   -------------------------------------------------------"
+echo ""
+fi
+read -n1 -p " Press any key to quit this dialog ... "

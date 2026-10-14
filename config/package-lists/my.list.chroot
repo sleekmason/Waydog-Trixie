@@ -62,6 +62,7 @@ gtk2-engines-pixbuf
 gvfs
 gvfs-backends
 gvfs-fuse
+htop
 intel-microcode
 inxi
 iproute2
@@ -176,9 +177,7 @@ autotiling
 fuzzel
 gir1.2-gtklayershell-0.1
 grim
-#grimshot
 imv
-# labwc
 libpam-systemd
 libqt6waylandclient6
 mako-notifier
