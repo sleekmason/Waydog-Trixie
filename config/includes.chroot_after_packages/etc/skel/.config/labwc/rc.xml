@@ -88,6 +88,7 @@
   -->
   <windowRules>
     <windowRule identifier="com.mitchellh.ghostty" serverDecoration="no"/>
+    <windowRule identifier="com.gabm.satty" serverDecoration="yes"/>
   </windowRules>
   <windowSwitcher preview="yes" outlines="yes" unshade="yes">
     <osd show="yes" style="classic" output="all" thumbnailLabelFormat="%T"/>
