@@ -463,13 +463,17 @@ row:selected button.flat:not(:active):not(:checked):not(:hover):not(disabled) {
   box-shadow: inset 0 1px rgba(255, 255, 255, 0);
   text-shadow: none;
   -gtk-icon-shadow: none; }
-  .toolbar > button:hover, .toolbar > button:active, .toolbar > button:checked,
-  .toolbar > :not(.linked) > button:hover,
-  .toolbar > :not(.linked) > button:active,
-  .toolbar > :not(.linked) > button:checked {
-    color: #DCDFE0;
+.toolbar > button:hover,
+.toolbar > :not(.linked) > button:hover {
+  background-color: #295f91; }
+
+.toolbar > button:checked,
+.toolbar > button:active,
+.toolbar > :not(.linked) > button:checked,
+.toolbar > :not(.linked) > button:active {
+  background-color: #2B3138;
+  color: #E0E0E0;
     outline-color: rgba(220, 223, 224, 0.3);
-    background-color: #3A3F47;
     text-shadow: none;
     box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1); }
 
