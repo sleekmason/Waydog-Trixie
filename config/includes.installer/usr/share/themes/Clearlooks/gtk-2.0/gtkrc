@@ -76,7 +76,7 @@ style "clearlooks-button" = "clearlooks-wider"
 {
 	bg[NORMAL]	    = "#222426"  ## BUTTONS(3)
 	bg[INSENSITIVE]	= "#222426"
-	bg[PRELIGHT]	= "#404547"  #Hover
+	bg[PRELIGHT]	= "#234F78"  #Hover
 }
 
 style "clearlooks-notebook" = "clearlooks-wide"
@@ -134,6 +134,7 @@ style "clearlooks-progressbar" = "clearlooks-wide"
 	xthickness	= 1
 	ythickness	= 1
 	fg[PRELIGHT]	= "#ffffff"
+	bg[SELECTED]	= "#234F78" # progress bar
 }
 
 style "clearlooks-combo" = "clearlooks-button"
