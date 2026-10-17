@@ -1,0 +1,83 @@
+#!/bin/bash
+# menu-alpha-sync
+# Use inotify to sync labwc's menu backgroud color on theme change.
+# Works directly with menu-alpha-toggle, but can be added
+# to autostart if desired.
+# Made by sleekmason 17 Oct 2026
+
+cfg="${XDG_CONFIG_HOME:-$HOME/.config}/labwc"
+rc="$cfg/rc.xml"
+ovr="$cfg/themerc-override"
+default_alpha="E5"
+labwc_default_bg="18191A"
+
+theme_name() {
+    xmllint --xpath 'normalize-space(/labwc_config/theme/name)' "$rc" 2>/dev/null
+}
+
+theme_file() {
+    local n="$1" d sub
+    for d in "${XDG_DATA_HOME:-$HOME/.local/share}/themes" "$HOME/.themes" \
+             /usr/share/themes /usr/local/share/themes /opt/share/themes; do
+        for sub in labwc openbox-3; do
+            if [ -f "$d/$n/$sub/themerc" ]; then
+                echo "$d/$n/$sub/themerc"
+                return
+            fi
+        done
+    done
+}
+
+sync_color() {
+    [ -f "$ovr" ] || return
+    local name tf raw color cur alpha new
+
+    name=$(theme_name)
+    grep -q '^[[:space:]]*menu\.items\.bg\.color:' "$ovr" 2>/dev/null || return
+    tf=$(theme_file "$name")
+
+    raw=""
+    [ -n "$tf" ] && raw=$(sed -n 's/^[[:space:]]*menu\.items\.bg\.color:[[:space:]]*\([^[:space:]]*\).*/\1/p' "$tf" | tail -n1)
+
+    if [ -z "$raw" ]; then
+        color="$labwc_default_bg"
+    elif [[ "$raw" =~ ^#([0-9A-Fa-f]{6}) ]]; then
+        color="${BASH_REMATCH[1]}"
+    else
+        return
+    fi
+
+    cur=$(sed -n 's/^[[:space:]]*menu\.items\.bg\.color:[[:space:]]*#[0-9A-Fa-f]\{6\}\([0-9A-Fa-f]\{2\}\).*/\1/p' "$ovr" | tail -n1)
+    alpha="${cur:-$default_alpha}"
+    new="menu.items.bg.color: #${color}${alpha}"
+    grep -qxF "$new" "$ovr" && return
+    sed -i "s|^[[:space:]]*menu\.items\.bg\.color:.*|$new|" "$ovr"
+
+    [ -n "$LABWC_PID" ] && labwc --reconfigure
+}
+
+if [ "$1" = "--once" ]; then
+    sync_color
+    exit 0
+fi
+
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/menu-alpha-sync.lock"
+flock -n 9 || exit 0
+
+sync_color
+
+inotifywait -mq -e close_write,moved_to --format '%f' "$cfg" 9>&- |
+while read -r f; do
+    [ "$f" = "rc.xml" ] && sync_color
+done &
+
+if [ -n "$LABWC_PID" ]; then
+    if command -v waitpid >/dev/null; then
+        waitpid "$LABWC_PID" 2>/dev/null
+    else
+        tail --pid="$LABWC_PID" -f /dev/null
+    fi
+    pkill -P $$
+else
+    wait
+fi

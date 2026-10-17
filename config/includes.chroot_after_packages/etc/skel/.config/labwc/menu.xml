@@ -148,6 +148,11 @@
         <action name="Execute">
           <execute>menu-icons-toggle</execute>
         </action>
+      </item>
+      <item label="Menu Transparency" icon="computer">
+        <action name="Execute">
+          <execute>menu-alpha-toggle</execute>
+        </action>
       </item>      
       <item label="OSProber On/Off" icon="applications-system">
         <action name="Execute">

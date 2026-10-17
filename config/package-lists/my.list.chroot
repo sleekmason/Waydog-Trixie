@@ -63,6 +63,7 @@ gvfs
 gvfs-backends
 gvfs-fuse
 htop
+inotify-tools
 intel-microcode
 inxi
 iproute2
@@ -89,6 +90,7 @@ libnss-systemd
 libpipewire-0.3-common
 libqt5svg5
 librsvg2-common
+libxml2-utils
 locales
 lsb-release
 manpages

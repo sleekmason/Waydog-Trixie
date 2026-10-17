@@ -48,7 +48,7 @@ menu.width.min: 180
 menu.width.max: 240
 menu.border.width: 0
 #menu.border.color: #2F3233
-#menu.items.bg.color: #18191ABEE
+#menu.items.bg.color: #18191AE5
 #menu.items.text.color: #CFCFCF
 #menu.items.active.bg.color: #234f78
 #menu.items.active.text.color: #E6E6E6
