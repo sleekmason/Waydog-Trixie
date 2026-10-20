@@ -16,6 +16,7 @@
 /usr/local/bin/restore-wallpaper &
 waybar >/dev/null 2>&1 &
 /usr/libexec/polkit-mate-authentication-agent-1 2>&1 &
+nm-applet >/dev/null 2>&1 &
 mako &
 
 ### Start the Thunar Daemon. Uncomment all three lines below to enable.

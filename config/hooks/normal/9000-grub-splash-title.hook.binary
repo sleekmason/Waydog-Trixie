@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+for f in boot/grub/live-theme/theme.txt binary/boot/grub/live-theme/theme.txt; do
+    [ -f "$f" ] && sed -i "s/^title-text: .*/title-text: \"Welcome to Waydog Trixie $(date +%y.%m.%d)\"/" "$f"
+done
+true
