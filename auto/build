@@ -4,4 +4,7 @@ set -e
 # enable full squash compression at the expense of build time.
 export MKSQUASHFS_OPTIONS='-b 1048576 -Xbcj x86 -Xdict-size 100%'
 
+# Build date for splash title header
+sed -i "s/^title-text: .*/title-text: \"Welcome to Waydog Trixie $(date +%y.%m.%d)\"/" config/bootloaders/grub-pc/live-theme/theme.txt
+
 lb build noauto "${@}" 2>&1 | tee build.log

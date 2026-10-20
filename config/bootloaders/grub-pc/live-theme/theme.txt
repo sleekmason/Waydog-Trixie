@@ -1,33 +1,36 @@
 desktop-image: "../splash.png"
-title-color: "#ffffff"
-title-font: "Unifont Regular 16"
+desktop-image-scale-method: "crop"
+desktop-image-h-align: "center"
+desktop-image-v-align: "center"
+title-color: "#D9D9D9"
+title-font: "DejaVu Sans Regular 18"
 title-text: "Live Boot Menu with GRUB"
-message-font: "Unifont Regular 16"
-terminal-font: "Unifont Regular 16"
+message-font: "DejaVu Sans Bold 18"
+terminal-font: "DejaVu Sans Bold 18"
 
 #help bar at the bottom
 + label {
         top = 100%-50
         left = 0
         width = 100%
-        height = 20
+        height = 26
         text = "@KEYMAP_SHORT@"
         align = "center"
         color = "#ffffff"
-	font = "Unifont Regular 16"
+	font = "DejaVu Sans Regular 16"
 }
 
 #boot menu
 + boot_menu {
-        left = 10%
+        left = 6%
         width = 80%
-        top = 52%
+        top = 43%
         height = 48%-80
         item_color = "#a8a8a8"
-	item_font = "Unifont Regular 16"
+	item_font = "DejaVu Sans Regular 18"
         selected_item_color= "#ffffff"
-	selected_item_font = "Unifont Regular 16"
-        item_height = 16
+	selected_item_font = "DejaVu Sans Bold 18"
+        item_height = 20
         item_padding = 0
         item_spacing = 4
 	icon_width = 0
@@ -40,9 +43,9 @@ terminal-font: "Unifont Regular 16"
         id = "__timeout__"
         left = 15%
         top = 100%-80
-        height = 16
+        height = 22
         width = 70%
-        font = "Unifont Regular 16"
+        font = "DejaVu Sans Bold 18"
         text_color = "#000000"
         fg_color = "#ffffff"
         bg_color = "#a8a8a8"
