@@ -1,0 +1,6 @@
+/#!/bin/sh
+
+set -e
+dpkg-divert --add --rename --divert /usr/lib/os-release.debian /usr/lib/os-release
+  cp -f /usr/share/lilidog/os-release /usr/lib/os-release
+  ln -sf ../usr/lib/os-release /etc/os-release
