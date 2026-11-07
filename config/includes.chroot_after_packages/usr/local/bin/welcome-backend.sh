@@ -30,7 +30,6 @@ touch "$STAMP"
 
 # Remove autostart entries
 sed -i '/welcome-backend.sh/d' "$HOME/.config/labwc/autostart"
-sed -i '/welcome-backend.sh/d' "$HOME/.config/sway/config"
 
 # Launch welcome
 if command -v yad >/dev/null; then
