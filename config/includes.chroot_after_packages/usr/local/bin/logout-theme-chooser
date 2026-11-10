@@ -13,8 +13,6 @@ fi
 fi
 }
 
-notify-send "Yad still has a few issues in Wayland" "(dialog placement - titlebar exclusion)"
-
 # Logout style and icons on/off.
 _horzicons(){
 bash -c "_check-exist"
