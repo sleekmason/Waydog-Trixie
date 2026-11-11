@@ -22,7 +22,7 @@
 
   <!-- Global Settings -->
   <style name="text"                        foreground="#E0E0E0" background="#151617"/>
-  <style name="selection"                   foreground="#FAFAFA" background="434A4D"/>
+  <style name="selection"                   foreground="#FAFAFA" background="#434A4D"/>
   <style name="current-line"                background="#2C3133"/>
   <style name="current-line-number"         background="#2C3133"/>
   <style name="draw-spaces"                 foreground="#babdb6"/>
