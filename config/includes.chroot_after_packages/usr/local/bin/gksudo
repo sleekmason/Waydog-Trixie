@@ -13,4 +13,4 @@ pkexec env \
     XDG_SESSION_TYPE="$XDG_SESSION_TYPE" \
     WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
     XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
-    "$@"
+    dbus-run-session -- "$@"

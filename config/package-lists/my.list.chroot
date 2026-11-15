@@ -27,6 +27,7 @@ cryptsetup-initramfs
 curl
 dbus-bin
 dbus-broker
+dbus-daemon
 dbus-user-session
 dconf-gsettings-backend
 dconf-editor
