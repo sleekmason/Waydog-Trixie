@@ -88,6 +88,7 @@ Rectangle {
         Image {
             id: rectangle
             anchors.centerIn: parent
+            anchors.verticalCenterOffset: -60
             width: Math.max(320, mainColumn.implicitWidth + 50)
             height: Math.max(320, mainColumn.implicitHeight + 50)
 
