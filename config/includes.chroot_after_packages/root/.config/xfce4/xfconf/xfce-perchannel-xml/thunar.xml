@@ -12,4 +12,5 @@
   <property name="last-show-hidden" type="bool" value="true"/>
   <property name="misc-vertical-split-pane" type="bool" value="false"/>
   <property name="last-splitview-separator-position" type="int" value="136"/>
+  <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_NEVER"/>
 </channel>
