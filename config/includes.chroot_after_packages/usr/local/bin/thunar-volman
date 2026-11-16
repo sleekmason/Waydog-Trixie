@@ -1,0 +1,11 @@
+#!/bin/sh
+# thunar-volman wrapper - thunar-volman ignores UDISKS_AUTO hint. This
+# wrapper will prevent internal drives from automounting when the
+# partition table is re-read by programs like gparted.
+
+if [ "$1" = "--device-added" ] && [ -n "$2" ] &&
+   udevadm info -q property -p "$2" 2>/dev/null | grep -qx 'UDISKS_AUTO=0'; then
+    exit 0
+fi
+
+exec /usr/bin/thunar-volman "$@"

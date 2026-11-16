@@ -1,2 +1,3 @@
-# etc/udev/rules.d/90-waydog-internal-automount.rules
+# etc/udev/rules.d/90-waydog-internal-automount.rules - in
+# conjunction with /usr/local/bin/thunar-volman.
 ENV{DEVTYPE}=="partition", ENV{ID_BUS}!="usb", KERNEL!="mmcblk*", ENV{UDISKS_AUTO}="0"
