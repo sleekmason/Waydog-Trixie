@@ -1,0 +1,2 @@
+# etc/udev/rules.d/90-waydog-internal-automount.rules
+ENV{DEVTYPE}=="partition", ENV{ID_BUS}!="usb", KERNEL!="mmcblk*", ENV{UDISKS_AUTO}="0"

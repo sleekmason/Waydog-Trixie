@@ -1,16 +1,19 @@
 #!/bin/bash
-# Wrapper for adding environmental variables for pkexec usage.
+# Wrapper for adding environmental variables for pkexec usage and theme
+# changes for root, with one dbus session for root app use until reboot.
 
-if [[ "$1" != */* ]]; then
-    CMD="$(command -v "$1")"
-    if [[ -n "$CMD" ]]; then
-        shift
-        set -- "$CMD" "$@"
-    fi
-fi
+T=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null | tr -d "'")
 
 pkexec env \
     XDG_SESSION_TYPE="$XDG_SESSION_TYPE" \
     WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
     XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" \
-    dbus-run-session -- "$@"
+    GIO_USE_VFS=local \
+    GIO_USE_VOLUME_MONITOR=unix \
+    ${T:+GTK_THEME="$T"} \
+    sh -c '
+        S=/root/.cache/dbus-root-bus; A="unix:path=$S"
+        dbus-send --bus="$A" --dest=org.freedesktop.DBus / org.freedesktop.DBus.Peer.Ping >/dev/null 2>&1 ||
+            { mkdir -p /root/.cache; rm -f "$S"; env -u XDG_RUNTIME_DIR dbus-daemon --session --fork --address="$A"; }
+        DBUS_SESSION_BUS_ADDRESS="$A" exec "$@"
+    ' sh "$@"
