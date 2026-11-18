@@ -43,8 +43,7 @@ yad --title "OSprober Toggle" --window-icon=applications-utilities \
     --button="Toggle On/Off:2" \
     --button="gtk-quit:1" --buttons-layout=spread \
     --text-info --justify=left --wrap < /usr/share/lilidog/osprober.txt \
-    --fontname="JetBrains Mono Regular 10" \
-    --fore="#C0DDEB"
+    --fontname="JetBrains Mono Regular 10"
 RET=$?
 
 if [[ $RET -eq 2 ]]; then
@@ -62,9 +61,9 @@ if [[ $RET -eq 2 ]]; then
     kill "$YAD_PID" 2>/dev/null; wait "$YAD_PID" 2>/dev/null
 
     if grep -q '^[[:space:]]*GRUB_DISABLE_OS_PROBER=false' "$FILE"; then
-        STATUS_AFTER="OSprober Is Now Enabled"
+        STATUS_AFTER="OSprober Enabled"
     else
-        STATUS_AFTER="OSprober Is Now Disabled"
+        STATUS_AFTER="OSprober Disabled"
     fi
 
     notify-send -t 6000 --urgency low "Grub Update Finished"
